@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class TrackedCurrenciesViewController: UIViewController {
     
@@ -20,6 +21,10 @@ class TrackedCurrenciesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        request("https://poloniex.com/public?command=returnTicker").responseJSON { (response) in
+            print(response)
+        }
         
         self.navigationController?.navigationBar.isTranslucent = false;
         self.navigationController?.navigationBar.barTintColor = UIColor.navBarColor()

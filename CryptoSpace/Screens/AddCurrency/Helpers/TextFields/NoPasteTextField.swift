@@ -2,7 +2,7 @@
 //  NoPasteTextField.swift
 //  CryptoSpace
 //
-//  Created by Иван Стефанов on 27.01.2018.
+//  Created by st.i on 27.01.2018.
 //  Copyright © 2018 Stefanov. All rights reserved.
 //
 

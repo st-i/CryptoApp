@@ -67,7 +67,7 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
 //        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], for: .normal)
 //        navigationItem.titleView = currencySearchBar
         
-        self.tableView.backgroundColor = UIColor.groupTableViewBackground
+        self.tableView.backgroundColor = UIColor.white//groupTableViewBackground
 //        self.searchBar.searchBarStyle = .minimal
 //        self.searchBar.backgroundColor = UIColor.groupTableViewBackground
         showRecentAndPopularResults()

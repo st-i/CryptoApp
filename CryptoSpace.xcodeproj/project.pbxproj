@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		51B3C0AE0440966FE83FD022 /* Pods_CryptoSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C94ABAF527809629D37356 /* Pods_CryptoSpace.framework */; };
 		5406BA021FF2DBE00022D1C4 /* ActionWithCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5406BA011FF2DBE00022D1C4 /* ActionWithCurrencyCell.swift */; };
 		5406BA041FF2DC2B0022D1C4 /* CurrencyPairCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5406BA031FF2DC2B0022D1C4 /* CurrencyPairCell.swift */; };
 		5406BA061FF2DD310022D1C4 /* ActionWithCurrencyDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5406BA051FF2DD310022D1C4 /* ActionWithCurrencyDateCell.swift */; };
@@ -97,10 +98,14 @@
 		DDAA6AE920039106007045F7 /* CurrencyForPairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAA6AE820039106007045F7 /* CurrencyForPairViewController.swift */; };
 		DDB1FC9B2026FC8500D83AF7 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1FC9A2026FC8500D83AF7 /* HeaderViewCell.swift */; };
 		DDB1FC9D2026FD1E00D83AF7 /* HeaderViewCellBulder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1FC9C2026FD1E00D83AF7 /* HeaderViewCellBulder.swift */; };
+		DDC281F920305B60002AAAF0 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC281F820305B60002AAAF0 /* RequestManager.swift */; };
 		DDD9B19A201F985900D7F437 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD9B199201F985900D7F437 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12CD3728D7BA21281A942EEE /* Pods-CryptoSpace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoSpace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoSpace/Pods-CryptoSpace.debug.xcconfig"; sourceTree = "<group>"; };
+		3A7DD891CBFD2337948CC45C /* Pods-CryptoSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoSpace/Pods-CryptoSpace.release.xcconfig"; sourceTree = "<group>"; };
+		49C94ABAF527809629D37356 /* Pods_CryptoSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5406BA011FF2DBE00022D1C4 /* ActionWithCurrencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionWithCurrencyCell.swift; sourceTree = "<group>"; };
 		5406BA031FF2DC2B0022D1C4 /* CurrencyPairCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPairCell.swift; sourceTree = "<group>"; };
 		5406BA051FF2DD310022D1C4 /* ActionWithCurrencyDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionWithCurrencyDateCell.swift; sourceTree = "<group>"; };
@@ -193,6 +198,7 @@
 		DDAA6AE820039106007045F7 /* CurrencyForPairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyForPairViewController.swift; sourceTree = "<group>"; };
 		DDB1FC9A2026FC8500D83AF7 /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		DDB1FC9C2026FD1E00D83AF7 /* HeaderViewCellBulder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCellBulder.swift; sourceTree = "<group>"; };
+		DDC281F820305B60002AAAF0 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		DDD9B199201F985900D7F437 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,12 +207,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51B3C0AE0440966FE83FD022 /* Pods_CryptoSpace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46D21AC398CB4D28AD1AA01B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				12CD3728D7BA21281A942EEE /* Pods-CryptoSpace.debug.xcconfig */,
+				3A7DD891CBFD2337948CC45C /* Pods-CryptoSpace.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5406B9F81FF2DB890022D1C4 /* AddCurrency */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +522,8 @@
 			children = (
 				542E45D11FDC14E3006D52C9 /* CryptoSpace */,
 				542E45D01FDC14E3006D52C9 /* Products */,
+				46D21AC398CB4D28AD1AA01B /* Pods */,
+				DFEF4DA4E9217B439CAF0E02 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -522,6 +540,7 @@
 			children = (
 				5407D3D51FE52BC40063C3A6 /* Screens */,
 				DDD9B198201F980500D7F437 /* Extensions */,
+				DDC281F72030553A002AAAF0 /* Services */,
 				542E45D21FDC14E3006D52C9 /* AppDelegate.swift */,
 				542E45D41FDC14E3006D52C9 /* ViewController.swift */,
 				542E45D61FDC14E3006D52C9 /* Main.storyboard */,
@@ -739,12 +758,28 @@
 			path = "CurrencyForPairDataSource+Delegate";
 			sourceTree = "<group>";
 		};
+		DDC281F72030553A002AAAF0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DDC281F820305B60002AAAF0 /* RequestManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		DDD9B198201F980500D7F437 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				DDD9B199201F985900D7F437 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DFEF4DA4E9217B439CAF0E02 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49C94ABAF527809629D37356 /* Pods_CryptoSpace.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -754,9 +789,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 542E45E41FDC14E3006D52C9 /* Build configuration list for PBXNativeTarget "CryptoSpace" */;
 			buildPhases = (
+				C5E788235121497878DF10C6 /* [CP] Check Pods Manifest.lock */,
 				542E45CB1FDC14E3006D52C9 /* Sources */,
 				542E45CC1FDC14E3006D52C9 /* Frameworks */,
 				542E45CD1FDC14E3006D52C9 /* Resources */,
+				D9349B457898B0A32EF9023E /* [CP] Embed Pods Frameworks */,
+				DE8632D70C602EAAB16589E4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -819,6 +857,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C5E788235121497878DF10C6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CryptoSpace-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D9349B457898B0A32EF9023E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CryptoSpace/Pods-CryptoSpace-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CryptoSpace/Pods-CryptoSpace-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE8632D70C602EAAB16589E4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CryptoSpace/Pods-CryptoSpace-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		542E45CB1FDC14E3006D52C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -831,6 +923,7 @@
 				54306C091FFA5DB50094A894 /* AddCurrencyDataSourceAndDelegate.swift in Sources */,
 				5407D3F61FE52BC40063C3A6 /* TrackedCurrenciesViewController.swift in Sources */,
 				DD30884D201C7252006260C2 /* NoPasteTextField.swift in Sources */,
+				DDC281F920305B60002AAAF0 /* RequestManager.swift in Sources */,
 				5407D3F31FE52BC40063C3A6 /* TrackedCurrenciesDelegate.swift in Sources */,
 				5406BA101FF2DEE80022D1C4 /* NotesCell.swift in Sources */,
 				5407D3F41FE52BC40063C3A6 /* TrackedCurrenciesScreenDirector.swift in Sources */,
@@ -1041,6 +1134,7 @@
 		};
 		542E45E51FDC14E3006D52C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12CD3728D7BA21281A942EEE /* Pods-CryptoSpace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 47SH5K5922;
@@ -1055,6 +1149,7 @@
 		};
 		542E45E61FDC14E3006D52C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A7DD891CBFD2337948CC45C /* Pods-CryptoSpace.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 47SH5K5922;

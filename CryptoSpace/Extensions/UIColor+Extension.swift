@@ -2,7 +2,7 @@
 //  UIColor+Extension.swift
 //  CryptoSpace
 //
-//  Created by Иван Стефанов on 29.01.2018.
+//  Created by st.i on 29.01.2018.
 //  Copyright © 2018 Stefanov. All rights reserved.
 //
 

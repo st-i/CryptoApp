@@ -2,7 +2,7 @@
 //  AboutAppViewController.swift
 //  CryptoSpace
 //
-//  Created by Иван Стефанов on 28.01.2018.
+//  Created by st.i on 28.01.2018.
 //  Copyright © 2018 Stefanov. All rights reserved.
 //
 

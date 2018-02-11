@@ -6,6 +6,28 @@
 //  Copyright © 2017 Stefanov. All rights reserved.
 //
 
+//bitbay - про лимиты ничего
+//bitfinex - between 10 and 90 per minute
+//bitFlyer - не открывается
+//bitstamp - не открывается
+//!bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits
+//!C-CEX - nothing about limits
+//!cex.io - nothing about limits
+//coinbase -
+//exmo -
+//gatecoin -
+//gemini -
+//hitbtc -
+//kraken -
+//livecoin -
+//lykke -
+//okcoin -
+//poloniex - могу сделать запрос по 60-70 валютам сразу
+//quadrigacx -
+//qouine -
+//wex -
+//yobit -
+
 import UIKit
 import CoreData
 

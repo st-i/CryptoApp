@@ -2,7 +2,7 @@
 //  HeaderViewCell.swift
 //  CryptoSpace
 //
-//  Created by Иван Стефанов on 04.02.2018.
+//  Created by st.i on 04.02.2018.
 //  Copyright © 2018 Stefanov. All rights reserved.
 //
 
