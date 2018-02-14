@@ -6,27 +6,30 @@
 //  Copyright © 2017 Stefanov. All rights reserved.
 //
 
+//1.okex - Each IP can send maximum of 3000 https requests within 5 minutes (431 currencies, хороший курс)
+//2.btcalpha - 33 валюты, We have limit in 2 calls per second from single account to authorization required methods and 100 calls per secong from single IP address to public methods. биткоин-8650, у них 9236
+//3.bithumb - Public API: 20 request available per second (12 валют, чуть завышен курс).
+//4.Poloniex - 6 calls per second to the public API (99 валют)
+//5.Lykke - The API throughput limit is 300 requests per minute for a single client (около 30 валют, на 200-300 завышен).
+//6.BtcMarkets - 25 calls per 10 seconds (11 валют, хороший курс)
 
 
-//1.coinmarketcap - Please limit requests to no more than 10 per minute
-//2.bitfinex - between 10 and 90 per minute
-//!5.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits
+
+//17.Okcoin - Each IP can send maximum of 3000 https requests within 5 minutes (BTC, LTC, ETH)
 //12.Gemini - we limit requests to 120 requests per minute
-//15.Livecoin - Разрешается не более 60 любых запросов к API в течении 60 секунд подряд с одного IP адреса.
-//16.Lykke - The API throughput limit is 300 requests per minute for a single client.
-//18.Poloniex - 6 calls per second to the public API
-//17.Okcoin - Each IP can send maximum of 3000 https requests within 5 minutes
-//21.Quoine - API users should not make more than 300 requests per 5 minute
-//24.okex - Each IP can send maximum of 3000 https requests within 5 minutes
-//27.bithumb - Public API: 20 request available per second.
-//28.huobi - Each apikey can send maximum of 100 https requests within 10 seconds
-//34.coinone - 90 requests per minute
 //40.Aex - every 60 seconds the number of calls can not be more than 120
-//46.BtcMarkets - 25 calls per 10 seconds
-//54.Acx-The Public API requires no authentication, no threshold, while the Private one does and has a threshold of 1000 request/keypair/5 minutes. Но 6 валют
+//34.coinone - 90 requests per minute
+//15.Livecoin - Разрешается не более 60 любых запросов к API в течении 60 секунд подряд с одного IP адреса.
+//21.Quoine - API users should not make more than 300 requests per 5 minute
 //62.c2cx - 60 API request per minute per endpoint. If more then 60 API requests are sent per minute to an endpoint the sending IP will be blocked for between 30 and 60 seconds. Results are also limited to 100 results per API request. APIs that may return more than 100 result will have a pagination option.
 //65.bitso - 300 requests in 5 minutes, 8 currencies
-//69.btcalpha - 30 валют, We have limit in 2 calls per second from single account to authorization required methods and 100 calls per secong from single IP address to public methods. биткоин-8650, у них 9236
+//54.? Acx-The Public API requires no authentication, no threshold, while the Private one does and has a threshold of 1000 request/keypair/5 minutes. Но 6 валют
+
+
+//24.coinmarketcap - Please limit requests to no more than 10 per minute
+//27.bitfinex - between 10 and 90 per minute
+//!5.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits
+//28.huobi - Each apikey can send maximum of 100 https requests within 10 seconds
 //72.independent reserve - 3 валюты, 1 запрос в секунду
 
 
@@ -53,7 +56,7 @@
 
 
 
-//3.bitFlyer - не открывается
+//69.bitFlyer - не открывается
 //4.bitstamp - не открывается
 //8.Coinbase - only 4 positions, didn't find public info
 //9.Gdax - later
