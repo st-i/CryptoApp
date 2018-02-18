@@ -12,6 +12,7 @@
 //4.Poloniex - 6 calls per second to the public API (99 валют)
 //5.Lykke - The API throughput limit is 300 requests per minute for a single client (около 30 валют, на 200-300 завышен).
 //6.BtcMarkets - 25 calls per 10 seconds (11 валют, хороший курс)
+//27.bitfinex - between 10 and 90 per minute
 
 
 
@@ -27,7 +28,6 @@
 
 
 //24.coinmarketcap - Please limit requests to no more than 10 per minute
-//27.bitfinex - between 10 and 90 per minute
 //!5.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits
 //28.huobi - Each apikey can send maximum of 100 https requests within 10 seconds
 //72.independent reserve - 3 валюты, 1 запрос в секунду

@@ -100,6 +100,8 @@
 		DDB1FC9B2026FC8500D83AF7 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1FC9A2026FC8500D83AF7 /* HeaderViewCell.swift */; };
 		DDB1FC9D2026FD1E00D83AF7 /* HeaderViewCellBulder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1FC9C2026FD1E00D83AF7 /* HeaderViewCellBulder.swift */; };
 		DDC281F920305B60002AAAF0 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC281F820305B60002AAAF0 /* RequestManager.swift */; };
+		DDC4FF0E20387A5E00BFA7C1 /* UserCoinsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC4FF0D20387A5E00BFA7C1 /* UserCoinsManager.swift */; };
+		DDD38AC92037651800462783 /* RequestToBitfinexBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD38AC82037651800462783 /* RequestToBitfinexBuilder.swift */; };
 		DDD9B19A201F985900D7F437 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD9B199201F985900D7F437 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -201,6 +203,8 @@
 		DDB1FC9A2026FC8500D83AF7 /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		DDB1FC9C2026FD1E00D83AF7 /* HeaderViewCellBulder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCellBulder.swift; sourceTree = "<group>"; };
 		DDC281F820305B60002AAAF0 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		DDC4FF0D20387A5E00BFA7C1 /* UserCoinsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoinsManager.swift; sourceTree = "<group>"; };
+		DDD38AC82037651800462783 /* RequestToBitfinexBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToBitfinexBuilder.swift; sourceTree = "<group>"; };
 		DDD9B199201F985900D7F437 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -765,6 +769,8 @@
 			children = (
 				DDC281F820305B60002AAAF0 /* RequestManager.swift */,
 				DDAD3BAD2034B5A500B08AA6 /* RequestToOKEXBuilder.swift */,
+				DDD38AC82037651800462783 /* RequestToBitfinexBuilder.swift */,
+				DDC4FF0D20387A5E00BFA7C1 /* UserCoinsManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -988,6 +994,7 @@
 				DDAA6AE420039067007045F7 /* CurrencyForPairCellBuilder.swift in Sources */,
 				542E45D51FDC14E3006D52C9 /* ViewController.swift in Sources */,
 				DD04D12B201E185500D67AA5 /* PortfolioGraphScreenDirector.swift in Sources */,
+				DDD38AC92037651800462783 /* RequestToBitfinexBuilder.swift in Sources */,
 				DD04D121201DC82300D67AA5 /* AboutAppViewController.swift in Sources */,
 				54EBA47C1FE84CF800E9F412 /* ObservedCurrencyDelegate.swift in Sources */,
 				54D3EAF71FEAE387002DDB7F /* CurrencySearchViewController.swift in Sources */,
@@ -1002,6 +1009,7 @@
 				54BDCC711FF41616000662C5 /* NotesCellBuilder.swift in Sources */,
 				54CA4E301FE5377A00E6357E /* ObservedCurrenciesDelegate.swift in Sources */,
 				54CA4E381FE5380F00E6357E /* ObservedPositionCell.swift in Sources */,
+				DDC4FF0E20387A5E00BFA7C1 /* UserCoinsManager.swift in Sources */,
 				54D3EAF51FEAE33C002DDB7F /* SearchDelegate.swift in Sources */,
 				5407D4021FE52F310063C3A6 /* ObservedCurrenciesDirector.swift in Sources */,
 				5407D3ED1FE52BC40063C3A6 /* TotalPortfolioCostCellBuilder.swift in Sources */,

@@ -19,15 +19,20 @@ class TrackedCurrenciesDelegate: NSObject, UITableViewDelegate {
     var viewController = UIViewController()
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cell = arrayWithCells[indexPath.section][indexPath.row]
-        if cell.isKind(of: TotalPortfolioCostCell.self) {
+//        let cell = tableView.cellForRow(at: indexPath) //arrayWithCells[indexPath.section][indexPath.row]
+//        if (cell?.isKind(of: TotalPortfolioCostCell.self))! {
+//            return CGFloat(kTotalPortfolioCostCellHeight)
+////        }else if cell.isKind(of: HeaderViewCell.self) {
+////            return CGFloat(kHeightForSectionHeader)
+//        }else if (cell?.isKind(of: TrackedPositionCell.self))! {
+//            return CGFloat(kTrackedPositionCellHeight)
+//        }else{
+//            return CGFloat(kFinalCellHeight)
+//        }
+        if indexPath.section == 0 {
             return CGFloat(kTotalPortfolioCostCellHeight)
-//        }else if cell.isKind(of: HeaderViewCell.self) {
-//            return CGFloat(kHeightForSectionHeader)
-        }else if cell.isKind(of: TrackedPositionCell.self) {
-            return CGFloat(kTrackedPositionCellHeight)
         }else{
-            return CGFloat(kFinalCellHeight)
+            return CGFloat(kTrackedPositionCellHeight)
         }
     }
     
@@ -87,13 +92,13 @@ class TrackedCurrenciesDelegate: NSObject, UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
-        if sourceIndexPath.section != proposedDestinationIndexPath.section {
-            return IndexPath.init(row: 0, section: sourceIndexPath.section)
-        }else{
-            return proposedDestinationIndexPath
-        }
-    }
+//    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+//        if sourceIndexPath.section != proposedDestinationIndexPath.section {
+//            return IndexPath.init(row: 0, section: sourceIndexPath.section)
+//        }else{
+//            return proposedDestinationIndexPath
+//        }
+//    }
     
 //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
 //        if section == 1 {

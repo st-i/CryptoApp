@@ -9,6 +9,13 @@
 import UIKit
 import Alamofire
 
+//struct Coin {
+//    //    var id: String
+//    //    var fullName: String
+//    var shortName: String
+//    var exchangeRate: Double
+//}
+
 class TrackedCurrenciesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -19,12 +26,15 @@ class TrackedCurrenciesViewController: UIViewController {
     var originalDoneButton: UIBarButtonItem!
     var someVC: UIViewController!
     
+    var btcRate:Double = 0.0
+    var userCoins = [Coin]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        request("https://poloniex.com/public?command=returnTicker").responseJSON { (response) in
-            print(response)
-        }
+//        request("https ://poloniex.com/public?command=returnTicker").responseJSON { (response) in
+//            print(response)
+//        }
         
         self.navigationController?.navigationBar.isTranslucent = false;
         self.navigationController?.navigationBar.barTintColor = UIColor.navBarColor()
@@ -40,35 +50,76 @@ class TrackedCurrenciesViewController: UIViewController {
         titleView.addSubview(titleViewLabel)
         self.navigationItem.titleView = titleView
         
-        originalEditButton = UIBarButtonItem.init(title: "Изм.", style: .plain, target: self, action: #selector(editPortfolioAction))
+//        originalEditButton = UIBarButtonItem.init(title: "Изм.", style: .plain, target: self, action: #selector(editPortfolioAction))
 //        (barButtonSystemItem: .edit, target: self, action: #selector(editPortfolioAction))
         originalDoneButton = UIBarButtonItem.init(title: "Готово", style: .done, target: self, action: #selector(editPortfolioAction))
 //        (barButtonSystemItem: .done, target: self, action: #selector(editPortfolioAction))
         self.navigationItem.leftBarButtonItem = originalEditButton
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addTrackedCurrency))
+        let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addTrackedCurrency))
+        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshCurrenciesRates))
+        navigationItem.rightBarButtonItems = [addButton, refreshButton]
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
         
-        self.fillTableViewWithData()
+        fillTableViewWithData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        loadExchangeRateForBTC()
+//        fillTableViewWithData()
+    }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+////        loadExchangeRateForBTC()
+//    }
+    
+//    func loadExchangeRateForBTC() {//(completion: @escaping (String) -> Void) {
+//        let coinId = "btc"
+//        let coinRequestUrl = RequestToBitfinexBuilder.buildRequest(currencyId: coinId)
+//        request(coinRequestUrl)
+//            .responseJSON(completionHandler: { (response) in
+//
+//                switch response.result {
+//                case .success(let value):
+//                    print(value)
+//                    guard let jsonDict = response.result.value as? [String: String] else { return }
+//                    self.btcRate = jsonDict["mid"]!
+////                    self.fillTableViewWithData()
+//                    self.tableView.reloadData()
+////                    completion(btcExchangeRate)
+//
+//                case .failure(let error):
+//                    print(error)
+////                    completion("")
+////                    return
+//                }
+//
+//
+//            })
+//    }
+    
     func fillTableViewWithData() {
-        self.tableView.backgroundColor = UIColor.groupTableViewBackground
-        self.trackedCurrenciesDataSource = TrackedCurrenciesDataSource()
-        self.trackedCurrenciesDelegate = TrackedCurrenciesDelegate()
+//        let btcRate = loadExchangeRateForBTC()
         
-        self.tableView.dataSource = self.trackedCurrenciesDataSource
-        self.tableView.delegate = self.trackedCurrenciesDelegate
+        tableView.backgroundColor = UIColor.white
+        trackedCurrenciesDataSource = TrackedCurrenciesDataSource()
+        trackedCurrenciesDelegate = TrackedCurrenciesDelegate()
         
-        let tempArrayWithCells = TrackedCurrenciesScreenDirector.createTrackedCurrenciesCells(for: self.tableView)
-        let arrayWithCells = NSMutableArray.init(array: tempArrayWithCells)
+        tableView.dataSource = trackedCurrenciesDataSource
+        tableView.delegate = trackedCurrenciesDelegate
         
-        self.trackedCurrenciesDataSource.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
-        self.trackedCurrenciesDelegate.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
+//        let tempArrayWithCells = TrackedCurrenciesScreenDirector.createTrackedCurrenciesCells(for: self.tableView, btcRate: btcRate)
+//        let arrayWithCells = NSMutableArray.init(array: tempArrayWithCells)
         
-        self.trackedCurrenciesDelegate.viewController = self
+//        self.trackedCurrenciesDataSource.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
+//        self.trackedCurrenciesDelegate.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
+        createCoinsArray()
+        trackedCurrenciesDataSource.coins = userCoins
+        trackedCurrenciesDelegate.viewController = self
     }
     
     @IBAction func openPortfolioGraph(_ sender: UIButton) {
@@ -111,4 +162,104 @@ class TrackedCurrenciesViewController: UIViewController {
 //        let searchVC = storyboard.instantiateViewController(withIdentifier: "CurrencySearchViewController")
 //        self.navigationController?.pushViewController(searchVC, animated: true)
 //    }
+    
+    @objc func refreshCurrenciesRates() {
+        let requestManager = RequestManager.init()
+        requestManager.updateCoins(coinsArray: userCoins) { (coinsRates) in
+        
+            self.userCoins = UserCoinsManager.refreshValuesForCoins(coinsArray: self.userCoins, coinsRates: coinsRates)
+            self.refreshCoinsArray()
+        }
+        //loadExchangeRateForBTC()
+    }
+    
+    func loadExchangeRateForBTC() {//(completion: @escaping (String) -> Void) {
+        let coinId = "btc"
+        let coinRequestUrl = RequestToBitfinexBuilder.buildRequest(currencyId: coinId)
+        request(coinRequestUrl)
+            .responseJSON(completionHandler: { response in
+                
+                guard response.result.isSuccess else{
+                    print("Ошибка при запросе данных \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+                    print("Не могу перевести в JSON")
+                    return
+                }
+                
+                self.btcRate = Double((arrayOfData["mid"] as? String)!)!
+                print(arrayOfData)
+                print(self.btcRate)
+                self.refreshCoinsArray()
+//                self.fillTableViewWithData()
+
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+                
+//                switch response.result {
+//                case .success(let value):
+//                    print(value)
+//                    guard let jsonDict = response.result.value as? [String: String] else { return }
+//                    self.btcRate = jsonDict["mid"]!
+//                    self.tableView.reloadData()
+//                    //completion(btcExchangeRate)
+//
+//                case .failure(let error):
+//                    print(error)
+//                    //completion("")
+//                    //return
+//                }
+            })
+    }
+    
+    func createCoinsArray() {// -> [Coin] {
+        userCoins = UserCoinsManager.fetchAllUserCoins()
+        
+        //second section
+//        let btcCoin = "BTC"
+//        let ethCoin = "ETH"
+//        let xprCoin = "XPR"
+//        let bchCoin = "BCH"
+//        let ltcCoin = "LTC"
+//        let adaCoin = "ADA"
+//        let xlmCoin = "XLM"
+//        let neoCoin = "NEO"
+//        let eosCoin = "EOS"
+//        let iotaCoin = "MIOTA"
+//        let shortNames = [btcCoin, ethCoin, xprCoin, bchCoin, ltcCoin, adaCoin, xlmCoin, neoCoin, eosCoin, iotaCoin]
+//
+//        var coinsArray = [Coin]()
+//        for i in 0..<10 {
+//
+//            var exchangeRate = 10000.54
+//            if i == 0 {
+//                exchangeRate = btcRate
+//            }
+//            let someCoin = Coin(id: shortName: shortNames[i], exchangeRate: exchangeRate)
+////                if i == 0 {
+//////                    someCoin.id = "btc"
+////                    someCoin.shortName = shortNames[0]
+////                }else{
+////                    someCoin.shortName = shortNames[i]
+////                }
+//            coinsArray.append(someCoin)
+//        }
+//        userCoins = coinsArray
+//        return userCoins
+    }
+    
+    func refreshCoinsArray() {
+//        for var someCoin in userCoins {
+//            if someCoin.shortName == "BTC" {
+//                someCoin.exchangeRate = btcRate
+//            }
+//        }
+//        trackedCurrenciesDataSource.coins = userCoins
+//        createCoinsArray()
+        trackedCurrenciesDataSource.coins = userCoins
+        tableView.reloadData()
+    }
 }

@@ -270,7 +270,7 @@
                                             <outlet property="currencyExchangeRateCostLabel" destination="uWb-ri-LCr" id="e5V-SB-Okw"/>
                                             <outlet property="currencyExchangeRatePercentagesChangeLabel" destination="Q4L-Uk-LF1" id="Qvv-nO-0aJ"/>
                                             <outlet property="currencyImageView" destination="PRQ-BU-jnA" id="1lb-Mr-a9L"/>
-                                            <outlet property="currencyPairLabel" destination="C9s-ED-mhZ" id="Ked-4q-U2w"/>
+                                            <outlet property="currencyNameLabel" destination="C9s-ED-mhZ" id="5fo-In-iTU"/>
                                             <outlet property="lowerSeparator" destination="uA9-rK-8LI" id="qXz-ob-CAG"/>
                                             <outlet property="purchasedCoinsAmountLabel" destination="cPj-rg-QZ8" id="NBE-Vo-dZy"/>
                                             <outlet property="purchasedCoinsCostLabel" destination="LoA-i1-jIR" id="hlJ-JH-hlf"/>
