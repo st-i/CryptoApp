@@ -165,11 +165,21 @@ class TrackedCurrenciesViewController: UIViewController {
     
     @objc func refreshCurrenciesRates() {
         let requestManager = RequestManager.init()
-        requestManager.updateCoins(coinsArray: userCoins) { (coinsRates) in
+        requestManager.coinsArray = userCoins
+        requestManager.currentVC = self
+        requestManager.updateCoins()
+//        requestManager.updateCoins /*(sendedCoinsArray: userCoins)*/ { (coinsRates) in
+//            self.userCoins = UserCoinsManager.refreshValuesForCoins(coinsArray: self.userCoins, coinsRates: coinsRates)
+//            self.refreshCoinsArray()
+//        }
         
-            self.userCoins = UserCoinsManager.refreshValuesForCoins(coinsArray: self.userCoins, coinsRates: coinsRates)
-            self.refreshCoinsArray()
-        }
+//        userCoins = UserCoinsManager.refreshValuesForCoins(coinsArray: userCoins, coinsRates: requestManager.coinsRates)
+//        refreshCoinsArray()
+//        requestManager.updateCoins(coinsArray: userCoins) { (coinsRates) in
+//        
+//            self.userCoins = UserCoinsManager.refreshValuesForCoins(coinsArray: self.userCoins, coinsRates: coinsRates)
+//            self.refreshCoinsArray()
+//        }
         //loadExchangeRateForBTC()
     }
     
