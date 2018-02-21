@@ -12,7 +12,7 @@ import Alamofire
 class RequestManager: NSObject {
     
     //массив с данными в будущем будет
-    var btcRate:Double = 0.0
+    var btcRateInUsd:Double = 0.0
     var updatedUserCoins = [Coin]()
     
     var currentVC = TrackedCurrenciesViewController()
@@ -83,7 +83,12 @@ class RequestManager: NSObject {
                         
                         print(currentRate)
                         if self.currentIndex < 2 {
-                            self.coinsRates.append(currentRate)
+                            if someCoin.shortName == "BTC" {
+                                self.btcRateInUsd = currentRate
+                                self.coinsRates.append(currentRate)
+                            }else{
+                                self.coinsRates.append(currentRate * self.btcRateInUsd)
+                            }
                             self.currentIndex = self.currentIndex + 1
                             self.updateCoins()
 //                            self.sendRequest()

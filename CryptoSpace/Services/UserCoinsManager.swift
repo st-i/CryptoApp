@@ -8,13 +8,6 @@
 
 import UIKit
 
-struct Coin {
-        var id: String
-    //    var fullName: String
-    var shortName: String
-    var exchangeRate: Double
-}
-
 class UserCoinsManager: NSObject {
     
     class func fetchAllUserCoins() -> [Coin] {
@@ -56,7 +49,11 @@ class UserCoinsManager: NSObject {
         for i in 0..<10 {
             
             let exchangeRate = 10000.54
-            let someCoin = Coin(id: identifiers[i], shortName: shortNames[i], exchangeRate: exchangeRate)
+            let someCoin = Coin.init()
+            someCoin.id = identifiers[i]
+            someCoin.shortName = shortNames[i]
+            someCoin.exchangeRate = exchangeRate
+            
             coinsArray.append(someCoin)
         }
         return coinsArray
@@ -65,8 +62,8 @@ class UserCoinsManager: NSObject {
     class func refreshValuesForCoins(coinsArray: [Coin], coinsRates: [Double]) -> [Coin] {//(coinsArray: [Coin]) -> [Coin] { //в будущем будет приниматься массив
         var updatedCoins = [Coin]()
         
-        for i in 0..<coinsArray.count - 1 {
-            var currentCoin = coinsArray[i]
+        for i in 0..<coinsArray.count {
+            let currentCoin = coinsArray[i]
             if i < 2 {
                 currentCoin.exchangeRate = coinsRates[i]
             }
