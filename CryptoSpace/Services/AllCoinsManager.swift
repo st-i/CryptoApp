@@ -655,17 +655,775 @@ class AllCoinsManager: NSObject {
         bancorCoin.id = "bnt"
         allCoins.append(bancorCoin)
         
-        //91 Request Network
+        //91
+        let requestNetworkCoin = Coin.init()
+        requestNetworkCoin.fullName = "Request Network"
+        requestNetworkCoin.shortName = "REQ"
+        requestNetworkCoin.id = "req"
+        allCoins.append(requestNetworkCoin)
         
+        //92
+        let enigmaCoin = Coin.init()
+        enigmaCoin.fullName = "Enigma"
+        enigmaCoin.shortName = "ENG"
+        enigmaCoin.id = "eng"
+        allCoins.append(enigmaCoin)
         
+        //93
+        let maidSafeCoinCoin = Coin.init()
+        maidSafeCoinCoin.fullName = "MaidSafeCoin"
+        maidSafeCoinCoin.shortName = "MAID"
+        maidSafeCoinCoin.id = "maid"
+        allCoins.append(maidSafeCoinCoin)
         
+        //94
+        let smartCashCoin = Coin.init()
+        smartCashCoin.fullName = "SmartCash"
+        smartCashCoin.shortName = "SMART"
+        smartCashCoin.id = "smart"
+        allCoins.append(smartCashCoin)
         
+        //95
+        let neblioCoin = Coin.init()
+        neblioCoin.fullName = "Neblio"
+        neblioCoin.shortName = "NEBL"
+        neblioCoin.id = "nebl"
+        allCoins.append(neblioCoin)
         
+        //96
+        let tenXCoin = Coin.init()
+        tenXCoin.fullName = "TenX"
+        tenXCoin.shortName = "PAY"
+        tenXCoin.id = "pay"
+        allCoins.append(tenXCoin)
         
+        //97
+        let emercoinCoin = Coin.init()
+        emercoinCoin.fullName = "Emercoin"
+        emercoinCoin.shortName = "EMC"
+        emercoinCoin.id = "emc"
+        allCoins.append(emercoinCoin)
         
+        //98
+        let blocknetCoin = Coin.init()
+        blocknetCoin.fullName = "Blocknet"
+        blocknetCoin.shortName = "BLOCK"
+        blocknetCoin.id = "block"
+        allCoins.append(blocknetCoin)
         
+        //99
+        let vertcoinCoin = Coin.init()
+        vertcoinCoin.fullName = "Vertcoin"
+        vertcoinCoin.shortName = "VTC"
+        vertcoinCoin.id = "vtc"
+        allCoins.append(vertcoinCoin)
         
+        //100
+        let ignisCoin = Coin.init()
+        ignisCoin.fullName = "Ignis"
+        ignisCoin.shortName = "IGNIS"
+        ignisCoin.id = "ignis"
+        allCoins.append(ignisCoin)
         
+        //101
+        let raidenNetworkTokenCoin = Coin.init()
+        raidenNetworkTokenCoin.fullName = "Raiden Network Token"
+        raidenNetworkTokenCoin.shortName = "RDN"
+        raidenNetworkTokenCoin.id = "rdn"
+        allCoins.append(raidenNetworkTokenCoin)
+        
+        //102
+        let gameCreditsCoin = Coin.init()
+        gameCreditsCoin.fullName = "GameCredits"
+        gameCreditsCoin.shortName = "GAME"
+        gameCreditsCoin.id = "game"
+        allCoins.append(gameCreditsCoin)
+        
+        //103
+        let quantstampCoin = Coin.init()
+        quantstampCoin.fullName = "Quantstamp"
+        quantstampCoin.shortName = "QSP"
+        quantstampCoin.id = "qsp"
+        allCoins.append(quantstampCoin)
+        
+        //104
+        let singularityNetCoin = Coin.init()
+        singularityNetCoin.fullName = "SingularityNET"
+        singularityNetCoin.shortName = "AGI"
+        singularityNetCoin.id = "agi"
+        allCoins.append(singularityNetCoin)
+        
+        //105
+        let waxCoin = Coin.init()
+        waxCoin.fullName = "WAX"
+        waxCoin.shortName = "WAX"
+        waxCoin.id = "wax"
+        allCoins.append(waxCoin)
+        
+        //106
+        let iconomiCoin = Coin.init()
+        iconomiCoin.fullName = "Iconomi"
+        iconomiCoin.shortName = "ICN"
+        iconomiCoin.id = "icn"
+        allCoins.append(iconomiCoin)
+        
+        //107
+        let gnosisCoin = Coin.init()
+        gnosisCoin.fullName = "Gnosis"
+        gnosisCoin.shortName = "GNO"
+        gnosisCoin.id = "gno"
+        allCoins.append(gnosisCoin)
+        
+        //108
+        let poDotEtCoin = Coin.init()
+        poDotEtCoin.fullName = "Po.et"
+        poDotEtCoin.shortName = "POE"
+        poDotEtCoin.id = "poe"
+        allCoins.append(poDotEtCoin)
+        
+        //109
+        let digitalNoteCoin = Coin.init()
+        digitalNoteCoin.fullName = "DigitalNote"
+        digitalNoteCoin.shortName = "XDN"
+        digitalNoteCoin.id = "xdn"
+        allCoins.append(digitalNoteCoin)
+        
+        //110
+        let enjinCoinCoin = Coin.init()
+        enjinCoinCoin.fullName = "Enjin Coin"
+        enjinCoinCoin.shortName = "ENJ"
+        enjinCoinCoin.id = "enj"
+        allCoins.append(enjinCoinCoin)
+        
+        //111
+        let experiencePointsCoin = Coin.init()
+        experiencePointsCoin.fullName = "Experience Points"
+        experiencePointsCoin.shortName = "XP"
+        experiencePointsCoin.id = "xp"
+        allCoins.append(experiencePointsCoin)
+        
+        //112
+        let skycoinCoin = Coin.init()
+        skycoinCoin.fullName = "Skycoin"
+        skycoinCoin.shortName = "SKY"
+        skycoinCoin.id = "sky"
+        allCoins.append(skycoinCoin)
+        
+        //113
+        let superNetCoin = Coin.init()
+        superNetCoin.fullName = "SuperNET"
+        superNetCoin.shortName = "UNITY"
+        superNetCoin.id = "unity"
+        allCoins.append(superNetCoin)
+        
+        //114
+        let santimentNetworkTokenCoin = Coin.init()
+        santimentNetworkTokenCoin.fullName = "Santiment Network Token"
+        santimentNetworkTokenCoin.shortName = "SAN"
+        santimentNetworkTokenCoin.id = "san"
+        allCoins.append(santimentNetworkTokenCoin)
+        
+        //115
+        let storjCoin = Coin.init()
+        storjCoin.fullName = "Storj"
+        storjCoin.shortName = "STORJ"
+        storjCoin.id = "storj"
+        allCoins.append(storjCoin)
+        
+        //116
+        let bitcoinDarkCoin = Coin.init()
+        bitcoinDarkCoin.fullName = "BitcoinDark"
+        bitcoinDarkCoin.shortName = "BTCD"
+        bitcoinDarkCoin.id = "btcd"
+        allCoins.append(bitcoinDarkCoin)
+        
+        //117
+        let civicCoin = Coin.init()
+        civicCoin.fullName = "Civic"
+        civicCoin.shortName = "CVC"
+        civicCoin.id = "cvc"
+        allCoins.append(civicCoin)
+        
+        //118
+        let stormCoin = Coin.init()
+        stormCoin.fullName = "Storm"
+        stormCoin.shortName = "STORM"
+        stormCoin.id = "storm"
+        allCoins.append(stormCoin)
+        
+        //119
+        let substratumCoin = Coin.init()
+        substratumCoin.fullName = "Substratum"
+        substratumCoin.shortName = "SUB"
+        substratumCoin.id = "sub"
+        allCoins.append(substratumCoin)
+        
+        //120
+        let nexusCoin = Coin.init()
+        nexusCoin.fullName = "Nexus"
+        nexusCoin.shortName = "NXS"
+        nexusCoin.id = "nxs"
+        allCoins.append(nexusCoin)
+        
+        //121
+        let achainCoin = Coin.init()
+        achainCoin.fullName = "Achain"
+        achainCoin.shortName = "ACT"
+        achainCoin.id = "act"
+        allCoins.append(achainCoin)
+        
+        //122
+        let decentralandCoin = Coin.init()
+        decentralandCoin.fullName = "Decentraland"
+        decentralandCoin.shortName = "MANA"
+        decentralandCoin.id = "mana"
+        allCoins.append(decentralandCoin)
+        
+        //123
+        let bridgeCoinCoin = Coin.init()
+        bridgeCoinCoin.fullName = "BridgeCoin"
+        bridgeCoinCoin.shortName = "BCO"
+        bridgeCoinCoin.id = "bco"
+        allCoins.append(bridgeCoinCoin)
+        
+        //124
+        let ethlendCoin = Coin.init()
+        ethlendCoin.fullName = "ETHLend"
+        ethlendCoin.shortName = "LEND"
+        ethlendCoin.id = "lend"
+        allCoins.append(ethlendCoin)
+        
+        //125
+        let navcoinCoin = Coin.init()
+        navcoinCoin.fullName = "NAV Coin"
+        navcoinCoin.shortName = "NAV"
+        navcoinCoin.id = "nav"
+        allCoins.append(navcoinCoin)
+        
+        //126
+        let uDotCashCoin = Coin.init()
+        uDotCashCoin.fullName = "U.CASH"
+        uDotCashCoin.shortName = "UCASH"
+        uDotCashCoin.id = "ucash"
+        allCoins.append(uDotCashCoin)
+        
+        //127
+        let adExCoin = Coin.init()
+        adExCoin.fullName = "AdEx"
+        adExCoin.shortName = "ADX"
+        adExCoin.id = "adx"
+        allCoins.append(adExCoin)
+        
+        //128
+        let zenCashCoin = Coin.init()
+        zenCashCoin.fullName = "ZenCash"
+        zenCashCoin.shortName = "ZEN"
+        zenCashCoin.id = "zen"
+        allCoins.append(zenCashCoin)
+        
+        //129
+        let dynamicTradingRightsCoin = Coin.init()
+        dynamicTradingRightsCoin.fullName = "Dynamic Trading Rights"
+        dynamicTradingRightsCoin.shortName = "DTR"
+        dynamicTradingRightsCoin.id = "dtr"
+        allCoins.append(dynamicTradingRightsCoin)
+        
+        //130
+        let oysterCoin = Coin.init()
+        oysterCoin.fullName = "Oyster"
+        oysterCoin.shortName = "PRL"
+        oysterCoin.id = "prl"
+        allCoins.append(oysterCoin)
+        
+        //131
+        let dewCoin = Coin.init()
+        dewCoin.fullName = "DEW"
+        dewCoin.shortName = "DEW"
+        dewCoin.id = "dew"
+        allCoins.append(dewCoin)
+        
+        //132
+        let xpaCoin = Coin.init()
+        xpaCoin.fullName = "XPA"
+        xpaCoin.shortName = "XPA"
+        xpaCoin.id = "xpa"
+        allCoins.append(xpaCoin)
+        
+        //133
+        let mediBlocCoin = Coin.init()
+        mediBlocCoin.fullName = "MediBloc"
+        mediBlocCoin.shortName = "MED"
+        mediBlocCoin.id = "med"
+        allCoins.append(mediBlocCoin)
+        
+        //134
+        let telcoinCoin = Coin.init()
+        telcoinCoin.fullName = "Telcoin"
+        telcoinCoin.shortName = "TEL"
+        telcoinCoin.id = "tel"
+        allCoins.append(telcoinCoin)
+        
+        //135
+        let highPerformanceBlockchainCoin = Coin.init()
+        highPerformanceBlockchainCoin.fullName = "High Performance Blockchain"
+        highPerformanceBlockchainCoin.shortName = "HPB"
+        highPerformanceBlockchainCoin.id = "hpb"
+        allCoins.append(highPerformanceBlockchainCoin)
+        
+        //136
+        let aragonCoin = Coin.init()
+        aragonCoin.fullName = "Aragon"
+        aragonCoin.shortName = "ANT"
+        aragonCoin.id = "ant"
+        allCoins.append(aragonCoin)
+        
+        //137
+        let blockVCoin = Coin.init()
+        blockVCoin.fullName = "BLOCKv"
+        blockVCoin.shortName = "VEE"
+        blockVCoin.id = "vee"
+        allCoins.append(blockVCoin)
+        
+        //138
+        let timeNewBankCoin = Coin.init()
+        timeNewBankCoin.fullName = "Time New Bank"
+        timeNewBankCoin.shortName = "TNB"
+        timeNewBankCoin.id = "tnb"
+        allCoins.append(timeNewBankCoin)
+        
+        //139
+        let ubiqCoin = Coin.init()
+        ubiqCoin.fullName = "Ubiq"
+        ubiqCoin.shortName = "UBQ"
+        ubiqCoin.id = "ubq"
+        allCoins.append(ubiqCoin)
+        
+        //140
+        let monacoCoin = Coin.init()
+        monacoCoin.fullName = "Monaco"
+        monacoCoin.shortName = "MCO"
+        monacoCoin.id = "mco"
+        allCoins.append(monacoCoin)
+        
+        //141
+        let sophiaTXCoin = Coin.init()
+        sophiaTXCoin.fullName = "SophiaTX"
+        sophiaTXCoin.shortName = "SPHTX"
+        sophiaTXCoin.id = "sphtx"
+        allCoins.append(sophiaTXCoin)
+        
+        //142
+        let mediSharesCoin = Coin.init()
+        mediSharesCoin.fullName = "MediShares"
+        mediSharesCoin.shortName = "MDS"
+        mediSharesCoin.id = "mds"
+        allCoins.append(mediSharesCoin)
+        
+        //143
+        let iotChainCoin = Coin.init()
+        iotChainCoin.fullName = "IoT Chain"
+        iotChainCoin.shortName = "ITC"
+        iotChainCoin.id = "itc"
+        allCoins.append(iotChainCoin)
+        
+        //144
+        let iExecRLCCoin = Coin.init()
+        iExecRLCCoin.fullName = "iExec RLC"
+        iExecRLCCoin.shortName = "RLC"
+        iExecRLCCoin.id = "rlc"
+        allCoins.append(iExecRLCCoin)
+        
+        //145
+        let bluzelleCoin = Coin.init()
+        bluzelleCoin.fullName = "Bluzelle"
+        bluzelleCoin.shortName = "BLZ"
+        bluzelleCoin.id = "blz"
+        allCoins.append(bluzelleCoin)
+        
+        //146
+        let dataCoin = Coin.init()
+        dataCoin.fullName = "DATA"
+        dataCoin.shortName = "DTA"
+        dataCoin.id = "dta"
+        allCoins.append(dataCoin)
+        
+        //147
+        let genesisVisionCoin = Coin.init()
+        genesisVisionCoin.fullName = "Genesis Vision"
+        genesisVisionCoin.shortName = "GVT"
+        genesisVisionCoin.id = "gvt"
+        allCoins.append(genesisVisionCoin)
+        
+        //148
+        let payPieCoin = Coin.init()
+        payPieCoin.fullName = "PayPie"
+        payPieCoin.shortName = "PPP"
+        payPieCoin.id = "ppp"
+        allCoins.append(payPieCoin)
+        
+        //149
+        let redPulseCoin = Coin.init()
+        redPulseCoin.fullName = "Red Pulse"
+        redPulseCoin.shortName = "RPX"
+        redPulseCoin.id = "rpx"
+        allCoins.append(redPulseCoin)
+        
+        //150
+        let biboxTokenCoin = Coin.init()
+        biboxTokenCoin.fullName = "Bibox Token"
+        biboxTokenCoin.shortName = "BIX"
+        biboxTokenCoin.id = "bix"
+        allCoins.append(biboxTokenCoin)
+        
+        //151
+        let inkCoin = Coin.init()
+        inkCoin.fullName = "Ink"
+        inkCoin.shortName = "INK"
+        inkCoin.id = "ink"
+        allCoins.append(inkCoin)
+        
+        //152
+        let vibeCoin = Coin.init()
+        vibeCoin.fullName = "VIBE"
+        vibeCoin.shortName = "VIBE"
+        vibeCoin.id = "vibe"
+        allCoins.append(vibeCoin)
+        
+        //153
+        let peercoinCoin = Coin.init()
+        peercoinCoin.fullName = "Peercoin"
+        peercoinCoin.shortName = "PPC"
+        peercoinCoin.id = "ppc"
+        allCoins.append(peercoinCoin)
+        
+        //154
+        let aschCoin = Coin.init()
+        aschCoin.fullName = "Asch"
+        aschCoin.shortName = "XAS"
+        aschCoin.id = "xas"
+        allCoins.append(aschCoin)
+        
+        //155
+        let ambrosusCoin = Coin.init()
+        ambrosusCoin.fullName = "Ambrosus"
+        ambrosusCoin.shortName = "AMB"
+        ambrosusCoin.id = "amb"
+        allCoins.append(ambrosusCoin)
+        
+        //156
+        let crypto20Coin = Coin.init()
+        crypto20Coin.fullName = "CRYPTO20"
+        crypto20Coin.shortName = "C20"
+        crypto20Coin.id = "c20"
+        allCoins.append(crypto20Coin)
+        
+        //157
+        let metalCoin = Coin.init()
+        metalCoin.fullName = "Metal"
+        metalCoin.shortName = "MTL"
+        metalCoin.id = "mtl"
+        allCoins.append(metalCoin)
+        
+        //158
+        let wagerrCoin = Coin.init()
+        wagerrCoin.fullName = "Wagerr"
+        wagerrCoin.shortName = "WGR"
+        wagerrCoin.id = "wgr"
+        allCoins.append(wagerrCoin)
+        
+        //159
+        let sonmCoin = Coin.init()
+        sonmCoin.fullName = "SONM"
+        sonmCoin.shortName = "SNM"
+        sonmCoin.id = "snm"
+        allCoins.append(sonmCoin)
+        
+        //160
+        let agorasTokensCoin = Coin.init()
+        agorasTokensCoin.fullName = "Agoras Tokens"
+        agorasTokensCoin.shortName = "AGRS"
+        agorasTokensCoin.id = "agrs"
+        allCoins.append(agorasTokensCoin)
+        
+        //161
+        let sirinLabsTokenCoin = Coin.init()
+        sirinLabsTokenCoin.fullName = "SIRIN LABS Token"
+        sirinLabsTokenCoin.shortName = "SRN"
+        sirinLabsTokenCoin.id = "srn"
+        allCoins.append(sirinLabsTokenCoin)
+        
+        //162
+        let thetaTokenCoin = Coin.init()
+        thetaTokenCoin.fullName = "Theta Token"
+        thetaTokenCoin.shortName = "THETA"
+        thetaTokenCoin.id = "theta"
+        allCoins.append(thetaTokenCoin)
+        
+        //163
+        let puraCoin = Coin.init()
+        puraCoin.fullName = "Pura"
+        puraCoin.shortName = "PURA"
+        puraCoin.id = "pura"
+        allCoins.append(puraCoin)
+        
+        //164
+        let deepBrainChainCoin = Coin.init()
+        deepBrainChainCoin.fullName = "DeepBrain Chain"
+        deepBrainChainCoin.shortName = "DBC"
+        deepBrainChainCoin.id = "dbc"
+        allCoins.append(deepBrainChainCoin)
+        
+        //165
+        let ripioCreditNetworkCoin = Coin.init()
+        ripioCreditNetworkCoin.fullName = "Ripio Credit Network"
+        ripioCreditNetworkCoin.shortName = "RCN"
+        ripioCreditNetworkCoin.id = "rcn"
+        allCoins.append(ripioCreditNetworkCoin)
+        
+        //166
+        let eidooCoin = Coin.init()
+        eidooCoin.fullName = "Eidoo"
+        eidooCoin.shortName = "EDO"
+        eidooCoin.id = "edo"
+        allCoins.append(eidooCoin)
+        
+        //167
+        let appCoinsCoin = Coin.init()
+        appCoinsCoin.fullName = "AppCoins"
+        appCoinsCoin.shortName = "APPC"
+        appCoinsCoin.id = "appc"
+        allCoins.append(appCoinsCoin)
+        
+        //168
+        let jibrelNetworkCoin = Coin.init()
+        jibrelNetworkCoin.fullName = "Jibrel Network"
+        jibrelNetworkCoin.shortName = "JNT"
+        jibrelNetworkCoin.id = "jnt"
+        allCoins.append(jibrelNetworkCoin)
+        
+        //169
+        let einsteiniumCoin = Coin.init()
+        einsteiniumCoin.fullName = "Einsteinium"
+        einsteiniumCoin.shortName = "EMC2"
+        einsteiniumCoin.id = "emc2"
+        allCoins.append(einsteiniumCoin)
+        
+        //170
+        let cyberMilesCoin = Coin.init()
+        cyberMilesCoin.fullName = "CyberMiles"
+        cyberMilesCoin.shortName = "CMT"
+        cyberMilesCoin.id = "cmt"
+        allCoins.append(cyberMilesCoin)
+        
+        //171
+        let etherpartyCoin = Coin.init()
+        etherpartyCoin.fullName = "Etherparty"
+        etherpartyCoin.shortName = "FUEL"
+        etherpartyCoin.id = "fuel"
+        allCoins.append(etherpartyCoin)
+        
+        //172
+        let waBiCoin = Coin.init()
+        waBiCoin.fullName = "WaBi"
+        waBiCoin.shortName = "WABI"
+        waBiCoin.id = "wabi"
+        allCoins.append(waBiCoin)
+        
+        //173
+        let airSwapCoin = Coin.init()
+        airSwapCoin.fullName = "AirSwap"
+        airSwapCoin.shortName = "AST"
+        airSwapCoin.id = "ast"
+        allCoins.append(airSwapCoin)
+        
+        //174
+        let xtrabytesCoin = Coin.init()
+        xtrabytesCoin.fullName = "XTRABYTES"
+        xtrabytesCoin.shortName = "XBY"
+        xtrabytesCoin.id = "xby"
+        allCoins.append(xtrabytesCoin)
+        
+        //175
+        let simpleTokenCoin = Coin.init()
+        simpleTokenCoin.fullName = "Simple Token"
+        simpleTokenCoin.shortName = "OST"
+        simpleTokenCoin.id = "ost"
+        allCoins.append(simpleTokenCoin)
+        
+        //176
+        let minexCoinCoin = Coin.init()
+        minexCoinCoin.fullName = "MinexCoin"
+        minexCoinCoin.shortName = "MNX"
+        minexCoinCoin.id = "mnx"
+        allCoins.append(minexCoinCoin)
+        
+        //177
+        let melonCoin = Coin.init()
+        melonCoin.fullName = "Melon"
+        melonCoin.shortName = "MLN"
+        melonCoin.id = "mln"
+        allCoins.append(melonCoin)
+        
+        //178
+        let streamrDATAcoinCoin = Coin.init()
+        streamrDATAcoinCoin.fullName = "Streamr DATAcoin"
+        streamrDATAcoinCoin.shortName = "DATA"
+        streamrDATAcoinCoin.id = "data"
+        allCoins.append(streamrDATAcoinCoin)
+        
+        //179
+        let edgelessCoin = Coin.init()
+        edgelessCoin.fullName = "Edgeless"
+        edgelessCoin.shortName = "EDG"
+        edgelessCoin.id = "edg"
+        allCoins.append(edgelessCoin)
+        
+        //180
+        let counterpartyCoin = Coin.init()
+        counterpartyCoin.fullName = "Counterparty"
+        counterpartyCoin.shortName = "XCP"
+        counterpartyCoin.id = "xcp"
+        allCoins.append(counterpartyCoin)
+        
+        //181
+        let quantumResistantLedgerCoin = Coin.init()
+        quantumResistantLedgerCoin.fullName = "Quantum Resistant Ledger"
+        quantumResistantLedgerCoin.shortName = "QRL"
+        quantumResistantLedgerCoin.id = "qrl"
+        allCoins.append(quantumResistantLedgerCoin)
+        
+        //182
+        let bitBayCoin = Coin.init()
+        bitBayCoin.fullName = "BitBay"
+        bitBayCoin.shortName = "BAY"
+        bitBayCoin.id = "bay"
+        allCoins.append(bitBayCoin)
+        
+        //183
+        let singularDTVCoin = Coin.init()
+        singularDTVCoin.fullName = "SingularDTV"
+        singularDTVCoin.shortName = "SNGLS"
+        singularDTVCoin.id = "sngls"
+        allCoins.append(singularDTVCoin)
+        
+        //184
+        let cobinhoodCoin = Coin.init()
+        cobinhoodCoin.fullName = "Cobinhood"
+        cobinhoodCoin.shortName = "COB"
+        cobinhoodCoin.id = "cob"
+        allCoins.append(cobinhoodCoin)
+        
+        //185
+        let giftoCoin = Coin.init()
+        giftoCoin.fullName = "Gifto"
+        giftoCoin.shortName = "GTO"
+        giftoCoin.id = "gto"
+        allCoins.append(giftoCoin)
+        
+        //186
+        let insEcosystemCoin = Coin.init()
+        insEcosystemCoin.fullName = "INS Ecosystem"
+        insEcosystemCoin.shortName = "INS"
+        insEcosystemCoin.id = "ins"
+        allCoins.append(insEcosystemCoin)
+        
+        //187
+        let utrustCoin = Coin.init()
+        utrustCoin.fullName = "UTRUST"
+        utrustCoin.shortName = "UTK"
+        utrustCoin.id = "utk"
+        allCoins.append(utrustCoin)
+        
+        //188
+        let metaverseETPCoin = Coin.init()
+        metaverseETPCoin.fullName = "Metaverse ETP"
+        metaverseETPCoin.shortName = "ETP"
+        metaverseETPCoin.id = "etp"
+        allCoins.append(metaverseETPCoin)
+        
+        //189
+        let wePowerCoin = Coin.init()
+        wePowerCoin.fullName = "WePower"
+        wePowerCoin.shortName = "WPR"
+        wePowerCoin.id = "wpr"
+        allCoins.append(wePowerCoin)
+        
+        //190
+        let nulsCoin = Coin.init()
+        nulsCoin.fullName = "Nuls"
+        nulsCoin.shortName = "NULS"
+        nulsCoin.id = "nuls"
+        allCoins.append(nulsCoin)
+        
+        //191
+        let coinDashCoin = Coin.init()
+        coinDashCoin.fullName = "CoinDash"
+        coinDashCoin.shortName = "CDT"
+        coinDashCoin.id = "cdt"
+        allCoins.append(coinDashCoin)
+        
+        //192
+        let breadCoin = Coin.init()
+        breadCoin.fullName = "Bread"
+        breadCoin.shortName = "BRD"
+        breadCoin.id = "brd"
+        allCoins.append(breadCoin)
+        
+        //193
+        let pacCoinCoin = Coin.init()
+        pacCoinCoin.fullName = "PACcoin"
+        pacCoinCoin.shortName = "PAC"
+        pacCoinCoin.id = "pac"
+        allCoins.append(pacCoinCoin)
+        
+        //194
+        let viacoinCoin = Coin.init()
+        viacoinCoin.fullName = "Viacoin"
+        viacoinCoin.shortName = "VIA"
+        viacoinCoin.id = "via"
+        allCoins.append(viacoinCoin)
+        
+        //195
+        let nagaCoin = Coin.init()
+        nagaCoin.fullName = "NAGA"
+        nagaCoin.shortName = "NGC"
+        nagaCoin.id = "ngc"
+        allCoins.append(nagaCoin)
+        
+        //196
+        let tierionCoin = Coin.init()
+        tierionCoin.fullName = "Tierion"
+        tierionCoin.shortName = "TNT"
+        tierionCoin.id = "tnt"
+        allCoins.append(tierionCoin)
+        
+        //197
+        let guldenCoin = Coin.init()
+        guldenCoin.fullName = "Gulden"
+        guldenCoin.shortName = "NLG"
+        guldenCoin.id = "nlg"
+        allCoins.append(guldenCoin)
+        
+        //198
+        let trinityNetworkCreditCoin = Coin.init()
+        trinityNetworkCreditCoin.fullName = "Trinity Network Credit"
+        trinityNetworkCreditCoin.shortName = "TNC"
+        trinityNetworkCreditCoin.id = "tnc"
+        allCoins.append(trinityNetworkCreditCoin)
+        
+        //199
+        let burstCoin = Coin.init()
+        burstCoin.fullName = "Burst"
+        burstCoin.shortName = "BURST"
+        burstCoin.id = "burst"
+        allCoins.append(burstCoin)
+        
+        //200
+        let triggersCoin = Coin.init()
+        triggersCoin.fullName = "Triggers"
+        triggersCoin.shortName = "TRIG"
+        triggersCoin.id = "trig"
+        allCoins.append(triggersCoin)
         
         
         return allCoins
