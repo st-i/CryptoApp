@@ -47,7 +47,7 @@ class RequestManager: NSObject {
 //                    coinsRates.append(exchangeRate)
 //                    })
             case "ETH":
-                coinRequestUrl = RequestToOKEXBuilder.buildRequest(currencyId: someCoin.id)
+                coinRequestUrl = RequestToOKEXBuilder.buildRequest(currencyId:"zen") //someCoin.id)
                 keyForDict1 = "ticker"
                 keyForDict2 = "last"
 //                sendRequest(url: coinRequestUrl, dictKey1: keyForDict1, dictKey2: keyForDict2, completion: { (exchangeRate) in
@@ -88,6 +88,7 @@ class RequestManager: NSObject {
                                 self.coinsRates.append(currentRate)
                             }else{
                                 self.coinsRates.append(currentRate * self.btcRateInUsd)
+                                print(currentRate * self.btcRateInUsd)
                             }
                             self.currentIndex = self.currentIndex + 1
                             self.updateCoins()

@@ -22,7 +22,13 @@ class TrackedPositionCellBuilder: NSObject {
         
         let currentNumberFormatter = NumberFormatter.init()
         currentNumberFormatter.groupingSize = 3
-        currentNumberFormatter.maximumFractionDigits = 2
+        var fractionDigitsNumber = 0
+        if coinExchangeRate < 1 {
+            fractionDigitsNumber = 6
+        }else{
+            fractionDigitsNumber = 2
+        }
+        currentNumberFormatter.maximumFractionDigits = fractionDigitsNumber
         currentNumberFormatter.usesGroupingSeparator = true
         currentNumberFormatter.groupingSeparator = " "
         currentNumberFormatter.decimalSeparator = ","

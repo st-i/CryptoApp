@@ -6,12 +6,12 @@
 //  Copyright © 2017 Stefanov. All rights reserved.
 //
 
-//1.okex - Each IP can send maximum of 3000 https requests within 5 minutes (431 currencies, хороший курс)
-//2.btcalpha - 33 валюты, We have limit in 2 calls per second from single account to authorization required methods and 100 calls per secong from single IP address to public methods. биткоин-8650, у них 9236
-//3.bithumb - Public API: 20 request available per second (12 валют, чуть завышен курс).
-//4.Poloniex - 6 calls per second to the public API (99 валют)
+//1.okex - Each IP can send maximum of 3000 https requests within 5 minutes (600 per minute) (431 currencies, хороший курс)
+//2.btcalpha - 33 валюты, We have limit in 2 calls per second from single account to authorization required methods and 100 calls per secong from single IP address to public methods (6000 per minute). биткоин-8650, у них 9236
+//3.bithumb - Public API: 20 request available per second (1200 per minute) (12 валют, чуть завышен курс).
+//4.Poloniex - 6 calls per second to the public API (99 валют) (360 per minute)
 //5.Lykke - The API throughput limit is 300 requests per minute for a single client (около 30 валют, на 200-300 завышен).
-//6.BtcMarkets - 25 calls per 10 seconds (11 валют, хороший курс)
+//6.BtcMarkets - 25 calls per 10 seconds (11 валют, хороший курс) (150 per minute)
 //27.bitfinex - between 10 and 90 per minute
 
 

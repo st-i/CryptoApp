@@ -59,7 +59,9 @@ class TrackedCurrenciesViewController: UIViewController {
         
         let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addTrackedCurrency))
         let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshCurrenciesRates))
-        navigationItem.rightBarButtonItems = [addButton, refreshButton]
+        navigationItem.leftBarButtonItem = refreshButton
+        navigationItem.rightBarButtonItem = addButton
+//        navigationItem.rightBarButtonItems = [addButton, refreshButton]
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
         
