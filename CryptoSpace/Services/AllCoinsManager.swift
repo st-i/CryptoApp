@@ -61,7 +61,7 @@ class AllCoinsManager: NSObject {
         
         //6
         let cardanoCoin = Coin.init()
-        cardanoCoin.fullName = "Cardano" //!!!
+        cardanoCoin.fullName = "Cardano" //abucoins
         cardanoCoin.shortName = "ADA"
         cardanoCoin.id = "ada"
         allCoins.append(cardanoCoin)
@@ -132,7 +132,7 @@ class AllCoinsManager: NSObject {
         
         //16
         let veChainCoin = Coin.init()
-        veChainCoin.fullName = "VeChain" //!!!
+        veChainCoin.fullName = "VeChain" // Quoine/Qryptos and liqui
         veChainCoin.shortName = "VEN"
         veChainCoin.id = "ven"
         allCoins.append(veChainCoin)
@@ -146,7 +146,7 @@ class AllCoinsManager: NSObject {
         
         //18
         let liskCoin = Coin.init()
-        liskCoin.fullName = "Lisk" //!!!
+        liskCoin.fullName = "Lisk" //abucoins
         liskCoin.shortName = "LSK"
         liskCoin.id = "lsk"
         allCoins.append(liskCoin)
@@ -194,29 +194,29 @@ class AllCoinsManager: NSObject {
         allCoins.append(nanoCoin)
         
         //25
-        let binanceCoin = Coin.init()
-        binanceCoin.fullName = "Binance Coin" //!!!
-        binanceCoin.shortName = "BNB"
-        binanceCoin.id = "bnb"
-        allCoins.append(binanceCoin)
+        let binanceCoinCoin = Coin.init()
+        binanceCoinCoin.fullName = "Binance Coin" //binance
+        binanceCoinCoin.shortName = "BNB"
+        binanceCoinCoin.id = "bnb"
+        allCoins.append(binanceCoinCoin)
         
         //26
         let bytecoinCoin = Coin.init()
-        bytecoinCoin.fullName = "Bytecoin" //!!!
+        bytecoinCoin.fullName = "Bytecoin" //poloniex
         bytecoinCoin.shortName = "BCN"
         bytecoinCoin.id = "bcn"
         allCoins.append(bytecoinCoin)
         
         //27
         let steemCoin = Coin.init()
-        steemCoin.fullName = "Steem" //!!!
+        steemCoin.fullName = "Steem" //poloniex
         steemCoin.shortName = "STEEM"
         steemCoin.id = "steem"
         allCoins.append(steemCoin)
         
         //28
         let vergeCoin = Coin.init()
-        vergeCoin.fullName = "Verge" //!!!
+        vergeCoin.fullName = "Verge" //yobit
         vergeCoin.shortName = "XVG"
         vergeCoin.id = "xvg"
         allCoins.append(vergeCoin)
@@ -230,42 +230,42 @@ class AllCoinsManager: NSObject {
         
         //30
         let rChainCoin = Coin.init()
-        rChainCoin.fullName = "RChain" //!!!
+        rChainCoin.fullName = "RChain" //kucoin
         rChainCoin.shortName = "RHOC"
         rChainCoin.id = "rhoc"
         allCoins.append(rChainCoin)
         
         //31
         let siacoinCoin = Coin.init()
-        siacoinCoin.fullName = "Siacoin" //!!!
+        siacoinCoin.fullName = "Siacoin" //abucoins and poloniex
         siacoinCoin.shortName = "SC"
         siacoinCoin.id = "sc"
         allCoins.append(siacoinCoin)
         
         //32
         let stratisCoin = Coin.init()
-        stratisCoin.fullName = "Stratis" //!!!
+        stratisCoin.fullName = "Stratis" //abucoins and poloniex
         stratisCoin.shortName = "STRAT"
         stratisCoin.id = "strat"
         allCoins.append(stratisCoin)
         
         //33
         let dogecoinCoin = Coin.init()
-        dogecoinCoin.fullName = "Dogecoin" //!!!
+        dogecoinCoin.fullName = "Dogecoin" //poloniex
         dogecoinCoin.shortName = "DOGE"
         dogecoinCoin.id = "doge"
         allCoins.append(dogecoinCoin)
         
         //34
         let wavesCoin = Coin.init()
-        wavesCoin.fullName = "Waves" //!!!
+        wavesCoin.fullName = "Waves" //Livecoin
         wavesCoin.shortName = "WAVES"
         wavesCoin.id = "waves"
         allCoins.append(wavesCoin)
         
         //35
         let digixDaoCoin = Coin.init()
-        digixDaoCoin.fullName = "DigixDAO" //!!! okex, но очень низкий курс. лучше с binance
+        digixDaoCoin.fullName = "DigixDAO" //liqui или okex, но очень низкий курс
         digixDaoCoin.shortName = "DGD"
         digixDaoCoin.id = "dgd"
         allCoins.append(digixDaoCoin)
@@ -287,14 +287,14 @@ class AllCoinsManager: NSObject {
         
         //38
         let bitSharesCoin = Coin.init()
-        bitSharesCoin.fullName = "BitShares" //!!!
+        bitSharesCoin.fullName = "BitShares" //poloniex
         bitSharesCoin.shortName = "BTS"
         bitSharesCoin.id = "bts"
         allCoins.append(bitSharesCoin)
         
         //39
         let aeternityCoin = Coin.init()
-        aeternityCoin.fullName = "Aeternity" //!!!
+        aeternityCoin.fullName = "Aeternity" //Aex
         aeternityCoin.shortName = "AE"
         aeternityCoin.id = "ae"
         allCoins.append(aeternityCoin)
@@ -308,28 +308,28 @@ class AllCoinsManager: NSObject {
         
         //41
         let decredCoin = Coin.init()
-        decredCoin.fullName = "Decred" //!!!
+        decredCoin.fullName = "Decred" //poloniex
         decredCoin.shortName = "DCR"
         decredCoin.id = "dcr"
         allCoins.append(decredCoin)
         
         //42
         let veritaseumCoin = Coin.init()
-        veritaseumCoin.fullName = "Veritaseum" //!!!
+        veritaseumCoin.fullName = "Veritaseum" //Hitbtc
         veritaseumCoin.shortName = "VERI"
         veritaseumCoin.id = "veri"
         allCoins.append(veritaseumCoin)
         
         //43
         let augurCoin = Coin.init()
-        augurCoin.fullName = "Augur" //!!!
+        augurCoin.fullName = "Augur" //abucoins and poloniex
         augurCoin.shortName = "REP"
         augurCoin.id = "rep"
         allCoins.append(augurCoin)
         
         //44
         let zClassicCoin = Coin.init()
-        zClassicCoin.fullName = "ZClassic" //!!!
+        zClassicCoin.fullName = "ZClassic" //coinexchange
         zClassicCoin.shortName = "ZCL"
         zClassicCoin.id = "zcl"
         allCoins.append(zClassicCoin)

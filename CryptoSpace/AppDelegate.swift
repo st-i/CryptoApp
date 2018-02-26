@@ -6,34 +6,43 @@
 //  Copyright © 2017 Stefanov. All rights reserved.
 //
 
-//1.okex - Each IP can send maximum of 3000 https requests within 5 minutes (600 per minute) (431 currencies, хороший курс)
+//1.bitfinex - between 10 and 90 per minute
+//2.okex - Each IP can send maximum of 3000 https requests within 5 minutes (600 per minute) (431 currencies, хороший курс)
+//3.abucoins - 300 requests per 1 minute per IP and Account
+//4.liqui - All information is cached every 2 seconds, so there's no point in making more frequent requests. (30 per minute)
+//5.Quoine / Qryptos - API users should not make more than 300 requests per 5 minute (60 per minute)
+//6.Poloniex - 6 calls per second to the public API (99 валют) (360 per minute)
+//7.Yobit - Server responses are cashed every 2 seconds that is why there is no sense in making requests faster. (30 per minute)
+//8.Kucoin-есть api, ничего про лимиты
+//9.Livecoin - Разрешается не более 60 любых запросов к API в течении 60 секунд подряд с одного IP адреса. (60 per minute)
+//10.Aex - every 60 seconds the number of calls can not be more than 120
+//11.Hitbtc - good api, has limits, no info
+//12.coinexchange - good api, has limits, no info
+
+//37.Tidex - All information is cached every 2 seconds, so there's no point in making more frequent requests (30 per minute)
 //2.btcalpha - 33 валюты, We have limit in 2 calls per second from single account to authorization required methods and 100 calls per secong from single IP address to public methods (6000 per minute). биткоин-8650, у них 9236
 //3.bithumb - Public API: 20 request available per second (1200 per minute) (12 валют, чуть завышен курс).
-//4.Poloniex - 6 calls per second to the public API (99 валют) (360 per minute)
 //5.Lykke - The API throughput limit is 300 requests per minute for a single client (около 30 валют, на 200-300 завышен).
 //6.BtcMarkets - 25 calls per 10 seconds (11 валют, хороший курс) (150 per minute)
-//27.bitfinex - between 10 and 90 per minute
-
+//12.Gemini - we limit requests to 120 requests per minute
+//34.coinone - 90 requests per minute
 
 
 //17.Okcoin - Each IP can send maximum of 3000 https requests within 5 minutes (BTC, LTC, ETH)
-//12.Gemini - we limit requests to 120 requests per minute
-//40.Aex - every 60 seconds the number of calls can not be more than 120
-//34.coinone - 90 requests per minute
-//15.Livecoin - Разрешается не более 60 любых запросов к API в течении 60 секунд подряд с одного IP адреса.
-//21.Quoine - API users should not make more than 300 requests per 5 minute
 //62.c2cx - 60 API request per minute per endpoint. If more then 60 API requests are sent per minute to an endpoint the sending IP will be blocked for between 30 and 60 seconds. Results are also limited to 100 results per API request. APIs that may return more than 100 result will have a pagination option.
 //65.bitso - 300 requests in 5 minutes, 8 currencies
 //54.? Acx-The Public API requires no authentication, no threshold, while the Private one does and has a threshold of 1000 request/keypair/5 minutes. Но 6 валют
 
-
+//55.cryptobridge - nothing was found about api
 //24.coinmarketcap - Please limit requests to no more than 10 per minute
 //!5.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits
 //28.huobi - Each apikey can send maximum of 100 https requests within 10 seconds
 //72.independent reserve - 3 валюты, 1 запрос в секунду
 
 
-
+//58.coinhouse - didn't find api
+//57.tradeogre - has api, nothing about limits
+//56.southxchange - has api, nothing anout limits
 //1.bitbay - про лимиты ничего
 //!6.C-CEX - nothing about limits
 //!7.cex.io - nothing about limits
@@ -44,14 +53,13 @@
 //29.bit-z - good API, nothing about limits
 //30.exx - good API, nothing about limits, chinese language
 //31.coinegg - good api, nothing about limits
-//33.liqui - All information is cached every 2 seconds, so there's no point in making more frequent requests.
 //35.Gate.io - good api; has limits, but nothing about limits in numbers
 //41.Bitbay - good api, nothing about limits
 //43.Allcoin - проверить в списке, ничего о лимитах, апи есть
 //47.Coolcoin - 402 Requests are too frequent. Есть апи, ничего о лимитах, очень похожа на какую-то
 //52.Coinroom-Good API, no limits info
 //59.Bxthailand-есть апи, 24 валюты, ничего про лимиты
-//66.cryptopia - 479 валют, есть апи, ничего про лимиты
+//66.cryptopia - 479 валют, есть апи, ничего про лимиты (можно взять только все пары)
 //68.bigone - 108 currencies, есть api, ничего про лимиты
 
 
@@ -61,17 +69,13 @@
 //8.Coinbase - only 4 positions, didn't find public info
 //9.Gdax - later
 //10.Exmo - couldn't open
-//13.Hitbtc - not clear
 //14.Kraken - not clear, some progressive way
-//23.Yobit - посмотреть с компа
-//26.upbit - все в иероглифах
+//26.upbit - все в иероглифах, не могу перевести
 //32.itbit - only btc
 //36.Zb.com - посмотреть с компа
-//37.Tidex - посмотреть с компа
 //38.Bitbank - китайский язык, посмотреть с компа
 //39.Lbank - с компа
-//42.Bibox - посмотреть с компа https://api.bibox.com
-//44.Kucoin-посмотреть с компа
+//42.Bibox - посмотреть с компа https ://api.bibox.com
 //45.Bitcoin Indonesia-нужна регистрация, посмотреть с компа
 //48.Mr.Exchange или Mr.Ripple - все на китайском
 //50.Xbtce-c компа
