@@ -31,7 +31,7 @@ class AllCoinsManager: NSObject {
         
         //2
         let ethereumCoin = Coin.init()
-        ethereumCoin.fullName = "Ethereum" //okex
+        ethereumCoin.fullName = "Ethereum" //1bittrex or okex
         ethereumCoin.shortName = "ETH"
         ethereumCoin.id = "eth"
 //        ethereumCoin.bitfinexId = "eth"
@@ -40,70 +40,70 @@ class AllCoinsManager: NSObject {
         
         //3
         let rippleCoin = Coin.init()
-        rippleCoin.fullName = "Ripple" //okex
+        rippleCoin.fullName = "Ripple" //1bittrex or okex
         rippleCoin.shortName = "XRP"
         rippleCoin.id = "xpr"
         allCoins.append(rippleCoin)
         
         //4
         let bitcoinCashCoin = Coin.init()
-        bitcoinCashCoin.fullName = "Bitcoin Cash" //okex
+        bitcoinCashCoin.fullName = "Bitcoin Cash" //1bittrex or okex
         bitcoinCashCoin.shortName = "BCH"
         bitcoinCashCoin.id = "bch"
         allCoins.append(bitcoinCashCoin)
         
         //5
         let litecoinCoin = Coin.init()
-        litecoinCoin.fullName = "Litecoin" //okex
+        litecoinCoin.fullName = "Litecoin" //1bittrex or okex
         litecoinCoin.shortName = "LTC"
         litecoinCoin.id = "ltc"
         allCoins.append(litecoinCoin)
         
         //6
         let cardanoCoin = Coin.init()
-        cardanoCoin.fullName = "Cardano" //abucoins
+        cardanoCoin.fullName = "Cardano" //1bittrex or abucoins
         cardanoCoin.shortName = "ADA"
         cardanoCoin.id = "ada"
         allCoins.append(cardanoCoin)
         
         //7
         let neoCoin = Coin.init()
-        neoCoin.fullName = "NEO" //okex
+        neoCoin.fullName = "NEO" //1bittrex or okex
         neoCoin.shortName = "NEO"
         neoCoin.id = "neo"
         allCoins.append(neoCoin)
         
         //8
         let stellarCoin = Coin.init()
-        stellarCoin.fullName = "Stellar" //okex
+        stellarCoin.fullName = "Stellar" //1bittrex or okex
         stellarCoin.shortName = "XLM"
         stellarCoin.id = "xlm"
         allCoins.append(stellarCoin)
         
         //9
         let eosCoin = Coin.init()
-        eosCoin.fullName = "EOS" //okex
+        eosCoin.fullName = "EOS" //1hitbtc or okex
         eosCoin.shortName = "EOS"
         eosCoin.id = "eos"
         allCoins.append(eosCoin)
         
         //10
         let dashCoin = Coin.init()
-        dashCoin.fullName = "Dash" //okex
+        dashCoin.fullName = "Dash" //1bittrex or okex
         dashCoin.shortName = "DASH"
         dashCoin.id = "dash"
         allCoins.append(dashCoin)
         
         //11
         let moneroCoin = Coin.init()
-        moneroCoin.fullName = "Monero" //okex
+        moneroCoin.fullName = "Monero" //1bittrex or okex
         moneroCoin.shortName = "XMR"
         moneroCoin.id = "xmr"
         allCoins.append(moneroCoin)
         
         //12
         let iotaCoin = Coin.init()
-        iotaCoin.fullName = "IOTA" //okex !iota
+        iotaCoin.fullName = "IOTA" //okex(!iota)
         iotaCoin.shortName = "MIOTA"
         iotaCoin.id = "miota"
         iotaCoin.okexId = "iota"
@@ -111,84 +111,84 @@ class AllCoinsManager: NSObject {
         
         //13
         let nemCoin = Coin.init()
-        nemCoin.fullName = "NEM" //okex
+        nemCoin.fullName = "NEM" //1bittrex or okex
         nemCoin.shortName = "XEM"
         nemCoin.id = "xem"
         allCoins.append(nemCoin)
         
         //14
         let ethereumClassicCoin = Coin.init()
-        ethereumClassicCoin.fullName = "Ethereum Classic" //okex
+        ethereumClassicCoin.fullName = "Ethereum Classic" //1bittrex or okex
         ethereumClassicCoin.shortName = "ETC"
         ethereumClassicCoin.id = "etc"
         allCoins.append(ethereumClassicCoin)
         
         //15
         let tronCoin = Coin.init()
-        tronCoin.fullName = "TRON" //okex
+        tronCoin.fullName = "TRON" //1bittrex or okex
         tronCoin.shortName = "TRX"
         tronCoin.id = "trx"
         allCoins.append(tronCoin)
         
         //16
         let veChainCoin = Coin.init()
-        veChainCoin.fullName = "VeChain" // Quoine/Qryptos and liqui
+        veChainCoin.fullName = "VeChain" //1hitbtc or Quoine/Qryptos and liqui
         veChainCoin.shortName = "VEN"
         veChainCoin.id = "ven"
         allCoins.append(veChainCoin)
         
         //17
         let tetherCoin = Coin.init()
-        tetherCoin.fullName = "Tether" //okex, но нужно считать по-другому, так как запрос btc_usdt
+        tetherCoin.fullName = "Tether" //1hitbtc or okex, но нужно считать по-другому, так как запрос btc_usdt
         tetherCoin.shortName = "USDT"
         tetherCoin.id = "usdt"
         allCoins.append(tetherCoin)
         
         //18
         let liskCoin = Coin.init()
-        liskCoin.fullName = "Lisk" //abucoins
+        liskCoin.fullName = "Lisk" //1bittrex or abucoins
         liskCoin.shortName = "LSK"
         liskCoin.id = "lsk"
         allCoins.append(liskCoin)
         
         //19
         let bitcoinGoldCoin = Coin.init()
-        bitcoinGoldCoin.fullName = "Bitcoin Gold" //okex
+        bitcoinGoldCoin.fullName = "Bitcoin Gold" //1bittrex or okex
         bitcoinGoldCoin.shortName = "BTG"
         bitcoinGoldCoin.id = "btg"
         allCoins.append(bitcoinGoldCoin)
         
         //20
         let qtumCoin = Coin.init()
-        qtumCoin.fullName = "Qtum" //okex
+        qtumCoin.fullName = "Qtum" //1bittrex or okex
         qtumCoin.shortName = "QTUM"
         qtumCoin.id = "qtum"
         allCoins.append(qtumCoin)
         
         //21
         let omiseGoCoin = Coin.init()
-        omiseGoCoin.fullName = "OmiseGo" //okex
+        omiseGoCoin.fullName = "OmiseGo" //1bittrex or okex
         omiseGoCoin.shortName = "OMG"
         omiseGoCoin.id = "omg"
         allCoins.append(omiseGoCoin)
         
         //22
         let iconCoin = Coin.init()
-        iconCoin.fullName = "ICON" //okex
+        iconCoin.fullName = "ICON" //1hitbtc or okex
         iconCoin.shortName = "ICX"
         iconCoin.id = "icx"
         allCoins.append(iconCoin)
         
         //23
         let zcashCoin = Coin.init()
-        zcashCoin.fullName = "Zcash" //okex
+        zcashCoin.fullName = "Zcash" //1bittrex or okex
         zcashCoin.shortName = "ZEC"
         zcashCoin.id = "zec"
         allCoins.append(zcashCoin)
         
         //24
         let nanoCoin = Coin.init()
-        nanoCoin.fullName = "Nano" //okex
+        nanoCoin.fullName = "Nano" //1kucoin or okex
         nanoCoin.shortName = "NANO"
         nanoCoin.id = "nano"
         allCoins.append(nanoCoin)
@@ -202,77 +202,77 @@ class AllCoinsManager: NSObject {
         
         //26
         let bytecoinCoin = Coin.init()
-        bytecoinCoin.fullName = "Bytecoin" //poloniex
+        bytecoinCoin.fullName = "Bytecoin" //1poloniex
         bytecoinCoin.shortName = "BCN"
         bytecoinCoin.id = "bcn"
         allCoins.append(bytecoinCoin)
         
         //27
         let steemCoin = Coin.init()
-        steemCoin.fullName = "Steem" //poloniex
+        steemCoin.fullName = "Steem" //1bittrex or poloniex
         steemCoin.shortName = "STEEM"
         steemCoin.id = "steem"
         allCoins.append(steemCoin)
         
         //28
         let vergeCoin = Coin.init()
-        vergeCoin.fullName = "Verge" //yobit
+        vergeCoin.fullName = "Verge" //1bittrex or yobit
         vergeCoin.shortName = "XVG"
         vergeCoin.id = "xvg"
         allCoins.append(vergeCoin)
         
         //29
         let populousCoin = Coin.init()
-        populousCoin.fullName = "Populous" //okex
+        populousCoin.fullName = "Populous" //1hitbtc or okex
         populousCoin.shortName = "PPT"
         populousCoin.id = "ppt"
         allCoins.append(populousCoin)
         
         //30
         let rChainCoin = Coin.init()
-        rChainCoin.fullName = "RChain" //kucoin
+        rChainCoin.fullName = "RChain" //1kucoin
         rChainCoin.shortName = "RHOC"
         rChainCoin.id = "rhoc"
         allCoins.append(rChainCoin)
         
         //31
         let siacoinCoin = Coin.init()
-        siacoinCoin.fullName = "Siacoin" //abucoins and poloniex
+        siacoinCoin.fullName = "Siacoin" //1bittrex or abucoins and poloniex
         siacoinCoin.shortName = "SC"
         siacoinCoin.id = "sc"
         allCoins.append(siacoinCoin)
         
         //32
         let stratisCoin = Coin.init()
-        stratisCoin.fullName = "Stratis" //abucoins and poloniex
+        stratisCoin.fullName = "Stratis" //1bittrex or abucoins and poloniex
         stratisCoin.shortName = "STRAT"
         stratisCoin.id = "strat"
         allCoins.append(stratisCoin)
         
         //33
         let dogecoinCoin = Coin.init()
-        dogecoinCoin.fullName = "Dogecoin" //poloniex
+        dogecoinCoin.fullName = "Dogecoin" //1bittrex or poloniex
         dogecoinCoin.shortName = "DOGE"
         dogecoinCoin.id = "doge"
         allCoins.append(dogecoinCoin)
         
         //34
         let wavesCoin = Coin.init()
-        wavesCoin.fullName = "Waves" //Livecoin
+        wavesCoin.fullName = "Waves" //1bittrex or Livecoin
         wavesCoin.shortName = "WAVES"
         wavesCoin.id = "waves"
         allCoins.append(wavesCoin)
         
         //35
         let digixDaoCoin = Coin.init()
-        digixDaoCoin.fullName = "DigixDAO" //liqui или okex, но очень низкий курс
+        digixDaoCoin.fullName = "DigixDAO" //1hitbtc or liqui или okex(очень низкий курс)
         digixDaoCoin.shortName = "DGD"
         digixDaoCoin.id = "dgd"
         allCoins.append(digixDaoCoin)
         
         //36
         let statusCoin = Coin.init()
-        statusCoin.fullName = "Status" //okex
+        statusCoin.fullName = "Status" //1bittrex or okex
         statusCoin.shortName = "SNT"
         statusCoin.id = "snt"
         allCoins.append(statusCoin)
@@ -287,56 +287,56 @@ class AllCoinsManager: NSObject {
         
         //38
         let bitSharesCoin = Coin.init()
-        bitSharesCoin.fullName = "BitShares" //poloniex
+        bitSharesCoin.fullName = "BitShares" //1poloniex
         bitSharesCoin.shortName = "BTS"
         bitSharesCoin.id = "bts"
         allCoins.append(bitSharesCoin)
         
         //39
         let aeternityCoin = Coin.init()
-        aeternityCoin.fullName = "Aeternity" //Aex
+        aeternityCoin.fullName = "Aeternity" //1hitbtc or Aex
         aeternityCoin.shortName = "AE"
         aeternityCoin.id = "ae"
         allCoins.append(aeternityCoin)
         
         //40
         let waltonchainCoin = Coin.init()
-        waltonchainCoin.fullName = "Waltonchain" //okex
+        waltonchainCoin.fullName = "Waltonchain" //1hitbtc or okex
         waltonchainCoin.shortName = "WTC"
         waltonchainCoin.id = "wtc"
         allCoins.append(waltonchainCoin)
         
         //41
         let decredCoin = Coin.init()
-        decredCoin.fullName = "Decred" //poloniex
+        decredCoin.fullName = "Decred" //1bittrex or poloniex
         decredCoin.shortName = "DCR"
         decredCoin.id = "dcr"
         allCoins.append(decredCoin)
         
         //42
         let veritaseumCoin = Coin.init()
-        veritaseumCoin.fullName = "Veritaseum" //Hitbtc
+        veritaseumCoin.fullName = "Veritaseum" //1Hitbtc
         veritaseumCoin.shortName = "VERI"
         veritaseumCoin.id = "veri"
         allCoins.append(veritaseumCoin)
         
         //43
         let augurCoin = Coin.init()
-        augurCoin.fullName = "Augur" //abucoins and poloniex
+        augurCoin.fullName = "Augur" //1bittrex or abucoins and poloniex
         augurCoin.shortName = "REP"
         augurCoin.id = "rep"
         allCoins.append(augurCoin)
         
         //44
         let zClassicCoin = Coin.init()
-        zClassicCoin.fullName = "ZClassic" //coinexchange
+        zClassicCoin.fullName = "ZClassic" //1bittrex or coinexchange
         zClassicCoin.shortName = "ZCL"
         zClassicCoin.id = "zcl"
         allCoins.append(zClassicCoin)
         
         //45
         let zero0xCoin = Coin.init()
-        zero0xCoin.fullName = "0x" //okex
+        zero0xCoin.fullName = "0x" //1bittrex or okex
         zero0xCoin.shortName = "ZRX"
         zero0xCoin.id = "zrx"
         allCoins.append(zero0xCoin)
@@ -350,35 +350,35 @@ class AllCoinsManager: NSObject {
         
         //47
         let hshareCoin = Coin.init()
-        hshareCoin.fullName = "Hshare" //okex
+        hshareCoin.fullName = "Hshare" //1hitbtc or okex
         hshareCoin.shortName = "HSR"
         hshareCoin.id = "hsr"
         allCoins.append(hshareCoin)
         
         //48
         let revainCoin = Coin.init()
-        revainCoin.fullName = "Revain" //okex
+        revainCoin.fullName = "Revain" //1hitbtc or okex
         revainCoin.shortName = "R"
         revainCoin.id = "r"
         allCoins.append(revainCoin)
         
         //49
         let komodoCoin = Coin.init()
-        komodoCoin.fullName = "Komodo" //bittrex or cryptopia or hitbtc or cryptox or coinexchange
+        komodoCoin.fullName = "Komodo" //1bittrex or cryptopia or hitbtc or cryptox or coinexchange
         komodoCoin.shortName = "KMD"
         komodoCoin.id = "kmd"
         allCoins.append(komodoCoin)
         
         //50
         let ardorCoin = Coin.init()
-        ardorCoin.fullName = "Ardor" //bittrex or hitbtc or poloniex or LiteBit.eu or Aex
+        ardorCoin.fullName = "Ardor" //1bittrex or hitbtc or poloniex or LiteBit.eu or Aex
         ardorCoin.shortName = "ARDR"
         ardorCoin.id = "ardr"
         allCoins.append(ardorCoin)
         
         //51
         let kuCoinSharesCoin = Coin.init()
-        kuCoinSharesCoin.fullName = "KuCoin Shares" //kucoin
+        kuCoinSharesCoin.fullName = "KuCoin Shares" //1kucoin
         kuCoinSharesCoin.shortName = "KCS"
         kuCoinSharesCoin.id = "kcs"
         allCoins.append(kuCoinSharesCoin)
@@ -392,7 +392,7 @@ class AllCoinsManager: NSObject {
         
         //53
         let gasCoin = Coin.init()
-        gasCoin.fullName = "Gas" //okex
+        gasCoin.fullName = "Gas" //1poloniex or okex
         gasCoin.shortName = "GAS"
         gasCoin.id = "gas"
         allCoins.append(gasCoin)
@@ -413,42 +413,42 @@ class AllCoinsManager: NSObject {
         
         //56
         let loopringCoin = Coin.init()
-        loopringCoin.fullName = "Loopring" //okex
+        loopringCoin.fullName = "Loopring" //1hitbtc or okex
         loopringCoin.shortName = "LRC"
         loopringCoin.id = "lrc"
         allCoins.append(loopringCoin)
         
         //57
         let digiByteCoin = Coin.init()
-        digiByteCoin.fullName = "DigiByte" //okex
+        digiByteCoin.fullName = "DigiByte" //1poloniex or okex
         digiByteCoin.shortName = "DGB"
         digiByteCoin.id = "dgb"
         allCoins.append(digiByteCoin)
         
         //58
         let bytomCoin = Coin.init()
-        bytomCoin.fullName = "Bytom" //okex
+        bytomCoin.fullName = "Bytom" //1hitbtc or okex
         bytomCoin.shortName = "BTM"
         bytomCoin.id = "btm"
         allCoins.append(bytomCoin)
         
         //59
         let aelfCoin = Coin.init()
-        aelfCoin.fullName = "aelf" //okex
+        aelfCoin.fullName = "aelf" //1kucoin or okex
         aelfCoin.shortName = "ELF"
         aelfCoin.id = "elf"
         allCoins.append(aelfCoin)
         
         //60
         let cryptonexCoin = Coin.init()
-        cryptonexCoin.fullName = "Cryptonex" //Yobit or hitbtc
+        cryptonexCoin.fullName = "Cryptonex" //1hitbtc or Yobit
         cryptonexCoin.shortName = "CNX"
         cryptonexCoin.id = "cnx"
         allCoins.append(cryptonexCoin)
         
         //61
         let dragonchainCoin = Coin.init()
-        dragonchainCoin.fullName = "Dragonchain" //Gate.io or fatbtc or kucoin or tidex
+        dragonchainCoin.fullName = "Dragonchain" //1kucoin or Gate.io or fatbtc or tidex
         dragonchainCoin.shortName = "DRGN"
         dragonchainCoin.id = "drgn"
         allCoins.append(dragonchainCoin)
@@ -462,14 +462,14 @@ class AllCoinsManager: NSObject {
         
         //63
         let syscoinCoin = Coin.init()
-        syscoinCoin.fullName = "Syscoin" //poloniex or livecoin or aex or tradebytrade
+        syscoinCoin.fullName = "Syscoin" //1poloniex or livecoin or aex or tradebytrade
         syscoinCoin.shortName = "SYS"
         syscoinCoin.id = "sys"
         allCoins.append(syscoinCoin)
         
         //64
         let dentCoin = Coin.init()
-        dentCoin.fullName = "Dent" //okex
+        dentCoin.fullName = "Dent" //1hitbtc or okex
         dentCoin.shortName = "DENT"
         dentCoin.id = "dent"
         allCoins.append(dentCoin)
@@ -490,7 +490,7 @@ class AllCoinsManager: NSObject {
         
         //67
         let kyberNetwork = Coin.init()
-        kyberNetwork.fullName = "Kyber Network" //okex
+        kyberNetwork.fullName = "Kyber Network" //1kucoin or okex
         kyberNetwork.shortName = "KNC"
         kyberNetwork.id = "knc"
         allCoins.append(kyberNetwork)
@@ -504,28 +504,28 @@ class AllCoinsManager: NSObject {
         
         //69
         let polymathCoin = Coin.init()
-        polymathCoin.fullName = "Polymath" //kucoin or idex or
+        polymathCoin.fullName = "Polymath" //1kucoin or idex
         polymathCoin.shortName = "POLY"
         polymathCoin.id = "poly"
         allCoins.append(polymathCoin)
         
         //70
         let aionCoin = Coin.init()
-        aionCoin.fullName = "Aion" //liqui or kucoin or idex or radar relay
+        aionCoin.fullName = "Aion" //1kucoin or liqui or idex or radar relay
         aionCoin.shortName = "AION"
         aionCoin.id = "aion"
         allCoins.append(aionCoin)
         
         //71
         let dentacoinCoin = Coin.init()
-        dentacoinCoin.fullName = "Dentacoin" //Hitbtc or coinexchange or coinfalcon
+        dentacoinCoin.fullName = "Dentacoin" //1Hitbtc or coinexchange or coinfalcon
         dentacoinCoin.shortName = "DCN"
         dentacoinCoin.id = "dcn"
         allCoins.append(dentacoinCoin)
         
         //72
         let golemCoin = Coin.init()
-        golemCoin.fullName = "Golem" //okex
+        golemCoin.fullName = "Golem" //1poloniex or okex
         golemCoin.shortName = "GNT"
         golemCoin.id = "gnt"
         allCoins.append(golemCoin)
@@ -539,7 +539,7 @@ class AllCoinsManager: NSObject {
         
         //74
         let bitcoreCoin = Coin.init()
-        bitcoreCoin.fullName = "Bitcore" //bit-z or cryptopia or hitbtc
+        bitcoreCoin.fullName = "Bitcore" //1hitbtc or bit-z or cryptopia
         bitcoreCoin.shortName = "BTX"
         bitcoreCoin.id = "btx"
         allCoins.append(bitcoreCoin)
@@ -553,21 +553,21 @@ class AllCoinsManager: NSObject {
         
         //76
         let iostokenCoin = Coin.init()
-        iostokenCoin.fullName = "IOStoken" //okex
+        iostokenCoin.fullName = "IOStoken" //1kucoin or okex
         iostokenCoin.shortName = "IOST"
         iostokenCoin.id = "iost"
         allCoins.append(iostokenCoin)
         
         //77
         let factomCoin = Coin.init()
-        factomCoin.fullName = "Factom" //bit-z or poloniex or cryptopia or qryptos
+        factomCoin.fullName = "Factom" //1poloniex or bit-z or cryptopia or qryptos
         factomCoin.shortName = "FCT"
         factomCoin.id = "fct"
         allCoins.append(factomCoin)
         
         //78
         let ethosCoin = Coin.init()
-        ethosCoin.fullName = "Ethos" //coinexchange or hitbtc or livecoin(высокий) or radarrelay or cobinhood
+        ethosCoin.fullName = "Ethos" //1hitbtc or coinexchange or livecoin(высокий) or radarrelay or cobinhood
         ethosCoin.shortName = "ETHOS"
         ethosCoin.id = "ethos"
         allCoins.append(ethosCoin)
@@ -588,7 +588,7 @@ class AllCoinsManager: NSObject {
         
         //81
         let funFairCoin = Coin.init()
-        funFairCoin.fullName = "FunFair" //okex
+        funFairCoin.fullName = "FunFair" //1hitbtc or okex
         funFairCoin.shortName = "FUN"
         funFairCoin.id = "fun"
         allCoins.append(funFairCoin)
@@ -602,7 +602,7 @@ class AllCoinsManager: NSObject {
         
         //83
         let powerLedgerCoin = Coin.init()
-        powerLedgerCoin.fullName = "Power Ledger" //kucoin or Bxthailand or cryptopia or Gate.io or bigone(высокий) or TDAX
+        powerLedgerCoin.fullName = "Power Ledger" //1kucoin or Bxthailand or cryptopia or Gate.io or bigone(высокий) or TDAX
         powerLedgerCoin.shortName = "POWR"
         powerLedgerCoin.id = "powr"
         allCoins.append(powerLedgerCoin)
@@ -616,7 +616,7 @@ class AllCoinsManager: NSObject {
         
         //85
         let cindicatorCoin = Coin.init()
-        cindicatorCoin.fullName = "Cindicator" //Hitbtc
+        cindicatorCoin.fullName = "Cindicator" //1Hitbtc
         cindicatorCoin.shortName = "CND"
         cindicatorCoin.id = "cnd"
         allCoins.append(cindicatorCoin)
@@ -630,14 +630,14 @@ class AllCoinsManager: NSObject {
         
         //87
         let nxtCoin = Coin.init()
-        nxtCoin.fullName = "Nxt" //Poloniex or aex or Hitbtc or livecoin or coinegg
+        nxtCoin.fullName = "Nxt" //1Poloniex or aex or Hitbtc or livecoin or coinegg
         nxtCoin.shortName = "NXT"
         nxtCoin.id = "nxt"
         allCoins.append(nxtCoin)
         
         //88
         let pillarCoin = Coin.init()
-        pillarCoin.fullName = "Pillar" //cryptopia or hitbtc or idex
+        pillarCoin.fullName = "Pillar" //1hitbtc or cryptopia or idex
         pillarCoin.shortName = "PLR"
         pillarCoin.id = "plr"
         allCoins.append(pillarCoin)
@@ -651,147 +651,147 @@ class AllCoinsManager: NSObject {
         
         //90
         let bancorCoin = Coin.init()
-        bancorCoin.fullName = "Bancor" //okex
+        bancorCoin.fullName = "Bancor" //1hitbtc or okex
         bancorCoin.shortName = "BNT"
         bancorCoin.id = "bnt"
         allCoins.append(bancorCoin)
         
         //91
         let requestNetworkCoin = Coin.init()
-        requestNetworkCoin.fullName = "Request Network" //okex
+        requestNetworkCoin.fullName = "Request Network" //1kucoin or okex
         requestNetworkCoin.shortName = "REQ"
         requestNetworkCoin.id = "req"
         allCoins.append(requestNetworkCoin)
         
         //92
         let enigmaCoin = Coin.init()
-        enigmaCoin.fullName = "Enigma" //okex
+        enigmaCoin.fullName = "Enigma" //1hitbtc(к ETH) or okex
         enigmaCoin.shortName = "ENG"
         enigmaCoin.id = "eng"
         allCoins.append(enigmaCoin)
         
         //93
         let maidSafeCoinCoin = Coin.init()
-        maidSafeCoinCoin.fullName = "MaidSafeCoin" //poloniex or bittrex
+        maidSafeCoinCoin.fullName = "MaidSafeCoin" //poloniex or 1bittrex
         maidSafeCoinCoin.shortName = "MAID"
         maidSafeCoinCoin.id = "maid"
         allCoins.append(maidSafeCoinCoin)
         
         //94
         let smartCashCoin = Coin.init()
-        smartCashCoin.fullName = "SmartCash" //Hitbtc(высокий курс) or coinexchange or Stocks.Exchange
+        smartCashCoin.fullName = "SmartCash" //1Hitbtc(высокий курс) or coinexchange or Stocks.Exchange
         smartCashCoin.shortName = "SMART"
         smartCashCoin.id = "smart"
         allCoins.append(smartCashCoin)
         
         //95
         let neblioCoin = Coin.init()
-        neblioCoin.fullName = "Neblio" //Kucoin or cryptopia or Hitbtc
+        neblioCoin.fullName = "Neblio" //1Hitbtc or Kucoin or cryptopia
         neblioCoin.shortName = "NEBL"
         neblioCoin.id = "nebl"
         allCoins.append(neblioCoin)
         
         //96
         let tenXCoin = Coin.init()
-        tenXCoin.fullName = "TenX" //okex
+        tenXCoin.fullName = "TenX" //1hitbtc or okex
         tenXCoin.shortName = "PAY"
         tenXCoin.id = "pay"
         allCoins.append(tenXCoin)
         
         //97
         let emercoinCoin = Coin.init()
-        emercoinCoin.fullName = "Emercoin" //hitbtc or livecoin or bittrex or cryptopia or xBTCe or LiteBit.eu or coinexchange or
+        emercoinCoin.fullName = "Emercoin" //1bittrex or hitbtc or livecoin or cryptopia or xBTCe or LiteBit.eu or coinexchange or
         emercoinCoin.shortName = "EMC"
         emercoinCoin.id = "emc"
         allCoins.append(emercoinCoin)
         
         //98
         let blocknetCoin = Coin.init()
-        blocknetCoin.fullName = "Blocknet" //bittrex
+        blocknetCoin.fullName = "Blocknet" //1bittrex
         blocknetCoin.shortName = "BLOCK"
         blocknetCoin.id = "block"
         allCoins.append(blocknetCoin)
         
         //99
         let vertcoinCoin = Coin.init()
-        vertcoinCoin.fullName = "Vertcoin" //bittrex or poloniex or coinegg
+        vertcoinCoin.fullName = "Vertcoin" //1bittrex or poloniex or coinegg
         vertcoinCoin.shortName = "VTC"
         vertcoinCoin.id = "vtc"
         allCoins.append(vertcoinCoin)
         
         //100
         let ignisCoin = Coin.init()
-        ignisCoin.fullName = "Ignis" //bittrex or Aex or hitbtc or Stocks.Exchange
+        ignisCoin.fullName = "Ignis" //1bittrex or Aex or hitbtc or Stocks.Exchange
         ignisCoin.shortName = "IGNIS"
         ignisCoin.id = "ignis"
         allCoins.append(ignisCoin)
         
         //101
         let raidenNetworkTokenCoin = Coin.init()
-        raidenNetworkTokenCoin.fullName = "Raiden Network Token" //okex
+        raidenNetworkTokenCoin.fullName = "Raiden Network Token" //1kucoin or okex
         raidenNetworkTokenCoin.shortName = "RDN"
         raidenNetworkTokenCoin.id = "rdn"
         allCoins.append(raidenNetworkTokenCoin)
         
         //102
         let gameCreditsCoin = Coin.init()
-        gameCreditsCoin.fullName = "GameCredits" //bittrex or poloniex or Hitbtc or...
+        gameCreditsCoin.fullName = "GameCredits" //1bittrex or poloniex or Hitbtc or...
         gameCreditsCoin.shortName = "GAME"
         gameCreditsCoin.id = "game"
         allCoins.append(gameCreditsCoin)
         
         //103
         let quantstampCoin = Coin.init()
-        quantstampCoin.fullName = "Quantstamp" //kucoin or Gate.io or idex or radar relay
+        quantstampCoin.fullName = "Quantstamp" //1kucoin or Gate.io or idex or radar relay
         quantstampCoin.shortName = "QSP"
         quantstampCoin.id = "qsp"
         allCoins.append(quantstampCoin)
         
         //104
         let singularityNetCoin = Coin.init()
-        singularityNetCoin.fullName = "SingularityNET" //kucoin or Tidex or idex or
+        singularityNetCoin.fullName = "SingularityNET" //1kucoin or Tidex or idex
         singularityNetCoin.shortName = "AGI"
         singularityNetCoin.id = "agi"
         allCoins.append(singularityNetCoin)
         
         //105
         let waxCoin = Coin.init()
-        waxCoin.fullName = "WAX" //bittrex or coinfalcon or kucoin or hitbtc or...
+        waxCoin.fullName = "WAX" //1bittrex or coinfalcon or kucoin or hitbtc or...
         waxCoin.shortName = "WAX"
         waxCoin.id = "wax"
         allCoins.append(waxCoin)
         
         //106
         let iconomiCoin = Coin.init()
-        iconomiCoin.fullName = "Iconomi" //okex
+        iconomiCoin.fullName = "Iconomi" //1hitbtc or okex
         iconomiCoin.shortName = "ICN"
         iconomiCoin.id = "icn"
         allCoins.append(iconomiCoin)
         
         //107
         let gnosisCoin = Coin.init()
-        gnosisCoin.fullName = "Gnosis" //bittrex or poloniex or liqui or hitbtc or livecoin or...
+        gnosisCoin.fullName = "Gnosis" //1bittrex or poloniex or liqui or hitbtc or livecoin or...
         gnosisCoin.shortName = "GNO"
         gnosisCoin.id = "gno"
         allCoins.append(gnosisCoin)
         
         //108
         let poDotEtCoin = Coin.init()
-        poDotEtCoin.fullName = "Po.et" //okex
+        poDotEtCoin.fullName = "Po.et" //1hitbtc or okex
         poDotEtCoin.shortName = "POE"
         poDotEtCoin.id = "poe"
         allCoins.append(poDotEtCoin)
         
         //109
         let digitalNoteCoin = Coin.init()
-        digitalNoteCoin.fullName = "DigitalNote" //hitbtc or bittrex
+        digitalNoteCoin.fullName = "DigitalNote" //1bittrex or hitbtc
         digitalNoteCoin.shortName = "XDN"
         digitalNoteCoin.id = "xdn"
         allCoins.append(digitalNoteCoin)
         
         //110
         let enjinCoinCoin = Coin.init()
-        enjinCoinCoin.fullName = "Enjin Coin" //Qryptos or cryptopia or kucoin or hitbtc or...
+        enjinCoinCoin.fullName = "Enjin Coin" //1hitbtc or Qryptos or cryptopia or kucoin
         enjinCoinCoin.shortName = "ENJ"
         enjinCoinCoin.id = "enj"
         allCoins.append(enjinCoinCoin)
@@ -819,63 +819,63 @@ class AllCoinsManager: NSObject {
         
         //114
         let santimentNetworkTokenCoin = Coin.init()
-        santimentNetworkTokenCoin.fullName = "Santiment Network Token" //okex
+        santimentNetworkTokenCoin.fullName = "Santiment Network Token" //1hitbtc(к ETH) or okex
         santimentNetworkTokenCoin.shortName = "SAN"
         santimentNetworkTokenCoin.id = "san"
         allCoins.append(santimentNetworkTokenCoin)
         
         //115
         let storjCoin = Coin.init()
-        storjCoin.fullName = "Storj" //okex
+        storjCoin.fullName = "Storj" //1poloniex or okex
         storjCoin.shortName = "STORJ"
         storjCoin.id = "storj"
         allCoins.append(storjCoin)
         
         //116
         let bitcoinDarkCoin = Coin.init()
-        bitcoinDarkCoin.fullName = "BitcoinDark" //tradebytrade or poloniex or Bleutrade(низкий курс) or cryptopia
+        bitcoinDarkCoin.fullName = "BitcoinDark" //1poloniex or tradebytrade or Bleutrade(низкий курс) or cryptopia
         bitcoinDarkCoin.shortName = "BTCD"
         bitcoinDarkCoin.id = "btcd"
         allCoins.append(bitcoinDarkCoin)
         
         //117
         let civicCoin = Coin.init()
-        civicCoin.fullName = "Civic" //okex
+        civicCoin.fullName = "Civic" //1poloniex or okex
         civicCoin.shortName = "CVC"
         civicCoin.id = "cvc"
         allCoins.append(civicCoin)
         
         //118
         let stormCoin = Coin.init()
-        stormCoin.fullName = "Storm" //hitbtc or idex or radar relay
+        stormCoin.fullName = "Storm" //1hitbtc or idex or radar relay
         stormCoin.shortName = "STORM"
         stormCoin.id = "storm"
         allCoins.append(stormCoin)
         
         //119
         let substratumCoin = Coin.init()
-        substratumCoin.fullName = "Substratum" //okex
+        substratumCoin.fullName = "Substratum" //1hitbtc or okex
         substratumCoin.shortName = "SUB"
         substratumCoin.id = "sub"
         allCoins.append(substratumCoin)
         
         //120
         let nexusCoin = Coin.init()
-        nexusCoin.fullName = "Nexus" //bittrex or cryptopia or tradebytrade(высокий)
+        nexusCoin.fullName = "Nexus" //1bittrex or cryptopia or tradebytrade(высокий)
         nexusCoin.shortName = "NXS"
         nexusCoin.id = "nxs"
         allCoins.append(nexusCoin)
         
         //121
         let achainCoin = Coin.init()
-        achainCoin.fullName = "Achain" //okex
+        achainCoin.fullName = "Achain" //1hitbtc or okex
         achainCoin.shortName = "ACT"
         achainCoin.id = "act"
         allCoins.append(achainCoin)
         
         //122
         let decentralandCoin = Coin.init()
-        decentralandCoin.fullName = "Decentraland" //okex
+        decentralandCoin.fullName = "Decentraland" //1hitbtc or okex
         decentralandCoin.shortName = "MANA"
         decentralandCoin.id = "mana"
         allCoins.append(decentralandCoin)
@@ -889,14 +889,14 @@ class AllCoinsManager: NSObject {
         
         //124
         let ethlendCoin = Coin.init()
-        ethlendCoin.fullName = "ETHLend" //okex
+        ethlendCoin.fullName = "ETHLend" //1hitbtc or okex
         ethlendCoin.shortName = "LEND"
         ethlendCoin.id = "lend"
         allCoins.append(ethlendCoin)
         
         //125
         let navcoinCoin = Coin.init()
-        navcoinCoin.fullName = "NAV Coin" //bittrex or poloniex or cryptopia or litebit.eu
+        navcoinCoin.fullName = "NAV Coin" //1bittrex or poloniex or cryptopia or litebit.eu
         navcoinCoin.shortName = "NAV"
         navcoinCoin.id = "nav"
         allCoins.append(navcoinCoin)
@@ -910,7 +910,7 @@ class AllCoinsManager: NSObject {
         
         //127
         let adExCoin = Coin.init()
-        adExCoin.fullName = "AdEx" //liqui or bittrex or hitbtc
+        adExCoin.fullName = "AdEx" //1bittrex or liqui or hitbtc
         adExCoin.shortName = "ADX"
         adExCoin.id = "adx"
         allCoins.append(adExCoin)
@@ -931,7 +931,7 @@ class AllCoinsManager: NSObject {
         
         //130
         let oysterCoin = Coin.init()
-        oysterCoin.fullName = "Oyster" //kucoin or cryptopia or coinexchange or idex
+        oysterCoin.fullName = "Oyster" //1kucoin or cryptopia or coinexchange or idex
         oysterCoin.shortName = "PRL"
         oysterCoin.id = "prl"
         allCoins.append(oysterCoin)
@@ -959,21 +959,21 @@ class AllCoinsManager: NSObject {
         
         //134
         let telcoinCoin = Coin.init()
-        telcoinCoin.fullName = "Telcoin" //kucoin or idex
+        telcoinCoin.fullName = "Telcoin" //1kucoin or idex
         telcoinCoin.shortName = "TEL"
         telcoinCoin.id = "tel"
         allCoins.append(telcoinCoin)
         
         //135
         let highPerformanceBlockchainCoin = Coin.init()
-        highPerformanceBlockchainCoin.fullName = "High Performance Blockchain" //Allcoin or kucoin
+        highPerformanceBlockchainCoin.fullName = "High Performance Blockchain" //1kucoin or Allcoin
         highPerformanceBlockchainCoin.shortName = "HPB"
         highPerformanceBlockchainCoin.id = "hpb"
         allCoins.append(highPerformanceBlockchainCoin)
         
         //136
         let aragonCoin = Coin.init()
-        aragonCoin.fullName = "Aragon" //bittrex or liqui or hitbtc or radar relay
+        aragonCoin.fullName = "Aragon" //1bittrex or liqui or hitbtc or radar relay
         aragonCoin.shortName = "ANT"
         aragonCoin.id = "ant"
         allCoins.append(aragonCoin)
@@ -994,14 +994,14 @@ class AllCoinsManager: NSObject {
         
         //139
         let ubiqCoin = Coin.init()
-        ubiqCoin.fullName = "Ubiq" //bittrex or cryptopia or LiteBit.eu
+        ubiqCoin.fullName = "Ubiq" //1bittrex or cryptopia or LiteBit.eu
         ubiqCoin.shortName = "UBQ"
         ubiqCoin.id = "ubq"
         allCoins.append(ubiqCoin)
         
         //140
         let monacoCoin = Coin.init()
-        monacoCoin.fullName = "Monaco" //okex
+        monacoCoin.fullName = "Monaco" //1hitbtc or okex
         monacoCoin.shortName = "MCO"
         monacoCoin.id = "mco"
         allCoins.append(monacoCoin)
@@ -1022,14 +1022,14 @@ class AllCoinsManager: NSObject {
         
         //143
         let iotChainCoin = Coin.init()
-        iotChainCoin.fullName = "IoT Chain" //okex
+        iotChainCoin.fullName = "IoT Chain" //1kucoin or okex
         iotChainCoin.shortName = "ITC"
         iotChainCoin.id = "itc"
         allCoins.append(iotChainCoin)
         
         //144
         let iExecRLCCoin = Coin.init()
-        iExecRLCCoin.fullName = "iExec RLC" //bittrex or liqui or Hitbtc or gate.io or livecoin or radar relay
+        iExecRLCCoin.fullName = "iExec RLC" //1bittrex or liqui or Hitbtc or gate.io or livecoin or radar relay
         iExecRLCCoin.shortName = "RLC"
         iExecRLCCoin.id = "rlc"
         allCoins.append(iExecRLCCoin)
@@ -1043,14 +1043,14 @@ class AllCoinsManager: NSObject {
         
         //146
         let dataCoin = Coin.init()
-        dataCoin.fullName = "DATA" //kucoin or idex
+        dataCoin.fullName = "DATA" //1kucoin or idex
         dataCoin.shortName = "DTA"
         dataCoin.id = "dta"
         allCoins.append(dataCoin)
         
         //147
         let genesisVisionCoin = Coin.init()
-        genesisVisionCoin.fullName = "Genesis Vision" //kucoin or hitbtc
+        genesisVisionCoin.fullName = "Genesis Vision" //1hitbtc or kucoin
         genesisVisionCoin.shortName = "GVT"
         genesisVisionCoin.id = "gvt"
         allCoins.append(genesisVisionCoin)
@@ -1064,7 +1064,7 @@ class AllCoinsManager: NSObject {
         
         //149
         let redPulseCoin = Coin.init()
-        redPulseCoin.fullName = "Red Pulse" //kucoin or TDAX(высокий)
+        redPulseCoin.fullName = "Red Pulse" //1kucoin or TDAX(высокий)
         redPulseCoin.shortName = "RPX"
         redPulseCoin.id = "rpx"
         allCoins.append(redPulseCoin)
@@ -1085,35 +1085,35 @@ class AllCoinsManager: NSObject {
         
         //152
         let vibeCoin = Coin.init()
-        vibeCoin.fullName = "VIBE" //hitbtc
+        vibeCoin.fullName = "VIBE" //1hitbtc
         vibeCoin.shortName = "VIBE"
         vibeCoin.id = "vibe"
         allCoins.append(vibeCoin)
         
         //153
         let peercoinCoin = Coin.init()
-        peercoinCoin.fullName = "Peercoin" //bitz or tradebytrade or wex or hitbtc or bittrex or poloniex or...
+        peercoinCoin.fullName = "Peercoin" //1bittrex or bitz or tradebytrade or wex or hitbtc or poloniex or...
         peercoinCoin.shortName = "PPC"
         peercoinCoin.id = "ppc"
         allCoins.append(peercoinCoin)
         
         //154
         let aschCoin = Coin.init()
-        aschCoin.fullName = "Asch" //bitz or kucoin or coinegg(выше)
+        aschCoin.fullName = "Asch" //1kucoin or bitz or coinegg(выше)
         aschCoin.shortName = "XAS"
         aschCoin.id = "xas"
         allCoins.append(aschCoin)
         
         //155
         let ambrosusCoin = Coin.init()
-        ambrosusCoin.fullName = "Ambrosus" //kucoin or Gatecoin or hitbtc or Livecoin
+        ambrosusCoin.fullName = "Ambrosus" //1hitbtc or kucoin or Gatecoin or Livecoin
         ambrosusCoin.shortName = "AMB"
         ambrosusCoin.id = "amb"
         allCoins.append(ambrosusCoin)
         
         //156
         let crypto20Coin = Coin.init()
-        crypto20Coin.fullName = "CRYPTO20" //hitbtc or idex
+        crypto20Coin.fullName = "CRYPTO20" //1hitbtc or idex
         crypto20Coin.shortName = "C20"
         crypto20Coin.id = "c20"
         allCoins.append(crypto20Coin)
@@ -1134,21 +1134,21 @@ class AllCoinsManager: NSObject {
         
         //159
         let sonmCoin = Coin.init()
-        sonmCoin.fullName = "SONM" //okex
+        sonmCoin.fullName = "SONM" //1hitbtc(к ETH) or okex
         sonmCoin.shortName = "SNM"
         sonmCoin.id = "snm"
         allCoins.append(sonmCoin)
         
         //160
         let agorasTokensCoin = Coin.init()
-        agorasTokensCoin.fullName = "Agoras Tokens" //bittrex
+        agorasTokensCoin.fullName = "Agoras Tokens" //1bittrex
         agorasTokensCoin.shortName = "AGRS"
         agorasTokensCoin.id = "agrs"
         allCoins.append(agorasTokensCoin)
         
         //161
         let sirinLabsTokenCoin = Coin.init()
-        sirinLabsTokenCoin.fullName = "SIRIN LABS Token" //bittrex or liqui or idex(выше) or tidex(выше)
+        sirinLabsTokenCoin.fullName = "SIRIN LABS Token" //1bittrex or liqui or idex(выше) or tidex(выше)
         sirinLabsTokenCoin.shortName = "SRN"
         sirinLabsTokenCoin.id = "srn"
         allCoins.append(sirinLabsTokenCoin)
@@ -1162,14 +1162,14 @@ class AllCoinsManager: NSObject {
         
         //163
         let puraCoin = Coin.init()
-        puraCoin.fullName = "Pura" //coinexchange or kucoin or cryptopia or ccex
+        puraCoin.fullName = "Pura" //1kucoin or coinexchange or cryptopia or ccex
         puraCoin.shortName = "PURA"
         puraCoin.id = "pura"
         allCoins.append(puraCoin)
         
         //164
         let deepBrainChainCoin = Coin.init()
-        deepBrainChainCoin.fullName = "DeepBrain Chain" //kucoin or gate.io or Allcoin
+        deepBrainChainCoin.fullName = "DeepBrain Chain" //1kucoin or gate.io or Allcoin
         deepBrainChainCoin.shortName = "DBC"
         deepBrainChainCoin.id = "dbc"
         allCoins.append(deepBrainChainCoin)
@@ -1183,7 +1183,7 @@ class AllCoinsManager: NSObject {
         
         //166
         let eidooCoin = Coin.init()
-        eidooCoin.fullName = "Eidoo" //okex
+        eidooCoin.fullName = "Eidoo" //1hitbtc or okex
         eidooCoin.shortName = "EDO"
         eidooCoin.id = "edo"
         allCoins.append(eidooCoin)
@@ -1197,14 +1197,14 @@ class AllCoinsManager: NSObject {
         
         //168
         let jibrelNetworkCoin = Coin.init()
-        jibrelNetworkCoin.fullName = "Jibrel Network" //hitbtc or gate.io or kucoin or idex
+        jibrelNetworkCoin.fullName = "Jibrel Network" //1hitbtc or gate.io or kucoin or idex
         jibrelNetworkCoin.shortName = "JNT"
         jibrelNetworkCoin.id = "jnt"
         allCoins.append(jibrelNetworkCoin)
         
         //169
         let einsteiniumCoin = Coin.init()
-        einsteiniumCoin.fullName = "Einsteinium" //bittrex or poloniex or cryptopia
+        einsteiniumCoin.fullName = "Einsteinium" //1bittrex or poloniex or cryptopia
         einsteiniumCoin.shortName = "EMC2"
         einsteiniumCoin.id = "emc2"
         allCoins.append(einsteiniumCoin)
@@ -1218,7 +1218,7 @@ class AllCoinsManager: NSObject {
         
         //171
         let etherpartyCoin = Coin.init()
-        etherpartyCoin.fullName = "Etherparty" //hitbtc or gate.io or acx
+        etherpartyCoin.fullName = "Etherparty" //1hitbtc or gate.io or acx
         etherpartyCoin.shortName = "FUEL"
         etherpartyCoin.id = "fuel"
         allCoins.append(etherpartyCoin)
@@ -1260,49 +1260,49 @@ class AllCoinsManager: NSObject {
         
         //177
         let melonCoin = Coin.init()
-        melonCoin.fullName = "Melon" //bittrex or liqui or Radar Relay or livecoin
+        melonCoin.fullName = "Melon" //1bittrex or liqui or Radar Relay or livecoin
         melonCoin.shortName = "MLN"
         melonCoin.id = "mln"
         allCoins.append(melonCoin)
         
         //178
         let streamrDATAcoinCoin = Coin.init()
-        streamrDATAcoinCoin.fullName = "Streamr DATAcoin" //Ethfinex or gate.io or hitbtc
+        streamrDATAcoinCoin.fullName = "Streamr DATAcoin" //1hitbtc or Ethfinex or gate.io
         streamrDATAcoinCoin.shortName = "DATA"
         streamrDATAcoinCoin.id = "data"
         allCoins.append(streamrDATAcoinCoin)
         
         //179
         let edgelessCoin = Coin.init()
-        edgelessCoin.fullName = "Edgeless" //bittrex or liqui or hitbtc or tidex
+        edgelessCoin.fullName = "Edgeless" //1bittrex or liqui or hitbtc or tidex
         edgelessCoin.shortName = "EDG"
         edgelessCoin.id = "edg"
         allCoins.append(edgelessCoin)
         
         //180
         let counterpartyCoin = Coin.init()
-        counterpartyCoin.fullName = "Counterparty" //bittrex or poloniex
+        counterpartyCoin.fullName = "Counterparty" //1bittrex or poloniex
         counterpartyCoin.shortName = "XCP"
         counterpartyCoin.id = "xcp"
         allCoins.append(counterpartyCoin)
         
         //181
         let quantumResistantLedgerCoin = Coin.init()
-        quantumResistantLedgerCoin.fullName = "Quantum Resistant Ledger" //bittrex or liqui or coinexchange(низкий) or Tidex(очень низкий)
+        quantumResistantLedgerCoin.fullName = "Quantum Resistant Ledger" //1bittrex or liqui or coinexchange(низкий) or Tidex(очень низкий)
         quantumResistantLedgerCoin.shortName = "QRL"
         quantumResistantLedgerCoin.id = "qrl"
         allCoins.append(quantumResistantLedgerCoin)
         
         //182
         let bitBayCoin = Coin.init()
-        bitBayCoin.fullName = "BitBay" //bittrex or ccex or cryptopia
+        bitBayCoin.fullName = "BitBay" //1bittrex or ccex or cryptopia
         bitBayCoin.shortName = "BAY"
         bitBayCoin.id = "bay"
         allCoins.append(bitBayCoin)
         
         //183
         let singularDTVCoin = Coin.init()
-        singularDTVCoin.fullName = "SingularDTV" //okex
+        singularDTVCoin.fullName = "SingularDTV" //1hitbtc or okex
         singularDTVCoin.shortName = "SNGLS"
         singularDTVCoin.id = "sngls"
         allCoins.append(singularDTVCoin)
@@ -1323,21 +1323,21 @@ class AllCoinsManager: NSObject {
         
         //186
         let insEcosystemCoin = Coin.init()
-        insEcosystemCoin.fullName = "INS Ecosystem" //okex
+        insEcosystemCoin.fullName = "INS Ecosystem" //1kucoin or okex
         insEcosystemCoin.shortName = "INS"
         insEcosystemCoin.id = "ins"
         allCoins.append(insEcosystemCoin)
         
         //187
         let utrustCoin = Coin.init()
-        utrustCoin.fullName = "UTRUST" //okex
+        utrustCoin.fullName = "UTRUST" //1hitbtc or okex
         utrustCoin.shortName = "UTK"
         utrustCoin.id = "utk"
         allCoins.append(utrustCoin)
         
         //188
         let metaverseETPCoin = Coin.init()
-        metaverseETPCoin.fullName = "Metaverse ETP" //bitfinex or bitz or hitbtc or TDAX(норм курс) or exx
+        metaverseETPCoin.fullName = "Metaverse ETP" //1hitbtc or bitfinex or bitz or TDAX(норм курс) or exx
         metaverseETPCoin.shortName = "ETP"
         metaverseETPCoin.id = "etp"
         allCoins.append(metaverseETPCoin)
@@ -1351,14 +1351,14 @@ class AllCoinsManager: NSObject {
         
         //190
         let nulsCoin = Coin.init()
-        nulsCoin.fullName = "Nuls" //okex
+        nulsCoin.fullName = "Nuls" //1kucoin or okex
         nulsCoin.shortName = "NULS"
         nulsCoin.id = "nuls"
         allCoins.append(nulsCoin)
         
         //191
         let coinDashCoin = Coin.init()
-        coinDashCoin.fullName = "CoinDash" //gate.io or bigone or hitbtc or Gatecoin
+        coinDashCoin.fullName = "CoinDash" //1hitbtc or gate.io or bigone or Gatecoin
         coinDashCoin.shortName = "CDT"
         coinDashCoin.id = "cdt"
         allCoins.append(coinDashCoin)
@@ -1379,42 +1379,42 @@ class AllCoinsManager: NSObject {
         
         //194
         let viacoinCoin = Coin.init()
-        viacoinCoin.fullName = "Viacoin" //bittrex or poloniex or Coinroom or LiteBit.eu or yobit
+        viacoinCoin.fullName = "Viacoin" //1bittrex or poloniex or Coinroom or LiteBit.eu or yobit
         viacoinCoin.shortName = "VIA"
         viacoinCoin.id = "via"
         allCoins.append(viacoinCoin)
         
         //195
         let nagaCoin = Coin.init()
-        nagaCoin.fullName = "NAGA" //okex
+        nagaCoin.fullName = "NAGA" //1hitbtc or okex
         nagaCoin.shortName = "NGC"
         nagaCoin.id = "ngc"
         allCoins.append(nagaCoin)
         
         //196
         let tierionCoin = Coin.init()
-        tierionCoin.fullName = "Tierion" //liqui or hitbtc or gate.io or bigone
+        tierionCoin.fullName = "Tierion" //1hitbtc or liqui or gate.io or bigone
         tierionCoin.shortName = "TNT"
         tierionCoin.id = "tnt"
         allCoins.append(tierionCoin)
         
         //197
         let guldenCoin = Coin.init()
-        guldenCoin.fullName = "Gulden" //bittrex or LiteBit.eu or Bleutrade or yobit or coinexchange
+        guldenCoin.fullName = "Gulden" //1bittrex or LiteBit.eu or Bleutrade or yobit or coinexchange
         guldenCoin.shortName = "NLG"
         guldenCoin.id = "nlg"
         allCoins.append(guldenCoin)
         
         //198
         let trinityNetworkCreditCoin = Coin.init()
-        trinityNetworkCreditCoin.fullName = "Trinity Network Credit" //kucoin or gate.io
+        trinityNetworkCreditCoin.fullName = "Trinity Network Credit" //1kucoin or gate.io
         trinityNetworkCreditCoin.shortName = "TNC"
         trinityNetworkCreditCoin.id = "tnc"
         allCoins.append(trinityNetworkCreditCoin)
         
         //199
         let burstCoin = Coin.init()
-        burstCoin.fullName = "Burst" //bittrex or poloniex or livecoin or Coinroom or cCEX
+        burstCoin.fullName = "Burst" //1bittrex or poloniex or livecoin or Coinroom or cCEX
         burstCoin.shortName = "BURST"
         burstCoin.id = "burst"
         allCoins.append(burstCoin)

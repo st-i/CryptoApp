@@ -66,6 +66,47 @@ class TrackedCurrenciesViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
         
         fillTableViewWithData()
+        
+        request("https://api.kucoin.com/v1/open/tick").responseJSON { (response) in
+            print(response)
+        }
+        
+//        request("https://api.hitbtc.com/api/2/public/ticker").responseJSON { (response) in
+//            print(response)
+//        }
+        
+//        request("https://api.aex.com/ticker.php?c=all&mk_type=btc").responseJSON { (response) in
+//            print(response)
+//        }
+        
+//        request("https://poloniex.com/public?command=returnTicker").responseJSON { (response) in
+//            print(response)
+//        }
+        
+//        request("https://api.abucoins.com/products/stats").responseJSON { (response) in
+//            guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                print("Не могу перевести в JSON")
+//                return
+//            }
+//            print(arrayOfData)
+//            print(response)
+//        }
+        
+//        request("https://bittrex.com/api/v1.1/public/getmarketsummaries").responseJSON { (response) in
+//
+//            guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                print("Не могу перевести в JSON")
+//                return
+//            }
+////            print(arrayOfData)
+//
+//            let dictsArray = arrayOfData["result"] as! [Dictionary<String, AnyObject>]
+//            let coinsAndPrices = BittrexResponseParser.parseResponse(response: dictsArray)
+////            print(coinsAndPrices)
+//
+////            print(response)
+//
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

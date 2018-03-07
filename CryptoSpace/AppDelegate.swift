@@ -6,25 +6,79 @@
 //  Copyright © 2017 Stefanov. All rights reserved.
 //
 
+//Hitbtc - 50 есть
+//bittrex - 57
+//poloniex - 11
+//kucoin - 26
+
+//cryptopia - 23
+//idex - 25
+
+//Qryptos - 5
+//Quoine - 2
+//liqui - 13
+//binance - 4
+//Aex - 7
+//tradeogre - 1
+//gate.io - 17
+//bitfinex - 5
+//Ethfinex - 3
+//Yobit - 9
+//fatbtc - 3
+//tidex - 6
+//Bleutrade - 4
+//livecoin - 14
+//aex - 7
+//TradeByTrade - 5
+//litebit.eu - 9
+//radar relay - 6
+//coinexchange - 13
+//coinfalcon - 6
+//bit-z - 5
+//cryptox - 2
+//cobinhood - 9
+//bigone - 6
+//Allcoin - 9
+//Stellar Decentralized Exchange - 1
+//Bxthailand - 2
+//TDAX - 3
+//Stocks.Exchange - 2
+//Trade Satoshi - 1
+//c2cx - 2
+//BarterDEX - 1
+//btcalpha - 1
+//coinegg - 4
+//ccex - 3
+//acx - 1
+//exx - 2
+
+
+
+//!5.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits (все сразу)
+//6.Poloniex - 6 calls per second to the public API (99 валют) (360 per minute) (все сразу, 99 валют в ответе)
+//11.Hitbtc - good api, has limits, no info (>200 валют, все сразу)
+
+//3.abucoins - 300 requests per 1 minute per IP and Account (все сразу, 36 валют в ответе)
+//10.Aex - every 60 seconds the number of calls can not be more than 120 (120 per minute) (все сразу, 51 валюта в ответе)
+
+
+//37.exx - Each IP can send maximum of 1000 https requests within 1 minute. If exceeds 1000 requests, the system will automatically block the IP for one hour. After an hour, the IP will be automatically unlocked. (1000 per minute) можно все тикеры
+//18.tradebytrade - Please note that making more than 6 calls per second to the public API, or repeatedly and needlessly fetching excessive amounts of data, can result in your IP being banned. (360 per minute)
+//19.coinfalcon - We throttle public endpoints by IP: 3 requests per second (180 per minute)
+
 //1.bitfinex - between 10 and 90 per minute
 //2.okex - Each IP can send maximum of 3000 https requests within 5 minutes (600 per minute) (431 currencies, хороший курс)
-//3.abucoins - 300 requests per 1 minute per IP and Account
 //4.liqui - All information is cached every 2 seconds, so there's no point in making more frequent requests. (30 per minute)
 //5.Quoine / Qryptos - API users should not make more than 300 requests per 5 minute (60 per minute)
-//6.Poloniex - 6 calls per second to the public API (99 валют) (360 per minute)
 //7.Yobit - Server responses are cashed every 2 seconds that is why there is no sense in making requests faster. (30 per minute)
 //8.Kucoin-есть api, ничего про лимиты
 //9.Livecoin - Разрешается не более 60 любых запросов к API в течении 60 секунд подряд с одного IP адреса. (60 per minute)
-//10.Aex - every 60 seconds the number of calls can not be more than 120 (120 per minute)
-//11.Hitbtc - good api, has limits, no info
 //12.coinexchange - good api, has limits, no info
 //13.idex - has api, no limits info
 //14.Gate.io - good api; has limits, but nothing about limits in numbers
 //15.fatbtc - all tickers at once, no limits info
 //16.Tidex - All information is cached every 2 seconds, so there's no point in making more frequent requests (30 per minute)
 //17.Bleutrade - has api, no limits info
-//18.tradebytrade - Please note that making more than 6 calls per second to the public API, or repeatedly and needlessly fetching excessive amounts of data, can result in your IP being banned. (360 per minute)
-//19.coinfalcon - We throttle public endpoints by IP: 3 requests per second (180 per minute)
 //20.cryptopia - 479 валют, есть апи, ничего про лимиты (можно взять только все пары)
 //21.litebit.eu - has api, no limits info
 //22.bit-z / bitz / bit z - good API, nothing about limits
@@ -41,7 +95,6 @@
 //34.Trade Satoshi - has api, no limits info
 //35.c2cx - 60 API request per minute per endpoint. If more then 60 API requests are sent per minute to an endpoint the sending IP will be blocked for between 30 and 60 seconds. Results are also limited to 100 results per API request. APIs that may return more than 100 result will have a pagination option. (60 per minute)
 //36.btcalpha - 33 валюты, We have limit in 2 calls per second from single account to authorization required methods and 100 calls per secong from single IP address to public methods (6000 per minute). биткоин-8650, у них 9236
-//37.exx - Each IP can send maximum of 1000 https requests within 1 minute. If exceeds 1000 requests, the system will automatically block the IP for one hour. After an hour, the IP will be automatically unlocked. (1000 per minute) можно все тикеры
 //38.zb.com - Each IP can send maximum of 1000 https requests within 1 minute. If exceeds 1000 requests, the system will automatically block the IP for one hour. After an hour, the IP will be automatically unlocked (1000 per minute)
 //39.Wex - Вся информация кэшируется каждые 2 секунды, поэтому нет смысла делать запросы чаще. (30 per minute)
 //40.Gatecoin - has api, didn't find limits
@@ -53,7 +106,6 @@
 
 
 
-//!5.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits
 //25.binance - Each route has a weight which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier weight.
 
 
