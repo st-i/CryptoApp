@@ -67,9 +67,33 @@ class TrackedCurrenciesViewController: UIViewController {
         
         fillTableViewWithData()
         
-        request("https://api.kucoin.com/v1/open/tick").responseJSON { (response) in
+//        request("https://api.big.one/markets", method: .get, parameters: nil, headers: ["Content-Type": "application/json"]).responseJSON { (response) in
+//            print(response)
+//        }
+        
+        request("https://api.big.one/markets/TNB-BTC").responseJSON { (response) in
             print(response)
         }
+        
+//        request("https://api.livecoin.net/exchange/ticker?currencyPair=BTC/USD").responseJSON { (response) in
+//            print(response)
+//        }
+        
+//        request("https://api.idex.market/returnTicker", method: .post, parameters: nil).responseJSON { (response) in
+//            print(response) //переделать
+//        }
+        
+//        request("https://api.idex.market/returnTicker").responseJSON { (response) in
+//            print(response)
+//        }
+        
+//        request("https://www.cryptopia.co.nz/api/GetMarkets").responseJSON { (response) in
+//            print(response)
+//        }
+        
+//        request("https://api.kucoin.com/v1/open/tick").responseJSON { (response) in
+//            print(response)
+//        }
         
 //        request("https://api.hitbtc.com/api/2/public/ticker").responseJSON { (response) in
 //            print(response)

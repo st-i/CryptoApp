@@ -13,6 +13,9 @@ class Coin: NSObject {
     var shortName: String = ""
     
     var id: String = ""
+    
+    var exchange: ExchangeBehavior = ExchangeBehavior(rawValue: 0)!
+    
     var bitfinexId: String = ""
     var okexId: String = ""
     

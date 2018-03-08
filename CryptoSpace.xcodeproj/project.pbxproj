@@ -89,6 +89,7 @@
 		DD04D12F201E190000D67AA5 /* PortfolioGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD04D12E201E190000D67AA5 /* PortfolioGraphViewController.swift */; };
 		DD30884D201C7252006260C2 /* NoPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD30884C201C7252006260C2 /* NoPasteTextField.swift */; };
 		DD308853201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD308852201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift */; };
+		DD37B25920518A6500519443 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37B25820518A6500519443 /* Enums.swift */; };
 		DD64CD3D204C73F700C19202 /* BittrexResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD64CD3C204C73F700C19202 /* BittrexResponseParser.swift */; };
 		DD82A7B920025E3C00A6DD34 /* ActionWithCurrencyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82A7B820025E3C00A6DD34 /* ActionWithCurrencyTableView.swift */; };
 		DD82A7BB20025E5800A6DD34 /* ActionWithCurrencyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD82A7BA20025E5800A6DD34 /* ActionWithCurrencyTableView.xib */; };
@@ -195,6 +196,7 @@
 		DD04D12E201E190000D67AA5 /* PortfolioGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioGraphViewController.swift; sourceTree = "<group>"; };
 		DD30884C201C7252006260C2 /* NoPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPasteTextField.swift; sourceTree = "<group>"; };
 		DD308852201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSourceAndDelegate.swift; sourceTree = "<group>"; };
+		DD37B25820518A6500519443 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		DD64CD3C204C73F700C19202 /* BittrexResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BittrexResponseParser.swift; sourceTree = "<group>"; };
 		DD82A7B820025E3C00A6DD34 /* ActionWithCurrencyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionWithCurrencyTableView.swift; sourceTree = "<group>"; };
 		DD82A7BA20025E5800A6DD34 /* ActionWithCurrencyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionWithCurrencyTableView.xib; sourceTree = "<group>"; };
@@ -780,6 +782,7 @@
 				DDA1607D203DED000020B602 /* AllCoinsManager.swift */,
 				DDA1607F203DEE890020B602 /* Coin.swift */,
 				DD64CD3C204C73F700C19202 /* BittrexResponseParser.swift */,
+				DD37B25820518A6500519443 /* Enums.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1010,6 +1013,7 @@
 				DD04D121201DC82300D67AA5 /* AboutAppViewController.swift in Sources */,
 				54EBA47C1FE84CF800E9F412 /* ObservedCurrencyDelegate.swift in Sources */,
 				54D3EAF71FEAE387002DDB7F /* CurrencySearchViewController.swift in Sources */,
+				DD37B25920518A6500519443 /* Enums.swift in Sources */,
 				5482F41C1FFFCF6B00BDD14C /* EmptyCellBuilder.swift in Sources */,
 				DD04D12D201E189D00D67AA5 /* PortfolioGraphDataSourceAndDelegate.swift in Sources */,
 				54CA4E3C1FE53D1600E6357E /* CryptoCurrenciesCapitalizationCell.swift in Sources */,

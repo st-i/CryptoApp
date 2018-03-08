@@ -6,13 +6,29 @@
 //  Copyright © 2017 Stefanov. All rights reserved.
 //
 
-//Hitbtc - 50 есть
-//bittrex - 57
-//poloniex - 11
+//bittrex - 58
+//Hitbtc - 50
 //kucoin - 26
+//idex - 14
+//poloniex - 11
+//cryptopia - 11
+//gate.io - 8
+//livecoin - 3
+//bigone - 2
+//btcalpha - 1
+//binance - 7
+//cobinhood - 1
+//coinexchange - 1
+//Yobit or Tidex - 1 194
 
-//cryptopia - 23
-//idex - 25
+//Trade Satoshi - 1
+//BarterDEX - 1
+//c2cx - 2
+//bigone - 1
+//Yobit - 1
+//Tidex - 1
+//
+
 
 //Qryptos - 5
 //Quoine - 2
@@ -20,19 +36,16 @@
 //binance - 4
 //Aex - 7
 //tradeogre - 1
-//gate.io - 17
 //bitfinex - 5
 //Ethfinex - 3
 //Yobit - 9
 //fatbtc - 3
 //tidex - 6
 //Bleutrade - 4
-//livecoin - 14
 //aex - 7
 //TradeByTrade - 5
 //litebit.eu - 9
 //radar relay - 6
-//coinexchange - 13
 //coinfalcon - 6
 //bit-z - 5
 //cryptox - 2
@@ -45,7 +58,6 @@
 //Stocks.Exchange - 2
 //Trade Satoshi - 1
 //c2cx - 2
-//BarterDEX - 1
 //btcalpha - 1
 //coinegg - 4
 //ccex - 3
@@ -54,9 +66,21 @@
 
 
 
-//!5.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits (все сразу)
-//6.Poloniex - 6 calls per second to the public API (99 валют) (360 per minute) (все сразу, 99 валют в ответе)
-//11.Hitbtc - good api, has limits, no info (>200 валют, все сразу)
+//1.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits (все сразу)
+//2.Poloniex - 6 calls per second to the public API (99 валют) (360 per minute) (все сразу, 99 валют в ответе)
+//3.Hitbtc - good api, has limits, no info (>200 валют, все сразу)
+//4.Kucoin-есть api, ничего про лимиты (все сразу)
+//5.cryptopia - есть апи, ничего про лимиты (>200 валют, можно взять только все пары)
+//6.idex - has api, no limits info
+//7.Gate.io - good api; has limits, but nothing about limits in numbers
+//8.Livecoin - Разрешается не более 60 любых запросов к API в течении 60 секунд подряд с одного IP адреса. (60 per minute)
+//9.bigone - 108 currencies, есть api, ничего про лимиты (падает приложение на ответе)
+//10.btcalpha - 33 валюты, We have limit in 2 calls per second from single account to authorization required methods and 100 calls per secong from single IP address to public methods (6000 per minute). биткоин-8650, у них 9236
+
+
+//12.coinexchange - good api, has limits, no info
+//35.c2cx - 60 API request per minute per endpoint. If more then 60 API requests are sent per minute to an endpoint the sending IP will be blocked for between 30 and 60 seconds. Results are also limited to 100 results per API request. APIs that may return more than 100 result will have a pagination option. (60 per minute)(в разработке)
+
 
 //3.abucoins - 300 requests per 1 minute per IP and Account (все сразу, 36 валют в ответе)
 //10.Aex - every 60 seconds the number of calls can not be more than 120 (120 per minute) (все сразу, 51 валюта в ответе)
@@ -71,21 +95,14 @@
 //4.liqui - All information is cached every 2 seconds, so there's no point in making more frequent requests. (30 per minute)
 //5.Quoine / Qryptos - API users should not make more than 300 requests per 5 minute (60 per minute)
 //7.Yobit - Server responses are cashed every 2 seconds that is why there is no sense in making requests faster. (30 per minute)
-//8.Kucoin-есть api, ничего про лимиты
-//9.Livecoin - Разрешается не более 60 любых запросов к API в течении 60 секунд подряд с одного IP адреса. (60 per minute)
-//12.coinexchange - good api, has limits, no info
-//13.idex - has api, no limits info
-//14.Gate.io - good api; has limits, but nothing about limits in numbers
 //15.fatbtc - all tickers at once, no limits info
 //16.Tidex - All information is cached every 2 seconds, so there's no point in making more frequent requests (30 per minute)
 //17.Bleutrade - has api, no limits info
-//20.cryptopia - 479 валют, есть апи, ничего про лимиты (можно взять только все пары)
 //21.litebit.eu - has api, no limits info
 //22.bit-z / bitz / bit z - good API, nothing about limits
 //23.cryptox - has api, no limits info
 //24.radar relay - has api, no limits info
 //25.cobinhood - has api, no limits info, можно взять все пары
-//26.bigone - 108 currencies, есть api, ничего про лимиты
 //27.Allcoin - ничего о лимитах, апи есть
 //28.Bxthailand-есть апи, 24 валюты, ничего про лимиты
 //29.TDAX - есть апи, ничего о лимитах, можно взять все пары, очень высокий курс
@@ -93,8 +110,6 @@
 //31.Stocks.Exchange - has api, no limits info
 //32.xBTCe - has api, no limits info
 //34.Trade Satoshi - has api, no limits info
-//35.c2cx - 60 API request per minute per endpoint. If more then 60 API requests are sent per minute to an endpoint the sending IP will be blocked for between 30 and 60 seconds. Results are also limited to 100 results per API request. APIs that may return more than 100 result will have a pagination option. (60 per minute)
-//36.btcalpha - 33 валюты, We have limit in 2 calls per second from single account to authorization required methods and 100 calls per secong from single IP address to public methods (6000 per minute). биткоин-8650, у них 9236
 //38.zb.com - Each IP can send maximum of 1000 https requests within 1 minute. If exceeds 1000 requests, the system will automatically block the IP for one hour. After an hour, the IP will be automatically unlocked (1000 per minute)
 //39.Wex - Вся информация кэшируется каждые 2 секунды, поэтому нет смысла делать запросы чаще. (30 per minute)
 //40.Gatecoin - has api, didn't find limits
@@ -109,7 +124,7 @@
 //25.binance - Each route has a weight which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier weight.
 
 
-
+//60.OasisDEX - сложно найти апи
 //60.Nocks - не открывается
 //60.ChaoEX - все в иероглифах
 //60.BarterDEX - надо разбираться с апи
