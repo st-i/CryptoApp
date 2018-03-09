@@ -41,13 +41,14 @@ class RequestManager: NSObject {
 //            switch: такая-то биржа, такой-то запрос
             switch someCoin.shortName { //буду спрашивать биржу
             case "BTC": //буду сравнивать с behaviour биржи
-                coinRequestUrl = RequestToBitfinexBuilder.buildRequest(currencyId: someCoin.id)
-                keyForDict1 = "mid" //вместо этого хардкода будет передаваться behaviour...
+//                coinRequestUrl = RequestToBitfinexBuilder.buildRequest(currencyId: someCoin.id)
+                coinRequestUrl = RequestToBitfinexBuilder.buildBtcRateRequest()
+//                keyForDict1 = "last_price" //вместо этого хардкода будет передаваться behaviour...
 //                sendRequest(url: coinRequestUrl, dictKey1: keyForDict1, dictKey2: keyForDict2, completion: { (exchangeRate) in
 //                    coinsRates.append(exchangeRate)
 //                    })
             case "ETH":
-                coinRequestUrl = RequestToOKEXBuilder.buildRequest(currencyId:"zen") //someCoin.id)
+                coinRequestUrl = RequestToOKEXBuilder.buildRequest(currencyId:"eth") //someCoin.id)
                 keyForDict1 = "ticker"
                 keyForDict2 = "last"
 //                sendRequest(url: coinRequestUrl, dictKey1: keyForDict1, dictKey2: keyForDict2, completion: { (exchangeRate) in
@@ -61,6 +62,8 @@ class RequestManager: NSObject {
                 request(coinRequestUrl)
                     .responseJSON(completionHandler: { response in
                         
+                        print(response)
+                        
                         guard response.result.isSuccess else{
                             print("Ошибка при запросе данных \(String(describing: response.result.error))")
                             self.currentVC.userCoins = UserCoinsManager.refreshValuesForCoins(coinsArray: self.coinsArray, coinsRates: self.coinsRates)
@@ -72,11 +75,12 @@ class RequestManager: NSObject {
                             print("Не могу перевести в JSON")
                             return
                         }
-                        print(arrayOfData)
+//                        print(arrayOfData)
                         
                         var currentRate = 0.0
-                        if keyForDict2 == "" { //...а тут будет обработчик массива в зависимости от behaviour
-                            currentRate = Double((arrayOfData[keyForDict1] as? String)!)! //bitfinex
+                        if keyForDict2 == "" { //...а тут будет обработчик массива в зависимости от behavior
+                            currentRate = BitfinexResponseParser.getBtcRate(response: arrayOfData)
+//                            currentRate = Double((arrayOfData[keyForDict1] as? String)!)! //bitfinex
                         }else{
                             currentRate = Double((arrayOfData[keyForDict1]![keyForDict2] as? String)!)! //okex
                         }

@@ -7,7 +7,7 @@
 //
 
 //bittrex - 58
-//Hitbtc - 50
+//Hitbtc - 51
 //kucoin - 26
 //idex - 14
 //poloniex - 11
@@ -19,7 +19,8 @@
 //binance - 7
 //cobinhood - 1
 //coinexchange - 1
-//Yobit or Tidex - 1 194
+//Yobit or Tidex - 1 195
+
 
 //Trade Satoshi - 1
 //BarterDEX - 1
@@ -27,7 +28,6 @@
 //bigone - 1
 //Yobit - 1
 //Tidex - 1
-//
 
 
 //Qryptos - 5

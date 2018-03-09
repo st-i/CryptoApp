@@ -27,6 +27,8 @@ enum ExchangeBehavior: Int {
     case Tidex
 }
 
+let HitBTCCoinsToEth = ["DENT", "DCN", "ENG", "SAN", "GVT", "JNT"]
+
 
 
 

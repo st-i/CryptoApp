@@ -71,9 +71,9 @@ class TrackedCurrenciesViewController: UIViewController {
 //            print(response)
 //        }
         
-        request("https://api.big.one/markets/TNB-BTC").responseJSON { (response) in
-            print(response)
-        }
+//        request("https://api.big.one/markets/TNB-BTC").responseJSON { (response) in
+//            print(response)
+//        }
         
 //        request("https://api.livecoin.net/exchange/ticker?currencyPair=BTC/USD").responseJSON { (response) in
 //            print(response)
@@ -95,10 +95,6 @@ class TrackedCurrenciesViewController: UIViewController {
 //            print(response)
 //        }
         
-//        request("https://api.hitbtc.com/api/2/public/ticker").responseJSON { (response) in
-//            print(response)
-//        }
-        
 //        request("https://api.aex.com/ticker.php?c=all&mk_type=btc").responseJSON { (response) in
 //            print(response)
 //        }
@@ -116,21 +112,40 @@ class TrackedCurrenciesViewController: UIViewController {
 //            print(response)
 //        }
         
-//        request("https://bittrex.com/api/v1.1/public/getmarketsummaries").responseJSON { (response) in
-//
-//            guard let arrayOfData = response.result.value as? [String: AnyObject] else{
-//                print("Не могу перевести в JSON")
-//                return
+        request(RequestToBitfinexBuilder.buildBtcRateRequest()).responseJSON { (firstResponse) in
+            guard let dataArray = firstResponse.result.value as? [String: AnyObject] else{
+                print("Не могу перевести в JSON")
+                return
+            }
+            let btcRate = BitfinexResponseParser.getBtcRate(response: dataArray)
+            print(btcRate)
+        
+//            let allUserCoins = AllCoinsManager.createArrayWithAllCoins()
+            
+//            request(RequestToBittrexBuilder.buildAllCoinsRequest()).responseJSON { (response) in
+
+//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON")
+//                    return
+//                }
+//                print(response)
+//                BittrexResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)
 //            }
-////            print(arrayOfData)
+            
+//            request(RequestToHitBTCBuilder.buildAllCoinsRequest()).responseJSON { (response) in
 //
-//            let dictsArray = arrayOfData["result"] as! [Dictionary<String, AnyObject>]
-//            let coinsAndPrices = BittrexResponseParser.parseResponse(response: dictsArray)
-////            print(coinsAndPrices)
-//
-////            print(response)
-//
-//        }
+//                guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
+//                    print("Не могу перевести в JSON") //[String: AnyObject]
+//                    return
+//                }
+//                HitBTCResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)
+//                print(arrayOfData)
+//                print(response)
+//            }
+            request(RequestToKucoinBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+                print(response)
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

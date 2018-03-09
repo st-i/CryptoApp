@@ -1,14 +1,14 @@
 //
-//  BittrexResponseParser.swift
+//  KucoinResponseParser.swift
 //  CryptoSpace
 //
-//  Created by st.i on 04.03.2018.
+//  Created by st.i on 09.03.2018.
 //  Copyright © 2018 Stefanov. All rights reserved.
 //
 
 import UIKit
 
-class BittrexResponseParser: NSObject {
+class KucoinResponseParser: NSObject {
 
     class func parseResponse(response: [String: AnyObject], coinsArray: [Coin], btcRate: Double)/* -> Array<Any>*/ { //Dictionary<String, Double> {
         
@@ -18,8 +18,8 @@ class BittrexResponseParser: NSObject {
         let btcPrefix = "BTC-"
         
         let dictsArray = response[kAllDicts] as! [Dictionary<String, AnyObject>]
-//        var allCoins = Array<Any>()
-    
+        //        var allCoins = Array<Any>()
+        
         for someCoin in coinsArray {
             if someCoin.exchange == ExchangeBehavior.Bittrex {
                 for currentDict in dictsArray {
@@ -39,12 +39,12 @@ class BittrexResponseParser: NSObject {
                     }
                 }
             }
-//            let coinPrice = Double((currentDict["Last"] as? String)!)! * 11670.0
+            //            let coinPrice = Double((currentDict["Last"] as? String)!)! * 11670.0
             
-//            allCoins.append(currentCoinArray)
+            //            allCoins.append(currentCoinArray)
         }
         
-//        return newDict
-//        return allCoins
+        //        return newDict
+        //        return allCoins
     }
 }
