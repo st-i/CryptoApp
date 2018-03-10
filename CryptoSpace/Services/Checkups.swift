@@ -20,3 +20,15 @@ class HitBTCCoinToEth: NSObject {
     }
 }
 
+class Gate_ioCoinToEth: NSObject {
+    
+    class func isCoinToEth(testedCoin: String) -> Bool {
+        for currentCoin in Gate_ioCoinsToEth {
+            if testedCoin == currentCoin {
+                return true
+            }
+        }
+        return false
+    }
+}
+

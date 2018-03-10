@@ -15,4 +15,10 @@ class BitfinexResponseParser: NSObject {
         let btcRate = Double((response[kRate] as? String)!)!
         return btcRate
     }
+    
+    class func getEthRate(response: [String: AnyObject]) -> Double {
+        let kRate = "last_price"
+        let ethRate = Double((response[kRate] as? String)!)!
+        return ethRate
+    }
 }

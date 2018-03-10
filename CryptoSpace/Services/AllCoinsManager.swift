@@ -115,8 +115,8 @@ class AllCoinsManager: NSObject {
         //12
         let iotaCoin = Coin.init()
         iotaCoin.fullName = "IOTA" //1gate.io or okex(!iota)
-        iotaCoin.shortName = "MIOTA"
-        iotaCoin.id = "miota"
+        iotaCoin.shortName = "IOTA"
+        iotaCoin.id = "iota"
         iotaCoin.exchange = ExchangeBehavior.Gate_io
         iotaCoin.okexId = "iota"
         allCoins.append(iotaCoin)
@@ -212,8 +212,8 @@ class AllCoinsManager: NSObject {
         //24
         let nanoCoin = Coin.init()
         nanoCoin.fullName = "Nano" //1kucoin or okex
-        nanoCoin.shortName = "NANO"
-        nanoCoin.id = "nano"
+        nanoCoin.shortName = "XRB"
+        nanoCoin.id = "xrb"
         nanoCoin.exchange = ExchangeBehavior.Kucoin
         allCoins.append(nanoCoin)
         
@@ -316,7 +316,7 @@ class AllCoinsManager: NSObject {
         
         //37
         let makerCoin = Coin.init()
-        makerCoin.fullName = "Maker" //1idex or okex or Gate.io or radar relay
+        makerCoin.fullName = "Maker" //1idex. or okex or Gate.io or radar relay
         makerCoin.shortName = "MKR"
         makerCoin.id = "mkr"
         makerCoin.exchange = ExchangeBehavior.IDEX
@@ -452,7 +452,7 @@ class AllCoinsManager: NSObject {
         
         //54
         let zilliqaCoin = Coin.init()
-        zilliqaCoin.fullName = "Zilliqa" //1idex or gate.io
+        zilliqaCoin.fullName = "Zilliqa" //1idex. or gate.io
         zilliqaCoin.shortName = "ZIL"
         zilliqaCoin.id = "zil"
         zilliqaCoin.exchange = ExchangeBehavior.IDEX
@@ -540,7 +540,7 @@ class AllCoinsManager: NSObject {
         
         //65
         let qashCoin = Coin.init()
-        qashCoin.fullName = "QASH" //1idex or Ethfinex or quoine or aex
+        qashCoin.fullName = "QASH" //1idex. or Ethfinex or quoine or aex
         qashCoin.shortName = "QASH"
         qashCoin.id = "qash"
         qashCoin.exchange = ExchangeBehavior.IDEX
@@ -548,7 +548,7 @@ class AllCoinsManager: NSObject {
         
         //66
         let nebulasCoin = Coin.init()
-        nebulasCoin.fullName = "Nebulas" //1idex or okex
+        nebulasCoin.fullName = "Nebulas" //1idex. or okex
         nebulasCoin.shortName = "NAS"
         nebulasCoin.id = "nas"
         nebulasCoin.exchange = ExchangeBehavior.IDEX
@@ -620,10 +620,10 @@ class AllCoinsManager: NSObject {
         
         //75
         let byteballBytesCoin = Coin.init()
-        byteballBytesCoin.fullName = "Byteball Bytes" //1cryptopia or cryptox
+        byteballBytesCoin.fullName = "Byteball Bytes" //1bittrex or cryptopia or cryptox
         byteballBytesCoin.shortName = "GBYTE"
         byteballBytesCoin.id = "gbyte"
-        byteballBytesCoin.exchange = ExchangeBehavior.Cryptopia
+        byteballBytesCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(byteballBytesCoin)
         
         //76
@@ -660,7 +660,7 @@ class AllCoinsManager: NSObject {
         
         //80
         let kinCoin = Coin.init()
-        kinCoin.fullName = "Kin" //1idex or fatbtc or coinfalcon or Stellar Decentralized Exchange(~)
+        kinCoin.fullName = "Kin" //1idex. or fatbtc or coinfalcon or Stellar Decentralized Exchange(~)
         kinCoin.shortName = "KIN"
         kinCoin.id = "kin"
         kinCoin.exchange = ExchangeBehavior.IDEX
@@ -676,7 +676,7 @@ class AllCoinsManager: NSObject {
         
         //82
         let chainLinkCoin = Coin.init()
-        chainLinkCoin.fullName = "ChainLink" //1idex or okex
+        chainLinkCoin.fullName = "ChainLink" //1idex. or okex
         chainLinkCoin.shortName = "LINK"
         chainLinkCoin.id = "link"
         chainLinkCoin.exchange = ExchangeBehavior.IDEX
@@ -692,7 +692,7 @@ class AllCoinsManager: NSObject {
         
         //84
         let saltCoin = Coin.init()
-        saltCoin.fullName = "SALT" //1idex or okex
+        saltCoin.fullName = "SALT" //1idex. or okex
         saltCoin.shortName = "SALT"
         saltCoin.id = "salt"
         saltCoin.exchange = ExchangeBehavior.IDEX
@@ -1081,7 +1081,7 @@ class AllCoinsManager: NSObject {
         
         //133
         let mediBlocCoin = Coin.init()
-        mediBlocCoin.fullName = "MediBloc" //1gate.io
+        mediBlocCoin.fullName = "MediBloc" //1gate.io.
         mediBlocCoin.shortName = "MED"
         mediBlocCoin.id = "med"
         mediBlocCoin.exchange = ExchangeBehavior.Gate_io
@@ -1113,7 +1113,7 @@ class AllCoinsManager: NSObject {
         
         //137
         let blockVCoin = Coin.init()
-        blockVCoin.fullName = "BLOCKv" //1idex or okex
+        blockVCoin.fullName = "BLOCKv" //1idex. or okex
         blockVCoin.shortName = "VEE"
         blockVCoin.id = "vee"
         blockVCoin.exchange = ExchangeBehavior.IDEX
@@ -1145,7 +1145,7 @@ class AllCoinsManager: NSObject {
         
         //141
         let sophiaTXCoin = Coin.init()
-        sophiaTXCoin.fullName = "SophiaTX" //1idex or Qryptos or cobinhood or bitz or Yobit or coinfalcon(высокий)
+        sophiaTXCoin.fullName = "SophiaTX" //1idex. or Qryptos or cobinhood or bitz or Yobit or coinfalcon(высокий)
         sophiaTXCoin.shortName = "SPHTX"
         sophiaTXCoin.id = "sphtx"
         sophiaTXCoin.exchange = ExchangeBehavior.IDEX
@@ -1177,7 +1177,7 @@ class AllCoinsManager: NSObject {
         
         //145
         let bluzelleCoin = Coin.init()
-        bluzelleCoin.fullName = "Bluzelle" //1idex or Gate.io
+        bluzelleCoin.fullName = "Bluzelle" //1idex. or Gate.io
         bluzelleCoin.shortName = "BLZ"
         bluzelleCoin.id = "blz"
         bluzelleCoin.exchange = ExchangeBehavior.IDEX
@@ -1201,10 +1201,10 @@ class AllCoinsManager: NSObject {
         
         //148
         let payPieCoin = Coin.init()
-        payPieCoin.fullName = "PayPie" //1idex or fatbtc
+        payPieCoin.fullName = "PayPie" //1fatbtc or 1idex(нет в json)
         payPieCoin.shortName = "PPP"
         payPieCoin.id = "ppp"
-        payPieCoin.exchange = ExchangeBehavior.IDEX
+        payPieCoin.exchange = ExchangeBehavior.Fatbtc
         allCoins.append(payPieCoin)
         
         //149
@@ -1312,7 +1312,7 @@ class AllCoinsManager: NSObject {
         
         //162
         let thetaTokenCoin = Coin.init()
-        thetaTokenCoin.fullName = "Theta Token" //1idex or okex
+        thetaTokenCoin.fullName = "Theta Token" //1idex. or okex
         thetaTokenCoin.shortName = "THETA"
         thetaTokenCoin.id = "theta"
         thetaTokenCoin.exchange = ExchangeBehavior.IDEX
@@ -1336,7 +1336,7 @@ class AllCoinsManager: NSObject {
         
         //165
         let ripioCreditNetworkCoin = Coin.init()
-        ripioCreditNetworkCoin.fullName = "Ripio Credit Network" //1gate.io or okex
+        ripioCreditNetworkCoin.fullName = "Ripio Credit Network" //1gate.io. or okex
         ripioCreditNetworkCoin.shortName = "RCN"
         ripioCreditNetworkCoin.id = "rcn"
         ripioCreditNetworkCoin.exchange = ExchangeBehavior.Gate_io
@@ -1392,7 +1392,7 @@ class AllCoinsManager: NSObject {
         
         //172
         let waBiCoin = Coin.init()
-        waBiCoin.fullName = "WaBi" //1idex or binance
+        waBiCoin.fullName = "WaBi" //1idex. or binance
         waBiCoin.shortName = "WABI"
         waBiCoin.id = "wabi"
         waBiCoin.exchange = ExchangeBehavior.IDEX
@@ -1416,7 +1416,7 @@ class AllCoinsManager: NSObject {
         
         //175
         let simpleTokenCoin = Coin.init()
-        simpleTokenCoin.fullName = "Simple Token" //1gate.io or okex
+        simpleTokenCoin.fullName = "Simple Token" //1gate.io. or okex
         simpleTokenCoin.shortName = "OST"
         simpleTokenCoin.id = "ost"
         simpleTokenCoin.exchange = ExchangeBehavior.Gate_io
@@ -1528,7 +1528,7 @@ class AllCoinsManager: NSObject {
         
         //189
         let wePowerCoin = Coin.init()
-        wePowerCoin.fullName = "WePower" //1idex or liqui or coinfalcon
+        wePowerCoin.fullName = "WePower" //1idex. or liqui or coinfalcon
         wePowerCoin.shortName = "WPR"
         wePowerCoin.id = "wpr"
         wePowerCoin.exchange = ExchangeBehavior.IDEX
@@ -1561,8 +1561,8 @@ class AllCoinsManager: NSObject {
         //193
         let pacCoinCoin = Coin.init()
         pacCoinCoin.fullName = "PACcoin" //1cryptopia or не нашел на коинмаркеткап
-        pacCoinCoin.shortName = "PAC"
-        pacCoinCoin.id = "pac"
+        pacCoinCoin.shortName = "$PAC"
+        pacCoinCoin.id = "$pac"
         pacCoinCoin.exchange = ExchangeBehavior.Cryptopia
         allCoins.append(pacCoinCoin)
         

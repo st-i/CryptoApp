@@ -6,20 +6,21 @@
 //  Copyright © 2017 Stefanov. All rights reserved.
 //
 
-//bittrex - 58
-//Hitbtc - 51
-//kucoin - 26
-//idex - 14
-//poloniex - 11
-//cryptopia - 11
+//bittrex - 59 +
+//Hitbtc - 51 +
+//kucoin - 26 +
+//idex - 13 + (к эфиру)
+//poloniex - 11 +
+//cryptopia - 10 +
 //gate.io - 8
+//binance - 7
 //livecoin - 3
 //bigone - 2
 //btcalpha - 1
-//binance - 7
 //cobinhood - 1
 //coinexchange - 1
-//Yobit or Tidex - 1 195
+//Yobit or Tidex - 1
+//fatbtc - 1 195
 
 
 //Trade Satoshi - 1

@@ -25,9 +25,12 @@ enum ExchangeBehavior: Int {
     case CoinExchange
     case Yobit
     case Tidex
+    case Fatbtc
 }
 
 let HitBTCCoinsToEth = ["DENT", "DCN", "ENG", "SAN", "GVT", "JNT"]
+
+let Gate_ioCoinsToEth = ["med", "rcn", "ost"]
 
 
 

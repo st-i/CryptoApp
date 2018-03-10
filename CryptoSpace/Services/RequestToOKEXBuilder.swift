@@ -24,4 +24,5 @@ class RequestToOKEXBuilder: NSObject {
         let requestString = String(format:"https://www.okex.com/api/v1/ticker.do?symbol=%@_btc", currencyId)
         return requestString
     }
+    
 }

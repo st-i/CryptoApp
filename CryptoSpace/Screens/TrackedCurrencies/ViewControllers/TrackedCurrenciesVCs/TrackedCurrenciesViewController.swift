@@ -79,27 +79,7 @@ class TrackedCurrenciesViewController: UIViewController {
 //            print(response)
 //        }
         
-//        request("https://api.idex.market/returnTicker", method: .post, parameters: nil).responseJSON { (response) in
-//            print(response) //переделать
-//        }
-        
-//        request("https://api.idex.market/returnTicker").responseJSON { (response) in
-//            print(response)
-//        }
-        
-//        request("https://www.cryptopia.co.nz/api/GetMarkets").responseJSON { (response) in
-//            print(response)
-//        }
-        
-//        request("https://api.kucoin.com/v1/open/tick").responseJSON { (response) in
-//            print(response)
-//        }
-        
 //        request("https://api.aex.com/ticker.php?c=all&mk_type=btc").responseJSON { (response) in
-//            print(response)
-//        }
-        
-//        request("https://poloniex.com/public?command=returnTicker").responseJSON { (response) in
 //            print(response)
 //        }
         
@@ -119,9 +99,11 @@ class TrackedCurrenciesViewController: UIViewController {
             }
             let btcRate = BitfinexResponseParser.getBtcRate(response: dataArray)
             print(btcRate)
+
+            let allUserCoins = AllCoinsManager.createArrayWithAllCoins()
+
+//            print(firstResponse)
         
-//            let allUserCoins = AllCoinsManager.createArrayWithAllCoins()
-            
 //            request(RequestToBittrexBuilder.buildAllCoinsRequest()).responseJSON { (response) in
 
 //                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
@@ -142,10 +124,76 @@ class TrackedCurrenciesViewController: UIViewController {
 //                print(arrayOfData)
 //                print(response)
 //            }
-            request(RequestToKucoinBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print(response)
-            })
+            
+//            request(RequestToKucoinBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON") //[String: AnyObject] [Dictionary<String, AnyObject>]
+//                    return
+//                }
+//                KucoinResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)
+//                print(response)
+//            })
+            
+//            request(RequestToPoloniexBuilder.buildAllCoinsRequest()).responseJSON { (response) in
+//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON") //[String: AnyObject] [Dictionary<String, AnyObject>]
+//                    return
+//                }
+//                PoloniexResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)
+////                print(response)
+//            }
+            
+//            request(RequestToCryptopiaBuilder.buildAllCoinsRequest()).responseJSON { (response) in
+//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON") //[String: AnyObject] [Dictionary<String, AnyObject>]
+//                    return
+//                }
+//                CryptopiaResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)
+////                print(response)
+//            }
+            
+            request(RequestToBitfinexBuilder.buildEthRateRequest()).responseJSON { (ethResponse) in
+                
+                guard let ethDataArray = ethResponse.result.value as? [String: AnyObject] else{
+                    print("Не могу перевести в JSON")
+                    return
+                }
+                let ethRate = BitfinexResponseParser.getEthRate(response: ethDataArray)
+                print(ethRate)
+                
+                request(RequestToGate_ioBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+                    guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+                        print("Не могу перевести в JSON") //[String: AnyObject] [Dictionary<String, AnyObject>]
+                        return
+                    }
+                    Gate_ioResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, ethRate: ethRate)
+//                    print(response)
+                })
+            }
         }
+        
+//        request(RequestToBitfinexBuilder.buildEthRateRequest()).responseJSON { (firstResponse) in
+//
+//            guard let dataArray = firstResponse.result.value as? [String: AnyObject] else{
+//                print("Не могу перевести в JSON")
+//                return
+//            }
+//            let ethRate = BitfinexResponseParser.getEthRate(response: dataArray)
+//            print(ethRate)
+//
+//            let allUserCoins = AllCoinsManager.createArrayWithAllCoins()
+//
+////            print(firstResponse)
+//
+//            request(RequestToIDEXBuilder.buildAllCoinsRequest(), method: .post, parameters: nil).responseJSON { (response) in
+////                print(response)
+//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON")
+//                    return
+//                }
+//                IDEXResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, ethRate: ethRate)
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

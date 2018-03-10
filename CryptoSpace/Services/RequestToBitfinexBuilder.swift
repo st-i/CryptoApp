@@ -20,4 +20,9 @@ class RequestToBitfinexBuilder: NSObject {
         let requestString = "https://api.bitfinex.com/v1/pubticker/btcusd"
         return requestString
     }
+    
+    class func buildEthRateRequest() -> String {
+        let requestString = "https://api.bitfinex.com/v1/pubticker/ethusd"
+        return requestString
+    }
 }
