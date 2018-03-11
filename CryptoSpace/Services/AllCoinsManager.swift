@@ -65,20 +65,20 @@ class AllCoinsManager: NSObject {
         allCoins.append(litecoinCoin)
         
         //6
-        let cardanoCoin = Coin.init()
-        cardanoCoin.fullName = "Cardano" //1bittrex or abucoins
-        cardanoCoin.shortName = "ADA"
-        cardanoCoin.id = "ada"
-        cardanoCoin.exchange = ExchangeBehavior.Bittrex
-        allCoins.append(cardanoCoin)
-        
-        //7
         let neoCoin = Coin.init()
         neoCoin.fullName = "NEO" //1bittrex or okex
         neoCoin.shortName = "NEO"
         neoCoin.id = "neo"
         neoCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(neoCoin)
+        
+        //7
+        let cardanoCoin = Coin.init()
+        cardanoCoin.fullName = "Cardano" //1bittrex or abucoins
+        cardanoCoin.shortName = "ADA"
+        cardanoCoin.id = "ada"
+        cardanoCoin.exchange = ExchangeBehavior.Bittrex
+        allCoins.append(cardanoCoin)
         
         //8
         let stellarCoin = Coin.init()
@@ -1624,5 +1624,16 @@ class AllCoinsManager: NSObject {
         
         
         return allCoins
+    }
+    
+    class func createArrayWithTopSixCoins() -> [Coin] {
+        let allCoins = self.createArrayWithAllCoins()
+        var topSixCoinsArray = [Coin]()
+        
+        for i in 0..<6 {
+            topSixCoinsArray.append(allCoins[i])
+        }
+        
+        return topSixCoinsArray
     }
 }

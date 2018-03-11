@@ -14,18 +14,17 @@ class CurrencyForSearchScreenDirector: NSObject {
         let firstSection = NSMutableArray()
         let secondSection = NSMutableArray()
         
+        let topSixCoins = AllCoinsManager.createArrayWithTopSixCoins()
+        
         //first section
-        firstSection.add(CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(for: tableView))
-        firstSection.add(CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(for: tableView))
-        firstSection.add(CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(for: tableView))
+        for i in 0..<3 {
+            firstSection.add(CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(coin: topSixCoins[i], tableView: tableView))
+        }
         
         //second section
-        secondSection.add(CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(for: tableView))
-        secondSection.add(CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(for: tableView))
-        secondSection.add(CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(for: tableView))
-        secondSection.add(CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(for: tableView))
-        secondSection.add(CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(for: tableView))
-        secondSection.add(CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(for: tableView))
+        for i in 0..<6 {
+            secondSection.add(CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(coin: topSixCoins[i], tableView: tableView))
+        }
         
         let allSections = [firstSection, secondSection]
         

@@ -20,6 +20,9 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
     var searchDataSource:SearchDataSource!
     var searchDelegate:SearchDelegate!
     
+    var topSixCoins = [Coin]()
+    var allCoins = [Coin]()
+    
 //    var isPresentedVC: Bool!
     
     override func viewDidLoad() {
@@ -70,6 +73,9 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
         self.tableView.backgroundColor = UIColor.white//groupTableViewBackground
 //        self.searchBar.searchBarStyle = .minimal
 //        self.searchBar.backgroundColor = UIColor.groupTableViewBackground
+        
+        allCoins = AllCoinsManager.createArrayWithAllCoins()
+        
         showRecentAndPopularResults()
     }
     
@@ -83,20 +89,6 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
 //        self.showRecentAndPopularResults()
     }
     
-    func showRecentResults() {
-        self.searchDataSource = SearchDataSource()
-        self.searchDelegate = SearchDelegate()
-        
-        self.tableView.dataSource = self.searchDataSource
-        self.tableView.delegate = self.searchDelegate
-    
-        self.searchDelegate.fromVC = self
-        
-//        self.specifyTableViewHeader()
-        
-        self.tableView.reloadData()
-    }
-    
     func showRecentAndPopularResults() {
         self.recentCurrencySearchDataSource = RecentCurrencySearchDataSource()
         self.recentCurrencySearchDelegate = RecentCurrencySearchDelegate()
@@ -106,7 +98,7 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
         
         let arrayWithCells = CurrencyForSearchScreenDirector.createCurrencyForSearchCells(for: self.tableView)
 
-        self.recentCurrencySearchDelegate.arrayWithCells = arrayWithCells
+        self.recentCurrencySearchDataSource.arrayWithCells = arrayWithCells
         self.recentCurrencySearchDelegate.arrayWithCells = arrayWithCells
         self.recentCurrencySearchDelegate.fromVC = self
         
@@ -115,74 +107,20 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
         self.tableView.reloadData()
     }
     
-    func specifyTableViewHeader() {
-        let tableViewHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 40))
-        tableViewHeaderView.backgroundColor = UIColor.white
+    func showRecentResults() {
+        self.searchDataSource = SearchDataSource()
+        self.searchDelegate = SearchDelegate()
         
-        let currencyImageView = UIImageView.init(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        currencyImageView.image = UIImage(named:"Bitcoin")
+        searchDataSource.allCoinsArray = allCoins
         
-        var currenciesImagesArray = Array<UIImageView>()
+        self.tableView.dataSource = self.searchDataSource
+        self.tableView.delegate = self.searchDelegate
         
-        var pointX = 6
-        var pointY = 8
-        for i in 2..<13 {
-            
-            pointX += 24
-            
-            if i%2 == 0 {
-                pointY = 12
-            }else{
-                pointY = 8
-            }
-            
-            let currencyImageView = UIImageView.init(frame: CGRect(x: pointX, y: pointY, width: 20, height: 20))
-            let currencyImageName: String
-            
-            switch i {
-            case 2:
-                currencyImageName = "Bitcoin"
-            case 3:
-                currencyImageName = "ethereum"
-            case 4:
-                currencyImageName = "bitcoin-cash"
-            case 5:
-                currencyImageName = "ripple"
-            case 6:
-                currencyImageName = "litecoin"
-            case 7:
-                currencyImageName = "iota"
-            case 8:
-                currencyImageName = "cardano"
-            case 9:
-                currencyImageName = "dash"
-            case 10:
-                currencyImageName = "nem"
-            case 11:
-                currencyImageName = "monero"
-            case 12:
-                currencyImageName = "bitcoin-gold"
-            default:
-                currencyImageName = "Bitcoin"
-            }
-            currencyImageView.image = UIImage(named:currencyImageName)
-            currenciesImagesArray.append(currencyImageView)
-            tableViewHeaderView.addSubview(currencyImageView)
-        }
+        self.searchDelegate.fromVC = self
         
-        UIView.animate(withDuration:2.0, delay: 0.0,
-                       options: [.curveEaseInOut, .autoreverse, .repeat],
-                       animations: {
-                        for imageView: UIImageView in currenciesImagesArray {
-                            if currenciesImagesArray.index(of: imageView)! % 2 == 0 {
-                                imageView.frame.origin.y = 8
-                            }else{
-                                imageView.frame.origin.y = 12
-                            }
-                        }
-        },
-                       completion: nil)
-        self.tableView.tableHeaderView = tableViewHeaderView
+//        self.specifyTableViewHeader()
+        
+        self.tableView.reloadData()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -211,4 +149,74 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
         currencySearchBar.showsCancelButton = false
         showRecentAndPopularResults()
     }
+    
+//    func specifyTableViewHeader() {
+//        let tableViewHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 40))
+//        tableViewHeaderView.backgroundColor = UIColor.white
+//
+//        let currencyImageView = UIImageView.init(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+//        currencyImageView.image = UIImage(named:"Bitcoin")
+//
+//        var currenciesImagesArray = Array<UIImageView>()
+//
+//        var pointX = 6
+//        var pointY = 8
+//        for i in 2..<13 {
+//
+//            pointX += 24
+//
+//            if i%2 == 0 {
+//                pointY = 12
+//            }else{
+//                pointY = 8
+//            }
+//
+//            let currencyImageView = UIImageView.init(frame: CGRect(x: pointX, y: pointY, width: 20, height: 20))
+//            let currencyImageName: String
+//
+//            switch i {
+//            case 2:
+//                currencyImageName = "Bitcoin"
+//            case 3:
+//                currencyImageName = "ethereum"
+//            case 4:
+//                currencyImageName = "bitcoin-cash"
+//            case 5:
+//                currencyImageName = "ripple"
+//            case 6:
+//                currencyImageName = "litecoin"
+//            case 7:
+//                currencyImageName = "iota"
+//            case 8:
+//                currencyImageName = "cardano"
+//            case 9:
+//                currencyImageName = "dash"
+//            case 10:
+//                currencyImageName = "nem"
+//            case 11:
+//                currencyImageName = "monero"
+//            case 12:
+//                currencyImageName = "bitcoin-gold"
+//            default:
+//                currencyImageName = "Bitcoin"
+//            }
+//            currencyImageView.image = UIImage(named:currencyImageName)
+//            currenciesImagesArray.append(currencyImageView)
+//            tableViewHeaderView.addSubview(currencyImageView)
+//        }
+//
+//        UIView.animate(withDuration:2.0, delay: 0.0,
+//                       options: [.curveEaseInOut, .autoreverse, .repeat],
+//                       animations: {
+//                        for imageView: UIImageView in currenciesImagesArray {
+//                            if currenciesImagesArray.index(of: imageView)! % 2 == 0 {
+//                                imageView.frame.origin.y = 8
+//                            }else{
+//                                imageView.frame.origin.y = 12
+//                            }
+//                        }
+//        },
+//                       completion: nil)
+//        self.tableView.tableHeaderView = tableViewHeaderView
+//    }
 }
