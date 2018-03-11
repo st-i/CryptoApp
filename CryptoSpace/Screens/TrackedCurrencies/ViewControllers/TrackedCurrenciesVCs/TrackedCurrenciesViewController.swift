@@ -67,40 +67,15 @@ class TrackedCurrenciesViewController: UIViewController {
         
         fillTableViewWithData()
         
-//        request("https://api.big.one/markets", method: .get, parameters: nil, headers: ["Content-Type": "application/json"]).responseJSON { (response) in
-//            print(response)
-//        }
-        
-//        request("https://api.big.one/markets/TNB-BTC").responseJSON { (response) in
-//            print(response)
-//        }
-        
-//        request("https://api.livecoin.net/exchange/ticker?currencyPair=BTC/USD").responseJSON { (response) in
-//            print(response)
-//        }
-        
-//        request("https://api.aex.com/ticker.php?c=all&mk_type=btc").responseJSON { (response) in
-//            print(response)
-//        }
-        
-//        request("https://api.abucoins.com/products/stats").responseJSON { (response) in
-//            guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//        request(RequestToBitfinexBuilder.buildBtcRateRequest()).responseJSON { (firstResponse) in
+//            guard let dataArray = firstResponse.result.value as? [String: AnyObject] else{
 //                print("Не могу перевести в JSON")
 //                return
 //            }
-//            print(arrayOfData)
-//            print(response)
-//        }
-        
-        request(RequestToBitfinexBuilder.buildBtcRateRequest()).responseJSON { (firstResponse) in
-            guard let dataArray = firstResponse.result.value as? [String: AnyObject] else{
-                print("Не могу перевести в JSON")
-                return
-            }
-            let btcRate = BitfinexResponseParser.getBtcRate(response: dataArray)
-            print(btcRate)
-
-            let allUserCoins = AllCoinsManager.createArrayWithAllCoins()
+//            let btcRate = BitfinexResponseParser.getBtcRate(response: dataArray)
+//            print(btcRate)
+//
+//            let allUserCoins = AllCoinsManager.createArrayWithAllCoins()
 
 //            print(firstResponse)
         
@@ -152,26 +127,89 @@ class TrackedCurrenciesViewController: UIViewController {
 ////                print(response)
 //            }
             
-            request(RequestToBitfinexBuilder.buildEthRateRequest()).responseJSON { (ethResponse) in
-                
-                guard let ethDataArray = ethResponse.result.value as? [String: AnyObject] else{
-                    print("Не могу перевести в JSON")
-                    return
-                }
-                let ethRate = BitfinexResponseParser.getEthRate(response: ethDataArray)
-                print(ethRate)
-                
-                request(RequestToGate_ioBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                    guard let arrayOfData = response.result.value as? [String: AnyObject] else{
-                        print("Не могу перевести в JSON") //[String: AnyObject] [Dictionary<String, AnyObject>]
-                        return
-                    }
-                    Gate_ioResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, ethRate: ethRate)
-//                    print(response)
-                })
-            }
-        }
-        
+//            request(RequestToBitfinexBuilder.buildEthRateRequest()).responseJSON { (ethResponse) in
+//
+//                guard let ethDataArray = ethResponse.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON")
+//                    return
+//                }
+//                let ethRate = BitfinexResponseParser.getEthRate(response: ethDataArray)
+//                print(ethRate)
+//
+//                request(RequestToGate_ioBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+//                    guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                        print("Не могу перевести в JSON") //[String: AnyObject] [Dictionary<String, AnyObject>]
+//                        return
+//                    }
+//                    Gate_ioResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, ethRate: ethRate)
+////                    print(response)
+//                })
+//            }
+            
+//            request(RequestToBinanceBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+//                guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
+//                    print("Не могу перевести в JSON")
+//                    return
+//                }
+//                BinanceResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)
+////                print(response)
+//            })
+            
+//            request(RequestToLivecoinBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+//                guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
+//                    print("Не могу перевести в JSON")
+//                    return
+//                }
+//                LivecoinResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)
+////                print(response)
+//            })
+            
+//            request(RequestToBigONEBuilder.buildCoinRateRequest(coinShortName: "DEW")).responseJSON(completionHandler: { (response) in
+//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON")
+//                    return
+//                }
+//                BigONEResponseParser.parseResponseForSingleCoin(response: arrayOfData, btcRate: btcRate)
+////                print(response)
+//            })
+            
+//            request(RequestToC2CXBuilder.buildUcashRateRequest()).responseJSON(completionHandler: { (response) in
+//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON")
+//                    return
+//                }
+//                C2CXResponseParser.parseResponseForSingleCoin(coinShortName: "UCASH", response: arrayOfData, btcRate: btcRate)
+////                print(response)
+//            })
+            
+//            request(RequestToCobinhoodBuilder.buildCobinhoodRateRequest()).responseJSON(completionHandler: { (response) in
+//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON")
+//                    return
+//                }
+//                CobinhoodResponseParser.parseResponseForSingleCoin(coinShortName: "COB", response: arrayOfData, btcRate: btcRate)
+////                print(response)
+//            })
+            
+//            request(RequestToCoinExchangeBuilder.buildExpPointsRateRequest()).responseJSON(completionHandler: { (response) in
+//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON")
+//                    return
+//                }
+//                CoinExchangeResponseParser.parseResponseForSingleCoin(coinShortName: "XP", response: arrayOfData, btcRate: btcRate)
+////                print(response)
+//            })
+            
+//            request("https://yobit.net/api/3/ticker/wgr_btc").responseJSON(completionHandler: { (response) in
+//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON")
+//                    return
+//                }
+//                YobitResponseParser.parseResponseForSingleCoin(coinId: "wgr", coinShortName: "WGR", response: arrayOfData, btcRate: btcRate)
+////                print(response)
+//            })
+//        }
+    
 //        request(RequestToBitfinexBuilder.buildEthRateRequest()).responseJSON { (firstResponse) in
 //
 //            guard let dataArray = firstResponse.result.value as? [String: AnyObject] else{
@@ -184,9 +222,9 @@ class TrackedCurrenciesViewController: UIViewController {
 //            let allUserCoins = AllCoinsManager.createArrayWithAllCoins()
 //
 ////            print(firstResponse)
-//
+
 //            request(RequestToIDEXBuilder.buildAllCoinsRequest(), method: .post, parameters: nil).responseJSON { (response) in
-////                print(response)
+//                print(response)
 //                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
 //                    print("Не могу перевести в JSON")
 //                    return

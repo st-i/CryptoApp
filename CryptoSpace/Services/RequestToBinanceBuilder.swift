@@ -11,7 +11,7 @@ import UIKit
 class RequestToBinanceBuilder: NSObject {
 
     class func buildAllCoinsRequest() -> String {
-        let requestString = "найти"
+        let requestString = "https://api.binance.com/api/v1/ticker/24hr"
         return requestString
     }
 }

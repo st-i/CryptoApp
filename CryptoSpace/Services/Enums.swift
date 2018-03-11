@@ -20,17 +20,15 @@ enum ExchangeBehavior: Int {
     case Binance
     case Livecoin
     case BigONE
-    case BTC_Alpha
+    case C2CX
     case Cobinhood
     case CoinExchange
     case Yobit
-    case Tidex
-    case Fatbtc
 }
 
 let HitBTCCoinsToEth = ["DENT", "DCN", "ENG", "SAN", "GVT", "JNT"]
 
-let Gate_ioCoinsToEth = ["med", "rcn", "ost"]
+let Gate_ioCoinsToEth = ["med", "mds", "rcn", "ost"]
 
 
 

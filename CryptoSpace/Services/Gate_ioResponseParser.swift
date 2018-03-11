@@ -16,40 +16,49 @@ class Gate_ioResponseParser: NSObject {
         let btcPrefix = "_btc"
         let ethPrefix = "_eth"
         
-//        for someCoin in coinsArray {
-//            if someCoin.exchange == ExchangeBehavior.Poloniex {
+        for someCoin in coinsArray {
+            if someCoin.exchange == ExchangeBehavior.Gate_io {
                 for currentCoinsPair in response.keys {
                     if currentCoinsPair.contains(btcPrefix) || currentCoinsPair.contains(ethPrefix) {
                         
                         let lastThreeChars = currentCoinsPair.suffix(4)
-//                        if lastThreeChars == btcPrefix {
                         
-                        let start = currentCoinsPair.index(currentCoinsPair.startIndex, offsetBy: 4)
+                        let start = currentCoinsPair.index(currentCoinsPair.startIndex, offsetBy: 0)
                         let end = currentCoinsPair.index(lastThreeChars.startIndex, offsetBy: 0)
                         let range = start ..< end
                     
                         let coinName = currentCoinsPair[range]
-                        if Gate_ioCoinToEth.isCoinToEth(testedCoin: String(coinName)) {
                         
-//                        if someCoin.shortName == coinName {
+                        var coinMultiplier = 0.0
+                        var needToShowCoin = false
+                        
+                        if lastThreeChars == ethPrefix && Gate_ioCoinToEth.isCoinToEth(testedCoin: String(coinName)) {
+                            coinMultiplier = ethRate
+                            needToShowCoin = true
+                        }
+                        
+                        if lastThreeChars == btcPrefix && !Gate_ioCoinToEth.isCoinToEth(testedCoin: String(coinName)) {
+                            coinMultiplier = btcRate
+                            needToShowCoin = true
+                        }
+                        
+                        if someCoin.id == coinName && needToShowCoin {
                             let currentDict = response[currentCoinsPair] as! Dictionary<String, AnyObject>
-//                            let coinPrice = Double(currentDict[kLastCoinPrice] as! String)! * btcRate
                             var coinPrice = 0.0
                             if (currentDict[kLastCoinPrice]?.isKind(of: NSString.self))! {
-                                coinPrice = Double(currentDict[kLastCoinPrice] as! String)!
+                                coinPrice = Double(currentDict[kLastCoinPrice] as! String)! * coinMultiplier
                             }else if (currentDict[kLastCoinPrice]?.isKind(of: NSNumber.self))! {
-                                coinPrice = ((currentDict[kLastCoinPrice] as? NSNumber)?.doubleValue)!
+                                coinPrice = ((currentDict[kLastCoinPrice] as? NSNumber)?.doubleValue)! * coinMultiplier
                             }else{
                                 coinPrice = 8888888888888.0
                             }
-                            let currentCoinArray = [currentCoinsPair, coinPrice] as [Any]
+                            let currentCoinArray = [coinName, coinPrice] as [Any]
                             
                             print(currentCoinArray)
-//                        }
                         }
                     }
                 }
-//            }
-//        }
+            }
+        }
     }
 }

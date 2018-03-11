@@ -83,17 +83,13 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
 //        self.showRecentAndPopularResults()
     }
     
-    func showRecentAndPopularResults() {
+    func showRecentResults() {
         self.searchDataSource = SearchDataSource()
         self.searchDelegate = SearchDelegate()
         
         self.tableView.dataSource = self.searchDataSource
         self.tableView.delegate = self.searchDelegate
-        
-        let arrayWithCells = CurrencyForSearchScreenDirector.createCurrencyForSearchCells(for: self.tableView)
-        
-        self.searchDataSource.arrayWithCells = arrayWithCells
-        self.searchDelegate.arrayWithCells = arrayWithCells
+    
         self.searchDelegate.fromVC = self
         
 //        self.specifyTableViewHeader()
@@ -101,13 +97,17 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
         self.tableView.reloadData()
     }
     
-    func showRecentResults() {
+    func showRecentAndPopularResults() {
         self.recentCurrencySearchDataSource = RecentCurrencySearchDataSource()
         self.recentCurrencySearchDelegate = RecentCurrencySearchDelegate()
         
         self.tableView.dataSource = self.recentCurrencySearchDataSource
         self.tableView.delegate = self.recentCurrencySearchDelegate
         
+        let arrayWithCells = CurrencyForSearchScreenDirector.createCurrencyForSearchCells(for: self.tableView)
+
+        self.recentCurrencySearchDelegate.arrayWithCells = arrayWithCells
+        self.recentCurrencySearchDelegate.arrayWithCells = arrayWithCells
         self.recentCurrencySearchDelegate.fromVC = self
         
 //        self.tableView.tableHeaderView = nil

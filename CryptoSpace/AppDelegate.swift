@@ -12,17 +12,35 @@
 //idex - 13 + (к эфиру)
 //poloniex - 11 +
 //cryptopia - 10 +
-//gate.io - 8
-//binance - 7
-//livecoin - 3
-//bigone - 2
+//gate.io - 8 +
+//binance - 7 +
+//livecoin - 3 +
+//bigone - 2 +
+//c2cx - 1 +
+//cobinhood - 1 +
+//coinexchange - 1 +
+//Yobit - 1 + 194
+
+//1.bitfinex - between 10 and 90 per minute
+//2.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits (все сразу)
+//3.Poloniex - 6 calls per second to the public API (99 валют) (360 per minute) (все сразу, 99 валют в ответе)
+//4.Hitbtc - good api, has limits, no info (>200 валют, все сразу)
+//5.Kucoin-есть api, ничего про лимиты (все сразу)
+//6.cryptopia - есть апи, ничего про лимиты (>200 валют, можно взять только все пары)
+//7.idex - has api, no limits info
+//8.Gate.io - good api; has limits, but nothing about limits in numbers
+//9.binance - Each route has a weight which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier weight.
+//10.Livecoin - Разрешается не более 60 любых запросов к API в течении 60 секунд подряд с одного IP адреса. (60 per minute)
+//11.bigone - 108 currencies, есть api, ничего про лимиты (падает приложение на ответе)
+//12.c2cx - 60 API request per minute per endpoint. If more then 60 API requests are sent per minute to an endpoint the sending IP will be blocked for between 30 and 60 seconds. Results are also limited to 100 results per API request. APIs that may return more than 100 result will have a pagination option. (60 per minute)(в разработке)
+//13.cobinhood - has api, no limits info, можно взять все пары
+//14.coinexchange - good api, has limits, no info
+//15.Yobit - Server responses are cashed every 2 seconds that is why there is no sense in making requests faster. (30 per minute)
+
+
+//fatbtc - 1
+//Tidex - 1
 //btcalpha - 1
-//cobinhood - 1
-//coinexchange - 1
-//Yobit or Tidex - 1
-//fatbtc - 1 195
-
-
 //Trade Satoshi - 1
 //BarterDEX - 1
 //c2cx - 2
@@ -66,44 +84,24 @@
 //exx - 2
 
 
-
-//1.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits (все сразу)
-//2.Poloniex - 6 calls per second to the public API (99 валют) (360 per minute) (все сразу, 99 валют в ответе)
-//3.Hitbtc - good api, has limits, no info (>200 валют, все сразу)
-//4.Kucoin-есть api, ничего про лимиты (все сразу)
-//5.cryptopia - есть апи, ничего про лимиты (>200 валют, можно взять только все пары)
-//6.idex - has api, no limits info
-//7.Gate.io - good api; has limits, but nothing about limits in numbers
-//8.Livecoin - Разрешается не более 60 любых запросов к API в течении 60 секунд подряд с одного IP адреса. (60 per minute)
-//9.bigone - 108 currencies, есть api, ничего про лимиты (падает приложение на ответе)
-//10.btcalpha - 33 валюты, We have limit in 2 calls per second from single account to authorization required methods and 100 calls per secong from single IP address to public methods (6000 per minute). биткоин-8650, у них 9236
-
-
-//12.coinexchange - good api, has limits, no info
-//35.c2cx - 60 API request per minute per endpoint. If more then 60 API requests are sent per minute to an endpoint the sending IP will be blocked for between 30 and 60 seconds. Results are also limited to 100 results per API request. APIs that may return more than 100 result will have a pagination option. (60 per minute)(в разработке)
-
-
+//16.fatbtc - all tickers at once, no limits info (в последний раз не открывался)
+//11.btcalpha - 33 валюты, We have limit in 2 calls per second from single account to authorization required methods and 100 calls per secong from single IP address to public methods (6000 per minute). биткоин-8650, у них 9236
 //3.abucoins - 300 requests per 1 minute per IP and Account (все сразу, 36 валют в ответе)
 //10.Aex - every 60 seconds the number of calls can not be more than 120 (120 per minute) (все сразу, 51 валюта в ответе)
-
-
 //37.exx - Each IP can send maximum of 1000 https requests within 1 minute. If exceeds 1000 requests, the system will automatically block the IP for one hour. After an hour, the IP will be automatically unlocked. (1000 per minute) можно все тикеры
 //18.tradebytrade - Please note that making more than 6 calls per second to the public API, or repeatedly and needlessly fetching excessive amounts of data, can result in your IP being banned. (360 per minute)
 //19.coinfalcon - We throttle public endpoints by IP: 3 requests per second (180 per minute)
 
-//1.bitfinex - between 10 and 90 per minute
+
 //2.okex - Each IP can send maximum of 3000 https requests within 5 minutes (600 per minute) (431 currencies, хороший курс)
 //4.liqui - All information is cached every 2 seconds, so there's no point in making more frequent requests. (30 per minute)
 //5.Quoine / Qryptos - API users should not make more than 300 requests per 5 minute (60 per minute)
-//7.Yobit - Server responses are cashed every 2 seconds that is why there is no sense in making requests faster. (30 per minute)
-//15.fatbtc - all tickers at once, no limits info
 //16.Tidex - All information is cached every 2 seconds, so there's no point in making more frequent requests (30 per minute)
 //17.Bleutrade - has api, no limits info
 //21.litebit.eu - has api, no limits info
 //22.bit-z / bitz / bit z - good API, nothing about limits
 //23.cryptox - has api, no limits info
 //24.radar relay - has api, no limits info
-//25.cobinhood - has api, no limits info, можно взять все пары
 //27.Allcoin - ничего о лимитах, апи есть
 //28.Bxthailand-есть апи, 24 валюты, ничего про лимиты
 //29.TDAX - есть апи, ничего о лимитах, можно взять все пары, очень высокий курс
@@ -118,11 +116,6 @@
 //42.Coinroom - Good API, no limits info
 //43.C-CEX / ccex / c cex - has api, nothing about limits
 //44.tradeogre - has api, nothing about limits
-
-
-
-
-//25.binance - Each route has a weight which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier weight.
 
 
 //60.OasisDEX - сложно найти апи
@@ -177,7 +170,6 @@
 //20.QuadrigaCX - nothing about limits
 //41.Bitbay - good api, nothing about limits
 //47.Coolcoin - 402 Requests are too frequent. Есть апи, ничего о лимитах, очень похожа на какую-то
-
 
 
 //69.bitFlyer - не открывается

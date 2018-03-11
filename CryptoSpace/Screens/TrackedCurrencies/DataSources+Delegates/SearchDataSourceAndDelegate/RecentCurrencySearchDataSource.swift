@@ -10,11 +10,18 @@ import UIKit
 
 class RecentCurrencySearchDataSource: NSObject, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+    var arrayWithCells = [Any]()
+    
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return arrayWithCells.count
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (arrayWithCells[section] as! NSMutableArray).count
+    }
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(for: tableView)
+        return (arrayWithCells[indexPath.section] as! NSMutableArray)[indexPath.row] as! UITableViewCell
     }
 }

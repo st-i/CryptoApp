@@ -219,7 +219,7 @@ class AllCoinsManager: NSObject {
         
         //25
         let binanceCoinCoin = Coin.init()
-        binanceCoinCoin.fullName = "Binance Coin" //1binance
+        binanceCoinCoin.fullName = "Binance Coin" //1binance.
         binanceCoinCoin.shortName = "BNB"
         binanceCoinCoin.id = "bnb"
         binanceCoinCoin.exchange = ExchangeBehavior.Binance
@@ -516,7 +516,7 @@ class AllCoinsManager: NSObject {
         
         //62
         let monacoinCoin = Coin.init()
-        monacoinCoin.fullName = "MonaCoin" //1livecoin or Bleutrade
+        monacoinCoin.fullName = "MonaCoin" //1livecoin. or Bleutrade
         monacoinCoin.shortName = "MONA"
         monacoinCoin.id = "mona"
         monacoinCoin.exchange = ExchangeBehavior.Livecoin
@@ -1026,10 +1026,10 @@ class AllCoinsManager: NSObject {
         
         //126
         let uDotCashCoin = Coin.init()
-        uDotCashCoin.fullName = "U.CASH" //1btcalpha or c2cx
+        uDotCashCoin.fullName = "U.CASH" //1c2cx or btcalpha(нет в json)
         uDotCashCoin.shortName = "UCASH"
         uDotCashCoin.id = "ucash"
-        uDotCashCoin.exchange = ExchangeBehavior.BTC_Alpha
+        uDotCashCoin.exchange = ExchangeBehavior.C2CX
         allCoins.append(uDotCashCoin)
         
         //127
@@ -1050,7 +1050,7 @@ class AllCoinsManager: NSObject {
         
         //129
         let dynamicTradingRightsCoin = Coin.init()
-        dynamicTradingRightsCoin.fullName = "Dynamic Trading Rights" //1livecoin
+        dynamicTradingRightsCoin.fullName = "Dynamic Trading Rights" //1livecoin.
         dynamicTradingRightsCoin.shortName = "DTR"
         dynamicTradingRightsCoin.id = "dtr"
         dynamicTradingRightsCoin.exchange = ExchangeBehavior.Livecoin
@@ -1200,12 +1200,12 @@ class AllCoinsManager: NSObject {
         allCoins.append(genesisVisionCoin)
         
         //148
-        let payPieCoin = Coin.init()
-        payPieCoin.fullName = "PayPie" //1fatbtc or 1idex(нет в json)
-        payPieCoin.shortName = "PPP"
-        payPieCoin.id = "ppp"
-        payPieCoin.exchange = ExchangeBehavior.Fatbtc
-        allCoins.append(payPieCoin)
+//        let payPieCoin = Coin.init()
+//        payPieCoin.fullName = "PayPie" //1fatbtc(удалили) or 1idex(нет в json, volume 0%)
+//        payPieCoin.shortName = "PPP"
+//        payPieCoin.id = "ppp"
+//        payPieCoin.exchange = ExchangeBehavior.Fatbtc
+//        allCoins.append(payPieCoin)
         
         //149
         let redPulseCoin = Coin.init()
@@ -1280,10 +1280,10 @@ class AllCoinsManager: NSObject {
         
         //158
         let wagerrCoin = Coin.init()
-        wagerrCoin.fullName = "Wagerr" //1Yobit or 1Tidex
+        wagerrCoin.fullName = "Wagerr" //1Yobit or Tidex
         wagerrCoin.shortName = "WGR"
         wagerrCoin.id = "wgr"
-        wagerrCoin.exchange = ExchangeBehavior.Yobit //ExchangeBehavior.Tidex
+        wagerrCoin.exchange = ExchangeBehavior.Yobit
         allCoins.append(wagerrCoin)
         
         //159
@@ -1352,7 +1352,7 @@ class AllCoinsManager: NSObject {
         
         //167
         let appCoinsCoin = Coin.init()
-        appCoinsCoin.fullName = "AppCoins" //1binance
+        appCoinsCoin.fullName = "AppCoins" //1binance.
         appCoinsCoin.shortName = "APPC"
         appCoinsCoin.id = "appc"
         appCoinsCoin.exchange = ExchangeBehavior.Binance
@@ -1376,7 +1376,7 @@ class AllCoinsManager: NSObject {
         
         //170
         let cyberMilesCoin = Coin.init()
-        cyberMilesCoin.fullName = "CyberMiles" //1binance or okex
+        cyberMilesCoin.fullName = "CyberMiles" //1binance. or okex
         cyberMilesCoin.shortName = "CMT"
         cyberMilesCoin.id = "cmt"
         cyberMilesCoin.exchange = ExchangeBehavior.Binance
@@ -1400,7 +1400,7 @@ class AllCoinsManager: NSObject {
         
         //173
         let airSwapCoin = Coin.init()
-        airSwapCoin.fullName = "AirSwap" //1binance or okex
+        airSwapCoin.fullName = "AirSwap" //1binance. or okex
         airSwapCoin.shortName = "AST"
         airSwapCoin.id = "ast"
         airSwapCoin.exchange = ExchangeBehavior.Binance
@@ -1424,7 +1424,7 @@ class AllCoinsManager: NSObject {
         
         //176
         let minexCoinCoin = Coin.init()
-        minexCoinCoin.fullName = "MinexCoin" //1livecoin or coinexchange
+        minexCoinCoin.fullName = "MinexCoin" //1livecoin. or coinexchange
         minexCoinCoin.shortName = "MNX"
         minexCoinCoin.id = "mnx"
         minexCoinCoin.exchange = ExchangeBehavior.Livecoin
@@ -1496,7 +1496,7 @@ class AllCoinsManager: NSObject {
         
         //185
         let giftoCoin = Coin.init()
-        giftoCoin.fullName = "Gifto" //1binance or okex
+        giftoCoin.fullName = "Gifto" //1binance. or okex
         giftoCoin.shortName = "GTO"
         giftoCoin.id = "gto"
         giftoCoin.exchange = ExchangeBehavior.Binance
@@ -1552,7 +1552,7 @@ class AllCoinsManager: NSObject {
         
         //192
         let breadCoin = Coin.init()
-        breadCoin.fullName = "Bread" //1binance or okex
+        breadCoin.fullName = "Bread" //1binance. or okex
         breadCoin.shortName = "BRD"
         breadCoin.id = "brd"
         breadCoin.exchange = ExchangeBehavior.Binance
@@ -1616,7 +1616,7 @@ class AllCoinsManager: NSObject {
         
         //200
         let triggersCoin = Coin.init()
-        triggersCoin.fullName = "Triggers" //1binance
+        triggersCoin.fullName = "Triggers" //1binance.
         triggersCoin.shortName = "TRIG"
         triggersCoin.id = "trig"
         triggersCoin.exchange = ExchangeBehavior.Binance

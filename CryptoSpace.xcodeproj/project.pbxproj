@@ -116,6 +116,14 @@
 		DD7CB75E2052F23800E6E786 /* KucoinResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CB75D2052F23800E6E786 /* KucoinResponseParser.swift */; };
 		DD82A7B920025E3C00A6DD34 /* ActionWithCurrencyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82A7B820025E3C00A6DD34 /* ActionWithCurrencyTableView.swift */; };
 		DD82A7BB20025E5800A6DD34 /* ActionWithCurrencyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD82A7BA20025E5800A6DD34 /* ActionWithCurrencyTableView.xib */; };
+		DD93DF4F20552B55007EB222 /* BinanceResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93DF4E20552B55007EB222 /* BinanceResponseParser.swift */; };
+		DD93DF51205532B1007EB222 /* LivecoinResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93DF50205532B1007EB222 /* LivecoinResponseParser.swift */; };
+		DD93DF53205539AC007EB222 /* BigONEResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93DF52205539AC007EB222 /* BigONEResponseParser.swift */; };
+		DD93DF552055505C007EB222 /* RequestToC2CXBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93DF542055505C007EB222 /* RequestToC2CXBuilder.swift */; };
+		DD93DF5720555121007EB222 /* C2CXResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93DF5620555121007EB222 /* C2CXResponseParser.swift */; };
+		DD93DF5920555A7E007EB222 /* CobinhoodResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93DF5820555A7E007EB222 /* CobinhoodResponseParser.swift */; };
+		DD93DF5B20555FBD007EB222 /* CoinExchangeResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93DF5A20555FBD007EB222 /* CoinExchangeResponseParser.swift */; };
+		DD93DF5D20556F03007EB222 /* YobitResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93DF5C20556F02007EB222 /* YobitResponseParser.swift */; };
 		DDA1607E203DED000020B602 /* AllCoinsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1607D203DED000020B602 /* AllCoinsManager.swift */; };
 		DDA16080203DEE890020B602 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1607F203DEE890020B602 /* Coin.swift */; };
 		DDAA6ADE20036307007045F7 /* ActionChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAA6ADD20036307007045F7 /* ActionChoiceButton.swift */; };
@@ -246,6 +254,14 @@
 		DD7CB75D2052F23800E6E786 /* KucoinResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KucoinResponseParser.swift; sourceTree = "<group>"; };
 		DD82A7B820025E3C00A6DD34 /* ActionWithCurrencyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionWithCurrencyTableView.swift; sourceTree = "<group>"; };
 		DD82A7BA20025E5800A6DD34 /* ActionWithCurrencyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionWithCurrencyTableView.xib; sourceTree = "<group>"; };
+		DD93DF4E20552B55007EB222 /* BinanceResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinanceResponseParser.swift; sourceTree = "<group>"; };
+		DD93DF50205532B1007EB222 /* LivecoinResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivecoinResponseParser.swift; sourceTree = "<group>"; };
+		DD93DF52205539AC007EB222 /* BigONEResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigONEResponseParser.swift; sourceTree = "<group>"; };
+		DD93DF542055505C007EB222 /* RequestToC2CXBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToC2CXBuilder.swift; sourceTree = "<group>"; };
+		DD93DF5620555121007EB222 /* C2CXResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C2CXResponseParser.swift; sourceTree = "<group>"; };
+		DD93DF5820555A7E007EB222 /* CobinhoodResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CobinhoodResponseParser.swift; sourceTree = "<group>"; };
+		DD93DF5A20555FBD007EB222 /* CoinExchangeResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinExchangeResponseParser.swift; sourceTree = "<group>"; };
+		DD93DF5C20556F02007EB222 /* YobitResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YobitResponseParser.swift; sourceTree = "<group>"; };
 		DDA1607D203DED000020B602 /* AllCoinsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCoinsManager.swift; sourceTree = "<group>"; };
 		DDA1607F203DEE890020B602 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		DDAA6ADD20036307007045F7 /* ActionChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionChoiceButton.swift; sourceTree = "<group>"; };
@@ -793,6 +809,7 @@
 				DD7CB74820526F5B00E6E786 /* RequestToLivecoinBuilder.swift */,
 				DD7CB74A2052700C00E6E786 /* RequestToBigONEBuilder.swift */,
 				DD7CB74C2052707D00E6E786 /* RequestToBTC_AlphaBuilder.swift */,
+				DD93DF542055505C007EB222 /* RequestToC2CXBuilder.swift */,
 				DD7CB74E205270DA00E6E786 /* RequestToCobinhoodBuilder.swift */,
 				DD7CB750205271A200E6E786 /* RequestToCoinExchangeBuilder.swift */,
 				DD7CB7522052727200E6E786 /* RequestToYobitBuilder.swift */,
@@ -812,6 +829,13 @@
 				DD608CCE20544974006C537D /* PoloniexResponseParser.swift */,
 				DD608CD020544E6B006C537D /* CryptopiaResponseParser.swift */,
 				DD5A92BF20548CA100AF268B /* Gate_ioResponseParser.swift */,
+				DD93DF4E20552B55007EB222 /* BinanceResponseParser.swift */,
+				DD93DF50205532B1007EB222 /* LivecoinResponseParser.swift */,
+				DD93DF52205539AC007EB222 /* BigONEResponseParser.swift */,
+				DD93DF5620555121007EB222 /* C2CXResponseParser.swift */,
+				DD93DF5820555A7E007EB222 /* CobinhoodResponseParser.swift */,
+				DD93DF5A20555FBD007EB222 /* CoinExchangeResponseParser.swift */,
+				DD93DF5C20556F02007EB222 /* YobitResponseParser.swift */,
 			);
 			name = ResponseParsers;
 			sourceTree = "<group>";
@@ -860,9 +884,9 @@
 		DDC281F72030553A002AAAF0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				DDC281F820305B60002AAAF0 /* RequestManager.swift */,
 				DD7CB73720526A4C00E6E786 /* RequestBuilders */,
 				DD7CB75620527EAB00E6E786 /* ResponseParsers */,
+				DDC281F820305B60002AAAF0 /* RequestManager.swift */,
 				DDC4FF0D20387A5E00BFA7C1 /* UserCoinsManager.swift */,
 				DDA1607D203DED000020B602 /* AllCoinsManager.swift */,
 				DDA1607F203DEE890020B602 /* Coin.swift */,
@@ -1022,6 +1046,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD93DF51205532B1007EB222 /* LivecoinResponseParser.swift in Sources */,
 				54BDCC651FF41576000662C5 /* CurrencyPairCellBuilder.swift in Sources */,
 				54EE2CFD1FF69F950008CAC2 /* PurchaseSumCell.swift in Sources */,
 				DDAA6ADE20036307007045F7 /* ActionChoiceButton.swift in Sources */,
@@ -1052,6 +1077,7 @@
 				54CA4E4B1FE55D5500E6357E /* FinalCell.swift in Sources */,
 				DD7CB7532052727200E6E786 /* RequestToYobitBuilder.swift in Sources */,
 				DD7CB75C2052DBA000E6E786 /* Checkups.swift in Sources */,
+				DD93DF5920555A7E007EB222 /* CobinhoodResponseParser.swift in Sources */,
 				54081FBB1FE6680E0098195F /* TrackedCurrencyCellBuilder.swift in Sources */,
 				5407D3EE1FE52BC40063C3A6 /* TrackedPositionCellBuilder.swift in Sources */,
 				54BDCC691FF415AA000662C5 /* CurrentExchangeRateCellBuilder.swift in Sources */,
@@ -1061,6 +1087,7 @@
 				DD7CB74F205270DA00E6E786 /* RequestToCobinhoodBuilder.swift in Sources */,
 				542E45DB1FDC14E3006D52C9 /* CryptoSpace.xcdatamodeld in Sources */,
 				54CA4E3F1FE53EF600E6357E /* ObservedPositionCellBuilder.swift in Sources */,
+				DD93DF552055505C007EB222 /* RequestToC2CXBuilder.swift in Sources */,
 				DD82A7B920025E3C00A6DD34 /* ActionWithCurrencyTableView.swift in Sources */,
 				DDA16080203DEE890020B602 /* Coin.swift in Sources */,
 				54CA4E431FE53F5800E6357E /* CryptoCurrenciesCapitalizationCellBuilder.swift in Sources */,
@@ -1094,8 +1121,10 @@
 				5407D3F11FE52BC40063C3A6 /* TrackedPositionCell.swift in Sources */,
 				DDB1FC9D2026FD1E00D83AF7 /* HeaderViewCellBulder.swift in Sources */,
 				54DAF51B2000BE2E00D18017 /* ActionWithCurrencyDataSourceAndDelegate.swift in Sources */,
+				DD93DF5720555121007EB222 /* C2CXResponseParser.swift in Sources */,
 				DD04D11D201DB0B900D67AA5 /* SettingsViewController.swift in Sources */,
 				540C347E1FEECE1200D39C43 /* RecentCurrencySearchDataSource.swift in Sources */,
+				DD93DF53205539AC007EB222 /* BigONEResponseParser.swift in Sources */,
 				5406BA0C1FF2DE3E0022D1C4 /* CurrencyAmountCell.swift in Sources */,
 				54BDCC631FF4155A000662C5 /* ActionWithCurrencyCellBuilder.swift in Sources */,
 				DD7CB74320526E4400E6E786 /* RequestToCryptopiaBuilder.swift in Sources */,
@@ -1122,10 +1151,13 @@
 				54CA4E3C1FE53D1600E6357E /* CryptoCurrenciesCapitalizationCell.swift in Sources */,
 				DD04D12F201E190000D67AA5 /* PortfolioGraphViewController.swift in Sources */,
 				DD7CB74D2052707D00E6E786 /* RequestToBTC_AlphaBuilder.swift in Sources */,
+				DD93DF4F20552B55007EB222 /* BinanceResponseParser.swift in Sources */,
 				DD04D129201E17D900D67AA5 /* PortfolioCurrencyGraphCellBuilder.swift in Sources */,
 				54D3EAEE1FEAE245002DDB7F /* CurrencyForSearchCellBuilder.swift in Sources */,
 				DD7CB75820527F6B00E6E786 /* BitfinexResponseParser.swift in Sources */,
+				DD93DF5B20555FBD007EB222 /* CoinExchangeResponseParser.swift in Sources */,
 				54D3EAF01FEAE285002DDB7F /* CurrencyForSearchScreenDirector.swift in Sources */,
+				DD93DF5D20556F03007EB222 /* YobitResponseParser.swift in Sources */,
 				54D3EAF31FEAE30B002DDB7F /* SearchDataSource.swift in Sources */,
 				54BDCC711FF41616000662C5 /* NotesCellBuilder.swift in Sources */,
 				54CA4E301FE5377A00E6357E /* ObservedCurrenciesDelegate.swift in Sources */,

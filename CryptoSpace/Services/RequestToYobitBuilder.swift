@@ -8,11 +8,16 @@
 
 import UIKit
 
-//https ://yobit.net/api/3/ticker/(ltc_btc)
 class RequestToYobitBuilder: NSObject {
 
     class func buildAllCoinsRequest() -> String {
         let requestString = "https://yobit.net/api/3/ticker/"
+        return requestString
+    }
+    
+    //https ://yobit.net/api/3/ticker/wgr_btc
+    class func buildWagerrRateRequest() -> String {
+        let requestString = "https://yobit.net/api/3/ticker/wgr_btc"
         return requestString
     }
 }
