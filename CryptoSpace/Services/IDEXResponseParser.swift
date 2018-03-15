@@ -10,10 +10,12 @@ import UIKit
 
 class IDEXResponseParser: NSObject {
     
-    class func parseResponse(response: [String: AnyObject], coinsArray: [Coin], ethRate: Double)/* -> Array<Any>*/ { //Dictionary<String, Double> {
+    class func parseResponse(response: [String: AnyObject], coinsArray: [Coin], ethRate: Double) -> Dictionary<String, Double> {
         
         let kLastCoinPrice = "last"
         let ethPrefix = "ETH_"
+        
+        var actualCoinsRates = Dictionary<String, Double>()
         
         for someCoin in coinsArray {
             if someCoin.exchange == ExchangeBehavior.IDEX {
@@ -27,13 +29,16 @@ class IDEXResponseParser: NSObject {
                         if someCoin.shortName == coinName {
                             let currentDict = response[currentCoinsPair] as! Dictionary<String, AnyObject>
                             let coinPrice = Double(currentDict[kLastCoinPrice] as! String)! * ethRate
-                            let currentCoinArray = [coinName, coinPrice] as [Any]
+                            actualCoinsRates.updateValue(coinPrice, forKey: String(coinName))
+//                            let currentCoinArray = [coinName, coinPrice] as [Any]
                             
-                            print(currentCoinArray)
+//                            print(currentCoinArray)
                         }
                     }
                 }
             }
         }
+        print(actualCoinsRates)
+        return actualCoinsRates
     }
 }

@@ -24,6 +24,136 @@ class RequestManager: NSObject {
         return currencyId
     }
     
+    func getExchangeRate(coin: Coin, completion: @escaping (Double) -> ()) {
+        
+        if coin.exchange == ExchangeBehavior.IDEX {
+            
+            request(RequestToBitfinexBuilder.buildEthRateRequest()).responseJSON { (firstResponse) in
+
+                guard let dataArray = firstResponse.result.value as? [String: AnyObject] else{
+                    print("Не могу перевести в JSON")
+                    return
+                }
+                let ethRate = BitfinexResponseParser.getEthRate(response: dataArray)
+                print(ethRate)
+
+                let allUserCoins = [coin]
+
+    //            print(firstResponse)
+
+                request(RequestToIDEXBuilder.buildAllCoinsRequest(), method: .post, parameters: nil).responseJSON { (response) in
+//                    print(response)
+                    guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+                        print("Не могу перевести в JSON")
+                        return
+                    }
+                    let coinRate = (IDEXResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, ethRate: ethRate))[coin.shortName]
+                    completion(coinRate!)
+                }
+            }
+        }else{
+            //        Bitfinex
+            //        case Bittrex
+            //        case HitBTC
+            //        case Kucoin
+            //        case IDEX
+            //        case Poloniex
+            //        case Cryptopia
+            //        case Gate_io
+            //        case Binance
+            //        case Livecoin
+            //        case BigONE
+            //        case C2CX
+            //        case Cobinhood
+            //        case CoinExchange
+            //        case Yobit
+            
+            request(RequestToBitfinexBuilder.buildBtcRateRequest()).responseJSON { (firstResponse) in
+                guard let dataArray = firstResponse.result.value as? [String: AnyObject] else{
+                    print("Не могу перевести в JSON")
+                    return
+                }
+                let btcRate = BitfinexResponseParser.getBtcRate(response: dataArray)
+                print(btcRate)
+
+                let allUserCoins = [coin]
+
+    //            print(firstResponse)
+            
+                switch coin.exchange {
+                case .Bittrex:
+                    //отправляем запрос
+                    print("Bittrex")
+                    break
+                    
+                case .HitBTC:
+                    //отправляем запрос
+                    print("HitBTC")
+                    break
+                    
+                case .Kucoin:
+                    //отправляем запрос
+                    print("Kucoin")
+                    break
+                    
+                case .Poloniex:
+                    //отправляем запрос
+                    print("Poloniex")
+                    break
+                    
+                case .Cryptopia:
+                    //отправляем запрос
+                    print("Cryptopia")
+                    break
+                    
+                case .Gate_io:
+                    //отправляем запрос
+                    print("Gate_io")
+                    break
+                    
+                case .Binance:
+                    //отправляем запрос
+                    print("Binance")
+                    break
+                    
+                case .Livecoin:
+                    //отправляем запрос
+                    print("Livecoin")
+                    break
+                    
+                case .BigONE:
+                    //отправляем запрос
+                    print("BigONE")
+                    break
+                    
+                case .C2CX:
+                    //отправляем запрос
+                    print("C2CX")
+                    break
+                    
+                case .Cobinhood:
+                    //отправляем запрос
+                    print("Cobinhood")
+                    break
+                    
+                case .CoinExchange:
+                    //отправляем запрос
+                    print("CoinExchange")
+                    break
+                    
+                case .Yobit:
+                    //отправляем запрос
+                    print("Yobit")
+                    break
+                    
+                default:
+                    print("Неизвестная монета")
+                    break
+                }
+            }
+        }
+    }
+    
 //    func updateCoins( completion: @escaping ([Double]) -> Void) { /*sendedCoinsArray: [Coin], */
 ////        self.coinsArray = sendedCoinsArray
 //        sendRequest()

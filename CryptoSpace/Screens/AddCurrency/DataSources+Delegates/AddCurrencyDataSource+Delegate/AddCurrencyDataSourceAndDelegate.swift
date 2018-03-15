@@ -15,6 +15,8 @@ private let kNotesCellHeight = 110
 
 class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
 
+    var currentCoin: Coin!
+    
     var viewController = AddCurrencyViewController()
     
     var arrayWithCells = [Any]()
@@ -162,10 +164,10 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         if self.currencyPurchase {
             switch rowNumber {
             case 0:
-                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView)
+                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinName: currentCoin.fullName)
                 
             case 1:
-                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", rightText: "$14 000")
+                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", rightText: "")
                 
             case 2:
                 return ActionWithCurrencyDateCellBuilder.buildActionWithCurrencyDateCell(for: tableView)
@@ -185,13 +187,13 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         }else{
             switch rowNumber {
             case 0:
-                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView)
+                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinName: currentCoin.fullName)
                 
             case 1:
-                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", rightText: "$14 000")
+                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", rightText: "")
                 
             default:
-                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", rightText: "$14 000")
+                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", rightText: "")
             }
         }
     }

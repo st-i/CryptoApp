@@ -79,15 +79,22 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
         showRecentAndPopularResults()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        currencySearchBar.resignFirstResponder()
+        currencySearchBar.showsCancelButton = false
+    }
+    
     @objc func dismissVC() {
         dismiss(animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        currencySearchBar.showsCancelButton = false
+//        currencySearchBar.showsCancelButton = false
 //        self.showRecentAndPopularResults()
     }
+    
     
     func showRecentAndPopularResults() {
         self.recentCurrencySearchDataSource = RecentCurrencySearchDataSource()
@@ -111,6 +118,7 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
         self.searchDataSource = SearchDataSource()
         self.searchDelegate = SearchDelegate()
         
+        searchDelegate.allCoinsArray = allCoins
         searchDataSource.allCoinsArray = allCoins
         
         self.tableView.dataSource = self.searchDataSource

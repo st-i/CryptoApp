@@ -76,11 +76,11 @@ class TrackedCurrenciesViewController: UIViewController {
 //            print(btcRate)
 //
 //            let allUserCoins = AllCoinsManager.createArrayWithAllCoins()
-
-//            print(firstResponse)
-        
+//
+////            print(firstResponse)
+//        
 //            request(RequestToBittrexBuilder.buildAllCoinsRequest()).responseJSON { (response) in
-
+//
 //                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
 //                    print("Не могу перевести в JSON")
 //                    return
@@ -88,6 +88,7 @@ class TrackedCurrenciesViewController: UIViewController {
 //                print(response)
 //                BittrexResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)
 //            }
+//        }
             
 //            request(RequestToHitBTCBuilder.buildAllCoinsRequest()).responseJSON { (response) in
 //

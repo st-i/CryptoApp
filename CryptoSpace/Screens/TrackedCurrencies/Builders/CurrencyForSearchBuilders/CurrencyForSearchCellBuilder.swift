@@ -17,6 +17,7 @@ class CurrencyForSearchCellBuilder: NSObject {
         cell.lowerSeparator.backgroundColor = UIColor.clear
         cell.currencyImageView.image = UIImage(named:"Bitcoin")
         cell.currencyNameLabel.text = String.init(format: "%@: %@", coin.shortName, coin.fullName)
+        cell.currentCoin = coin
         
         return cell
     }

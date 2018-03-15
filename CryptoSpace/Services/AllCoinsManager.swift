@@ -51,7 +51,7 @@ class AllCoinsManager: NSObject {
         //4
         let bitcoinCashCoin = Coin.init()
         bitcoinCashCoin.fullName = "Bitcoin Cash" //1bittrex or okex
-        bitcoinCashCoin.shortName = "BCC"
+        bitcoinCashCoin.shortName = "BCC" //нужно на BCH
         bitcoinCashCoin.id = "bcc"
         bitcoinCashCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(bitcoinCashCoin)

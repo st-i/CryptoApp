@@ -12,8 +12,9 @@ private let kCurrencyPairCellIdentifier = "CurrencyPairCell"
 
 class CurrencyPairCellBuilder: NSObject {
     
-    class func buildCurrencyPairCell(for tableView: UITableView) -> UITableViewCell {
+    class func buildCurrencyPairCell(for tableView: UITableView, coinName: String) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kCurrencyPairCellIdentifier) as! CurrencyPairCell
+        cell.coinShortNameLabel.text = coinName
         cell.selectionStyle = .none
         
         return cell

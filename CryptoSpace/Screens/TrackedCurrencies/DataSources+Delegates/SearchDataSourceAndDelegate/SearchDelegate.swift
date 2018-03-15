@@ -13,7 +13,8 @@ private let kHeightForSectionHeader = 30
 
 class SearchDelegate: NSObject, UITableViewDelegate {
     
-    var fromVC = UIViewController()
+    var allCoinsArray = [Coin]()
+    var fromVC = CurrencySearchViewController()
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(kCurrencyForSearchCellHeight)
@@ -23,7 +24,13 @@ class SearchDelegate: NSObject, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
-        let addCurrencyVC = storyboard.instantiateViewController(withIdentifier: "AddCurrencyViewController")
+        let addCurrencyVC = storyboard.instantiateViewController(withIdentifier: "AddCurrencyViewController") as! AddCurrencyViewController
+        addCurrencyVC.currentCoin = allCoinsArray[indexPath.row]
         self.fromVC.navigationController?.pushViewController(addCurrencyVC, animated: true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        fromVC.currencySearchBar.resignFirstResponder()
+        fromVC.currencySearchBar.showsCancelButton = false
     }
 }

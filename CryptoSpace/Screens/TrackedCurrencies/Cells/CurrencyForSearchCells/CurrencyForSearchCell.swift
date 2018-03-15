@@ -14,6 +14,8 @@ class CurrencyForSearchCell: UITableViewCell {
     @IBOutlet weak var currencyNameLabel: UILabel!
     @IBOutlet weak var lowerSeparator: UIView!
     
+    var currentCoin: Coin!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

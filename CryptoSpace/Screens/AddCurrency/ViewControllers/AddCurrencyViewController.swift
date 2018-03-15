@@ -16,7 +16,7 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
 
     @IBOutlet weak var tableView: UITableView!
     var addCurrencyDataSourceAndDelegate:AddCurrencyDataSourceAndDelegate!
-    
+    var currentCoin: Coin!
 //    var scrolledToRow: Bool!
     
     var firstZeroAndComma: Bool!
@@ -41,7 +41,7 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
         titleViewLabel.textAlignment = .center
         titleViewLabel.font = UIFont.systemFont(ofSize: 19, weight: UIFont.Weight.medium)
         titleViewLabel.textColor = UIColor.white
-        titleViewLabel.text = "Bitcoin"
+        titleViewLabel.text = currentCoin.shortName //"Bitcoin"
         titleView.addSubview(titleViewLabel)
         self.navigationItem.titleView = titleView
         
@@ -66,13 +66,23 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         
 //        self.fillTableViewWithData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let requestManager = RequestManager.init()
+        requestManager.getExchangeRate(coin: currentCoin) { (coinRate) in
+            let currentExchangeRateCell = self.tableView.cellForRow(at: IndexPath.init(row: 1, section: 1)) as! CurrentExchangeRateCell
+            currentExchangeRateCell.rightTextLabel.text = "\(coinRate)"
+        }
+    }
+    
     func fillTableViewWithData() {
-        self.tableView.backgroundColor = UIColor.groupTableViewBackground
+        self.tableView.backgroundColor = UIColor.white //groupTableViewBackground
         self.addCurrencyDataSourceAndDelegate = AddCurrencyDataSourceAndDelegate()
         self.addCurrencyDataSourceAndDelegate.currencyPurchase = true
         
@@ -81,6 +91,7 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         let arrayWithCells = AddCurrencyScreenDirector.createAddCurrencyCells(for: self.tableView)
         
+        addCurrencyDataSourceAndDelegate.currentCoin = currentCoin
         self.addCurrencyDataSourceAndDelegate.arrayWithCells = arrayWithCells
         self.addCurrencyDataSourceAndDelegate.viewController = self
     }
