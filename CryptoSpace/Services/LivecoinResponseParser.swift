@@ -10,11 +10,13 @@ import UIKit
 
 class LivecoinResponseParser: NSObject {
     
-    class func parseResponse(response: [Dictionary<String, AnyObject>], coinsArray: [Coin], btcRate: Double)/* -> Array<Any>*/ { //Dictionary<String, Double> {
+    class func parseResponse(response: [Dictionary<String, AnyObject>], coinsArray: [Coin], btcRate: Double) -> Dictionary<String, Double> {
         
         let kCoinsPair = "symbol"
         let kLastCoinPrice = "last"
         let btcPart = "/BTC"
+        
+        var actualCoinsRates = Dictionary<String, Double>()
         
         for someCoin in coinsArray {
             if someCoin.exchange == ExchangeBehavior.Livecoin {
@@ -31,15 +33,17 @@ class LivecoinResponseParser: NSObject {
                             let coinName = coinsPair[range]
                     
                             if someCoin.shortName == coinName {
-//                                let coinPrice = Double(currentDict[kLastCoinPrice] as! String)! * btcRate
                                 let coinPrice = ((currentDict[kLastCoinPrice] as? NSNumber)?.doubleValue)! * btcRate
-                                let currentCoinArray = [coinName, coinPrice] as [Any]
-                                print(currentCoinArray)
+                                actualCoinsRates.updateValue(coinPrice, forKey: String(coinName))
+//                                let currentCoinArray = [coinName, coinPrice] as [Any]
+//                                print(currentCoinArray)
                             }
                         }
                     }
                 }
             }
         }
+        print(actualCoinsRates)
+        return actualCoinsRates
     }
 }

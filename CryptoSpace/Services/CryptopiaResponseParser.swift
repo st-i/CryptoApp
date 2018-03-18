@@ -10,12 +10,14 @@ import UIKit
 
 class CryptopiaResponseParser: NSObject {
 
-    class func parseResponse(response: [String: AnyObject], coinsArray: [Coin], btcRate: Double)/* -> Array<Any>*/ { //Dictionary<String, Double> {
+    class func parseResponse(response: [String: AnyObject], coinsArray: [Coin], btcRate: Double) -> Dictionary<String, Double> {
         
         let kAllDicts = "Data"
         let kCoinsPair = "Label"
         let kLastCoinPrice = "LastPrice"
         let btcPrefix = "/BTC"
+        
+        var actualCoinsRates = Dictionary<String, Double>()
         
         let dictsArray = response[kAllDicts] as! [Dictionary<String, AnyObject>]
         
@@ -35,14 +37,16 @@ class CryptopiaResponseParser: NSObject {
                             let coinName = coinsPair[range]
                             if someCoin.shortName == coinName {
                                 let coinPrice = ((currentDict[kLastCoinPrice] as? NSNumber)?.doubleValue)! * btcRate
-                                let currentCoinArray = [coinName, coinPrice] as [Any]
-                                
-                                print(currentCoinArray)
+                                actualCoinsRates.updateValue(coinPrice, forKey: String(coinName))
+//                                let currentCoinArray = [coinName, coinPrice] as [Any]
+//                                print(currentCoinArray)
                             }
                         }
                     }
                 }
             }
         }
+        print(actualCoinsRates)
+        return actualCoinsRates
     }
 }

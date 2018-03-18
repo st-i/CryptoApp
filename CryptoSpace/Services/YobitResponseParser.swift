@@ -24,7 +24,7 @@ import UIKit
 
 class YobitResponseParser: NSObject {
 
-    class func parseResponseForSingleCoin(coinId: String, coinShortName: String, response: [String: AnyObject], btcRate: Double) {
+    class func parseResponseForSingleCoin(coinId: String, /*coinShortName: String,*/ response: [String: AnyObject], btcRate: Double) -> Double {
         
         let kCoinDict = String.init(format: "%@_btc", coinId)
         let kLastCoinPrice = "last"
@@ -32,7 +32,9 @@ class YobitResponseParser: NSObject {
         let coinDict = response[kCoinDict] as! Dictionary<String, AnyObject>
         let coinPrice = (coinDict[kLastCoinPrice] as! NSNumber).doubleValue * btcRate
         
-        let currentCoinArray = [coinShortName, coinPrice] as [Any]
-        print(currentCoinArray)
+//        let currentCoinArray = [coinShortName, coinPrice] as [Any]
+//        print(currentCoinArray)
+        print(coinPrice)
+        return coinPrice
     }
 }

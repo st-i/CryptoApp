@@ -10,7 +10,7 @@ import UIKit
 
 class BigONEResponseParser: NSObject {
 
-    class func parseResponseForSingleCoin(response: [String: AnyObject], btcRate: Double)/* -> Array<Any>*/ { //Dictionary<String, Double> {
+    class func parseResponseForSingleCoin(response: [String: AnyObject], btcRate: Double) -> Double {
         
         let kAllDicts = "data"
         let kCoinsPair = "symbol"
@@ -39,7 +39,9 @@ class BigONEResponseParser: NSObject {
                 coinPrice = Double(coinDict[kLastCoinPrice] as! String)! * btcRate
             }
         }
-        let currentCoinArray = [coinName, coinPrice] as [Any]
-        print(currentCoinArray)
+//        let currentCoinArray = [coinName, coinPrice] as [Any]
+//        print(currentCoinArray)
+        print(coinPrice)
+        return coinPrice
     }
 }

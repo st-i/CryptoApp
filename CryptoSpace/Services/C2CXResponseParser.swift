@@ -25,7 +25,7 @@ import UIKit
 
 class C2CXResponseParser: NSObject {
     
-    class func parseResponseForSingleCoin(coinShortName: String, response: [String: AnyObject], btcRate: Double) {
+    class func parseResponseForSingleCoin(coinShortName: String, response: [String: AnyObject], btcRate: Double) -> Double {
         
         let kCoinDict = "data"
         let kLastCoinPrice = "last"
@@ -33,7 +33,9 @@ class C2CXResponseParser: NSObject {
         let coinDict = response[kCoinDict] as! Dictionary<String, AnyObject>
         let coinPrice = (coinDict[kLastCoinPrice] as! NSNumber).doubleValue * btcRate
         
-        let currentCoinArray = [coinShortName, coinPrice] as [Any]
-        print(currentCoinArray)
+//        let currentCoinArray = [coinShortName, coinPrice] as [Any]
+//        print(currentCoinArray)
+        print(coinPrice)
+        return coinPrice
     }
 }

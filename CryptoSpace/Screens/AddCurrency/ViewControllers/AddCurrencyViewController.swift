@@ -30,6 +30,9 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
     var currencyAmountValue: Double!
     
     var numberFormatter: NumberFormatter!
+    var commonNumberFormatter: NumberFormatter!
+    
+    var requestWasSend = false
     
 //    var viewAboveKeyboard: UIView!
 
@@ -61,8 +64,9 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
         currencyAmountValue = 0
         
         specifyNumberFormatter()
+        specifyCommonNumberFormatter()
         
-        self.fillTableViewWithData()
+        fillTableViewWithData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,11 +78,61 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let requestManager = RequestManager.init()
-        requestManager.getExchangeRate(coin: currentCoin) { (coinRate) in
-            let currentExchangeRateCell = self.tableView.cellForRow(at: IndexPath.init(row: 1, section: 1)) as! CurrentExchangeRateCell
-            currentExchangeRateCell.rightTextLabel.text = "\(coinRate)"
+        if !requestWasSend {
+            
+            let currentExchangeRateCell = tableView.cellForRow(at: IndexPath.init(row: 1, section: 1)) as! CurrentExchangeRateCell
+            
+//            var indicatorRect = currentExchangeRateCell.coinRateIndicator.frame
+//            if currentExchangeRateCell.rightTextLabel.text == "" {
+//                indicatorRect.origin.x = view.frame.maxX - 35
+//            }else{
+//                indicatorRect.origin.x = view.frame.minX + 135
+//            }
+//            currentExchangeRateCell.coinRateIndicator.frame = indicatorRect
+            
+            currentExchangeRateCell.coinRateIndicator.startAnimating()
+            currentExchangeRateCell.coinRateIndicator.activityIndicatorViewStyle = .gray
+
+            let requestManager = RequestManager.init()
+            requestManager.getExchangeRate(coin: currentCoin) { (coinRate) in
+    //            let currentExchangeRateCell = self.tableView.cellForRow(at: IndexPath.init(row: 1, section: 1)) as! CurrentExchangeRateCell
+                currentExchangeRateCell.coinRateIndicator.stopAnimating()
+                currentExchangeRateCell.coinRateIndicator.removeFromSuperview()
+                self.requestWasSend = true
+//                currentExchangeRateCell.coinRateIndicator.activityIndicatorViewStyle = .white
+                
+//                indicatorRect.origin.x = self.view.frame.maxX
+//                currentExchangeRateCell.coinRateIndicator.frame = indicatorRect
+                
+                let coinRateString = String.init("$\(self.createStringFromDouble(coinRate: coinRate))")
+                
+                currentExchangeRateCell.rightTextLabel.text = coinRateString
+                
+                let purchaseExchangeRateCell = self.tableView.cellForRow(at: IndexPath.init(row: 3, section: 1)) as! PurchaseExchangeRateCell
+                if purchaseExchangeRateCell.purchaseExchangeRateTextField.text == "" {
+                    purchaseExchangeRateCell.purchaseExchangeRateTextField.text = coinRateString
+                }
+                //"\(coinRate)"
+            }
         }
+    }
+    
+    func specifyCommonNumberFormatter() {
+        commonNumberFormatter = NumberFormatter.init()
+        commonNumberFormatter.groupingSeparator = " "
+        commonNumberFormatter.groupingSize = 3
+        commonNumberFormatter.usesGroupingSeparator = true
+        commonNumberFormatter.decimalSeparator = ","
+        commonNumberFormatter.numberStyle = .decimal
+    }
+    
+    func createStringFromDouble(coinRate: Double) -> String {
+        if coinRate < 1 {
+            commonNumberFormatter.maximumFractionDigits = 6
+        }else{
+            commonNumberFormatter.maximumFractionDigits = 2
+        }
+        return commonNumberFormatter.string(from: NSNumber.init(value: coinRate))!
     }
     
     func fillTableViewWithData() {
@@ -91,9 +145,12 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         let arrayWithCells = AddCurrencyScreenDirector.createAddCurrencyCells(for: self.tableView)
         
+        let detailedDateFormatter = DetailedDateFormatter.init()
+        
+        addCurrencyDataSourceAndDelegate.dateString = detailedDateFormatter.stringFromDate(date: Date())
         addCurrencyDataSourceAndDelegate.currentCoin = currentCoin
-        self.addCurrencyDataSourceAndDelegate.arrayWithCells = arrayWithCells
-        self.addCurrencyDataSourceAndDelegate.viewController = self
+        addCurrencyDataSourceAndDelegate.arrayWithCells = arrayWithCells
+        addCurrencyDataSourceAndDelegate.viewController = self
     }
     
     func specifyNumberFormatter() {

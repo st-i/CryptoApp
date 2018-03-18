@@ -10,15 +10,16 @@ import UIKit
 
 class KucoinResponseParser: NSObject {
 
-    class func parseResponse(response: [String: AnyObject], coinsArray: [Coin], btcRate: Double)/* -> Array<Any>*/ { //Dictionary<String, Double> {
+    class func parseResponse(response: [String: AnyObject], coinsArray: [Coin], btcRate: Double) -> Dictionary<String, Double> {
         
         let kAllDicts = "data"
         let kCoinsPair = "symbol"
         let kLastCoinPrice = "lastDealPrice"
         let btcPrefix = "-BTC"
         
+        var actualCoinsRates = Dictionary<String, Double>()
+        
         let dictsArray = response[kAllDicts] as! [Dictionary<String, AnyObject>]
-//        var allCoins = Array<Any>()
         
         for someCoin in coinsArray {
             if someCoin.exchange == ExchangeBehavior.Kucoin {
@@ -36,14 +37,16 @@ class KucoinResponseParser: NSObject {
                             let coinName = coinsPair[range]
                             if someCoin.shortName == coinName {
                                 let coinPrice = ((currentDict[kLastCoinPrice] as? NSNumber)?.doubleValue)! * btcRate
-                                let currentCoinArray = [coinName, coinPrice] as [Any]
-                            
-                                print(currentCoinArray)
+                                actualCoinsRates.updateValue(coinPrice, forKey: String(coinName))
+//                                let currentCoinArray = [coinName, coinPrice] as [Any]
+//                                print(currentCoinArray)
                             }
                         }
                     }
                 }
             }
         }
+        print(actualCoinsRates)
+        return actualCoinsRates
     }
 }

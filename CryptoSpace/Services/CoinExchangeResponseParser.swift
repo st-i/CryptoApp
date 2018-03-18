@@ -30,7 +30,7 @@ import UIKit
 
 class CoinExchangeResponseParser: NSObject {
 
-    class func parseResponseForSingleCoin(coinShortName: String, response: [String: AnyObject], btcRate: Double) {
+    class func parseResponseForSingleCoin(coinShortName: String, response: [String: AnyObject], btcRate: Double) -> Double {
         
         let kCoinDict = "result"
         let kLastCoinPrice = "LastPrice"
@@ -38,7 +38,9 @@ class CoinExchangeResponseParser: NSObject {
         let coinDict = response[kCoinDict] as! Dictionary<String, AnyObject>
         let coinPrice = Double(coinDict[kLastCoinPrice] as! String)! * btcRate
         
-        let currentCoinArray = [coinShortName, coinPrice] as [Any]
-        print(currentCoinArray)
+//        let currentCoinArray = [coinShortName, coinPrice] as [Any]
+//        print(currentCoinArray)
+        print(coinPrice)
+        return coinPrice
     }
 }

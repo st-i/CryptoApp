@@ -31,7 +31,6 @@ class IDEXResponseParser: NSObject {
                             let coinPrice = Double(currentDict[kLastCoinPrice] as! String)! * ethRate
                             actualCoinsRates.updateValue(coinPrice, forKey: String(coinName))
 //                            let currentCoinArray = [coinName, coinPrice] as [Any]
-                            
 //                            print(currentCoinArray)
                         }
                     }

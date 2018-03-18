@@ -10,12 +10,14 @@ import UIKit
 
 class HitBTCResponseParser: NSObject {
 
-    class func parseResponse(response: [Dictionary<String, AnyObject>], coinsArray: [Coin], btcRate: Double)/* -> Array<Any>*/ { //Dictionary<String, Double> {
+    class func parseResponse(response: [Dictionary<String, AnyObject>], coinsArray: [Coin], btcRate: Double) -> Dictionary<String, Double> {
         
         let kCoinsPair = "symbol"
         let kLastCoinPrice = "last"
         let btcName = "BTC"
         let ethName = "ETH"
+        
+        var actualCoinsRates = Dictionary<String, Double>()
         
         var ethRate = 0.0
         var xrpRate = 0.0
@@ -28,10 +30,10 @@ class HitBTCResponseParser: NSObject {
                 xrpRate = Double(currentDict[kLastCoinPrice] as! String)! * btcRate
             }else if coinsPair == "XRPUSDT"{
                 usdtRate = xrpRate / Double(currentDict[kLastCoinPrice] as! String)!
-                print("\(["USDT", usdtRate])")
+                actualCoinsRates.updateValue(usdtRate, forKey: "USDT")
+//                print("\(["USDT", usdtRate])")
             }
         }
-        
         
         for someCoin in coinsArray {
             if someCoin.exchange == ExchangeBehavior.HitBTC {
@@ -53,9 +55,9 @@ class HitBTCResponseParser: NSObject {
                                 if !((currentDict[kLastCoinPrice]?.isKind(of: NSNull.self))!) {
                                     coinPrice = Double(currentDict[kLastCoinPrice] as! String)! * btcRate
                                 }
-                                let currentCoinArray = [coinsPair, coinPrice] as [Any]
-                                
-                                print(currentCoinArray)
+                                actualCoinsRates.updateValue(coinPrice, forKey: String(coinName))
+//                                let currentCoinArray = [coinsPair, coinPrice] as [Any]
+//                                print(currentCoinArray)
                             }
                         }
                     }
@@ -73,14 +75,16 @@ class HitBTCResponseParser: NSObject {
                                 if !((currentDict[kLastCoinPrice]?.isKind(of: NSNull.self))!) {
                                     coinPrice = Double(currentDict[kLastCoinPrice] as! String)! * ethRate
                                 }
-                                let currentCoinArray = [coinsPair, coinPrice] as [Any]
-                                
-                                print(currentCoinArray)
+                                actualCoinsRates.updateValue(coinPrice, forKey: String(coinName))
+//                                let currentCoinArray = [coinsPair, coinPrice] as [Any]
+//                                print(currentCoinArray)
                             }
                         }
                     }
                 }
             }
         }
+        print(actualCoinsRates)
+        return actualCoinsRates
     }
 }

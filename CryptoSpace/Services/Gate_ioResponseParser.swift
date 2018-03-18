@@ -10,11 +10,13 @@ import UIKit
 
 class Gate_ioResponseParser: NSObject {
     
-    class func parseResponse(response: [String: AnyObject], coinsArray: [Coin], btcRate: Double, ethRate: Double)/* -> Array<Any>*/ { //Dictionary<String, Double> {
+    class func parseResponse(response: [String: AnyObject], coinsArray: [Coin], btcRate: Double, ethRate: Double) -> Dictionary<String, Double> {
         
         let kLastCoinPrice = "last"
         let btcPrefix = "_btc"
         let ethPrefix = "_eth"
+        
+        var actualCoinsRates = Dictionary<String, Double>()
         
         for someCoin in coinsArray {
             if someCoin.exchange == ExchangeBehavior.Gate_io {
@@ -52,13 +54,15 @@ class Gate_ioResponseParser: NSObject {
                             }else{
                                 coinPrice = 8888888888888.0
                             }
-                            let currentCoinArray = [coinName, coinPrice] as [Any]
-                            
-                            print(currentCoinArray)
+                            actualCoinsRates.updateValue(coinPrice, forKey: String(coinName))
+//                            let currentCoinArray = [coinName, coinPrice] as [Any]
+//                            print(currentCoinArray)
                         }
                     }
                 }
             }
         }
+        print(actualCoinsRates)
+        return actualCoinsRates
     }
 }

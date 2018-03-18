@@ -28,20 +28,20 @@ import UIKit
 
 class CobinhoodResponseParser: NSObject {
     
-    class func parseResponseForSingleCoin(coinShortName: String, response: [String: AnyObject], btcRate: Double)/* -> Array<Any>*/ { //Dictionary<String, Double> {
+    class func parseResponseForSingleCoin(coinShortName: String, response: [String: AnyObject], btcRate: Double) -> Double {
         
         let kResult = "result"
         let kCoinDict = "ticker"
-//        let kCoinsPair = "trading_pair_id"
         let kLastCoinPrice = "last_trade_price"
         
         let resultDict = response[kResult] as! Dictionary<String, AnyObject>
         let coinDict = resultDict[kCoinDict] as! Dictionary<String, AnyObject>
         
-//        let coinsPair = coinDict[kCoinsPair] as! String
         let coinPrice = Double(coinDict[kLastCoinPrice] as! String)! * btcRate
         
-        let currentCoinArray = [coinShortName, coinPrice] as [Any]
-        print(currentCoinArray)
+//        let currentCoinArray = [coinShortName, coinPrice] as [Any]
+//        print(currentCoinArray)
+        print(coinPrice)
+        return coinPrice
     }
 }

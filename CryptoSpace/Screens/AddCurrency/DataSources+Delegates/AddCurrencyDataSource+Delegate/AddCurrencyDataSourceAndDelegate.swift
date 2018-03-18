@@ -37,6 +37,10 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     var trackExchangeRateImageView = UIImageView()
     var actionCheckmarkImageView = UIImageView()
     
+    var indicatorWasShown = false
+    
+    var dateString: String!
+    
     override init() {
         super.init()
         self.createChoiceView()
@@ -160,6 +164,16 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         }
     }
     
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        
+//        if cell.isKind(of: CurrentExchangeRateCell.self) && !indicatorWasShown {
+//            let currentExchangeRateCell = tableView.cellForRow(at: IndexPath.init(row: 1, section: 1)) as! CurrentExchangeRateCell
+//            currentExchangeRateCell.coinRateIndicator.startAnimating()
+//            indicatorWasShown = true
+//        }
+//    }
+    
+    //MARK: Methods
     func cellWithOperationSetting(tableView: UITableView, rowNumber: Int) -> UITableViewCell {
         if self.currencyPurchase {
             switch rowNumber {
@@ -167,10 +181,10 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
                 return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinName: currentCoin.fullName)
                 
             case 1:
-                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", rightText: "")
+                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс")
                 
             case 2:
-                return ActionWithCurrencyDateCellBuilder.buildActionWithCurrencyDateCell(for: tableView)
+                return ActionWithCurrencyDateCellBuilder.buildActionWithCurrencyDateCell(for: tableView, date: dateString)
                 
             case 3:
                 return PurchaseExchangeRateCellBuilder.buildPurchaseExchangeRateCell(for: tableView, delegate: self.viewController)
@@ -190,10 +204,10 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
                 return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinName: currentCoin.fullName)
                 
             case 1:
-                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", rightText: "")
+                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс")
                 
             default:
-                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", rightText: "")
+                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс")
             }
         }
     }
@@ -432,57 +446,61 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
             self.dateChoiceBlurView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.0)
             self.viewAboveDatePicker.frame.origin.y = self.dateChoiceBlurView.frame.maxY
             self.purchaseDatePicker.frame.origin.y = self.dateChoiceBlurView.frame.maxY + 40
-        }, completion:  { (true) in
+        }, completion: { (true) in
             self.dateChoiceBlurView.removeFromSuperview()
         })
     }
     
     @objc func datePickerChooseAction() {
         let purchaseDate = purchaseDatePicker.date
-        let purchaseDateString = purchaseDateStringFromDate(date: purchaseDate)
+        
+        let detaildeDataFormatter = DetailedDateFormatter.init()
+        let purchaseDateString = detaildeDataFormatter.stringFromDate(date: purchaseDate)//purchaseDateStringFromDate(date: purchaseDate)
+        
         let dateCell = viewController.tableView.cellForRow(at: IndexPath.init(row: 2, section: 1)) as! ActionWithCurrencyDateCell
         dateCell.purchaseDateLabel.text = purchaseDateString
+        dateString = purchaseDateString
         hideDatePicker()
     }
     
-    func purchaseDateStringFromDate(date: Date) -> String {
-        let calendar: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
-        
-        let day = calendar.component(.day, from: date)
-        let month = calendar.component(.month, from: date)
-        let year = calendar.component(.year, from: date)
-        
-        var monthString: String!
-        switch month {
-        case 1:
-            monthString = "Янв"
-        case 2:
-            monthString = "Фев"
-        case 3:
-            monthString = "Мар"
-        case 4:
-            monthString = "Апр"
-        case 5:
-            monthString = "Май"
-        case 6:
-            monthString = "Июн"
-        case 7:
-            monthString = "Июл"
-        case 8:
-            monthString = "Авг"
-        case 9:
-            monthString = "Сен"
-        case 10:
-            monthString = "Окт"
-        case 11:
-            monthString = "Ноя"
-        case 12:
-            monthString = "Дек"
-        default:
-            monthString = "Месяц"
-        }
-        let fullDateString = String(format:"%i %@ %i", day, monthString, year)
-        
-        return fullDateString
-    }
+//    func purchaseDateStringFromDate(date: Date) -> String {
+//        let calendar: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+//
+//        let day = calendar.component(.day, from: date)
+//        let month = calendar.component(.month, from: date)
+//        let year = calendar.component(.year, from: date)
+//
+//        var monthString: String!
+//        switch month {
+//        case 1:
+//            monthString = "Янв"
+//        case 2:
+//            monthString = "Фев"
+//        case 3:
+//            monthString = "Мар"
+//        case 4:
+//            monthString = "Апр"
+//        case 5:
+//            monthString = "Май"
+//        case 6:
+//            monthString = "Июн"
+//        case 7:
+//            monthString = "Июл"
+//        case 8:
+//            monthString = "Авг"
+//        case 9:
+//            monthString = "Сен"
+//        case 10:
+//            monthString = "Окт"
+//        case 11:
+//            monthString = "Ноя"
+//        case 12:
+//            monthString = "Дек"
+//        default:
+//            monthString = "Месяц"
+//        }
+//        let fullDateString = String(format:"%i %@ %i", day, monthString, year)
+//
+//        return fullDateString
+//    }
 }

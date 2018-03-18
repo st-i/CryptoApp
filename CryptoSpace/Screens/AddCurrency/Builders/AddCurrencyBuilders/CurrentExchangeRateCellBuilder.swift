@@ -12,13 +12,12 @@ private let kCurrentExchangeRateCellIdentifier = "CurrentExchangeRateCell"
 
 class CurrentExchangeRateCellBuilder: NSObject {
     
-    class func buildCurrentExchangeRateCell(for tableView: UITableView, leftText: String, rightText: String) -> UITableViewCell {
+    class func buildCurrentExchangeRateCell(for tableView: UITableView, leftText: String) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kCurrentExchangeRateCellIdentifier) as! CurrentExchangeRateCell
         cell.selectionStyle = .none
         
         cell.leftTextLabel.text = leftText
-        cell.rightTextLabel.text = rightText
-        
+//        cell.rightTextLabel.text = rightText
         return cell
     }
 }

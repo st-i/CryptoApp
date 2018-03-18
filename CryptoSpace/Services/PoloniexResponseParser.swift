@@ -10,11 +10,13 @@ import UIKit
 
 class PoloniexResponseParser: NSObject {
 
-    class func parseResponse(response: [String: AnyObject], coinsArray: [Coin], btcRate: Double)/* -> Array<Any>*/ { //Dictionary<String, Double> {
+    class func parseResponse(response: [String: AnyObject], coinsArray: [Coin], btcRate: Double) -> Dictionary<String, Double> {
         
         let kLastCoinPrice = "last"
         let btcPrefix = "BTC_"
         
+        var actualCoinsRates = Dictionary<String, Double>()
+
         for someCoin in coinsArray {
             if someCoin.exchange == ExchangeBehavior.Poloniex {
                 for currentCoinsPair in response.keys {
@@ -27,13 +29,15 @@ class PoloniexResponseParser: NSObject {
                         if someCoin.shortName == coinName {
                             let currentDict = response[currentCoinsPair] as! Dictionary<String, AnyObject>
                             let coinPrice = Double(currentDict[kLastCoinPrice] as! String)! * btcRate
-                            let currentCoinArray = [coinName, coinPrice] as [Any]
-                            
-                            print(currentCoinArray)
+                            actualCoinsRates.updateValue(coinPrice, forKey: String(coinName))
+//                            let currentCoinArray = [coinName, coinPrice] as [Any]
+//                            print(currentCoinArray)
                         }
                     }
                 }
             }
         }
+        print(actualCoinsRates)
+        return actualCoinsRates
     }
 }
