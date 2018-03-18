@@ -1,18 +1,20 @@
 //
-//  TrackedCurrencyCell.swift
+//  CommonCoinInfoCell.swift
 //  CryptoSpace
 //
-//  Created by iStef on 17.12.17.
-//  Copyright © 2017 Stefanov. All rights reserved.
+//  Created by st.i on 18.03.2018.
+//  Copyright © 2018 Stefanov. All rights reserved.
 //
 
 import UIKit
 
-class TrackedCurrencyCell: UITableViewCell {
-    
+class CommonCoinInfoCell: UITableViewCell {
+
+    @IBOutlet weak var coinNameLabel: UILabel!
     @IBOutlet weak var currencyImageView: UIImageView!
     @IBOutlet weak var exchangeRatePercentagesChangeLabel: UILabel!
-
+    @IBOutlet weak var lowerSeparator: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,4 +25,5 @@ class TrackedCurrencyCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
 }

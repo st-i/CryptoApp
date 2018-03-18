@@ -17,11 +17,12 @@ class TrackedCurrencyDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (arrayWithCells[section] as! NSMutableArray).count
+        return 1
+//        return (arrayWithCells[section] as! NSMutableArray).count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return (arrayWithCells[indexPath.section] as! NSMutableArray)[indexPath.row] as! UITableViewCell
+        return (arrayWithCells[indexPath.section] as! [UITableViewCell])[indexPath.row]
     }
 }

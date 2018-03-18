@@ -19,6 +19,8 @@ class TrackedCurrencyViewController: UIViewController {
     
     var animationTimer = Timer()
     
+    var currentCoin: Coin!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +29,7 @@ class TrackedCurrencyViewController: UIViewController {
         titleViewLabel.textAlignment = .center
         titleViewLabel.font = UIFont.systemFont(ofSize: 19, weight: UIFont.Weight.medium)
         titleViewLabel.textColor = UIColor.white
-        titleViewLabel.text = "Bitcoin"
+        titleViewLabel.text = currentCoin.shortName //"Bitcoin"
         titleView.addSubview(titleViewLabel)
         self.navigationItem.titleView = titleView
         
@@ -70,7 +72,7 @@ class TrackedCurrencyViewController: UIViewController {
     }
     
     func fillTableViewWithData() {
-        self.tableView.backgroundColor = UIColor.groupTableViewBackground
+        self.tableView.backgroundColor = UIColor.white //groupTableViewBackground
         if (self.navigationController?.viewControllers[0].isKind(of: TrackedCurrenciesViewController.self))! {
             self.trackedCurrencyDataSource = TrackedCurrencyDataSource()
             self.trackedCurrencyDelegate = TrackedCurrencyDelegate()
@@ -78,7 +80,7 @@ class TrackedCurrencyViewController: UIViewController {
             self.tableView.dataSource = self.trackedCurrencyDataSource
             self.tableView.delegate = self.trackedCurrencyDelegate
         
-            let arrayWithCells = TrackedCurrencyScreenDirector.createTrackedCurrencyCells(for: self.tableView)
+            let arrayWithCells = TrackedCurrencyScreenDirector.createTrackedCurrencyCells(for: tableView, currentCoin: currentCoin)
         
             self.trackedCurrencyDataSource.arrayWithCells = arrayWithCells
             self.trackedCurrencyDelegate.arrayWithCells = arrayWithCells
@@ -107,8 +109,8 @@ class TrackedCurrencyViewController: UIViewController {
         animation.toValue = NSNumber.init(floatLiteral: 2 * .pi)
         
         if (self.navigationController?.viewControllers[0] .isKind(of: TrackedCurrenciesViewController.self))! {
-            let firstSection = self.trackedCurrencyDelegate.arrayWithCells[0] as! NSMutableArray
-            let cell = firstSection[0] as! TrackedCurrencyCell
+            let firstSection = self.trackedCurrencyDelegate.arrayWithCells[0] as! [UITableViewCell]
+            let cell = firstSection[0] as! CommonCoinInfoCell
             cell.currencyImageView.layer.add(animation, forKey: animation.keyPath)
             
 //            UIView.animate(withDuration: 1.5, delay: 0.0,

@@ -117,6 +117,12 @@
 		DD7CB75E2052F23800E6E786 /* KucoinResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CB75D2052F23800E6E786 /* KucoinResponseParser.swift */; };
 		DD82A7B920025E3C00A6DD34 /* ActionWithCurrencyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82A7B820025E3C00A6DD34 /* ActionWithCurrencyTableView.swift */; };
 		DD82A7BB20025E5800A6DD34 /* ActionWithCurrencyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD82A7BA20025E5800A6DD34 /* ActionWithCurrencyTableView.xib */; };
+		DD91F32E205E40F800B5BCD6 /* CommonCoinInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91F32D205E40F800B5BCD6 /* CommonCoinInfoCell.swift */; };
+		DD91F332205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91F331205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift */; };
+		DD91F334205E41A700B5BCD6 /* CoinPurchaseWithNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91F333205E41A700B5BCD6 /* CoinPurchaseWithNoteCell.swift */; };
+		DD91F336205E42F700B5BCD6 /* CommonCoinInfoCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91F335205E42F700B5BCD6 /* CommonCoinInfoCellBuilder.swift */; };
+		DD91F338205E44D100B5BCD6 /* CoinPurchaseWONoteCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91F337205E44D100B5BCD6 /* CoinPurchaseWONoteCellBuilder.swift */; };
+		DD91F33A205E453700B5BCD6 /* CoinPurchaseWithNoteCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91F339205E453700B5BCD6 /* CoinPurchaseWithNoteCellBuilder.swift */; };
 		DD93DF4F20552B55007EB222 /* BinanceResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93DF4E20552B55007EB222 /* BinanceResponseParser.swift */; };
 		DD93DF51205532B1007EB222 /* LivecoinResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93DF50205532B1007EB222 /* LivecoinResponseParser.swift */; };
 		DD93DF53205539AC007EB222 /* BigONEResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD93DF52205539AC007EB222 /* BigONEResponseParser.swift */; };
@@ -256,6 +262,12 @@
 		DD7CB75D2052F23800E6E786 /* KucoinResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KucoinResponseParser.swift; sourceTree = "<group>"; };
 		DD82A7B820025E3C00A6DD34 /* ActionWithCurrencyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionWithCurrencyTableView.swift; sourceTree = "<group>"; };
 		DD82A7BA20025E5800A6DD34 /* ActionWithCurrencyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionWithCurrencyTableView.xib; sourceTree = "<group>"; };
+		DD91F32D205E40F800B5BCD6 /* CommonCoinInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonCoinInfoCell.swift; sourceTree = "<group>"; };
+		DD91F331205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPurchaseWONoteCell.swift; sourceTree = "<group>"; };
+		DD91F333205E41A700B5BCD6 /* CoinPurchaseWithNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPurchaseWithNoteCell.swift; sourceTree = "<group>"; };
+		DD91F335205E42F700B5BCD6 /* CommonCoinInfoCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonCoinInfoCellBuilder.swift; sourceTree = "<group>"; };
+		DD91F337205E44D100B5BCD6 /* CoinPurchaseWONoteCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPurchaseWONoteCellBuilder.swift; sourceTree = "<group>"; };
+		DD91F339205E453700B5BCD6 /* CoinPurchaseWithNoteCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPurchaseWithNoteCellBuilder.swift; sourceTree = "<group>"; };
 		DD93DF4E20552B55007EB222 /* BinanceResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinanceResponseParser.swift; sourceTree = "<group>"; };
 		DD93DF50205532B1007EB222 /* LivecoinResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivecoinResponseParser.swift; sourceTree = "<group>"; };
 		DD93DF52205539AC007EB222 /* BigONEResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigONEResponseParser.swift; sourceTree = "<group>"; };
@@ -573,6 +585,9 @@
 			isa = PBXGroup;
 			children = (
 				54081FB71FE6673D0098195F /* TrackedCurrencyCell.swift */,
+				DD91F32D205E40F800B5BCD6 /* CommonCoinInfoCell.swift */,
+				DD91F331205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift */,
+				DD91F333205E41A700B5BCD6 /* CoinPurchaseWithNoteCell.swift */,
 			);
 			path = TrackedCurrencyCells;
 			sourceTree = "<group>";
@@ -581,6 +596,9 @@
 			isa = PBXGroup;
 			children = (
 				54081FBA1FE6680E0098195F /* TrackedCurrencyCellBuilder.swift */,
+				DD91F335205E42F700B5BCD6 /* CommonCoinInfoCellBuilder.swift */,
+				DD91F337205E44D100B5BCD6 /* CoinPurchaseWONoteCellBuilder.swift */,
+				DD91F339205E453700B5BCD6 /* CoinPurchaseWithNoteCellBuilder.swift */,
 			);
 			path = TrackedCurrencyBuilders;
 			sourceTree = "<group>";
@@ -1053,6 +1071,7 @@
 				54BDCC651FF41576000662C5 /* CurrencyPairCellBuilder.swift in Sources */,
 				54EE2CFD1FF69F950008CAC2 /* PurchaseSumCell.swift in Sources */,
 				DDAA6ADE20036307007045F7 /* ActionChoiceButton.swift in Sources */,
+				DD91F33A205E453700B5BCD6 /* CoinPurchaseWithNoteCellBuilder.swift in Sources */,
 				54EBA47A1FE84CE600E9F412 /* ObservedCurrencyDataSource.swift in Sources */,
 				54306C091FFA5DB50094A894 /* AddCurrencyDataSourceAndDelegate.swift in Sources */,
 				5407D3F61FE52BC40063C3A6 /* TrackedCurrenciesViewController.swift in Sources */,
@@ -1062,6 +1081,7 @@
 				5406BA101FF2DEE80022D1C4 /* NotesCell.swift in Sources */,
 				5407D3F41FE52BC40063C3A6 /* TrackedCurrenciesScreenDirector.swift in Sources */,
 				DD7CB755205273C400E6E786 /* RequestToTidexBuilder.swift in Sources */,
+				DD91F332205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift in Sources */,
 				54081FBD1FE6686F0098195F /* TrackedCurrencyScreenDirector.swift in Sources */,
 				DDA1607E203DED000020B602 /* AllCoinsManager.swift in Sources */,
 				54EBA4751FE84B4400E9F412 /* ObservedCurrencyCellBuilder.swift in Sources */,
@@ -1082,6 +1102,8 @@
 				DD7CB75C2052DBA000E6E786 /* Checkups.swift in Sources */,
 				DD93DF5920555A7E007EB222 /* CobinhoodResponseParser.swift in Sources */,
 				54081FBB1FE6680E0098195F /* TrackedCurrencyCellBuilder.swift in Sources */,
+				DD91F32E205E40F800B5BCD6 /* CommonCoinInfoCell.swift in Sources */,
+				DD91F338205E44D100B5BCD6 /* CoinPurchaseWONoteCellBuilder.swift in Sources */,
 				5407D3EE1FE52BC40063C3A6 /* TrackedPositionCellBuilder.swift in Sources */,
 				54BDCC691FF415AA000662C5 /* CurrentExchangeRateCellBuilder.swift in Sources */,
 				54081FB81FE6673D0098195F /* TrackedCurrencyCell.swift in Sources */,
@@ -1098,6 +1120,7 @@
 				DD7CB751205271A200E6E786 /* RequestToCoinExchangeBuilder.swift in Sources */,
 				DD7CB73920526A9800E6E786 /* RequestToBittrexBuilder.swift in Sources */,
 				DD7CB74B2052700C00E6E786 /* RequestToBigONEBuilder.swift in Sources */,
+				DD91F336205E42F700B5BCD6 /* CommonCoinInfoCellBuilder.swift in Sources */,
 				DD7CB74520526E9800E6E786 /* RequestToGate_ioBuilder.swift in Sources */,
 				DD7CB74720526F2D00E6E786 /* RequestToBinanceBuilder.swift in Sources */,
 				54306C0B1FFAA9C60094A894 /* ActionChoiceCell.swift in Sources */,
@@ -1158,6 +1181,7 @@
 				DD93DF4F20552B55007EB222 /* BinanceResponseParser.swift in Sources */,
 				DD04D129201E17D900D67AA5 /* PortfolioCurrencyGraphCellBuilder.swift in Sources */,
 				54D3EAEE1FEAE245002DDB7F /* CurrencyForSearchCellBuilder.swift in Sources */,
+				DD91F334205E41A700B5BCD6 /* CoinPurchaseWithNoteCell.swift in Sources */,
 				DD7CB75820527F6B00E6E786 /* BitfinexResponseParser.swift in Sources */,
 				DD93DF5B20555FBD007EB222 /* CoinExchangeResponseParser.swift in Sources */,
 				54D3EAF01FEAE285002DDB7F /* CurrencyForSearchScreenDirector.swift in Sources */,

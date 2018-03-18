@@ -16,6 +16,7 @@ private let kHeightForSectionHeader = 30
 class TrackedCurrenciesDelegate: NSObject, UITableViewDelegate {
     
     var arrayWithCells = NSMutableArray() as! [[UITableViewCell]]
+    var coins = [Coin]()
     var viewController = UIViewController()
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -57,7 +58,8 @@ class TrackedCurrenciesDelegate: NSObject, UITableViewDelegate {
         
         if indexPath.section == 1 {
             let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
-            let trackedCurrencyVC = storyboard.instantiateViewController(withIdentifier: "TrackedCurrencyViewController")
+            let trackedCurrencyVC = storyboard.instantiateViewController(withIdentifier: "TrackedCurrencyViewController") as! TrackedCurrencyViewController
+            trackedCurrencyVC.currentCoin = coins[indexPath.row]
             viewController.navigationController?.pushViewController(trackedCurrencyVC, animated: true)
         }
     }

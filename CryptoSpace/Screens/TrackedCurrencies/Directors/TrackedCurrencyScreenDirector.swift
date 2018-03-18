@@ -10,13 +10,28 @@ import UIKit
 
 class TrackedCurrencyScreenDirector: NSObject {
 
-    class func createTrackedCurrencyCells(for tableView: UITableView) -> Array<Any> {
-        let firstSection = NSMutableArray()
+    class func createTrackedCurrencyCells(for tableView: UITableView, currentCoin: Coin) -> Array<Any> {
+//        let firstSection = NSMutableArray()
+//        let secondSection = NSMutableArray()
+//
+//        //first section
+//        firstSection.add(CommonCoinInfoCellBuilder.buildCell(for: tableView))
+//
+//        //second section
+//        secondSection.add(CoinPurchaseWONoteCellBuilder.buildCell(for: tableView))
+//        secondSection.add(CoinPurchaseWONoteCellBuilder.buildCell(for: tableView))
+//        secondSection.add(CoinPurchaseWithNoteCellBuilder.buildCell(for: tableView))
+//        secondSection.add(CoinPurchaseWithNoteCellBuilder.buildCell(for: tableView))
+//
+//        let allSections = [firstSection, secondSection]
         
-        //first section
-        firstSection.add(TrackedCurrencyCellBuilder.buildTrackedCurrencyCell(for: tableView))
+        let firstCell: CommonCoinInfoCell = CommonCoinInfoCellBuilder.buildCell(for: tableView, coin: currentCoin) as! CommonCoinInfoCell
+        let secondCell: CoinPurchaseWONoteCell = CoinPurchaseWONoteCellBuilder.buildCell(for: tableView) as! CoinPurchaseWONoteCell
+        let thirdCell: CoinPurchaseWONoteCell = CoinPurchaseWONoteCellBuilder.buildCell(for: tableView) as! CoinPurchaseWONoteCell
+        let fourthCell: CoinPurchaseWithNoteCell = CoinPurchaseWithNoteCellBuilder.buildCell(for: tableView) as! CoinPurchaseWithNoteCell
+        let fifthCell: CoinPurchaseWithNoteCell = CoinPurchaseWithNoteCellBuilder.buildCell(for: tableView) as! CoinPurchaseWithNoteCell
         
-        let allSections = [firstSection]
+        let allSections = [[firstCell], [secondCell], [thirdCell], [fourthCell], [fifthCell]]
         
         return allSections
     }

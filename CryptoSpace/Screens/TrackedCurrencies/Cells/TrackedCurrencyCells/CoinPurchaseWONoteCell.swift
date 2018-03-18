@@ -1,18 +1,17 @@
 //
-//  TrackedCurrencyCell.swift
+//  CoinPurchaseWONoteCell.swift
 //  CryptoSpace
 //
-//  Created by iStef on 17.12.17.
-//  Copyright © 2017 Stefanov. All rights reserved.
+//  Created by st.i on 18.03.2018.
+//  Copyright © 2018 Stefanov. All rights reserved.
 //
 
 import UIKit
 
-class TrackedCurrencyCell: UITableViewCell {
-    
-    @IBOutlet weak var currencyImageView: UIImageView!
-    @IBOutlet weak var exchangeRatePercentagesChangeLabel: UILabel!
+class CoinPurchaseWONoteCell: UITableViewCell {
 
+    @IBOutlet weak var lowerSeparator: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,4 +22,5 @@ class TrackedCurrencyCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
 }

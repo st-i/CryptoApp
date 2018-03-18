@@ -168,6 +168,7 @@ class TrackedCurrenciesViewController: UIViewController {
 //        self.trackedCurrenciesDelegate.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
         createCoinsArray()
         trackedCurrenciesDataSource.coins = userCoins
+        trackedCurrenciesDelegate.coins = userCoins
         trackedCurrenciesDelegate.viewController = self
     }
     
@@ -275,7 +276,12 @@ class TrackedCurrenciesViewController: UIViewController {
     }
     
     func createCoinsArray() {// -> [Coin] {
-        userCoins = UserCoinsManager.fetchAllUserCoins()
+//        userCoins = UserCoinsManager.fetchAllUserCoins()
+        
+        let allCoins = AllCoinsManager.createArrayWithAllCoins()
+        for i in 0..<10 {
+            userCoins.append(allCoins[i])
+        }
         
         //second section
 //        let btcCoin = "BTC"
