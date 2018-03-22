@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum CoinType: Int {
+    case Tracked
+    case Observed
+}
+
 enum ExchangeBehavior: Int {
     case Bitfinex
     case Bittrex

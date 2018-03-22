@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 private let kPurchaseExchangeRateCellIdentifier = "PurchaseExchangeRateCell"
 private let kPurchaseSumCellIdentifier = "PurchaseSumCell"
@@ -96,6 +97,7 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
             let requestManager = RequestManager.init()
             requestManager.getExchangeRate(coin: currentCoin) { (coinRate) in
     //            let currentExchangeRateCell = self.tableView.cellForRow(at: IndexPath.init(row: 1, section: 1)) as! CurrentExchangeRateCell
+                self.currentCoin.exchangeRate = coinRate
                 currentExchangeRateCell.coinRateIndicator.stopAnimating()
                 currentExchangeRateCell.coinRateIndicator.removeFromSuperview()
                 self.requestWasSend = true
@@ -310,6 +312,48 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
 //            }
 //        }
 //        tabBarController?.selectedIndex = 0
+        
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+//            return
+//        }
+        
+//        let currencyAmountCell = self.tableView.cellForRow(at: IndexPath.init(row: 4, section: 1)) as! CurrencyAmountCell
+//        let currencyAmountText = currencyAmountCell.currencyAmountTextField.text!
+//        if currencyAmountText.count > 0 {
+//            currentCoin.amount = Double(currencyAmountText)!
+//        }else{
+//            currentCoin.amount = 0.0
+//        }
+//
+//        let purchaseSumCell = self.tableView.cellForRow(at: IndexPath.init(row: 5, section: 1)) as! PurchaseSumCell
+//        let purchaseSumText = purchaseSumCell.purchaseSumTextField.text!.suffix(1)
+//        if purchaseSumText.count > 0 {
+//            currentCoin.sum = Double()
+//        }else{
+//            currentCoin.sum = 0.0
+//        }
+        currentCoin.sum = purchaseSumValue
+        currentCoin.amount = currencyAmountValue
+
+        //1
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        //2
+        let entity = NSEntityDescription.entity(forEntityName: "UserCoin", in: managedContext)!
+        let userCoin = NSManagedObject(entity: entity, insertInto: managedContext)
+        //3
+        userCoin.setValue(currentCoin.fullName, forKeyPath: "fullName")
+        userCoin.setValue(currentCoin.shortName, forKey: "shortName")
+        userCoin.setValue(currentCoin.id, forKey: "id")
+        userCoin.setValue(NSNumber.init(value:currentCoin.exchange.rawValue), forKey: "exchange")
+        userCoin.setValue(NSNumber.init(value:currentCoin.exchangeRate), forKey: "exchangeRate")
+        userCoin.setValue(NSNumber.init(value:currentCoin.amount), forKey: "amount")
+        userCoin.setValue(NSNumber.init(value:currentCoin.sum), forKey: "sum")
+        //4
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
         
         dismiss(animated: true, completion: nil)
         

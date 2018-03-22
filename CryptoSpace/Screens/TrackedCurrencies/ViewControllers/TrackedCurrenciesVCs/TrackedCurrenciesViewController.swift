@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
 //struct Coin {
 //    //    var id: String
@@ -78,17 +79,6 @@ class TrackedCurrenciesViewController: UIViewController {
 //            let allUserCoins = AllCoinsManager.createArrayWithAllCoins()
 //
 ////            print(firstResponse)
-            
-
-        
-            
-
-            
-
-            
-
-            
-
 //        }
     
 //        request(RequestToBitfinexBuilder.buildEthRateRequest()).responseJSON { (firstResponse) in
@@ -150,6 +140,11 @@ class TrackedCurrenciesViewController: UIViewController {
 //
 //            })
 //    }
+    
+    func fetchAllTrackedCoins() {// -> [NSManagedObject] {
+        userCoins = CoreDataManager.shared.getAndMapUserCoinsArrayToCoinsArray()
+//        print(userCoins)
+    }
     
     func fillTableViewWithData() {
 //        let btcRate = loadExchangeRateForBTC()
@@ -214,10 +209,18 @@ class TrackedCurrenciesViewController: UIViewController {
 //    }
     
     @objc func refreshCurrenciesRates() {
-        let requestManager = RequestManager.init()
-        requestManager.coinsArray = userCoins
-        requestManager.currentVC = self
-        requestManager.updateCoins()
+        userCoins = CoreDataManager.shared.getAndMapUserCoinsArrayToCoinsArray()
+        trackedCurrenciesDataSource.coins = userCoins
+        trackedCurrenciesDelegate.coins = userCoins
+        tableView.reloadData()
+        
+//        let requestManager = RequestManager.init()
+//        requestManager.coinsArray = userCoins
+//        requestManager.currentVC = self
+//        requestManager.updateCoins()
+        
+//         fetchAllTrackedCoins()
+        
 //        requestManager.updateCoins /*(sendedCoinsArray: userCoins)*/ { (coinsRates) in
 //            self.userCoins = UserCoinsManager.refreshValuesForCoins(coinsArray: self.userCoins, coinsRates: coinsRates)
 //            self.refreshCoinsArray()

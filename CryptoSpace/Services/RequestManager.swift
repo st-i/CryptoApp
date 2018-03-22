@@ -58,7 +58,7 @@ class RequestManager: NSObject {
                     return
                 }
                 let btcRate = BitfinexResponseParser.getBtcRate(response: dataArray)
-                print("BTC \(btcRate)")
+//                print("BTC \(btcRate)")
 
                 let allUserCoins = [coin]
 
@@ -257,17 +257,17 @@ class RequestManager: NSObject {
                 request(coinRequestUrl)
                     .responseJSON(completionHandler: { response in
                         
-                        print(response)
+//                        print(response)
                         
                         guard response.result.isSuccess else{
-                            print("Ошибка при запросе данных \(String(describing: response.result.error))")
+//                            print("Ошибка при запросе данных \(String(describing: response.result.error))")
                             self.currentVC.userCoins = UserCoinsManager.refreshValuesForCoins(coinsArray: self.coinsArray, coinsRates: self.coinsRates)
                             self.currentVC.refreshCoinsArray()
                             return
                         }
                         
                         guard let arrayOfData = response.result.value as? [String: AnyObject] else{
-                            print("Не могу перевести в JSON")
+//                            print("Не могу перевести в JSON")
                             return
                         }
 //                        print(arrayOfData)
@@ -280,14 +280,14 @@ class RequestManager: NSObject {
                             currentRate = Double((arrayOfData[keyForDict1]![keyForDict2] as? String)!)! //okex
                         }
                         
-                        print(currentRate)
+//                        print(currentRate)
                         if self.currentIndex < 2 {
                             if someCoin.shortName == "BTC" {
                                 self.btcRateInUsd = currentRate
                                 self.coinsRates.append(currentRate)
                             }else{
                                 self.coinsRates.append(currentRate * self.btcRateInUsd)
-                                print(currentRate * self.btcRateInUsd)
+//                                print(currentRate * self.btcRateInUsd)
                             }
                             self.currentIndex = self.currentIndex + 1
                             self.updateCoins()

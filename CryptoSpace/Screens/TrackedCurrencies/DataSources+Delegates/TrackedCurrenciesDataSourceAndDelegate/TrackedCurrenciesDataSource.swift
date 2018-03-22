@@ -45,8 +45,8 @@ class TrackedCurrenciesDataSource: NSObject, UITableViewDataSource {
         case 0:
             return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(for: tableView)
         case 1:
-            let currentCoin = coins[indexPath.row]
-            return TrackedPositionCellBuilder.buildTrackedPositionCell(for: tableView, coinName: currentCoin.shortName, coinExchangeRate: currentCoin.exchangeRate)
+//            let currentCoin = coins[indexPath.row]
+            return TrackedPositionCellBuilder.buildTrackedPositionCell(for: tableView, coin: coins[indexPath.row])
         default:
             return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(for: tableView)
 

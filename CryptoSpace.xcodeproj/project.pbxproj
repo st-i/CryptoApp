@@ -90,6 +90,7 @@
 		DD30884D201C7252006260C2 /* NoPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD30884C201C7252006260C2 /* NoPasteTextField.swift */; };
 		DD308853201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD308852201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift */; };
 		DD37B25920518A6500519443 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37B25820518A6500519443 /* Enums.swift */; };
+		DD4F457A2062E3BE002D0A85 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4F45792062E3BE002D0A85 /* CoreDataManager.swift */; };
 		DD595A35205CF68D00ACB26B /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD595A34205CF68D00ACB26B /* GlobalHelpers.swift */; };
 		DD5A92C020548CA100AF268B /* Gate_ioResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A92BF20548CA100AF268B /* Gate_ioResponseParser.swift */; };
 		DD608CCD2054326B006C537D /* IDEXResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD608CCC2054326B006C537D /* IDEXResponseParser.swift */; };
@@ -235,6 +236,7 @@
 		DD30884C201C7252006260C2 /* NoPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPasteTextField.swift; sourceTree = "<group>"; };
 		DD308852201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		DD37B25820518A6500519443 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		DD4F45792062E3BE002D0A85 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		DD595A34205CF68D00ACB26B /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
 		DD5A92BF20548CA100AF268B /* Gate_ioResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gate_ioResponseParser.swift; sourceTree = "<group>"; };
 		DD608CCC2054326B006C537D /* IDEXResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDEXResponseParser.swift; sourceTree = "<group>"; };
@@ -909,6 +911,7 @@
 				DDC281F820305B60002AAAF0 /* RequestManager.swift */,
 				DDC4FF0D20387A5E00BFA7C1 /* UserCoinsManager.swift */,
 				DDA1607D203DED000020B602 /* AllCoinsManager.swift */,
+				DD4F45792062E3BE002D0A85 /* CoreDataManager.swift */,
 				DDA1607F203DEE890020B602 /* Coin.swift */,
 				DD37B25820518A6500519443 /* Enums.swift */,
 				DD7CB75B2052DBA000E6E786 /* Checkups.swift */,
@@ -1121,6 +1124,7 @@
 				DD7CB73920526A9800E6E786 /* RequestToBittrexBuilder.swift in Sources */,
 				DD7CB74B2052700C00E6E786 /* RequestToBigONEBuilder.swift in Sources */,
 				DD91F336205E42F700B5BCD6 /* CommonCoinInfoCellBuilder.swift in Sources */,
+				DD4F457A2062E3BE002D0A85 /* CoreDataManager.swift in Sources */,
 				DD7CB74520526E9800E6E786 /* RequestToGate_ioBuilder.swift in Sources */,
 				DD7CB74720526F2D00E6E786 /* RequestToBinanceBuilder.swift in Sources */,
 				54306C0B1FFAA9C60094A894 /* ActionChoiceCell.swift in Sources */,

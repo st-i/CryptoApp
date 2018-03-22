@@ -11,15 +11,13 @@ import UIKit
 class Coin: NSObject {
     var fullName: String = ""
     var shortName: String = ""
-    
     var id: String = ""
-    
+    var coinType: CoinType = CoinType(rawValue: 0)!
     var exchange: ExchangeBehavior = ExchangeBehavior(rawValue: 0)!
-    
     var bitfinexId: String = ""
     var okexId: String = ""
-    
     var imageLink: String = ""
-    
     var exchangeRate: Double = 0.0
+    var amount: Double = 0.0
+    var sum: Double = 0.0
 }

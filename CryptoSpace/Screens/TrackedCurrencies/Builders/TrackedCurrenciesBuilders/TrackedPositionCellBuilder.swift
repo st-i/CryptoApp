@@ -13,15 +13,21 @@ private let kTrackedPositionCellIdentifier = "TrackedPositionCell"
 
 class TrackedPositionCellBuilder: NSObject {
 
-    class func buildTrackedPositionCell(for tableView: UITableView, coinName: String, coinExchangeRate: Double) -> UITableViewCell {
+    class func buildTrackedPositionCell(for tableView: UITableView, coin: Coin) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: kTrackedPositionCellIdentifier) as! TrackedPositionCell
         
         cell.currencyImageView.image = UIImage(named:"Icon placeholder")
-        cell.currencyNameLabel.text = coinName
+        cell.currencyNameLabel.text = coin.shortName
         
         let currentNumberFormatter = NumberFormatter.init()
         currentNumberFormatter.groupingSize = 3
+        currentNumberFormatter.usesGroupingSeparator = true
+        currentNumberFormatter.groupingSeparator = " "
+        currentNumberFormatter.decimalSeparator = ","
+        currentNumberFormatter.numberStyle = .decimal
+        
+        let coinExchangeRate = coin.exchangeRate
         var fractionDigitsNumber = 0
         if coinExchangeRate < 1 {
             fractionDigitsNumber = 6
@@ -29,14 +35,25 @@ class TrackedPositionCellBuilder: NSObject {
             fractionDigitsNumber = 2
         }
         currentNumberFormatter.maximumFractionDigits = fractionDigitsNumber
-        currentNumberFormatter.usesGroupingSeparator = true
-        currentNumberFormatter.groupingSeparator = " "
-        currentNumberFormatter.decimalSeparator = ","
-        currentNumberFormatter.numberStyle = .decimal
-
         let coinRateString = currentNumberFormatter.string(from: NSNumber.init(value: coinExchangeRate))
-
         cell.currencyExchangeRateCostLabel.text = String(format:"$%@", coinRateString!) //сделать 0 после числа
+        
+        let coinPurchaseSum = coin.sum
+        if coinPurchaseSum < 1 {
+            fractionDigitsNumber = 6
+        }else{
+            fractionDigitsNumber = 2
+        }
+        currentNumberFormatter.maximumFractionDigits = fractionDigitsNumber
+        let coinSumString = currentNumberFormatter.string(from: NSNumber.init(value: coinPurchaseSum))
+        cell.purchasedCoinsCostLabel.text = String(format: "$%@", coinSumString!)
+        
+        let coinAmountSum = coin.amount
+        fractionDigitsNumber = 8
+        currentNumberFormatter.maximumFractionDigits = fractionDigitsNumber
+        let coinAmountString = currentNumberFormatter.string(from: NSNumber.init(value: coinAmountSum))
+        cell.purchasedCoinsAmountLabel.text = String(format: "%@", coinAmountString!)
+
 //        cell.currencyExchangeRateCostLabel.text = String(format:"%f", coinExchangeRate)
         
         cell.lowerSeparator.backgroundColor = UIColor.clear
