@@ -41,7 +41,8 @@ class BigONEResponseParser: NSObject {
         }
 //        let currentCoinArray = [coinName, coinPrice] as [Any]
 //        print(currentCoinArray)
-        print(coinPrice)
+//        print(coinPrice)
+//        print("BigONE запрос")
         return coinPrice
     }
 }

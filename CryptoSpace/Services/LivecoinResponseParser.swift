@@ -43,7 +43,8 @@ class LivecoinResponseParser: NSObject {
                 }
             }
         }
-        print(actualCoinsRates)
+//        print(actualCoinsRates)
+//        print("Livecoin запрос")
         return actualCoinsRates
     }
 }

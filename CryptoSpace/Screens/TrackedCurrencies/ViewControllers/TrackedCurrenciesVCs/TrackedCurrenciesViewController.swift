@@ -29,6 +29,9 @@ class TrackedCurrenciesViewController: UIViewController {
     
     var btcRate:Double = 0.0
     var userCoins = [Coin]()
+    
+    var requestManager: RequestManager!
+    var coinsArrayFormatter: CoinsArrayFormatter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +67,10 @@ class TrackedCurrenciesViewController: UIViewController {
         navigationItem.rightBarButtonItem = addButton
 //        navigationItem.rightBarButtonItems = [addButton, refreshButton]
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
+        
+        requestManager = RequestManager()
+        coinsArrayFormatter = CoinsArrayFormatter()
         
         fillTableViewWithData()
         
@@ -111,43 +117,7 @@ class TrackedCurrenciesViewController: UIViewController {
 //        fillTableViewWithData()
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-////        loadExchangeRateForBTC()
-//    }
-    
-//    func loadExchangeRateForBTC() {//(completion: @escaping (String) -> Void) {
-//        let coinId = "btc"
-//        let coinRequestUrl = RequestToBitfinexBuilder.buildRequest(currencyId: coinId)
-//        request(coinRequestUrl)
-//            .responseJSON(completionHandler: { (response) in
-//
-//                switch response.result {
-//                case .success(let value):
-//                    print(value)
-//                    guard let jsonDict = response.result.value as? [String: String] else { return }
-//                    self.btcRate = jsonDict["mid"]!
-////                    self.fillTableViewWithData()
-//                    self.tableView.reloadData()
-////                    completion(btcExchangeRate)
-//
-//                case .failure(let error):
-//                    print(error)
-////                    completion("")
-////                    return
-//                }
-//
-//
-//            })
-//    }
-    
-    func fetchAllTrackedCoins() {// -> [NSManagedObject] {
-        userCoins = CoreDataManager.shared.getAndMapUserCoinsArrayToCoinsArray()
-//        print(userCoins)
-    }
-    
     func fillTableViewWithData() {
-//        let btcRate = loadExchangeRateForBTC()
         
         tableView.backgroundColor = UIColor.white
         trackedCurrenciesDataSource = TrackedCurrenciesDataSource()
@@ -161,7 +131,8 @@ class TrackedCurrenciesViewController: UIViewController {
         
 //        self.trackedCurrenciesDataSource.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
 //        self.trackedCurrenciesDelegate.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
-        createCoinsArray()
+        
+        userCoins = CoreDataManager.shared.getAndMapUserCoinsArrayToCoinsArray()
         trackedCurrenciesDataSource.coins = userCoins
         trackedCurrenciesDelegate.coins = userCoins
         trackedCurrenciesDelegate.viewController = self
@@ -209,10 +180,33 @@ class TrackedCurrenciesViewController: UIViewController {
 //    }
     
     @objc func refreshCurrenciesRates() {
-        userCoins = CoreDataManager.shared.getAndMapUserCoinsArrayToCoinsArray()
-        trackedCurrenciesDataSource.coins = userCoins
-        trackedCurrenciesDelegate.coins = userCoins
-        tableView.reloadData()
+        
+        let coinsExchangesArray = coinsArrayFormatter.createCoinsExchangesArray(coins: userCoins)
+        
+        requestManager.coinsExchanges.removeAll()
+        requestManager.exchangesCounter = 0
+        
+        requestManager.coinsExchanges = coinsExchangesArray
+        requestManager.updateCoinsRates(completion: { (newArray) in
+            print(newArray)
+        })
+//            { (coinsDicts) in
+//            print(coinsDicts)
+//        }
+//        let updatedCoinsRates = requestManager.coinsExchanges
+//        print(updatedCoinsRates)
+        
+//        userCoins = CoreDataManager.shared.getAndMapUserCoinsArrayToCoinsArray()
+        
+//        requestManager.updatedUserCoins.removeAll()
+//        requestManager.updateCoinsRates(coins: userCoins, completion: { (updatedUserCoins) in
+//            self.trackedCurrenciesDataSource.coins = updatedUserCoins
+//            self.trackedCurrenciesDelegate.coins = updatedUserCoins
+//            self.tableView.reloadData()
+//        })
+        
+//        requestManager.sendSomeRequestForTest()
+        
         
 //        let requestManager = RequestManager.init()
 //        requestManager.coinsArray = userCoins
@@ -276,47 +270,6 @@ class TrackedCurrenciesViewController: UIViewController {
 //                    //return
 //                }
             })
-    }
-    
-    func createCoinsArray() {// -> [Coin] {
-//        userCoins = UserCoinsManager.fetchAllUserCoins()
-        
-        let allCoins = AllCoinsManager.createArrayWithAllCoins()
-        for i in 0..<10 {
-            userCoins.append(allCoins[i])
-        }
-        
-        //second section
-//        let btcCoin = "BTC"
-//        let ethCoin = "ETH"
-//        let xprCoin = "XPR"
-//        let bchCoin = "BCH"
-//        let ltcCoin = "LTC"
-//        let adaCoin = "ADA"
-//        let xlmCoin = "XLM"
-//        let neoCoin = "NEO"
-//        let eosCoin = "EOS"
-//        let iotaCoin = "MIOTA"
-//        let shortNames = [btcCoin, ethCoin, xprCoin, bchCoin, ltcCoin, adaCoin, xlmCoin, neoCoin, eosCoin, iotaCoin]
-//
-//        var coinsArray = [Coin]()
-//        for i in 0..<10 {
-//
-//            var exchangeRate = 10000.54
-//            if i == 0 {
-//                exchangeRate = btcRate
-//            }
-//            let someCoin = Coin(id: shortName: shortNames[i], exchangeRate: exchangeRate)
-////                if i == 0 {
-//////                    someCoin.id = "btc"
-////                    someCoin.shortName = shortNames[0]
-////                }else{
-////                    someCoin.shortName = shortNames[i]
-////                }
-//            coinsArray.append(someCoin)
-//        }
-//        userCoins = coinsArray
-//        return userCoins
     }
     
     func refreshCoinsArray() {

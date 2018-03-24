@@ -46,7 +46,8 @@ class KucoinResponseParser: NSObject {
                 }
             }
         }
-        print(actualCoinsRates)
+//        print(actualCoinsRates)
+//        print("Kucoin запрос")
         return actualCoinsRates
     }
 }

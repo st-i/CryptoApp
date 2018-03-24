@@ -9,6 +9,7 @@
 import Foundation
 
 class DetailedDateFormatter: NSObject {
+    
     func stringFromDate(date: Date) -> String {
         let calendar: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
         
@@ -48,5 +49,59 @@ class DetailedDateFormatter: NSObject {
         let fullDateString = String(format:"%i %@ %i", day, monthString, year)
         
         return fullDateString
+    }
+}
+
+class CoinsArrayFormatter: NSObject {
+    
+    func createCoinsExchangesArray(coins:[Coin]) -> [Dictionary<String, Coin>] {
+        
+        //создаем словарь добавленных пользователем монет (из возможного большинства одинаковых монет оставляем лишь упоминание об одной)
+        var uniqueCoins = Dictionary<String, Coin>()
+        for coin in coins {
+            if !uniqueCoins.keys.contains(coin.shortName) {
+                uniqueCoins.updateValue(coin, forKey: coin.shortName)
+            }
+        }
+        
+        //распределяем добавленные монеты по массивам для конкретных бирж
+        var coinsExchanges = [Dictionary<String, Coin>]()
+        
+        let quoineCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(quoineCoins)
+        let bittrexCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(bittrexCoins)
+        let bitBTCCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(bitBTCCoins)
+        let kucoinCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(kucoinCoins)
+        let idexCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(idexCoins)
+        let poloniexCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(poloniexCoins)
+        let cryptopiaCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(cryptopiaCoins)
+        let gate_ioCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(gate_ioCoins)
+        let binanceCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(binanceCoins)
+        let livecoinCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(livecoinCoins)
+        let bigONECoins = Dictionary<String, Coin>()
+        coinsExchanges.append(bigONECoins)
+        let c2cxCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(c2cxCoins)
+        let cobinhoodCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(cobinhoodCoins)
+        let coinExchangeCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(coinExchangeCoins)
+        let yobitCoins = Dictionary<String, Coin>()
+        coinsExchanges.append(yobitCoins)
+        
+        for coin in uniqueCoins.values {
+            coinsExchanges[coin.exchange.rawValue].updateValue(coin, forKey: coin.shortName)
+//            insert(coin, at: coinsExchanges[coin.exchange.rawValue].count)
+        }
+        return coinsExchanges
     }
 }

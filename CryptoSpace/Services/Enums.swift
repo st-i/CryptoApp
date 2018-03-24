@@ -14,7 +14,7 @@ enum CoinType: Int {
 }
 
 enum ExchangeBehavior: Int {
-    case Bitfinex
+    case Quoine
     case Bittrex
     case HitBTC
     case Kucoin
@@ -29,6 +29,7 @@ enum ExchangeBehavior: Int {
     case Cobinhood
     case CoinExchange
     case Yobit
+    case Bitfinex
 }
 
 let HitBTCCoinsToEth = ["DENT", "DCN", "ENG", "SAN", "GVT", "JNT"]

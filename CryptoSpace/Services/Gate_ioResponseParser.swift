@@ -62,7 +62,8 @@ class Gate_ioResponseParser: NSObject {
                 }
             }
         }
-        print(actualCoinsRates)
+//        print(actualCoinsRates)
+//        print("Gate_io запрос")
         return actualCoinsRates
     }
 }

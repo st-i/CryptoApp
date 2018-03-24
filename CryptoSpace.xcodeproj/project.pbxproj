@@ -116,6 +116,8 @@
 		DD7CB75A205295BF00E6E786 /* HitBTCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CB759205295BF00E6E786 /* HitBTCResponseParser.swift */; };
 		DD7CB75C2052DBA000E6E786 /* Checkups.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CB75B2052DBA000E6E786 /* Checkups.swift */; };
 		DD7CB75E2052F23800E6E786 /* KucoinResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CB75D2052F23800E6E786 /* KucoinResponseParser.swift */; };
+		DD82A5E220661BD70073BD73 /* RequestToQuoineBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82A5E120661BD70073BD73 /* RequestToQuoineBuilder.swift */; };
+		DD82A5E420661C510073BD73 /* QuoineResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82A5E320661C510073BD73 /* QuoineResponseParser.swift */; };
 		DD82A7B920025E3C00A6DD34 /* ActionWithCurrencyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82A7B820025E3C00A6DD34 /* ActionWithCurrencyTableView.swift */; };
 		DD82A7BB20025E5800A6DD34 /* ActionWithCurrencyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD82A7BA20025E5800A6DD34 /* ActionWithCurrencyTableView.xib */; };
 		DD91F32E205E40F800B5BCD6 /* CommonCoinInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91F32D205E40F800B5BCD6 /* CommonCoinInfoCell.swift */; };
@@ -262,6 +264,8 @@
 		DD7CB759205295BF00E6E786 /* HitBTCResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitBTCResponseParser.swift; sourceTree = "<group>"; };
 		DD7CB75B2052DBA000E6E786 /* Checkups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkups.swift; sourceTree = "<group>"; };
 		DD7CB75D2052F23800E6E786 /* KucoinResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KucoinResponseParser.swift; sourceTree = "<group>"; };
+		DD82A5E120661BD70073BD73 /* RequestToQuoineBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToQuoineBuilder.swift; sourceTree = "<group>"; };
+		DD82A5E320661C510073BD73 /* QuoineResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoineResponseParser.swift; sourceTree = "<group>"; };
 		DD82A7B820025E3C00A6DD34 /* ActionWithCurrencyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionWithCurrencyTableView.swift; sourceTree = "<group>"; };
 		DD82A7BA20025E5800A6DD34 /* ActionWithCurrencyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionWithCurrencyTableView.xib; sourceTree = "<group>"; };
 		DD91F32D205E40F800B5BCD6 /* CommonCoinInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonCoinInfoCell.swift; sourceTree = "<group>"; };
@@ -818,8 +822,7 @@
 		DD7CB73720526A4C00E6E786 /* RequestBuilders */ = {
 			isa = PBXGroup;
 			children = (
-				DDAD3BAD2034B5A500B08AA6 /* RequestToOKEXBuilder.swift */,
-				DDD38AC82037651800462783 /* RequestToBitfinexBuilder.swift */,
+				DD82A5E120661BD70073BD73 /* RequestToQuoineBuilder.swift */,
 				DD7CB73820526A9800E6E786 /* RequestToBittrexBuilder.swift */,
 				DD7CB73A20526CC400E6E786 /* RequestToHitBTCBuilder.swift */,
 				DD7CB73C20526D2800E6E786 /* RequestToKucoinBuilder.swift */,
@@ -836,6 +839,8 @@
 				DD7CB750205271A200E6E786 /* RequestToCoinExchangeBuilder.swift */,
 				DD7CB7522052727200E6E786 /* RequestToYobitBuilder.swift */,
 				DD7CB754205273C400E6E786 /* RequestToTidexBuilder.swift */,
+				DDAD3BAD2034B5A500B08AA6 /* RequestToOKEXBuilder.swift */,
+				DDD38AC82037651800462783 /* RequestToBitfinexBuilder.swift */,
 			);
 			name = RequestBuilders;
 			sourceTree = "<group>";
@@ -843,7 +848,7 @@
 		DD7CB75620527EAB00E6E786 /* ResponseParsers */ = {
 			isa = PBXGroup;
 			children = (
-				DD7CB75720527F6B00E6E786 /* BitfinexResponseParser.swift */,
+				DD82A5E320661C510073BD73 /* QuoineResponseParser.swift */,
 				DD64CD3C204C73F700C19202 /* BittrexResponseParser.swift */,
 				DD7CB759205295BF00E6E786 /* HitBTCResponseParser.swift */,
 				DD7CB75D2052F23800E6E786 /* KucoinResponseParser.swift */,
@@ -858,6 +863,7 @@
 				DD93DF5820555A7E007EB222 /* CobinhoodResponseParser.swift */,
 				DD93DF5A20555FBD007EB222 /* CoinExchangeResponseParser.swift */,
 				DD93DF5C20556F02007EB222 /* YobitResponseParser.swift */,
+				DD7CB75720527F6B00E6E786 /* BitfinexResponseParser.swift */,
 			);
 			name = ResponseParsers;
 			sourceTree = "<group>";
@@ -1102,6 +1108,7 @@
 				54306C0D1FFAAA070094A894 /* ActionChoiceCellBuilder.swift in Sources */,
 				54CA4E4B1FE55D5500E6357E /* FinalCell.swift in Sources */,
 				DD7CB7532052727200E6E786 /* RequestToYobitBuilder.swift in Sources */,
+				DD82A5E420661C510073BD73 /* QuoineResponseParser.swift in Sources */,
 				DD7CB75C2052DBA000E6E786 /* Checkups.swift in Sources */,
 				DD93DF5920555A7E007EB222 /* CobinhoodResponseParser.swift in Sources */,
 				54081FBB1FE6680E0098195F /* TrackedCurrencyCellBuilder.swift in Sources */,
@@ -1109,6 +1116,7 @@
 				DD91F338205E44D100B5BCD6 /* CoinPurchaseWONoteCellBuilder.swift in Sources */,
 				5407D3EE1FE52BC40063C3A6 /* TrackedPositionCellBuilder.swift in Sources */,
 				54BDCC691FF415AA000662C5 /* CurrentExchangeRateCellBuilder.swift in Sources */,
+				DD82A5E220661BD70073BD73 /* RequestToQuoineBuilder.swift in Sources */,
 				54081FB81FE6673D0098195F /* TrackedCurrencyCell.swift in Sources */,
 				5406BA081FF2DD770022D1C4 /* CurrentExchangeRateCell.swift in Sources */,
 				54EBA4771FE84BC100E9F412 /* ObservedCurrencyScreenDirector.swift in Sources */,

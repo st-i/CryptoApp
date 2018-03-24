@@ -41,7 +41,8 @@ class BittrexResponseParser: NSObject {
                 }
             }
         }
-        print(actualCoinsRates)
+//        print(actualCoinsRates)
+//        print("Bittrex запрос")
         return actualCoinsRates
     }
 }

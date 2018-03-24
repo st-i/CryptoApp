@@ -43,7 +43,8 @@ class BinanceResponseParser: NSObject {
                 }
             }
         }
-        print(actualCoinsRates)
+//        print(actualCoinsRates)
+//        print("Binance запрос")
         return actualCoinsRates
     }
 }

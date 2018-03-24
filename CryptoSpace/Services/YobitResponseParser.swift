@@ -34,7 +34,8 @@ class YobitResponseParser: NSObject {
         
 //        let currentCoinArray = [coinShortName, coinPrice] as [Any]
 //        print(currentCoinArray)
-        print(coinPrice)
+//        print(coinPrice)
+//        print("Yobit запрос")
         return coinPrice
     }
 }

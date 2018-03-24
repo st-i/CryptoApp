@@ -46,7 +46,8 @@ class CryptopiaResponseParser: NSObject {
                 }
             }
         }
-        print(actualCoinsRates)
+//        print(actualCoinsRates)
+//        print("Cryptopia запрос")
         return actualCoinsRates
     }
 }

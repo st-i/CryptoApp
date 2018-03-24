@@ -22,20 +22,20 @@ class AllCoinsManager: NSObject {
         
         //1
         let bitcoinCoin = Coin.init()
-        bitcoinCoin.fullName = "Bitcoin" //1bitfinex
+        bitcoinCoin.fullName = "Bitcoin" //1Quoine or bitfinex
         bitcoinCoin.shortName = "BTC"
         bitcoinCoin.id = "btc"
-        bitcoinCoin.exchange = ExchangeBehavior.Bitfinex
+        bitcoinCoin.exchange = ExchangeBehavior.Quoine
         bitcoinCoin.bitfinexId = "btc"
 //        bitcoinCoin.okexId = "btc"
         allCoins.append(bitcoinCoin)
         
         //2
         let ethereumCoin = Coin.init()
-        ethereumCoin.fullName = "Ethereum" //1bittrex or okex
+        ethereumCoin.fullName = "Ethereum" //1Quoine or bittrex or okex
         ethereumCoin.shortName = "ETH"
         ethereumCoin.id = "eth"
-        ethereumCoin.exchange = ExchangeBehavior.Bittrex
+        ethereumCoin.exchange = ExchangeBehavior.Quoine
 //        ethereumCoin.bitfinexId = "eth"
         ethereumCoin.okexId = "eth"
         allCoins.append(ethereumCoin)

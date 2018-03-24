@@ -41,7 +41,8 @@ class CobinhoodResponseParser: NSObject {
         
 //        let currentCoinArray = [coinShortName, coinPrice] as [Any]
 //        print(currentCoinArray)
-        print(coinPrice)
+//        print(coinPrice)
+//        print("Cobinhood запрос")
         return coinPrice
     }
 }

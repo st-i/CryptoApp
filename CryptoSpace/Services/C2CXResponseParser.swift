@@ -35,7 +35,8 @@ class C2CXResponseParser: NSObject {
         
 //        let currentCoinArray = [coinShortName, coinPrice] as [Any]
 //        print(currentCoinArray)
-        print(coinPrice)
+//        print(coinPrice)
+//        print("C2CX запрос")
         return coinPrice
     }
 }

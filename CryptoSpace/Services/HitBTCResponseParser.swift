@@ -84,7 +84,8 @@ class HitBTCResponseParser: NSObject {
                 }
             }
         }
-        print(actualCoinsRates)
+//        print(actualCoinsRates)
+//        print("HitBTC запрос")
         return actualCoinsRates
     }
 }

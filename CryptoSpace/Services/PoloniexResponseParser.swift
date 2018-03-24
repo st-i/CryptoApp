@@ -37,7 +37,8 @@ class PoloniexResponseParser: NSObject {
                 }
             }
         }
-        print(actualCoinsRates)
+//        print(actualCoinsRates)
+//        print("Poloniex запрос")
         return actualCoinsRates
     }
 }

@@ -37,7 +37,8 @@ class IDEXResponseParser: NSObject {
                 }
             }
         }
-        print(actualCoinsRates)
+//        print(actualCoinsRates)
+//        print("IDEX запрос")
         return actualCoinsRates
     }
 }

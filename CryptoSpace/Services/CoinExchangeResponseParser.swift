@@ -40,7 +40,8 @@ class CoinExchangeResponseParser: NSObject {
         
 //        let currentCoinArray = [coinShortName, coinPrice] as [Any]
 //        print(currentCoinArray)
-        print(coinPrice)
+//        print(coinPrice)
+//        print("CoinExchange запрос")
         return coinPrice
     }
 }

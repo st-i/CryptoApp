@@ -6,7 +6,8 @@
 //  Copyright © 2017 Stefanov. All rights reserved.
 //
 
-//bittrex - 59 +
+//Quoine - 2 (BTC and ETH)
+//bittrex - 58 +
 //Hitbtc - 51 +
 //kucoin - 26 +
 //idex - 13 + (к эфиру)
@@ -21,7 +22,7 @@
 //coinexchange - 1 +
 //Yobit - 1 + 194
 
-//1.bitfinex - between 10 and 90 per minute
+//1.Quoine / Qryptos - API users should not make more than 300 requests per 5 minute (60 per minute)
 //2.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits (все сразу)
 //3.Poloniex - 6 calls per second to the public API (99 валют) (360 per minute) (все сразу, 99 валют в ответе)
 //4.Hitbtc - good api, has limits, no info (>200 валют, все сразу)
@@ -36,6 +37,8 @@
 //13.cobinhood - has api, no limits info, можно взять все пары
 //14.coinexchange - good api, has limits, no info
 //15.Yobit - Server responses are cashed every 2 seconds that is why there is no sense in making requests faster. (30 per minute)
+
+//16.bitfinex - between 10 and 90 per minute
 
 
 //fatbtc - 1
@@ -84,6 +87,11 @@
 //exx - 2
 
 
+//60.btcc - есть апи, не указаны лимиты
+//60.itbit - Market data endpoints refresh every 5-6 seconds (10-12 per minute)
+//60.xbtce - не смотрел апи, потому что низкий курс
+//60.dsx - If you make more than 60 requests of Trading API methods (/tapi/) per minute using the same pair of API keys you will receive an error on each extra request during the same minute (60 per minute)
+
 //16.fatbtc - all tickers at once, no limits info (в последний раз не открывался)
 //11.btcalpha - 33 валюты, We have limit in 2 calls per second from single account to authorization required methods and 100 calls per secong from single IP address to public methods (6000 per minute). биткоин-8650, у них 9236
 //3.abucoins - 300 requests per 1 minute per IP and Account (все сразу, 36 валют в ответе)
@@ -95,7 +103,6 @@
 
 //2.okex - Each IP can send maximum of 3000 https requests within 5 minutes (600 per minute) (431 currencies, хороший курс)
 //4.liqui - All information is cached every 2 seconds, so there's no point in making more frequent requests. (30 per minute)
-//5.Quoine / Qryptos - API users should not make more than 300 requests per 5 minute (60 per minute)
 //16.Tidex - All information is cached every 2 seconds, so there's no point in making more frequent requests (30 per minute)
 //17.Bleutrade - has api, no limits info
 //21.litebit.eu - has api, no limits info
