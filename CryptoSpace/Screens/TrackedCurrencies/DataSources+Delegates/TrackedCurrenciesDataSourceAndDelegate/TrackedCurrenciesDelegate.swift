@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let kTotalPortfolioCostCellHeight = 99
+private let kTotalPortfolioCostCellHeight = 143
 private let kTrackedPositionCellHeight = 58
 private let kFinalCellHeight = 26
 private let kHeightForSectionHeader = 30
@@ -45,25 +45,6 @@ class TrackedCurrenciesDelegate: NSObject, UITableViewDelegate {
         }
     }
     
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        if section == 1 {
-//            return 0.5
-//        }else{
-//            return CGFloat.leastNormalMagnitude
-//        }
-//    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        if indexPath.section == 1 {
-            let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
-            let trackedCurrencyVC = storyboard.instantiateViewController(withIdentifier: "TrackedCurrencyViewController") as! TrackedCurrencyViewController
-            trackedCurrencyVC.currentCoin = coins[indexPath.row]
-            viewController.navigationController?.pushViewController(trackedCurrencyVC, animated: true)
-        }
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
             let headerView = UIView.init(frame: CGRect(x: 0, y: 0, width: Int(tableView.frame.width), height: kHeightForSectionHeader))
@@ -94,6 +75,25 @@ class TrackedCurrenciesDelegate: NSObject, UITableViewDelegate {
         }
     }
     
+    
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        if section == 1 {
+//            return 0.5
+//        }else{
+//            return CGFloat.leastNormalMagnitude
+//        }
+//    }
+    
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        if section == 1 {
+//            let footerView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 0.5))
+//            footerView.backgroundColor = UIColor.init(red: 154.0 / 255.0, green: 154.0 / 255.0, blue: 154.0 / 255.0, alpha: 0.4)
+//            return footerView
+//        }else{
+//            return nil
+//        }
+//    }
+    
 //    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
 //        if sourceIndexPath.section != proposedDestinationIndexPath.section {
 //            return IndexPath.init(row: 0, section: sourceIndexPath.section)
@@ -102,13 +102,14 @@ class TrackedCurrenciesDelegate: NSObject, UITableViewDelegate {
 //        }
 //    }
     
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        if section == 1 {
-//            let footerView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 0.5))
-//            footerView.backgroundColor = UIColor.groupTableViewBackground
-//            return footerView
-//        }else{
-//            return nil
-//        }
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.section == 1 {
+            let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
+            let trackedCurrencyVC = storyboard.instantiateViewController(withIdentifier: "TrackedCurrencyViewController") as! TrackedCurrencyViewController
+            trackedCurrencyVC.currentCoin = coins[indexPath.row]
+            viewController.navigationController?.pushViewController(trackedCurrencyVC, animated: true)
+        }
+    }
 }

@@ -23,7 +23,7 @@ class TrackedCurrenciesScreenDirector: NSObject {
         let trackedPositionCellsArray = NSMutableArray()
 
         //first section
-        totalPortfolioCostCellArray.add(TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(for: tableView))
+//        totalPortfolioCostCellArray.add(TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(for: tableView))
 //        totalPortfolioCostCellArray.add(HeaderViewCellBulder.buildCell(for: tableView))
         
 //        //second section

@@ -10,10 +10,10 @@ import UIKit
 
 class TotalPortfolioCostCell: UITableViewCell {
     
-    @IBOutlet weak var lastChangesLabel: UILabel!
+//    @IBOutlet weak var lastChangesLabel: UILabel!
     
-    @IBOutlet weak var portfolioPercentagesChangesLabel: UILabel!
     @IBOutlet weak var totalPortfolioValueLabel: UILabel!
+    @IBOutlet weak var portfolioPercentagesChangesLabel: UILabel!
     
 //    required init?(coder aDecoder: NSCoder) {
 //        super.init(coder: aDecoder)

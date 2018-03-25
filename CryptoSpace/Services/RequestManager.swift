@@ -206,7 +206,7 @@ class RequestManager: NSObject {
     func updateCoinsRates(completion: @escaping ([Dictionary<String, Coin>]) -> ()) {
         
         request(RequestToQuoineBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-            print("Quoine запрос")
+            print("запрос Quoine")
             guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
                 print("Не могу перевести в JSON")
                 return
@@ -244,7 +244,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToBittrexBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("Bittrex запрос")
+                print("запрос Bittrex")
                 if exchangeCoinsDict.keys.count > 0 {
                     guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                         print("Не могу перевести в JSON")
@@ -270,7 +270,7 @@ class RequestManager: NSObject {
                 })
             })
         }else{
-            print("Bittrex монет не добавлено")
+            print("монет не добавлено Bittrex")
             exchangesCounter = exchangesCounter + 1
             updateHitBTCCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -284,7 +284,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToHitBTCBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("HitBTC запрос")
+                print("запрос HitBTC")
                 guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
                     print("Не могу перевести в JSON")
                     return
@@ -308,7 +308,7 @@ class RequestManager: NSObject {
                 })
             })
         }else{
-            print("HitBTC монет не добавлено")
+            print("монет не добавлено HitBTC")
             exchangesCounter = exchangesCounter + 1
             updateKucoinCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -322,7 +322,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToKucoinBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("Kucoin запрос")
+                print("запрос Kucoin")
                 guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                     print("Не могу перевести в JSON")
                     return
@@ -347,7 +347,7 @@ class RequestManager: NSObject {
                 })
             })
         }else{
-            print("Kucoin монет не добавлено")
+            print("монет не добавлено Kucoin")
             exchangesCounter = exchangesCounter + 1
             updateIDEXCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -361,7 +361,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToIDEXBuilder.buildAllCoinsRequest(), method: .post, parameters: nil).responseJSON(completionHandler: { (response) in
-                print("IDEX запрос")
+                print("запрос IDEX")
                 guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                     print("Не могу перевести в JSON")
                     return
@@ -386,7 +386,7 @@ class RequestManager: NSObject {
                 })
             })
         }else{
-            print("IDEX монет не добавлено")
+            print("монет не добавлено IDEX")
             exchangesCounter = exchangesCounter + 1
             updatePoloniexCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -399,7 +399,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToPoloniexBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("Poloniex запрос")
+                print("запрос Poloniex")
                 guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                     print("Не могу перевести в JSON")
                     return
@@ -424,7 +424,7 @@ class RequestManager: NSObject {
                 })
             })
         }else{
-            print("Poloniex монет не добавлено")
+            print("монет не добавлено Poloniex")
             exchangesCounter = exchangesCounter + 1
             updateCryptopiaCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -437,7 +437,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToCryptopiaBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("Cryptopia запрос")
+                print("запрос Cryptopia")
                 guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                     print("Не могу перевести в JSON")
                     return
@@ -462,7 +462,7 @@ class RequestManager: NSObject {
                 })
             })
         }else{
-            print("Cryptopia монет не добавлено")
+            print("монет не добавлено Cryptopia")
             exchangesCounter = exchangesCounter + 1
             updateGate_ioCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -475,7 +475,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToGate_ioBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("GateIo запрос")
+                print("запрос GateIo")
                 guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                     print("Не могу перевести в JSON")
                     return
@@ -500,7 +500,7 @@ class RequestManager: NSObject {
                 })
             })
         }else{
-            print("GateIo монет не добавлено")
+            print("монет не добавлено GateIo")
             exchangesCounter = exchangesCounter + 1
             updateBinanceCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -513,7 +513,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToBinanceBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("Binance запрос")
+                print("запрос Binance")
                 guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
                     print("Не могу перевести в JSON")
                     return
@@ -538,7 +538,7 @@ class RequestManager: NSObject {
                 })
             })
         }else{
-            print("Binance монет не добавлено")
+            print("монет не добавлено Binance")
             exchangesCounter = exchangesCounter + 1
             updateLivecoinCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -551,7 +551,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToLivecoinBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("Livecoin запрос")
+                print("запрос Livecoin")
                 guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
                     print("Не могу перевести в JSON")
                     return
@@ -576,7 +576,7 @@ class RequestManager: NSObject {
                 })
             })
         }else{
-            print("Livecoin монет не добавлено")
+            print("монет не добавлено Livecoin")
             exchangesCounter = exchangesCounter + 1
             updateBigONEFirstRate(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -590,7 +590,7 @@ class RequestManager: NSObject {
         if exchangeCoinsDict.keys.count > 0 {
             let firstKey = exchangeCoinsDict.keys.first
             request(RequestToBigONEBuilder.buildCoinRateRequest(coinShortName: firstKey!)).responseJSON(completionHandler: { (response) in
-                print("BigONE запрос")
+                print("запрос BigONE1")
                 guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                     print("Не могу перевести в JSON")
                     return
@@ -612,7 +612,7 @@ class RequestManager: NSObject {
                 }
             })
         }else{
-            print("BigONE1 монет не добавлено")
+            print("монет не добавлено BigONE1")
             exchangesCounter = exchangesCounter + 1
             updateC2CXCoinRate(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -632,7 +632,7 @@ class RequestManager: NSObject {
             localCounter = localCounter + 1
         }
         request(RequestToBigONEBuilder.buildCoinRateRequest(coinShortName: secondKey)).responseJSON(completionHandler: { (response) in
-            print("BigONE2 запрос")
+            print("запрос BigONE2")
             guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                 print("Не могу перевести в JSON")
                 return
@@ -655,7 +655,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToC2CXBuilder.buildUcashRateRequest()).responseJSON(completionHandler: { (response) in
-                print("C2CX запрос")
+                print("запрос C2CX")
                 guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                     print("Не могу перевести в JSON")
                     return
@@ -672,7 +672,7 @@ class RequestManager: NSObject {
                 })
             })
         }else{
-            print("C2CX монет не добавлено")
+            print("монет не добавлено C2CX")
             exchangesCounter = exchangesCounter + 1
             updateCobinhoodCoinRate(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -685,7 +685,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToCobinhoodBuilder.buildCobinhoodRateRequest()).responseJSON(completionHandler: { (response) in
-                print("Cobinhood запрос")
+                print("запрос Cobinhood")
                 guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                     print("Не могу перевести в JSON")
                     return
@@ -702,7 +702,7 @@ class RequestManager: NSObject {
                 })
             })
         }else{
-            print("Cobinhood монет не добавлено")
+            print("монет не добавлено Cobinhood")
             exchangesCounter = exchangesCounter + 1
             updateCoinExchangeCoinRate(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -714,7 +714,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToCoinExchangeBuilder.buildExpPointsRateRequest()).responseJSON(completionHandler: { (response) in
-                print("CoinExchange запрос")
+                print("запрос CoinExchange")
                 guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                     print("Не могу перевести в JSON")
                     return
@@ -731,7 +731,7 @@ class RequestManager: NSObject {
                 })
             })
         }else{
-            print("CoinExchange монет не добавлено")
+            print("монет не добавлено CoinExchange")
             exchangesCounter = exchangesCounter + 1
             updateYobitCoinRate(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -744,7 +744,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToYobitBuilder.buildWagerrRateRequest()).responseJSON(completionHandler: { (response) in
-                print("Yobit запрос")
+                print("запрос Yobit")
                 guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                     print("Не могу перевести в JSON")
                     return
@@ -758,7 +758,7 @@ class RequestManager: NSObject {
                 completion(self.coinsExchanges)
             })
         }else{
-            print("Yobit монет не добавлено")
+            print("монет не добавлено Yobit")
             completion(self.coinsExchanges)
         }
     }

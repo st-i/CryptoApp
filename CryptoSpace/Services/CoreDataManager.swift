@@ -59,8 +59,36 @@ final class CoreDataManager {
         }
     }
     
+    func saveUserCoin(coin: Coin) {
+        
+        let currentCoinUniqueId = determineUniqueNumberIdForCoin(coin: coin)
+        
+        //1
+        let managedContext = persistentContainer.viewContext
+        //2
+        let entity = NSEntityDescription.entity(forEntityName: "UserCoin", in: managedContext)!
+        let userCoin = NSManagedObject(entity: entity, insertInto: managedContext)
+        //3
+        userCoin.setValue(coin.fullName, forKeyPath: "fullName")
+        userCoin.setValue(coin.shortName, forKey: "shortName")
+        userCoin.setValue(coin.id, forKey: "id")
+        userCoin.setValue(currentCoinUniqueId, forKey: "uniqueId")
+        userCoin.setValue(NSNumber.init(value:coin.exchange.rawValue), forKey: "exchange")
+        userCoin.setValue(NSNumber.init(value:coin.exchangeRate), forKey: "exchangeRate")
+        userCoin.setValue(NSNumber.init(value:coin.amount), forKey: "amount")
+        userCoin.setValue(NSNumber.init(value:coin.sum), forKey: "sum")
+        //4
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
     //MARK: - Core Data Delete
+    //ДОРАБОТАТЬ!!
     func deleteUserCoinFromCoreData(coin: Coin) {
+        
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserCoin")
         fetchRequest.predicate = NSPredicate.init(format: "id==\(coin.id)")
         
@@ -74,8 +102,31 @@ final class CoreDataManager {
     }
     
     //MARK: - Mapping
-    func getAndMapUserCoinsArrayToCoinsArray() -> [Coin] {
+    func getUserCoinsArray() -> [Coin] {
+        
         var coinsArray = [Coin]()
+        
+        let userTrackedCoins = getCoreDataUserCoinsArray()
+        
+        if userTrackedCoins.count > 0 {
+            for someCoin in userTrackedCoins {
+                let currentCoin = Coin()
+                currentCoin.fullName = someCoin.value(forKey: "fullName") as! String
+                currentCoin.shortName = someCoin.value(forKey: "shortName") as! String
+                currentCoin.id = someCoin.value(forKey: "id") as! String
+                currentCoin.uniqueId = someCoin.value(forKey: "uniqueId") as! Int
+                currentCoin.exchangeRate = someCoin.value(forKey: "exchangeRate") as! Double
+                currentCoin.coinType = CoinType(rawValue: someCoin.value(forKey: "coinType") as! Int)!
+                currentCoin.exchange = ExchangeBehavior(rawValue: someCoin.value(forKey: "exchange") as! Int)!
+                currentCoin.sum = someCoin.value(forKey: "sum") as! Double
+                currentCoin.amount = someCoin.value(forKey: "amount") as! Double
+                coinsArray.append(currentCoin)
+            }
+        }
+        return coinsArray
+    }
+    
+    private func getCoreDataUserCoinsArray() -> [NSManagedObject] {
         
         let managedContext = CoreDataManager.shared.persistentContainer.viewContext
         
@@ -93,22 +144,46 @@ final class CoreDataManager {
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
+        return userTrackedCoins
+    }
+    
+    //MARK: - Unique id for coin
+    func determineUniqueNumberIdForCoin(coin: Coin) -> Int {
         
-        if userTrackedCoins.count > 0 {
-            for someCoin in userTrackedCoins {
-                let currentCoin = Coin()
-                currentCoin.fullName = someCoin.value(forKey: "fullName") as! String
-                currentCoin.shortName = someCoin.value(forKey: "shortName") as! String
-                currentCoin.id = someCoin.value(forKey: "id") as! String
-                currentCoin.exchangeRate = someCoin.value(forKey: "exchangeRate") as! Double
-                currentCoin.coinType = CoinType(rawValue: someCoin.value(forKey: "coinType") as! Int)!
-                currentCoin.exchange = ExchangeBehavior(rawValue: someCoin.value(forKey: "exchange") as! Int)!
-                currentCoin.sum = someCoin.value(forKey: "sum") as! Double
-                currentCoin.amount = someCoin.value(forKey: "amount") as! Double
-                coinsArray.append(currentCoin)
+        let allStoredCoins = getCoreDataUserCoinsArray()
+        if allStoredCoins.count == 0 {
+            return 0
+        }
+        var allStoredCoinsKeysAndUniqueIds = Dictionary<String, [Int]>()
+        if allStoredCoins.count > 0 {
+            for userCoin in allStoredCoins {
+                let userCoinKey = userCoin.value(forKey:"shortName") as! String
+                if !allStoredCoinsKeysAndUniqueIds.keys.contains(userCoinKey) {
+                    allStoredCoinsKeysAndUniqueIds.updateValue([], forKey: userCoinKey)
+                }
             }
         }
-        return coinsArray
+        
+        if allStoredCoinsKeysAndUniqueIds.keys.count > 0 {
+            for userCoin in allStoredCoins {
+                let userCoinKey = userCoin.value(forKey:"shortName") as! String
+                if allStoredCoinsKeysAndUniqueIds.keys.contains(userCoinKey) {
+                    var userCoinUniqueIdsArray = allStoredCoinsKeysAndUniqueIds[userCoinKey]
+                    let userCoinUniqueId = userCoin.value(forKey:"uniqueId") as! Int
+                    userCoinUniqueIdsArray?.append(userCoinUniqueId)
+                    allStoredCoinsKeysAndUniqueIds.updateValue(userCoinUniqueIdsArray!, forKey: userCoinKey)
+                }
+            }
+        }
+        
+        if allStoredCoinsKeysAndUniqueIds.keys.contains(coin.shortName) {
+            let userCoinUniqueIdsArray = allStoredCoinsKeysAndUniqueIds[coin.shortName]
+            let sortedUserCoinUniqueIdsArray = userCoinUniqueIdsArray?.sorted { $0 < $1 }
+            let newUniqueId = (sortedUserCoinUniqueIdsArray?.last)! + 1
+            return newUniqueId
+        }else{
+            return 0
+        }
     }
     
 //    func mapUserCoinToCoin(userCoin: NSManagedObject) -> Coin {

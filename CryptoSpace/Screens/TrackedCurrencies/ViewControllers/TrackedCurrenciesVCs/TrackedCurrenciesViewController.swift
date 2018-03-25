@@ -113,13 +113,17 @@ class TrackedCurrenciesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//        let someArray = [4, 6, 2, 7, 1, 3, 5]
+//        let sortedArray = someArray.sorted { $0 < $1 }
+//        print(sortedArray)
+        
 //        loadExchangeRateForBTC()
 //        fillTableViewWithData()
     }
     
     func fillTableViewWithData() {
         
-        tableView.backgroundColor = UIColor.white
+        tableView.backgroundColor = UIColor.white //UIColor.groupTableViewBackground
         trackedCurrenciesDataSource = TrackedCurrenciesDataSource()
         trackedCurrenciesDelegate = TrackedCurrenciesDelegate()
         
@@ -132,7 +136,8 @@ class TrackedCurrenciesViewController: UIViewController {
 //        self.trackedCurrenciesDataSource.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
 //        self.trackedCurrenciesDelegate.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
         
-        userCoins = CoreDataManager.shared.getAndMapUserCoinsArrayToCoinsArray()
+        let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
+        userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
         trackedCurrenciesDataSource.coins = userCoins
         trackedCurrenciesDelegate.coins = userCoins
         trackedCurrenciesDelegate.viewController = self
@@ -188,7 +193,16 @@ class TrackedCurrenciesViewController: UIViewController {
         
         requestManager.coinsExchanges = coinsExchangesArray
         requestManager.updateCoinsRates(completion: { (newArray) in
-            print(newArray)
+            for coin in self.userCoins {
+                let updatedCoin = newArray[coin.exchange.rawValue][coin.shortName]
+                let updatedCoinRate = (updatedCoin?.exchangeRate)!
+                coin.exchangeRate = updatedCoinRate
+                coin.sum = coin.amount * updatedCoinRate
+            }
+            self.trackedCurrenciesDataSource.coins = self.userCoins
+            self.trackedCurrenciesDelegate.coins = self.userCoins
+            self.tableView.reloadData()
+//            print(newArray)
         })
 //            { (coinsDicts) in
 //            print(coinsDicts)

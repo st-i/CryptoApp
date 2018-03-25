@@ -335,26 +335,8 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
         currentCoin.sum = purchaseSumValue
         currentCoin.amount = currencyAmountValue
 
-        //1
-        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
-        //2
-        let entity = NSEntityDescription.entity(forEntityName: "UserCoin", in: managedContext)!
-        let userCoin = NSManagedObject(entity: entity, insertInto: managedContext)
-        //3
-        userCoin.setValue(currentCoin.fullName, forKeyPath: "fullName")
-        userCoin.setValue(currentCoin.shortName, forKey: "shortName")
-        userCoin.setValue(currentCoin.id, forKey: "id")
-        userCoin.setValue(NSNumber.init(value:currentCoin.exchange.rawValue), forKey: "exchange")
-        userCoin.setValue(NSNumber.init(value:currentCoin.exchangeRate), forKey: "exchangeRate")
-        userCoin.setValue(NSNumber.init(value:currentCoin.amount), forKey: "amount")
-        userCoin.setValue(NSNumber.init(value:currentCoin.sum), forKey: "sum")
-        //4
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-        
+        CoreDataManager.shared.saveUserCoin(coin: currentCoin)
+    
         dismiss(animated: true, completion: nil)
         
         print("Added!")

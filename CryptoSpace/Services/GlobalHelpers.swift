@@ -8,6 +8,8 @@
 
 import Foundation
 
+//НАПИСАТЬ ХЕЛПЕР NUMBERFORMATTER
+
 class DetailedDateFormatter: NSObject {
     
     func stringFromDate(date: Date) -> String {
@@ -105,3 +107,37 @@ class CoinsArrayFormatter: NSObject {
         return coinsExchanges
     }
 }
+
+class CoinsArrayGroupingFormatter: NSObject {
+    
+    class func groupCoins(coins: [Coin]) -> [Coin] {
+        
+        var groupedCoinsDict = Dictionary<String, Coin>()
+        
+        for coin in coins {
+            if !groupedCoinsDict.keys.contains(coin.shortName) {
+                groupedCoinsDict.updateValue(coin, forKey: coin.shortName)
+            }else{
+                let existingCoin = groupedCoinsDict[coin.shortName]
+                existingCoin?.sum = (existingCoin?.sum)! + coin.sum
+                existingCoin?.amount = (existingCoin?.amount)! + coin.amount
+                groupedCoinsDict.updateValue(existingCoin!, forKey: coin.shortName)
+            }
+        }
+        
+        var groupedCoinsArray = [Coin]()
+        for groupedCoin in groupedCoinsDict.values {
+            groupedCoinsArray.append(groupedCoin)
+        }
+        
+        return groupedCoinsArray
+    }
+}
+
+
+
+
+
+
+
+
