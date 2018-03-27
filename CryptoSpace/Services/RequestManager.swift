@@ -22,6 +22,20 @@ class RequestManager: NSObject {
     var coinsExchanges = [Dictionary<String, Coin>]()
     var exchangesCounter = 0
     
+    //запрос курса рубля к доллару
+    func getRubleExchangeRate(completion: @escaping (Double) -> ()) {
+        request(RubleRateRequestBuilder.buildRubleRequest()).responseJSON { (response) in
+            guard let arrayOfData = response.result.value as? Dictionary<String, AnyObject> else{
+                print("Не могу перевести в JSON")
+                return
+            }
+            
+            let rubleExchangeRate = RubleRateResponseParser.parseResponse(response: arrayOfData)
+            print("RUB \(rubleExchangeRate)")
+            completion(rubleExchangeRate)
+        }
+    }
+    
     //запрос для одной монеты
     func getExchangeRate(coin: Coin, completion: @escaping (Double) -> ()) {
         
@@ -766,13 +780,15 @@ class RequestManager: NSObject {
     
     //обычный тестовый запрос
     func sendSomeRequestForTest() {
-        request(RequestToQuoineBuilder.buildAllCoinsRequest()).responseJSON { (response) in
-            
-            guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
-                print("Не могу перевести в JSON")
-                return
-            }
-            print(QuoineResponseParser.parseResponse(response: arrayOfData))
+//        request(RequestToQuoineBuilder.buildAllCoinsRequest()).responseJSON { (response) in
+//            guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
+//                print("Не могу перевести в JSON")
+//                return
+//            }
+//            print(QuoineResponseParser.parseResponse(response: arrayOfData))
+//        }
+        request("http://free.currencyconverterapi.com/api/v3/convert?q=USD_RUB&compact=ultra").responseJSON { (response) in
+            print(response)
         }
     }
 }

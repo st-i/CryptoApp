@@ -34,6 +34,7 @@ class TotalPortfolioCostCellBuilder: NSObject {
         }
         currentNumberFormatter.maximumFractionDigits = fractionDigitsNumber
         let totalPortfolioCostString = currentNumberFormatter.string(from: NSNumber.init(value: totalPortfolioCost))
+        cell.totalPortfolioCostInDollars = totalPortfolioCost
         cell.totalPortfolioValueLabel.text = String(format:"$%@", totalPortfolioCostString!) //сделать 0 после числа
         //₽
         cell.portfolioPercentagesChangesLabel.textColor = UIColor.redChangeColor()

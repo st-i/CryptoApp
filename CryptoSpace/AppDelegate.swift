@@ -6,6 +6,8 @@
 //  Copyright © 2017 Stefanov. All rights reserved.
 //
 
+//enTdiaK3E6-zyge2_7ms
+
 //Quoine - 2 (BTC and ETH)
 //bittrex - 58 +
 //Hitbtc - 51 +

@@ -116,6 +116,8 @@
 		DD7CB75A205295BF00E6E786 /* HitBTCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CB759205295BF00E6E786 /* HitBTCResponseParser.swift */; };
 		DD7CB75C2052DBA000E6E786 /* Checkups.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CB75B2052DBA000E6E786 /* Checkups.swift */; };
 		DD7CB75E2052F23800E6E786 /* KucoinResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CB75D2052F23800E6E786 /* KucoinResponseParser.swift */; };
+		DD7E16EC2069790600EC83CC /* RubleRateRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7E16EB2069790600EC83CC /* RubleRateRequestBuilder.swift */; };
+		DD7E16EE2069796C00EC83CC /* RubleRateResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7E16ED2069796C00EC83CC /* RubleRateResponseParser.swift */; };
 		DD82A5E220661BD70073BD73 /* RequestToQuoineBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82A5E120661BD70073BD73 /* RequestToQuoineBuilder.swift */; };
 		DD82A5E420661C510073BD73 /* QuoineResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82A5E320661C510073BD73 /* QuoineResponseParser.swift */; };
 		DD82A7B920025E3C00A6DD34 /* ActionWithCurrencyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82A7B820025E3C00A6DD34 /* ActionWithCurrencyTableView.swift */; };
@@ -264,6 +266,8 @@
 		DD7CB759205295BF00E6E786 /* HitBTCResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitBTCResponseParser.swift; sourceTree = "<group>"; };
 		DD7CB75B2052DBA000E6E786 /* Checkups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkups.swift; sourceTree = "<group>"; };
 		DD7CB75D2052F23800E6E786 /* KucoinResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KucoinResponseParser.swift; sourceTree = "<group>"; };
+		DD7E16EB2069790600EC83CC /* RubleRateRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubleRateRequestBuilder.swift; sourceTree = "<group>"; };
+		DD7E16ED2069796C00EC83CC /* RubleRateResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubleRateResponseParser.swift; sourceTree = "<group>"; };
 		DD82A5E120661BD70073BD73 /* RequestToQuoineBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToQuoineBuilder.swift; sourceTree = "<group>"; };
 		DD82A5E320661C510073BD73 /* QuoineResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoineResponseParser.swift; sourceTree = "<group>"; };
 		DD82A7B820025E3C00A6DD34 /* ActionWithCurrencyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionWithCurrencyTableView.swift; sourceTree = "<group>"; };
@@ -822,6 +826,24 @@
 		DD7CB73720526A4C00E6E786 /* RequestBuilders */ = {
 			isa = PBXGroup;
 			children = (
+				DD7E16E72069783900EC83CC /* CryptoReqs */,
+				DD7E16E92069789800EC83CC /* USDRUBReq */,
+			);
+			name = RequestBuilders;
+			sourceTree = "<group>";
+		};
+		DD7CB75620527EAB00E6E786 /* ResponseParsers */ = {
+			isa = PBXGroup;
+			children = (
+				DD7E16E82069786E00EC83CC /* CryptoResps */,
+				DD7E16EA206978BA00EC83CC /* USDRUBResp */,
+			);
+			name = ResponseParsers;
+			sourceTree = "<group>";
+		};
+		DD7E16E72069783900EC83CC /* CryptoReqs */ = {
+			isa = PBXGroup;
+			children = (
 				DD82A5E120661BD70073BD73 /* RequestToQuoineBuilder.swift */,
 				DD7CB73820526A9800E6E786 /* RequestToBittrexBuilder.swift */,
 				DD7CB73A20526CC400E6E786 /* RequestToHitBTCBuilder.swift */,
@@ -842,10 +864,10 @@
 				DDAD3BAD2034B5A500B08AA6 /* RequestToOKEXBuilder.swift */,
 				DDD38AC82037651800462783 /* RequestToBitfinexBuilder.swift */,
 			);
-			name = RequestBuilders;
+			name = CryptoReqs;
 			sourceTree = "<group>";
 		};
-		DD7CB75620527EAB00E6E786 /* ResponseParsers */ = {
+		DD7E16E82069786E00EC83CC /* CryptoResps */ = {
 			isa = PBXGroup;
 			children = (
 				DD82A5E320661C510073BD73 /* QuoineResponseParser.swift */,
@@ -865,7 +887,23 @@
 				DD93DF5C20556F02007EB222 /* YobitResponseParser.swift */,
 				DD7CB75720527F6B00E6E786 /* BitfinexResponseParser.swift */,
 			);
-			name = ResponseParsers;
+			name = CryptoResps;
+			sourceTree = "<group>";
+		};
+		DD7E16E92069789800EC83CC /* USDRUBReq */ = {
+			isa = PBXGroup;
+			children = (
+				DD7E16EB2069790600EC83CC /* RubleRateRequestBuilder.swift */,
+			);
+			name = USDRUBReq;
+			sourceTree = "<group>";
+		};
+		DD7E16EA206978BA00EC83CC /* USDRUBResp */ = {
+			isa = PBXGroup;
+			children = (
+				DD7E16ED2069796C00EC83CC /* RubleRateResponseParser.swift */,
+			);
+			name = USDRUBResp;
 			sourceTree = "<group>";
 		};
 		DD82A7B720025DAE00A6DD34 /* TableViews */ = {
@@ -1091,6 +1129,7 @@
 				5407D3F41FE52BC40063C3A6 /* TrackedCurrenciesScreenDirector.swift in Sources */,
 				DD7CB755205273C400E6E786 /* RequestToTidexBuilder.swift in Sources */,
 				DD91F332205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift in Sources */,
+				DD7E16EC2069790600EC83CC /* RubleRateRequestBuilder.swift in Sources */,
 				54081FBD1FE6686F0098195F /* TrackedCurrencyScreenDirector.swift in Sources */,
 				DDA1607E203DED000020B602 /* AllCoinsManager.swift in Sources */,
 				54EBA4751FE84B4400E9F412 /* ObservedCurrencyCellBuilder.swift in Sources */,
@@ -1141,6 +1180,7 @@
 				DD608CD120544E6B006C537D /* CryptopiaResponseParser.swift in Sources */,
 				DD04D127201E149400D67AA5 /* PortfolioCurrencyGraphCell.swift in Sources */,
 				54081FC21FE668FB0098195F /* TrackedCurrencyDelegate.swift in Sources */,
+				DD7E16EE2069796C00EC83CC /* RubleRateResponseParser.swift in Sources */,
 				5407D3F01FE52BC40063C3A6 /* TotalPortfolioCostCell.swift in Sources */,
 				DDAA6AE7200390EA007045F7 /* CurrencyForPairDataSourceAndDelegate.swift in Sources */,
 				54BDCC731FF41649000662C5 /* AddCurrencyScreenDirector.swift in Sources */,

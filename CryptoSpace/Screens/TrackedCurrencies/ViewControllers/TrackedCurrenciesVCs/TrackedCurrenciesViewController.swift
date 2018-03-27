@@ -28,6 +28,7 @@ class TrackedCurrenciesViewController: UIViewController {
     var someVC: UIViewController!
     
     var btcRate:Double = 0.0
+    var rubleRate: Double = 57.356798
     var userCoins = [Coin]()
     
     var requestManager: RequestManager!
@@ -113,6 +114,17 @@ class TrackedCurrenciesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//        requestManager.sendSomeRequestForTest()
+//        request(RubleRateRequestBuilder.buildRubleRequest()).responseJSON { (response) in
+//            guard let arrayOfData = response.result.value as? Dictionary<String, AnyObject> else{
+//                print("Не могу перевести в JSON")
+//                return
+//            }
+//            
+//            let sonedkfn = RubleRateResponseParser.parseResponse(response: arrayOfData)
+//            print(sonedkfn)
+//        }
+        
 //        let someArray = [4, 6, 2, 7, 1, 3, 5]
 //        let sortedArray = someArray.sorted { $0 < $1 }
 //        print(sortedArray)
@@ -141,6 +153,7 @@ class TrackedCurrenciesViewController: UIViewController {
         trackedCurrenciesDataSource.coins = userCoins
         trackedCurrenciesDelegate.coins = userCoins
         trackedCurrenciesDelegate.viewController = self
+        trackedCurrenciesDelegate.rubleRate = rubleRate
     }
     
     @IBAction func openPortfolioGraph(_ sender: UIButton) {
@@ -188,22 +201,29 @@ class TrackedCurrenciesViewController: UIViewController {
         
         let coinsExchangesArray = coinsArrayFormatter.createCoinsExchangesArray(coins: userCoins)
         
-        requestManager.coinsExchanges.removeAll()
-        requestManager.exchangesCounter = 0
-        
-        requestManager.coinsExchanges = coinsExchangesArray
-        requestManager.updateCoinsRates(completion: { (newArray) in
-            for coin in self.userCoins {
-                let updatedCoin = newArray[coin.exchange.rawValue][coin.shortName]
-                let updatedCoinRate = (updatedCoin?.exchangeRate)!
-                coin.exchangeRate = updatedCoinRate
-                coin.sum = coin.amount * updatedCoinRate
-            }
-            self.trackedCurrenciesDataSource.coins = self.userCoins
-            self.trackedCurrenciesDelegate.coins = self.userCoins
-            self.tableView.reloadData()
+        requestManager.getRubleExchangeRate { (newRubleRate) in
+            self.rubleRate = newRubleRate
+            
+            self.requestManager.coinsExchanges.removeAll()
+            self.requestManager.exchangesCounter = 0
+            
+            self.requestManager.coinsExchanges = coinsExchangesArray
+            self.requestManager.updateCoinsRates(completion: { (newArray) in
+                for coin in self.userCoins {
+                    let updatedCoin = newArray[coin.exchange.rawValue][coin.shortName]
+                    let updatedCoinRate = (updatedCoin?.exchangeRate)!
+                    coin.exchangeRate = updatedCoinRate
+                    coin.sum = coin.amount * updatedCoinRate
+                }
+                self.trackedCurrenciesDataSource.coins = self.userCoins
+                self.trackedCurrenciesDelegate.coins = self.userCoins
+                self.trackedCurrenciesDelegate.rubleRate = newRubleRate
+                self.tableView.reloadData()
 //            print(newArray)
-        })
+            })
+        }
+        
+        
 //            { (coinsDicts) in
 //            print(coinsDicts)
 //        }
