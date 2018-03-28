@@ -134,7 +134,38 @@ class CoinsArrayGroupingFormatter: NSObject {
     }
 }
 
+class GlobalNumberFormatter: NSObject {
+    
+    class func createNumberFormatter(number: Double) -> NumberFormatter {
+        
+        let currentNumberFormatter = NumberFormatter.init()
+        currentNumberFormatter.groupingSize = 3
+        currentNumberFormatter.usesGroupingSeparator = true
+        currentNumberFormatter.groupingSeparator = " "
+        currentNumberFormatter.decimalSeparator = ","
+        currentNumberFormatter.numberStyle = .decimal
+        var fractionDigitsNumber = 0
+        if number < 1 {
+            fractionDigitsNumber = 6
+        }else{
+            fractionDigitsNumber = 2
+        }
+        currentNumberFormatter.maximumFractionDigits = fractionDigitsNumber
+        
+        return currentNumberFormatter
+    }
+}
 
+class SumCalculator: NSObject {
+    
+    class func getCoinsTotalSum(coins: [Coin]) -> Double {
+        var totalPortfolioCost = 0.0
+        for coin in coins {
+            totalPortfolioCost = totalPortfolioCost + coin.sum
+        }
+        return totalPortfolioCost
+    }
+}
 
 
 

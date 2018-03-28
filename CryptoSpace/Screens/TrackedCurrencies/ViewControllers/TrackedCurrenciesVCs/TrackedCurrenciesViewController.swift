@@ -28,7 +28,7 @@ class TrackedCurrenciesViewController: UIViewController {
     var someVC: UIViewController!
     
     var btcRate:Double = 0.0
-    var rubleRate: Double = 57.356798
+    var rubleRate: Double = 0.0 //57.356798
     var userCoins = [Coin]()
     
     var requestManager: RequestManager!
@@ -153,7 +153,7 @@ class TrackedCurrenciesViewController: UIViewController {
         trackedCurrenciesDataSource.coins = userCoins
         trackedCurrenciesDelegate.coins = userCoins
         trackedCurrenciesDelegate.viewController = self
-        trackedCurrenciesDelegate.rubleRate = rubleRate
+//        trackedCurrenciesDelegate.rubleRate = rubleRate
     }
     
     @IBAction func openPortfolioGraph(_ sender: UIButton) {
@@ -215,9 +215,49 @@ class TrackedCurrenciesViewController: UIViewController {
                     coin.exchangeRate = updatedCoinRate
                     coin.sum = coin.amount * updatedCoinRate
                 }
+                
+                var portfolioValuesStringsDict = Dictionary<String, String>()
+                
+                let userCoinsSumInDollars = SumCalculator.getCoinsTotalSum(coins: self.userCoins)
+                var currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: userCoinsSumInDollars)
+                let userCoinsSumInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: userCoinsSumInDollars))
+                let userCoinsSumInDollarsWithSignString = String(format:"$%@", userCoinsSumInDollarsString!)
+                portfolioValuesStringsDict.updateValue(userCoinsSumInDollarsWithSignString, forKey: "totalSumInDollarsString")
+                
+                let userCoinsSumInRubles = userCoinsSumInDollars * newRubleRate
+                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: userCoinsSumInRubles)
+                let userCoinsSumInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: userCoinsSumInRubles))
+                let userCoinsSumInRublesWithSignString = String(format:"%@₽", userCoinsSumInRublesString!)
+                portfolioValuesStringsDict.updateValue(userCoinsSumInRublesWithSignString, forKey: "totalSumInRublesString")
+                
+                let initialCoinsCostInDollars = 3495.40
+                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: initialCoinsCostInDollars)
+                let initialCoinsCostInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: initialCoinsCostInDollars))
+                let initialCoinsCostInDollarsWithSignString = String(format:"$%@", initialCoinsCostInDollarsString!)
+                portfolioValuesStringsDict.updateValue(initialCoinsCostInDollarsWithSignString, forKey: "initialCostInDollarsString")
+                
+                let initialCoinsCostInRubles = initialCoinsCostInDollars * newRubleRate
+                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: initialCoinsCostInRubles)
+                let initialCoinsCostInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: initialCoinsCostInRubles))
+                let initialCoinsCostInRublesWithSignString = String(format:"%@₽", initialCoinsCostInRublesString!)
+                portfolioValuesStringsDict.updateValue(initialCoinsCostInRublesWithSignString, forKey: "initialCostInRublesString")
+                
+                
+//                let coinsProfitOrLoss = 1039.94
+                
                 self.trackedCurrenciesDataSource.coins = self.userCoins
                 self.trackedCurrenciesDelegate.coins = self.userCoins
-                self.trackedCurrenciesDelegate.rubleRate = newRubleRate
+//                self.trackedCurrenciesDelegate.rubleRate = newRubleRate
+                self.trackedCurrenciesDelegate.trackedCurrenciesDataSource = self.trackedCurrenciesDataSource
+                
+                self.trackedCurrenciesDataSource.totalSumString = userCoinsSumInDollarsWithSignString
+                self.trackedCurrenciesDataSource.initialSumString = initialCoinsCostInDollarsWithSignString
+                
+                self.trackedCurrenciesDelegate.totalSumString = userCoinsSumInDollarsWithSignString
+                self.trackedCurrenciesDelegate.initialSumString = initialCoinsCostInDollarsWithSignString
+                
+                self.trackedCurrenciesDelegate.portfolioValuesStringsDict = portfolioValuesStringsDict
+                
                 self.tableView.reloadData()
 //            print(newArray)
             })

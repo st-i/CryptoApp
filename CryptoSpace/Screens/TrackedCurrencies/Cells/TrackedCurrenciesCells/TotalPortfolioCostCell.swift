@@ -14,7 +14,9 @@ class TotalPortfolioCostCell: UITableViewCell {
     
     @IBOutlet weak var totalPortfolioValueLabel: UILabel!
     @IBOutlet weak var portfolioPercentagesChangesLabel: UILabel!
-    var totalPortfolioCostInDollars: Double = 0.0
+    @IBOutlet weak var initialPortfolioCostLabel: UILabel!
+    
+    //    var totalPortfolioCostInDollars: Double = 0.0
     
 //    required init?(coder aDecoder: NSCoder) {
 //        super.init(coder: aDecoder)

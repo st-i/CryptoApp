@@ -18,7 +18,17 @@ class TrackedCurrenciesDelegate: NSObject, UITableViewDelegate {
     var arrayWithCells = NSMutableArray() as! [[UITableViewCell]]
     var coins = [Coin]()
     var viewController = UIViewController()
-    var rubleRate:Double = 0.0
+    var trackedCurrenciesDataSource: TrackedCurrenciesDataSource!
+    
+//    var rubleRate:Double = 0.0
+//    var totalSumInDollars:Double = 0.0
+    
+    var portfolioValuesStringsDict: Dictionary<String, String>!
+//    var totalSumInDollarsString: String = ""
+//    var totalSumInRublesString: String = ""
+    var totalSumString: String = ""
+    var initialSumString: String = ""
+    
     var dollarsMode = true
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -109,35 +119,21 @@ class TrackedCurrenciesDelegate: NSObject, UITableViewDelegate {
         
         if indexPath.section == 0 {
             let firstCell = tableView.cellForRow(at: indexPath) as! TotalPortfolioCostCell
-            var newTotalPortfolioCost = 0.0
-            let portfolioCostInDollars = firstCell.totalPortfolioCostInDollars
 
             if dollarsMode {
-                newTotalPortfolioCost = portfolioCostInDollars * rubleRate
+                totalSumString = portfolioValuesStringsDict["totalSumInRublesString"]!
+                initialSumString = portfolioValuesStringsDict["initialCostInRublesString"]!
                 dollarsMode = false
             }else{
-                newTotalPortfolioCost = portfolioCostInDollars
+                totalSumString = portfolioValuesStringsDict["totalSumInDollarsString"]!
+                initialSumString = portfolioValuesStringsDict["initialCostInDollarsString"]!
                 dollarsMode = true
             }
             
-            let currentNumberFormatter = NumberFormatter.init()
-            currentNumberFormatter.groupingSize = 3
-            currentNumberFormatter.usesGroupingSeparator = true
-            currentNumberFormatter.groupingSeparator = " "
-            currentNumberFormatter.decimalSeparator = ","
-            currentNumberFormatter.numberStyle = .decimal
-            var fractionDigitsNumber = 0
-            if newTotalPortfolioCost < 1 {
-                fractionDigitsNumber = 6
-            }else{
-                fractionDigitsNumber = 2
-            }
-            currentNumberFormatter.maximumFractionDigits = fractionDigitsNumber
-            
-            let costSign = dollarsMode ? "$" : "₽"
-            let newTotalPortfolioCostString = currentNumberFormatter.string(from: NSNumber.init(value: newTotalPortfolioCost))
-            firstCell.totalPortfolioValueLabel.text = String(format:"%@%@", costSign, newTotalPortfolioCostString!)
-            
+            firstCell.totalPortfolioValueLabel.text = totalSumString
+            firstCell.initialPortfolioCostLabel.text = initialSumString
+            trackedCurrenciesDataSource.totalSumString = totalSumString
+            trackedCurrenciesDataSource.initialSumString = initialSumString
             
         }else if indexPath.section == 1 {
             let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
