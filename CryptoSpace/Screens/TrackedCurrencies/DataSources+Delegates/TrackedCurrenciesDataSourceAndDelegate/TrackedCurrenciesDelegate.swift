@@ -28,6 +28,7 @@ class TrackedCurrenciesDelegate: NSObject, UITableViewDelegate {
 //    var totalSumInRublesString: String = ""
     var totalSumString: String = ""
     var initialSumString: String = ""
+    var profitOrLossString: String = ""
     
     var dollarsMode = true
     
@@ -123,17 +124,22 @@ class TrackedCurrenciesDelegate: NSObject, UITableViewDelegate {
             if dollarsMode {
                 totalSumString = portfolioValuesStringsDict["totalSumInRublesString"]!
                 initialSumString = portfolioValuesStringsDict["initialCostInRublesString"]!
+                profitOrLossString = portfolioValuesStringsDict["profitOrLossInRublesString"]!
                 dollarsMode = false
             }else{
                 totalSumString = portfolioValuesStringsDict["totalSumInDollarsString"]!
                 initialSumString = portfolioValuesStringsDict["initialCostInDollarsString"]!
+                profitOrLossString = portfolioValuesStringsDict["profitOrLossInDollarsString"]!
                 dollarsMode = true
             }
             
             firstCell.totalPortfolioValueLabel.text = totalSumString
             firstCell.initialPortfolioCostLabel.text = initialSumString
+            firstCell.portfolioProfitOrLossLabel.text = profitOrLossString
+            
             trackedCurrenciesDataSource.totalSumString = totalSumString
             trackedCurrenciesDataSource.initialSumString = initialSumString
+            trackedCurrenciesDataSource.profitOrLossString = profitOrLossString
             
         }else if indexPath.section == 1 {
             let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)

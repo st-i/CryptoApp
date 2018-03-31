@@ -6,17 +6,17 @@
 //  Copyright © 2017 Stefanov. All rights reserved.
 //
 
-//enTdiaK3E6-zyge2_7ms
+//enTdiaK3E6-zyge2_7ms API_KEY к какому-то сайту с крусом рубля
 
-//Quoine - 2 (BTC and ETH)
-//bittrex - 58 +
-//Hitbtc - 51 +
-//kucoin - 26 +
-//idex - 13 + (к эфиру)
-//poloniex - 11 +
-//cryptopia - 10 +
-//gate.io - 8 +
-//binance - 7 +
+//Quoine - 2 (BTC and ETH) | "last_price_24h" = "6842.0"; сразу к доллару
+//bittrex - 56 + | PrevDay = "0.1006195"; - перевести из BTC в USD и посчитать разницу
+//Hitbtc - 52 + | open = "0.000864"; - перевести из BTC в USD и посчитать разницу
+//kucoin - 26 + | changeRate = "-0.0133"; - перевести из BTC в USD и посчитать разницу //перепроверить
+//idex - 13 + (к эфиру) |
+//poloniex - 11 + | percentChange = "0.03187250"; отдает вполне реальные проценты
+//cryptopia - 10 + | Change = "-0.55"; отдает вполне реальные проценты
+//gate.io - 8 + |
+//binance - 7 + |
 //livecoin - 3 +
 //bigone - 2 +
 //c2cx - 1 +

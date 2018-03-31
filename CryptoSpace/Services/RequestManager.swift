@@ -25,6 +25,7 @@ class RequestManager: NSObject {
     //запрос курса рубля к доллару
     func getRubleExchangeRate(completion: @escaping (Double) -> ()) {
         request(RubleRateRequestBuilder.buildRubleRequest()).responseJSON { (response) in
+            print("Запрос курса рубля")
             guard let arrayOfData = response.result.value as? Dictionary<String, AnyObject> else{
                 print("Не могу перевести в JSON")
                 return
@@ -40,7 +41,8 @@ class RequestManager: NSObject {
     func getExchangeRate(coin: Coin, completion: @escaping (Double) -> ()) {
         
         request(RequestToQuoineBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-            
+            print("Запрос Quoine")
+//            print(response)
             guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
                 print("Не могу перевести в JSON")
                 return
@@ -59,6 +61,8 @@ class RequestManager: NSObject {
                 
             case .Bittrex:
                 request(RequestToBittrexBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+                    print("Запрос Bittrex")
+//                    print(response)
                     guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                         print("Не могу перевести в JSON")
                         return
@@ -69,6 +73,8 @@ class RequestManager: NSObject {
                 
             case .HitBTC:
                 request(RequestToHitBTCBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+                    print("Запрос HitBTC")
+//                    print(response)
                     guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
                         print("Не могу перевести в JSON")
                         return
@@ -79,6 +85,8 @@ class RequestManager: NSObject {
                 
             case .Kucoin:
                 request(RequestToKucoinBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+                    print("Запрос Kucoin")
+//                    print(response)
                     guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                         print("Не могу перевести в JSON")
                         return
@@ -90,6 +98,8 @@ class RequestManager: NSObject {
             case .IDEX:
                 request(RequestToIDEXBuilder.buildAllCoinsRequest(), method: .post, parameters: nil)
                     .responseJSON(completionHandler: { (response) in
+                        print("Запрос IDEX")
+//                        print(response) //перепроверить
                     guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                         print("Не могу перевести в JSON")
                         return
@@ -100,6 +110,8 @@ class RequestManager: NSObject {
                 
             case .Poloniex:
                 request(RequestToPoloniexBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+                    print("Запрос Poloniex")
+//                    print(response)
                     guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                         print("Не могу перевести в JSON")
                         return
@@ -110,6 +122,8 @@ class RequestManager: NSObject {
                 
             case .Cryptopia:
                 request(RequestToCryptopiaBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+                    print("Запрос Cryptopia")
+                    print(response)
                     guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                         print("Не могу перевести в JSON")
                         return
@@ -119,27 +133,29 @@ class RequestManager: NSObject {
                 break
                 
             case .Gate_io: //id
-                request(RequestToBitfinexBuilder.buildEthRateRequest()).responseJSON(completionHandler: { (ethResponse) in
-                    
-                    guard let ethDataArray = ethResponse.result.value as? [String: AnyObject] else{
-                        print("Не могу перевести в JSON")
-                        return
-                    }
-                    let ethRate = BitfinexResponseParser.getEthRate(response: ethDataArray)
-                    print(ethRate)
-                    
+//                request(RequestToBitfinexBuilder.buildEthRateRequest()).responseJSON(completionHandler: { (ethResponse) in
+//                    guard let ethDataArray = ethResponse.result.value as? [String: AnyObject] else{
+//                        print("Не могу перевести в JSON")
+//                        return
+//                    }
+//                    let ethRate = BitfinexResponseParser.getEthRate(response: ethDataArray)
+//                    print(ethRate)
+                
                     request(RequestToGate_ioBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+                        print("Запрос Gate_io")
+//                        print(response) //перепроверить
                         guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                             print("Не могу перевести в JSON")
                             return
                         }
                         completion(Gate_ioResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, ethRate: ethRate)[coin.id]!)
                     })
-                })
+//                })
                 break
                 
             case .Binance:
                 request(RequestToBinanceBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+                    print("Запрос Binance")
                     guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
                         print("Не могу перевести в JSON")
                         return
@@ -150,6 +166,7 @@ class RequestManager: NSObject {
                 
             case .Livecoin:
                 request(RequestToLivecoinBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+                    print("Запрос Livecoin")
                     guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
                         print("Не могу перевести в JSON")
                         return
@@ -160,6 +177,7 @@ class RequestManager: NSObject {
                 
             case .BigONE:
                 request(RequestToBigONEBuilder.buildCoinRateRequest(coinShortName: coin.shortName/*"DEW"*/)).responseJSON(completionHandler: { (response) in
+                    print("Запрос BigONE")
                     guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                         print("Не могу перевести в JSON")
                         return
@@ -170,6 +188,7 @@ class RequestManager: NSObject {
                 
             case .C2CX:
                 request(RequestToC2CXBuilder.buildUcashRateRequest()).responseJSON(completionHandler: { (response) in
+                    print("Запрос C2CX")
                     guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                         print("Не могу перевести в JSON")
                         return
@@ -180,6 +199,7 @@ class RequestManager: NSObject {
                 
             case .Cobinhood:
                 request(RequestToCobinhoodBuilder.buildCobinhoodRateRequest()).responseJSON(completionHandler: { (response) in
+                    print("Запрос Cobinhood")
                     guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                         print("Не могу перевести в JSON")
                         return
@@ -190,6 +210,7 @@ class RequestManager: NSObject {
                 
             case .CoinExchange:
                 request(RequestToCoinExchangeBuilder.buildExpPointsRateRequest()).responseJSON(completionHandler: { (response) in
+                    print("Запрос CoinExchange")
                     guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                         print("Не могу перевести в JSON")
                         return
@@ -200,6 +221,7 @@ class RequestManager: NSObject {
                 
             case .Yobit:
                 request(RequestToYobitBuilder.buildWagerrRateRequest()).responseJSON(completionHandler: { (response) in
+                    print("Запрос Yobit")
                     guard let arrayOfData = response.result.value as? [String: AnyObject] else{
                         print("Не могу перевести в JSON")
                         return

@@ -230,7 +230,7 @@ class TrackedCurrenciesViewController: UIViewController {
                 let userCoinsSumInRublesWithSignString = String(format:"%@₽", userCoinsSumInRublesString!)
                 portfolioValuesStringsDict.updateValue(userCoinsSumInRublesWithSignString, forKey: "totalSumInRublesString")
                 
-                let initialCoinsCostInDollars = 3495.40
+                let initialCoinsCostInDollars = 4000.505
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: initialCoinsCostInDollars)
                 let initialCoinsCostInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: initialCoinsCostInDollars))
                 let initialCoinsCostInDollarsWithSignString = String(format:"$%@", initialCoinsCostInDollarsString!)
@@ -242,8 +242,27 @@ class TrackedCurrenciesViewController: UIViewController {
                 let initialCoinsCostInRublesWithSignString = String(format:"%@₽", initialCoinsCostInRublesString!)
                 portfolioValuesStringsDict.updateValue(initialCoinsCostInRublesWithSignString, forKey: "initialCostInRublesString")
                 
+                let profitOrLossInDollars = 1000.505
+                let positiveProfitOrLossInDollars = fabs(profitOrLossInDollars)
+                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: positiveProfitOrLossInDollars)
+                let profitOrLossInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: positiveProfitOrLossInDollars))
+                let minusSign = profitOrLossInDollars >= 0 ? "+" : "-"
+                let profitOrLossInDollarsWithSignString = String(format:"%@$%@", minusSign, profitOrLossInDollarsString!)
+                portfolioValuesStringsDict.updateValue(profitOrLossInDollarsWithSignString, forKey: "profitOrLossInDollarsString")
                 
-//                let coinsProfitOrLoss = 1039.94
+                let profitOrLossInRubles = positiveProfitOrLossInDollars * newRubleRate
+                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: profitOrLossInRubles)
+                let profitOrLossInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: profitOrLossInRubles))
+                let profitOrLossInRublesWithSignString = String(format:"%@%@₽", minusSign, profitOrLossInRublesString!)
+                portfolioValuesStringsDict.updateValue(profitOrLossInRublesWithSignString, forKey: "profitOrLossInRublesString")
+                
+                let changeFromBeginningInPercentages = (positiveProfitOrLossInDollars / initialCoinsCostInDollars) * 100.0
+                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: changeFromBeginningInPercentages)
+                currentNumberFormatter.maximumFractionDigits = 2
+                let changeFromBeginningInPercentagesString = currentNumberFormatter.string(from: NSNumber.init(value: changeFromBeginningInPercentages))
+                let percentagesMinusSign = profitOrLossInDollars >= 0 ? "+" : "-"
+                let changeFromBeginningInPercentagesWithSignString = String(format:"%@%@%%", percentagesMinusSign, changeFromBeginningInPercentagesString!)
+//                portfolioValuesStringsDict.updateValue(changeFromBeginningInPercentagesWithSignString, forKey: "changeFromBeginningInPercentages")
                 
                 self.trackedCurrenciesDataSource.coins = self.userCoins
                 self.trackedCurrenciesDelegate.coins = self.userCoins
@@ -252,9 +271,12 @@ class TrackedCurrenciesViewController: UIViewController {
                 
                 self.trackedCurrenciesDataSource.totalSumString = userCoinsSumInDollarsWithSignString
                 self.trackedCurrenciesDataSource.initialSumString = initialCoinsCostInDollarsWithSignString
+                self.trackedCurrenciesDataSource.profitOrLossString = profitOrLossInDollarsWithSignString
+                self.trackedCurrenciesDataSource.changeFromBeginningInPercentages = changeFromBeginningInPercentagesWithSignString
                 
                 self.trackedCurrenciesDelegate.totalSumString = userCoinsSumInDollarsWithSignString
                 self.trackedCurrenciesDelegate.initialSumString = initialCoinsCostInDollarsWithSignString
+                self.trackedCurrenciesDelegate.profitOrLossString = profitOrLossInRublesWithSignString
                 
                 self.trackedCurrenciesDelegate.portfolioValuesStringsDict = portfolioValuesStringsDict
                 

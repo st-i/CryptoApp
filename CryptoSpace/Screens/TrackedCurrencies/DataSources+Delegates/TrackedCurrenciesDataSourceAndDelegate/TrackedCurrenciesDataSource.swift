@@ -14,6 +14,8 @@ class TrackedCurrenciesDataSource: NSObject, UITableViewDataSource {
     var coins = [Coin]()
     var totalSumString: String = ""
     var initialSumString: String = ""
+    var profitOrLossString: String = ""
+    var changeFromBeginningInPercentages: String = ""
     
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -45,12 +47,12 @@ class TrackedCurrenciesDataSource: NSObject, UITableViewDataSource {
 //        return arrayWithCells[indexPath.section][indexPath.row]
         switch indexPath.section {
         case 0:
-            return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(for: tableView, totalSum: totalSumString, initialCost: initialSumString, profitOrLoss: "+$2 013,54")
+            return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(for: tableView, totalSum: totalSumString, changeFromPurchaseMoment: changeFromBeginningInPercentages, initialCost: initialSumString, profitOrLoss: profitOrLossString)
         case 1:
 //            let currentCoin = coins[indexPath.row]
             return TrackedPositionCellBuilder.buildTrackedPositionCell(for: tableView, coin: coins[indexPath.row])
         default:
-            return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(for: tableView, totalSum: totalSumString, initialCost: "$3 748,18", profitOrLoss: "+$2 013,54")
+            return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(for: tableView, totalSum: totalSumString, changeFromPurchaseMoment: changeFromBeginningInPercentages, initialCost: initialSumString, profitOrLoss: profitOrLossString)
         }
     }
     

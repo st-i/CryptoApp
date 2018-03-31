@@ -12,12 +12,27 @@ private let kTotalPortfolioCostCellIdentifier = "TotalPortfolioCostCell"
 
 class TotalPortfolioCostCellBuilder: NSObject {
         
-    class func buildTotalPortfolioCostCell(for tableView: UITableView, totalSum: String, initialCost: String, profitOrLoss: String) -> UITableViewCell {
+    class func buildTotalPortfolioCostCell(for tableView: UITableView, totalSum: String, changeFromPurchaseMoment: String, initialCost: String, profitOrLoss: String) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kTotalPortfolioCostCellIdentifier) as! TotalPortfolioCostCell
         cell.selectionStyle = .none
         
         
         cell.totalPortfolioValueLabel.text = totalSum //String(format:"$%@", totalPortfolioCostString!) //сделать 0 после числа
+        cell.changeFromPurchaseMoment.text = changeFromPurchaseMoment
+        cell.initialPortfolioCostLabel.text = initialCost
+        cell.portfolioProfitOrLossLabel.text = profitOrLoss
+        
+        if changeFromPurchaseMoment.contains("-") {
+            cell.changeFromPurchaseMoment.textColor = UIColor.redChangeColor()
+        }else{
+            cell.changeFromPurchaseMoment.textColor = UIColor.greenChangeColor()
+        }
+        
+        if profitOrLoss.contains("-") {
+            cell.portfolioProfitOrLossLabel.textColor = UIColor.redChangeColor()
+        }else{
+            cell.portfolioProfitOrLossLabel.textColor = UIColor.greenChangeColor()
+        }
         
         cell.portfolioPercentagesChangesLabel.textColor = UIColor.redChangeColor()
 

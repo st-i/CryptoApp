@@ -51,7 +51,7 @@ class AllCoinsManager: NSObject {
         //4
         let bitcoinCashCoin = Coin.init()
         bitcoinCashCoin.fullName = "Bitcoin Cash" //1bittrex or okex
-        bitcoinCashCoin.shortName = "BCC" //нужно на BCH
+        bitcoinCashCoin.shortName = "BCC" //нужно на BCH в будущем
         bitcoinCashCoin.id = "bcc"
         bitcoinCashCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(bitcoinCashCoin)
@@ -117,7 +117,7 @@ class AllCoinsManager: NSObject {
         iotaCoin.fullName = "IOTA" //1gate.io or okex(!iota)
         iotaCoin.shortName = "IOTA"
         iotaCoin.id = "iota"
-        iotaCoin.exchange = ExchangeBehavior.Gate_io
+        iotaCoin.exchange = ExchangeBehavior.HitBTC
         iotaCoin.okexId = "iota"
         allCoins.append(iotaCoin)
         
@@ -212,7 +212,7 @@ class AllCoinsManager: NSObject {
         //24
         let nanoCoin = Coin.init()
         nanoCoin.fullName = "Nano" //1kucoin or okex
-        nanoCoin.shortName = "XRB"
+        nanoCoin.shortName = "XRB" //может измениться на NANO
         nanoCoin.id = "xrb"
         nanoCoin.exchange = ExchangeBehavior.Kucoin
         allCoins.append(nanoCoin)
@@ -230,7 +230,7 @@ class AllCoinsManager: NSObject {
         bytecoinCoin.fullName = "Bytecoin" //1poloniex
         bytecoinCoin.shortName = "BCN"
         bytecoinCoin.id = "bcn"
-        bytecoinCoin.exchange = ExchangeBehavior.Poloniex
+        bytecoinCoin.exchange = ExchangeBehavior.HitBTC
         allCoins.append(bytecoinCoin)
         
         //27
@@ -439,7 +439,7 @@ class AllCoinsManager: NSObject {
         arkCoin.fullName = "Ark" //1cryptopia or okex
         arkCoin.shortName = "ARK"
         arkCoin.id = "ark"
-        arkCoin.exchange = ExchangeBehavior.Cryptopia
+        arkCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(arkCoin)
         
         //53
@@ -463,7 +463,7 @@ class AllCoinsManager: NSObject {
         basicAttentionTokenCoin.fullName = "Basic Attention Token" //1gate.io or bitfinex (Ethfinex)
         basicAttentionTokenCoin.shortName = "BAT"
         basicAttentionTokenCoin.id = "bat"
-        basicAttentionTokenCoin.exchange = ExchangeBehavior.Gate_io
+        basicAttentionTokenCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(basicAttentionTokenCoin)
         
         //56
@@ -567,7 +567,7 @@ class AllCoinsManager: NSObject {
         pivxCoin.fullName = "PIVX" //1cryptopia or TradeByTrade or yobit(30per60) or livecoin(высокий курс) or litebit.eu(к евро)
         pivxCoin.shortName = "PIVX"
         pivxCoin.id = "pivx"
-        pivxCoin.exchange = ExchangeBehavior.Cryptopia
+        pivxCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(pivxCoin)
         
         //69
@@ -607,7 +607,7 @@ class AllCoinsManager: NSObject {
         reddCoinCoin.fullName = "ReddCoin" //1cryptopia or litebit or yobit or Bleutrade
         reddCoinCoin.shortName = "RDD"
         reddCoinCoin.id = "rdd"
-        reddCoinCoin.exchange = ExchangeBehavior.Cryptopia
+        reddCoinCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(reddCoinCoin)
         
         //74
@@ -711,7 +711,7 @@ class AllCoinsManager: NSObject {
         zCoinCoin.fullName = "ZCoin" //1cryptopia or aex or Bxthailand or coinexchange or LiteBit.eu
         zCoinCoin.shortName = "XZC"
         zCoinCoin.id = "xzc"
-        zCoinCoin.exchange = ExchangeBehavior.Cryptopia
+        zCoinCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(zCoinCoin)
         
         //87
@@ -764,10 +764,10 @@ class AllCoinsManager: NSObject {
         
         //93
         let maidSafeCoinCoin = Coin.init()
-        maidSafeCoinCoin.fullName = "MaidSafeCoin" //1bittrex or poloniex or
+        maidSafeCoinCoin.fullName = "MaidSafeCoin" //1hitbtc or poloniex or
         maidSafeCoinCoin.shortName = "MAID"
         maidSafeCoinCoin.id = "maid"
-        maidSafeCoinCoin.exchange = ExchangeBehavior.Bittrex
+        maidSafeCoinCoin.exchange = ExchangeBehavior.HitBTC
         allCoins.append(maidSafeCoinCoin)
         
         //94
@@ -1045,7 +1045,7 @@ class AllCoinsManager: NSObject {
         zenCashCoin.fullName = "ZenCash" //1cryptopia or okex
         zenCashCoin.shortName = "ZEN"
         zenCashCoin.id = "zen"
-        zenCashCoin.exchange = ExchangeBehavior.Cryptopia
+        zenCashCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(zenCashCoin)
         
         //129
@@ -1295,12 +1295,12 @@ class AllCoinsManager: NSObject {
         allCoins.append(sonmCoin)
         
         //160
-        let agorasTokensCoin = Coin.init()
-        agorasTokensCoin.fullName = "Agoras Tokens" //1bittrex
-        agorasTokensCoin.shortName = "AGRS"
-        agorasTokensCoin.id = "agrs"
-        agorasTokensCoin.exchange = ExchangeBehavior.Bittrex
-        allCoins.append(agorasTokensCoin)
+//        let agorasTokensCoin = Coin.init()
+//        agorasTokensCoin.fullName = "Agoras Tokens" //нет ни на каких биржах
+//        agorasTokensCoin.shortName = "AGRS"
+//        agorasTokensCoin.id = "agrs"
+//        agorasTokensCoin.exchange = ExchangeBehavior.Bittrex
+//        allCoins.append(agorasTokensCoin)
         
         //161
         let sirinLabsTokenCoin = Coin.init()
@@ -1339,7 +1339,7 @@ class AllCoinsManager: NSObject {
         ripioCreditNetworkCoin.fullName = "Ripio Credit Network" //1gate.io. or okex
         ripioCreditNetworkCoin.shortName = "RCN"
         ripioCreditNetworkCoin.id = "rcn"
-        ripioCreditNetworkCoin.exchange = ExchangeBehavior.Gate_io
+        ripioCreditNetworkCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(ripioCreditNetworkCoin)
         
         //166

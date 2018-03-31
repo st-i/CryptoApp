@@ -10,6 +10,7 @@ import UIKit
 
 class HitBTCResponseParser: NSObject {
 
+    //приходят даже в паре с USD, но не все!!! поэтому лучше к BTC
     class func parseResponse(response: [Dictionary<String, AnyObject>], coinsArray: [Coin], btcRate: Double) -> Dictionary<String, Double> {
         
         let kCoinsPair = "symbol"
