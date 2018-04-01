@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Screens/TrackedCurrencies/ViewControllers/TrackedCurrenciesVCs/CurrencySearchViewController.swift"
-            timestampString = "542835021.052421"
+            timestampString = "544283733.796367"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
@@ -266,7 +266,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/CoreDataManager.swift"
-            timestampString = "543691057.2515399"
+            timestampString = "544280399.003877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "92"
@@ -314,7 +314,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Screens/TrackedCurrencies/ViewControllers/TrackedCurrenciesVCs/TrackedCurrenciesViewController.swift"
-            timestampString = "544210975.078207"
+            timestampString = "544283733.797008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "202"
@@ -330,7 +330,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Screens/TrackedCurrencies/ViewControllers/TrackedCurrenciesVCs/TrackedCurrenciesViewController.swift"
-            timestampString = "544210975.078626"
+            timestampString = "544283733.79734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "327"
@@ -346,7 +346,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Screens/TrackedCurrencies/ViewControllers/TrackedCurrenciesVCs/TrackedCurrenciesViewController.swift"
-            timestampString = "544210975.078913"
+            timestampString = "544283733.797622"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "326"
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/RequestManager.swift"
-            timestampString = "544210975.0791889"
+            timestampString = "544283733.797899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "updateCoinsRates(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/RequestManager.swift"
-            timestampString = "544210975.079844"
+            timestampString = "544283733.798244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "updateBittrexCoinsRates(btcRate:ethRate:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/RequestManager.swift"
-            timestampString = "544210975.080385"
+            timestampString = "544283733.798575"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "updateBittrexCoinsRates(btcRate:ethRate:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -410,39 +410,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/RequestManager.swift"
-            timestampString = "544210975.080901"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
-            landmarkName = "updateBittrexCoinsRates(btcRate:ethRate:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CryptoSpace/Services/RequestManager.swift"
-            timestampString = "544210975.081414"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
-            landmarkName = "updateBittrexCoinsRates(btcRate:ethRate:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CryptoSpace/Services/RequestManager.swift"
-            timestampString = "544210975.081928"
+            timestampString = "544283733.798869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "314"
@@ -458,11 +426,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/RequestManager.swift"
-            timestampString = "544210975.082438"
+            timestampString = "544283733.799159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "updateBittrexCoinsRates(btcRate:ethRate:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CryptoSpace/Services/RequestManager.swift"
+            timestampString = "544283733.799446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "updateBittrexCoinsRates(btcRate:ethRate:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CryptoSpace/Services/RequestManager.swift"
+            timestampString = "544283733.7997299"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
             landmarkName = "updateHitBTCCoinsRates(btcRate:ethRate:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -474,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/RequestManager.swift"
-            timestampString = "544210975.082945"
+            timestampString = "544283733.800019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
             landmarkName = "updateHitBTCCoinsRates(btcRate:ethRate:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/RequestManager.swift"
-            timestampString = "544210975.083456"
+            timestampString = "544283733.800305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "updateHitBTCCoinsRates(btcRate:ethRate:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -506,28 +506,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/RequestManager.swift"
-            timestampString = "544210975.083964"
+            timestampString = "544283733.800591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "updateCoinsRates(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CryptoSpace/Services/RequestManager.swift"
-            timestampString = "544210975.084509"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
-            landmarkName = "updatePoloniexCoinsRates(btcRate:ethRate:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -550,11 +534,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/CoreDataManager.swift"
-            timestampString = "543691057.261062"
+            timestampString = "544280399.005931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
@@ -566,11 +550,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/CoreDataManager.swift"
-            timestampString = "543691057.261133"
+            timestampString = "544280399.006192"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "153"
@@ -586,12 +570,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Screens/TrackedCurrencies/ViewControllers/TrackedCurrenciesVCs/TrackedCurrenciesViewController.swift"
-            timestampString = "544210975.08509"
+            timestampString = "544283733.800933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "245"
             endingLineNumber = "245"
             landmarkName = "refreshCurrenciesRates()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CryptoSpace/Services/QuoineResponseParser.swift"
+            timestampString = "544283733.801675"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "parseResponse(response:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

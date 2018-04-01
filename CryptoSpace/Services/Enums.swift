@@ -17,12 +17,13 @@ enum ExchangeBehavior: Int {
     case Quoine
     case Bittrex
     case HitBTC
-    case Kucoin
-    case IDEX
+    case Binance
     case Poloniex
     case Cryptopia
+
+    case Kucoin
+    case IDEX
     case Gate_io
-    case Binance
     case Livecoin
     case BigONE
     case C2CX

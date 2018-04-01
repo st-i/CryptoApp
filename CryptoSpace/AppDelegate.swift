@@ -8,21 +8,24 @@
 
 //enTdiaK3E6-zyge2_7ms API_KEY к какому-то сайту с крусом рубля
 
-//Quoine - 2 (BTC and ETH) | "last_price_24h" = "6842.0"; сразу к доллару
-//bittrex - 56 + | PrevDay = "0.1006195"; - перевести из BTC в USD и посчитать разницу
-//Hitbtc - 52 + | open = "0.000864"; - перевести из BTC в USD и посчитать разницу
-//kucoin - 26 + | changeRate = "-0.0133"; - перевести из BTC в USD и посчитать разницу //перепроверить
+//Quoine - 3 (BTC, ETH and QASH) | "last_price_24h" = "6842.0"; сразу к доллару
+//bittrex - 110 + | PrevDay = "0.1006195"; - перевести из BTC в USD и посчитать разницу
+//Hitbtc - 51 + | open = "0.000864"; - перевести из BTC в USD и посчитать разницу
+//binance - 27 + | openPrice = "0.00001212"; prevClosePrice = "0.00001213"; priceChange = "-0.00000027"; priceChangePercent = "-2.228"; - отдает вполне реальные проценты
+//poloniex - 6 + | percentChange = "0.03187250"; отдает вполне реальные проценты
+//cryptopia - 3 + | Change = "-0.55"; - отдает вполне реальные проценты, много монет можно кинуть на bittrex
+
+//for future
 //idex - 13 + (к эфиру) |
-//poloniex - 11 + | percentChange = "0.03187250"; отдает вполне реальные проценты
-//cryptopia - 10 + | Change = "-0.55"; отдает вполне реальные проценты
 //gate.io - 8 + |
-//binance - 7 + |
-//livecoin - 3 +
-//bigone - 2 +
-//c2cx - 1 +
-//cobinhood - 1 +
-//coinexchange - 1 +
-//Yobit - 1 + 194
+//kucoin - 26 + | changeRate = "-0.0133"; - перевести из BTC в USD и посчитать разницу //перепроверить
+//livecoin - 3 + | убрал биржу
+//bigone - 2 + | убрал биржу
+//c2cx - 1 + | убрал биржу
+//cobinhood - 1 + | убрал биржу
+//coinexchange - 1 + | убрал биржу
+//Yobit - 1 + | убрал биржу
+//Yobit - 1 + |
 
 //1.Quoine / Qryptos - API users should not make more than 300 requests per 5 minute (60 per minute)
 //2.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits (все сразу)
@@ -33,6 +36,7 @@
 //7.idex - has api, no limits info
 //8.Gate.io - good api; has limits, but nothing about limits in numbers
 //9.binance - Each route has a weight which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier weight.
+
 //10.Livecoin - Разрешается не более 60 любых запросов к API в течении 60 секунд подряд с одного IP адреса. (60 per minute)
 //11.bigone - 108 currencies, есть api, ничего про лимиты (падает приложение на ответе)
 //12.c2cx - 60 API request per minute per endpoint. If more then 60 API requests are sent per minute to an endpoint the sending IP will be blocked for between 30 and 60 seconds. Results are also limited to 100 results per API request. APIs that may return more than 100 result will have a pagination option. (60 per minute)(в разработке)
