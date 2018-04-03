@@ -210,8 +210,8 @@ class AllCoinsManager: NSObject {
         //24
         let nanoCoin = Coin.init()
         nanoCoin.fullName = "Nano" //1Binance or kucoin or okex
-        nanoCoin.shortName = "XRB" //может измениться на NANO
-        nanoCoin.id = "xrb"
+        nanoCoin.shortName = "NANO" //может измениться на NANO
+        nanoCoin.id = "nano"
         nanoCoin.exchange = ExchangeBehavior.Binance
         allCoins.append(nanoCoin)
         

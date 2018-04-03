@@ -40,10 +40,9 @@ class QuoineResponseParser: NSObject {
 
     class func parseResponse(response: [Dictionary<String, AnyObject>]) -> Dictionary<String, Dictionary<String, Double>> {
         
-//        let kCoinsPair = "currency_pair_code"
-//        let kLastCoinPrice = "last_traded_price"
-//        let kLastCoinPrice24h = "last_price_24h"
-//        let k24hPercentChange = "24hChange"
+        let kQuoineCoinsPair = "currency_pair_code"
+        let kQuoineCoinLastPrice = "last_traded_price"
+        let kQuoineCoin24hLastPrice = "last_price_24h"
         
         let btcusd = "BTCUSD"
         let ethusd = "ETHUSD"
@@ -64,25 +63,24 @@ class QuoineResponseParser: NSObject {
                 let range = start ..< end
                 
                 let coinName = coinsPair[range]
-                let coinPrice = Double(currentDict[kQuoineLastCoinPrice] as! String)!
+                let coinPrice = Double(currentDict[kQuoineCoinLastPrice] as! String)!
                 
                 //находим изменение цены за 24ч в процентах
-                let coinPrice24h = Double(currentDict[kQuoineLastCoinPrice24h] as! String)!
-                var priceDifference = 0.0
-                if coinPrice >= coinPrice24h {
-                    priceDifference = coinPrice - coinPrice24h
-                }else{
-                    priceDifference = coinPrice24h - coinPrice
-                }
-                var priceDifferencePercent = (priceDifference / coinPrice24h) * 100.0
-                if coinPrice < coinPrice24h {
-                    priceDifferencePercent = 0 - priceDifferencePercent
-                }
+                let coinPrice24h = Double(currentDict[kQuoineCoin24hLastPrice] as! String)!
                 
-                var coinDetailsDict = Dictionary<String, Double>()
-                coinDetailsDict.updateValue(coinPrice, forKey: kQuoineLastCoinPrice)
-                coinDetailsDict.updateValue(priceDifferencePercent, forKey: kQuoine24hPercentChange)
+//                var priceDifference = 0.0
+//                if coinPrice >= coinPrice24h {
+//                    priceDifference = coinPrice - coinPrice24h
+//                }else{
+//                    priceDifference = coinPrice24h - coinPrice
+//                }
+//                var priceDifferencePercent = (priceDifference / coinPrice24h) * 100.0
+//                if coinPrice < coinPrice24h {
+//                    priceDifferencePercent = 0 - priceDifferencePercent
+//                }
                 
+                let coinDetailsDict = PercentChangeCalculator.determine24hPriceChangeInPercentsForQuoine(coinPrice: coinPrice, coinPrice24h: coinPrice24h)
+
                 print("\(coinName): \(coinPrice)")
                 actualCoinsRates.updateValue(coinDetailsDict, forKey: String(coinName))
             }

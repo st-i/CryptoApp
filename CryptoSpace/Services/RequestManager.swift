@@ -49,15 +49,16 @@ class RequestManager: NSObject {
                 return
             }
             let quoineCoinsRatesDict = QuoineResponseParser.parseResponse(response: arrayOfData)
-            let btcRate = (quoineCoinsRatesDict["BTC"]! as Dictionary<String, Double>)["last_traded_price"]!
-
+            let btcRate = (quoineCoinsRatesDict["BTC"]! as Dictionary<String, Double>)[kCoinLastPrice]!
+            let btc24hPercentChange = quoineCoinsRatesDict["BTC"]![kCoin24hPercentChange]!
+            
 //            let ethRate = btcAndEthRatesDict["ETH"]!
             
             let allUserCoins = [coin]
             
             switch coin.exchange {
             case .Quoine:
-                let quoineCoinRate = (quoineCoinsRatesDict[coin.shortName]! as Dictionary<String, Double>)["last_traded_price"]!
+                let quoineCoinRate = (quoineCoinsRatesDict[coin.shortName]! as Dictionary<String, Double>)[kCoinLastPrice]!
                 completion(quoineCoinRate)
                 break
                 
@@ -69,7 +70,7 @@ class RequestManager: NSObject {
                         print("Не могу перевести в JSON")
                         return
                     }
-                    completion(BittrexResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)[coin.shortName]!)
+                    completion(BittrexResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: btc24hPercentChange)[coin.shortName]![kCoinLastPrice]!)
                 })
                 break
                 
@@ -81,14 +82,14 @@ class RequestManager: NSObject {
                         print("Не могу перевести в JSON")
                         return
                     }
-                    completion(HitBTCResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)[coin.shortName]!)
+                    completion(HitBTCResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: btc24hPercentChange)[coin.shortName]![kCoinLastPrice]!)
                 })
                 break
                 
             case .Binance:
                 request(RequestToBinanceBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
                     print("Запрос Binance")
-//                    print(response)
+                    print(response)
                     guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
                         print("Не могу перевести в JSON")
                         return
@@ -257,9 +258,11 @@ class RequestManager: NSObject {
                 return
             }
             let quoineCoinsRatesDict = QuoineResponseParser.parseResponse(response: arrayOfData)
-            let btcRate = (quoineCoinsRatesDict["BTC"]! as Dictionary<String, Double>)["last_traded_price"]!
-            let ethRate = (quoineCoinsRatesDict["ETH"]! as Dictionary<String, Double>)["last_traded_price"]!
-            let qashRate = (quoineCoinsRatesDict["QASH"]! as Dictionary<String, Double>)["last_traded_price"]!
+            let btcRate = (quoineCoinsRatesDict["BTC"]! as Dictionary<String, Double>)[kCoinLastPrice]!
+            let btc24hPercentChange = (quoineCoinsRatesDict["BTC"]! as Dictionary<String, Double>)[kCoin24hPercentChange]!
+            
+            let ethRate = (quoineCoinsRatesDict["ETH"]! as Dictionary<String, Double>)[kCoinLastPrice]!
+            let qashRate = (quoineCoinsRatesDict["QASH"]! as Dictionary<String, Double>)[kCoinLastPrice]!
             
             let exchangeCoinsDict = self.coinsExchanges[self.exchangesCounter]
             if exchangeCoinsDict.keys.count > 0 {
@@ -282,7 +285,7 @@ class RequestManager: NSObject {
                 }
             }
             self.exchangesCounter = self.exchangesCounter + 1
-            self.updateBittrexCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
+            self.updateBittrexCoinsRates(btcRate: btcRate, btc24hPercentChange: btc24hPercentChange, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
             })
 //            self.updateAnotherCoinsRates(exchangesCounter: self.exchangesCounter, btcRate: btcRate, ethRate: ethRate)
@@ -290,7 +293,7 @@ class RequestManager: NSObject {
         })
     }
     
-    private func updateBittrexCoinsRates(btcRate: Double, ethRate: Double,
+    private func updateBittrexCoinsRates(btcRate: Double, btc24hPercentChange: Double, ethRate: Double,
                                          completion: @escaping ([Dictionary<String, Coin>]) -> ()) {
         
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
@@ -306,31 +309,32 @@ class RequestManager: NSObject {
                     for currentExchangeCoin in exchangeCoinsDict.values {
                         currentExchangeCoins.append(currentExchangeCoin)
                     }
-                    let bittrexCoins = BittrexResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate)
+                    let bittrexCoins = BittrexResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate, btc24hPercentChange: btc24hPercentChange)
                     
                     for key in bittrexCoins.keys {
                         if exchangeCoinsDict.keys.contains(key) {
                             let someCurrentCoin = exchangeCoinsDict[key]
-                            someCurrentCoin?.exchangeRate = bittrexCoins[key]!
+                            someCurrentCoin?.exchangeRate = bittrexCoins[key]![kCoinLastPrice]!
+//                            someCurrentCoin?.24hPercentChange = bittrexCoins[key]![kBittrexCoin24hPercentChange]!
                             self.coinsExchanges[self.exchangesCounter].updateValue(someCurrentCoin!, forKey: key)
                         }
                     }
                 }
                 self.exchangesCounter = self.exchangesCounter + 1
-                self.updateHitBTCCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
+                self.updateHitBTCCoinsRates(btcRate: btcRate, btc24hPercentChange: btc24hPercentChange, ethRate: ethRate, completion: { (newArray) in
                     completion(newArray)
                 })
             })
         }else{
             print("монет не добавлено Bittrex")
             exchangesCounter = exchangesCounter + 1
-            updateHitBTCCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
+            updateHitBTCCoinsRates(btcRate: btcRate, btc24hPercentChange: btc24hPercentChange, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
             })
         }
     }
 
-    private func updateHitBTCCoinsRates(btcRate: Double, ethRate: Double,
+    private func updateHitBTCCoinsRates(btcRate: Double, btc24hPercentChange: Double, ethRate: Double,
                                         completion: @escaping ([Dictionary<String, Coin>]) -> ()) {
         
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
@@ -345,12 +349,12 @@ class RequestManager: NSObject {
                 for currentExchangeCoin in exchangeCoinsDict.values {
                     currentExchangeCoins.append(currentExchangeCoin)
                 }
-                let hitBtcCoins = HitBTCResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate)
+                let hitBtcCoins = HitBTCResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate, btc24hPercentChange: btc24hPercentChange)
                 
                 for key in hitBtcCoins.keys {
                     if exchangeCoinsDict.keys.contains(key) {
                         let someCurrentCoin = exchangeCoinsDict[key]
-                        someCurrentCoin?.exchangeRate = hitBtcCoins[key]!
+                        someCurrentCoin?.exchangeRate = hitBtcCoins[key]![kCoinLastPrice]!
                         self.coinsExchanges[self.exchangesCounter].updateValue(someCurrentCoin!, forKey: key)
                     }
                 }

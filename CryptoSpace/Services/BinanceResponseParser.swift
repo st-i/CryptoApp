@@ -12,8 +12,9 @@ class BinanceResponseParser: NSObject {
 
     class func parseResponse(response: [Dictionary<String, AnyObject>], coinsArray: [Coin], btcRate: Double) -> Dictionary<String, Double> {
         
-        let kCoinsPair = "symbol"
-        let kLastCoinPrice = "lastPrice"
+        let kBinanceCoinsPair = "symbol"
+        let kBinanceCoinLastPrice = "lastPrice"
+        let kBinanceCoinOpenPrice = "openPrice"
         let btcPart = "BTC"
         
         var actualCoinsRates = Dictionary<String, Double>()
@@ -21,7 +22,7 @@ class BinanceResponseParser: NSObject {
         for someCoin in coinsArray {
             if someCoin.exchange == ExchangeBehavior.Binance {
                 for currentDict in response {
-                    let coinsPair = currentDict[kCoinsPair] as! String
+                    let coinsPair = currentDict[kBinanceCoinsPair] as! String
                     if coinsPair.contains(btcPart) {
                         let lastThreeChars = coinsPair.suffix(3)
                         
@@ -33,7 +34,11 @@ class BinanceResponseParser: NSObject {
                             let coinName = coinsPair[range]
                         
                             if someCoin.shortName == coinName {
-                                let coinPrice = Double(currentDict[kLastCoinPrice] as! String)! * btcRate
+                                let coinPrice = Double(currentDict[kBinanceCoinLastPrice] as! String)! * btcRate
+                                let coinOpenPrice = Double(currentDict[kBinanceCoinOpenPrice] as! String)! * btcRate
+                                
+                                let coinDetailsDict = PercentChangeCalculator.determine24hPriceChangeInPercents(coinPrice: usdtRate, coinPrice24h: usdtOpenPrice, btc24hPercentChange: btc24hPercentChange)
+                                
                                 actualCoinsRates.updateValue(coinPrice, forKey: String(coinName))
 //                                let currentCoinArray = [coinName, coinPrice] as [Any]
 //                                print(currentCoinArray)

@@ -167,8 +167,47 @@ class SumCalculator: NSObject {
     }
 }
 
+class PercentChangeCalculator: NSObject {
+    
+    class func determine24hPriceChangeInPercentsForQuoine(coinPrice: Double, coinPrice24h: Double) -> Dictionary<String, Double> {
+        var priceDifference = 0.0
+        if coinPrice >= coinPrice24h {
+            priceDifference = coinPrice - coinPrice24h
+        }else{
+            priceDifference = coinPrice24h - coinPrice
+        }
+        var priceDifferencePercent = (priceDifference / coinPrice24h) * 100.0
+        if coinPrice < coinPrice24h {
+            priceDifferencePercent = 0 - priceDifferencePercent
+        }
+        
+        var coinDetailsDict = Dictionary<String, Double>()
+        coinDetailsDict.updateValue(coinPrice, forKey: kCoinLastPrice)
+        coinDetailsDict.updateValue(priceDifferencePercent, forKey: kCoin24hPercentChange)
+        
+        return coinDetailsDict
+    }
 
-
-
-
+    
+    class func determine24hPriceChangeInPercents(coinPrice: Double, coinPrice24h: Double, btc24hPercentChange: Double) -> Dictionary<String, Double> {
+        var priceDifference = 0.0
+        if coinPrice >= coinPrice24h {
+            priceDifference = coinPrice - coinPrice24h
+        }else{
+            priceDifference = coinPrice24h - coinPrice
+        }
+        var priceDifferencePercent = (priceDifference / coinPrice24h) * 100.0
+        if coinPrice < coinPrice24h {
+            priceDifferencePercent = btc24hPercentChange - priceDifferencePercent
+        }else{
+            priceDifferencePercent = btc24hPercentChange + priceDifferencePercent
+        }
+        
+        var coinDetailsDict = Dictionary<String, Double>()
+        coinDetailsDict.updateValue(coinPrice, forKey: kCoinLastPrice)
+        coinDetailsDict.updateValue(priceDifferencePercent, forKey: kCoin24hPercentChange)
+        
+        return coinDetailsDict
+    }
+}
 

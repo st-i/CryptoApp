@@ -11,27 +11,40 @@ import UIKit
 class HitBTCResponseParser: NSObject {
 
     //приходят даже в паре с USD, но не все!!! поэтому лучше к BTC
-    class func parseResponse(response: [Dictionary<String, AnyObject>], coinsArray: [Coin], btcRate: Double) -> Dictionary<String, Double> {
+    class func parseResponse(response: [Dictionary<String, AnyObject>], coinsArray: [Coin], btcRate: Double, btc24hPercentChange: Double) -> Dictionary<String, Dictionary<String, Double>> {
         
-        let kCoinsPair = "symbol"
-        let kLastCoinPrice = "last"
+        let kHitBTCCoinsPair = "symbol"
+        let kHitBTCCoinLastPrice = "last"
+        let kHitBTCCoinOpenPrice = "open"
         let btcName = "BTC"
         let ethName = "ETH"
         
-        var actualCoinsRates = Dictionary<String, Double>()
+        var actualCoinsRates = Dictionary<String, Dictionary<String, Double>>()
         
         var ethRate = 0.0
         var xrpRate = 0.0
         var usdtRate = 0.0
         for currentDict in response {
-            let coinsPair = currentDict[kCoinsPair] as! String
+            let coinsPair = currentDict[kHitBTCCoinsPair] as! String
             if coinsPair == "ETHBTC" {
-                ethRate = Double(currentDict[kLastCoinPrice] as! String)! * btcRate
+                if !((currentDict[kHitBTCCoinLastPrice]?.isKind(of: NSNull.self))!) {
+                    ethRate = Double(currentDict[kHitBTCCoinLastPrice] as! String)! * btcRate
+                }
             }else if coinsPair == "XRPBTC"{
-                xrpRate = Double(currentDict[kLastCoinPrice] as! String)! * btcRate
+                if !((currentDict[kHitBTCCoinLastPrice]?.isKind(of: NSNull.self))!) {
+                    xrpRate = Double(currentDict[kHitBTCCoinLastPrice] as! String)! * btcRate
+                }
             }else if coinsPair == "XRPUSDT"{
-                usdtRate = xrpRate / Double(currentDict[kLastCoinPrice] as! String)!
-                actualCoinsRates.updateValue(usdtRate, forKey: "USDT")
+                if !((currentDict[kHitBTCCoinLastPrice]?.isKind(of: NSNull.self))!) {
+                    usdtRate = xrpRate / Double(currentDict[kHitBTCCoinLastPrice] as! String)!
+                }
+                var coinDetailsDict = Dictionary<String, Double>()
+                if !((currentDict[kHitBTCCoinOpenPrice]?.isKind(of: NSNull.self))!) {
+                    let usdtOpenPrice = xrpRate / Double(currentDict[kHitBTCCoinOpenPrice] as! String)!
+                    coinDetailsDict = PercentChangeCalculator.determine24hPriceChangeInPercents(coinPrice: usdtRate, coinPrice24h: usdtOpenPrice, btc24hPercentChange: btc24hPercentChange)
+                }
+                
+                actualCoinsRates.updateValue(coinDetailsDict, forKey: "USDT")
 //                print("\(["USDT", usdtRate])")
             }
         }
@@ -40,7 +53,7 @@ class HitBTCResponseParser: NSObject {
             if someCoin.exchange == ExchangeBehavior.HitBTC {
         
                 for currentDict in response {
-                    let coinsPair = currentDict[kCoinsPair] as! String
+                    let coinsPair = currentDict[kHitBTCCoinsPair] as! String
                     if coinsPair.contains(btcName) {
                     
                         let btcLastThreeChars = coinsPair.suffix(3)
@@ -52,11 +65,17 @@ class HitBTCResponseParser: NSObject {
                             let coinName = coinsPair[range]
                     
                             if someCoin.shortName == coinName {
-                                var coinPrice = 888888888888.0
-                                if !((currentDict[kLastCoinPrice]?.isKind(of: NSNull.self))!) {
-                                    coinPrice = Double(currentDict[kLastCoinPrice] as! String)! * btcRate
+                                var coinPrice = 0.0
+                                if !((currentDict[kHitBTCCoinLastPrice]?.isKind(of: NSNull.self))!) {
+                                    coinPrice = Double(currentDict[kHitBTCCoinLastPrice] as! String)! * btcRate
                                 }
-                                actualCoinsRates.updateValue(coinPrice, forKey: String(coinName))
+                                var coinDetailsDict = Dictionary<String, Double>()
+                                if !((currentDict[kHitBTCCoinOpenPrice]?.isKind(of: NSNull.self))!) {
+                                    let coinOpenPrice = Double(currentDict[kHitBTCCoinOpenPrice] as! String)! * btcRate
+                                    coinDetailsDict = PercentChangeCalculator.determine24hPriceChangeInPercents(coinPrice: coinPrice, coinPrice24h: coinOpenPrice, btc24hPercentChange: btc24hPercentChange)
+                                }
+                                
+                                actualCoinsRates.updateValue(coinDetailsDict, forKey: String(coinName))
 //                                let currentCoinArray = [coinsPair, coinPrice] as [Any]
 //                                print(currentCoinArray)
                             }
@@ -72,11 +91,17 @@ class HitBTCResponseParser: NSObject {
                             
                             let coinName = coinsPair[range]
                             if HitBTCCoinToEth.isCoinToEth(testedCoin: String(coinName)) && someCoin.shortName == coinName {
-                                var coinPrice = 888888888888.0
-                                if !((currentDict[kLastCoinPrice]?.isKind(of: NSNull.self))!) {
-                                    coinPrice = Double(currentDict[kLastCoinPrice] as! String)! * ethRate
+                                var coinPrice = 0.0
+                                if !((currentDict[kHitBTCCoinLastPrice]?.isKind(of: NSNull.self))!) {
+                                    coinPrice = Double(currentDict[kHitBTCCoinLastPrice] as! String)! * ethRate
                                 }
-                                actualCoinsRates.updateValue(coinPrice, forKey: String(coinName))
+                                var coinDetailsDict = Dictionary<String, Double>()
+                                if !((currentDict[kHitBTCCoinOpenPrice]?.isKind(of: NSNull.self))!) {
+                                    let coinOpenPrice = Double(currentDict[kHitBTCCoinOpenPrice] as! String)! * ethRate
+                                    coinDetailsDict = PercentChangeCalculator.determine24hPriceChangeInPercents(coinPrice: coinPrice, coinPrice24h: coinOpenPrice, btc24hPercentChange: btc24hPercentChange)
+                                }
+                                
+                                actualCoinsRates.updateValue(coinDetailsDict, forKey: String(coinName))
 //                                let currentCoinArray = [coinsPair, coinPrice] as [Any]
 //                                print(currentCoinArray)
                             }
