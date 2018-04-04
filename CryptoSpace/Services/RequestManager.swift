@@ -12,6 +12,7 @@ import Alamofire
 class RequestManager: NSObject {
     
     var btcRateInUsd:Double = 0.0
+    var btc24hPercentChange: Double = 0.0
     var updatedUserCoins = [Coin]()
     
     var currentVC = TrackedCurrenciesViewController()
@@ -50,7 +51,7 @@ class RequestManager: NSObject {
             }
             let quoineCoinsRatesDict = QuoineResponseParser.parseResponse(response: arrayOfData)
             let btcRate = (quoineCoinsRatesDict["BTC"]! as Dictionary<String, Double>)[kCoinLastPrice]!
-            let btc24hPercentChange = quoineCoinsRatesDict["BTC"]![kCoin24hPercentChange]!
+            self.btc24hPercentChange = quoineCoinsRatesDict["BTC"]![kCoin24hPercentChange]!
             
 //            let ethRate = btcAndEthRatesDict["ETH"]!
             
@@ -70,7 +71,7 @@ class RequestManager: NSObject {
                         print("Не могу перевести в JSON")
                         return
                     }
-                    completion(BittrexResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: btc24hPercentChange)[coin.shortName]![kCoinLastPrice]!)
+                    completion(BittrexResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange)[coin.shortName]![kCoinLastPrice]!)
                 })
                 break
                 
@@ -82,45 +83,45 @@ class RequestManager: NSObject {
                         print("Не могу перевести в JSON")
                         return
                     }
-                    completion(HitBTCResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: btc24hPercentChange)[coin.shortName]![kCoinLastPrice]!)
+                    completion(HitBTCResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange)[coin.shortName]![kCoinLastPrice]!)
                 })
                 break
                 
             case .Binance:
                 request(RequestToBinanceBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
                     print("Запрос Binance")
-                    print(response)
+//                    print(response)
                     guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
                         print("Не могу перевести в JSON")
                         return
                     }
-                    completion(BinanceResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)[coin.shortName]!)
+                    completion(BinanceResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange)[coin.shortName]![kCoinLastPrice]!)
                 })
                 break
                 
-            case .Poloniex:
-                request(RequestToPoloniexBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                    print("Запрос Poloniex")
-//                    print(response)
-                    guard let arrayOfData = response.result.value as? [String: AnyObject] else{
-                        print("Не могу перевести в JSON")
-                        return
-                    }
-                    completion(PoloniexResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)[coin.shortName]!)
-                })
-                break
-                
-            case .Cryptopia:
-                request(RequestToCryptopiaBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                    print("Запрос Cryptopia")
-//                    print(response)
-                    guard let arrayOfData = response.result.value as? [String: AnyObject] else{
-                        print("Не могу перевести в JSON")
-                        return
-                    }
-                    completion(CryptopiaResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)[coin.shortName]!)
-                })
-                break
+//            case .Poloniex:
+//                request(RequestToPoloniexBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+//                    print("Запрос Poloniex")
+////                    print(response)
+//                    guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                        print("Не могу перевести в JSON")
+//                        return
+//                    }
+//                    completion(PoloniexResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)[coin.shortName]!)
+//                })
+//                break
+//
+//            case .Cryptopia:
+//                request(RequestToCryptopiaBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+//                    print("Запрос Cryptopia")
+////                    print(response)
+//                    guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                        print("Не могу перевести в JSON")
+//                        return
+//                    }
+//                    completion(CryptopiaResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate)[coin.shortName]!)
+//                })
+//                break
                 
 //            case .Kucoin:
 //                request(RequestToKucoinBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
@@ -259,7 +260,7 @@ class RequestManager: NSObject {
             }
             let quoineCoinsRatesDict = QuoineResponseParser.parseResponse(response: arrayOfData)
             let btcRate = (quoineCoinsRatesDict["BTC"]! as Dictionary<String, Double>)[kCoinLastPrice]!
-            let btc24hPercentChange = (quoineCoinsRatesDict["BTC"]! as Dictionary<String, Double>)[kCoin24hPercentChange]!
+            self.btc24hPercentChange = (quoineCoinsRatesDict["BTC"]!)[kCoin24hPercentChange]!
             
             let ethRate = (quoineCoinsRatesDict["ETH"]! as Dictionary<String, Double>)[kCoinLastPrice]!
             let qashRate = (quoineCoinsRatesDict["QASH"]! as Dictionary<String, Double>)[kCoinLastPrice]!
@@ -285,7 +286,7 @@ class RequestManager: NSObject {
                 }
             }
             self.exchangesCounter = self.exchangesCounter + 1
-            self.updateBittrexCoinsRates(btcRate: btcRate, btc24hPercentChange: btc24hPercentChange, ethRate: ethRate, completion: { (newArray) in
+            self.updateBittrexCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
             })
 //            self.updateAnotherCoinsRates(exchangesCounter: self.exchangesCounter, btcRate: btcRate, ethRate: ethRate)
@@ -293,7 +294,7 @@ class RequestManager: NSObject {
         })
     }
     
-    private func updateBittrexCoinsRates(btcRate: Double, btc24hPercentChange: Double, ethRate: Double,
+    private func updateBittrexCoinsRates(btcRate: Double, ethRate: Double,
                                          completion: @escaping ([Dictionary<String, Coin>]) -> ()) {
         
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
@@ -309,7 +310,7 @@ class RequestManager: NSObject {
                     for currentExchangeCoin in exchangeCoinsDict.values {
                         currentExchangeCoins.append(currentExchangeCoin)
                     }
-                    let bittrexCoins = BittrexResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate, btc24hPercentChange: btc24hPercentChange)
+                    let bittrexCoins = BittrexResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange)
                     
                     for key in bittrexCoins.keys {
                         if exchangeCoinsDict.keys.contains(key) {
@@ -321,20 +322,20 @@ class RequestManager: NSObject {
                     }
                 }
                 self.exchangesCounter = self.exchangesCounter + 1
-                self.updateHitBTCCoinsRates(btcRate: btcRate, btc24hPercentChange: btc24hPercentChange, ethRate: ethRate, completion: { (newArray) in
+                self.updateHitBTCCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                     completion(newArray)
                 })
             })
         }else{
             print("монет не добавлено Bittrex")
             exchangesCounter = exchangesCounter + 1
-            updateHitBTCCoinsRates(btcRate: btcRate, btc24hPercentChange: btc24hPercentChange, ethRate: ethRate, completion: { (newArray) in
+            updateHitBTCCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
             })
         }
     }
 
-    private func updateHitBTCCoinsRates(btcRate: Double, btc24hPercentChange: Double, ethRate: Double,
+    private func updateHitBTCCoinsRates(btcRate: Double, ethRate: Double,
                                         completion: @escaping ([Dictionary<String, Coin>]) -> ()) {
         
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
@@ -349,7 +350,7 @@ class RequestManager: NSObject {
                 for currentExchangeCoin in exchangeCoinsDict.values {
                     currentExchangeCoins.append(currentExchangeCoin)
                 }
-                let hitBtcCoins = HitBTCResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate, btc24hPercentChange: btc24hPercentChange)
+                let hitBtcCoins = HitBTCResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange)
                 
                 for key in hitBtcCoins.keys {
                     if exchangeCoinsDict.keys.contains(key) {
@@ -386,99 +387,101 @@ class RequestManager: NSObject {
                 for currentExchangeCoin in exchangeCoinsDict.values {
                     currentExchangeCoins.append(currentExchangeCoin)
                 }
-                let binanceCoins = BinanceResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate)
+                let binanceCoins = BinanceResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange)
                 
                 for key in binanceCoins.keys {
                     if exchangeCoinsDict.keys.contains(key) {
                         let someCurrentCoin = exchangeCoinsDict[key]
-                        someCurrentCoin?.exchangeRate = binanceCoins[key]!
-                        self.coinsExchanges[self.exchangesCounter].updateValue(someCurrentCoin!, forKey: key)
-                    }
-                }
-                
-                self.exchangesCounter = self.exchangesCounter + 1
-                self.updatePoloniexCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
-                    completion(newArray)
-                })
-            })
-        }else{
-            print("монет не добавлено Binance")
-            exchangesCounter = exchangesCounter + 1
-            updatePoloniexCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
-                completion(newArray)
-            })
-        }
-    }
-    
-    private func updatePoloniexCoinsRates(btcRate: Double, ethRate: Double, completion: @escaping ([Dictionary<String, Coin>]) -> ()) {
-        
-        let exchangeCoinsDict = coinsExchanges[exchangesCounter]
-        if exchangeCoinsDict.keys.count > 0 {
-            request(RequestToPoloniexBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("запрос Poloniex")
-                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
-                    print("Не могу перевести в JSON")
-                    return
-                }
-                var currentExchangeCoins = [Coin]()
-                for currentExchangeCoin in exchangeCoinsDict.values {
-                    currentExchangeCoins.append(currentExchangeCoin)
-                }
-                let poloniexCoins = PoloniexResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate)
-                
-                for key in poloniexCoins.keys {
-                    if exchangeCoinsDict.keys.contains(key) {
-                        let someCurrentCoin = exchangeCoinsDict[key]
-                        someCurrentCoin?.exchangeRate = poloniexCoins[key]!
-                        self.coinsExchanges[self.exchangesCounter].updateValue(someCurrentCoin!, forKey: key)
-                    }
-                }
-                
-                self.exchangesCounter = self.exchangesCounter + 1
-                self.updateCryptopiaCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
-                    completion(newArray)
-                })
-            })
-        }else{
-            print("монет не добавлено Poloniex")
-            exchangesCounter = exchangesCounter + 1
-            updateCryptopiaCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
-                completion(newArray)
-            })
-        }
-    }
-    
-    private func updateCryptopiaCoinsRates(btcRate: Double, ethRate: Double, completion: @escaping ([Dictionary<String, Coin>]) -> ()) {
-        
-        let exchangeCoinsDict = coinsExchanges[exchangesCounter]
-        if exchangeCoinsDict.keys.count > 0 {
-            request(RequestToCryptopiaBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("запрос Cryptopia")
-                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
-                    print("Не могу перевести в JSON")
-                    return
-                }
-                var currentExchangeCoins = [Coin]()
-                for currentExchangeCoin in exchangeCoinsDict.values {
-                    currentExchangeCoins.append(currentExchangeCoin)
-                }
-                let cryptopiaCoins = CryptopiaResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate)
-                
-                for key in cryptopiaCoins.keys {
-                    if exchangeCoinsDict.keys.contains(key) {
-                        let someCurrentCoin = exchangeCoinsDict[key]
-                        someCurrentCoin?.exchangeRate = cryptopiaCoins[key]!
+                        someCurrentCoin?.exchangeRate = binanceCoins[key]![kCoinLastPrice]!
                         self.coinsExchanges[self.exchangesCounter].updateValue(someCurrentCoin!, forKey: key)
                     }
                 }
                 
                 completion(self.coinsExchanges)
+//                self.exchangesCounter = self.exchangesCounter + 1
+//                self.updatePoloniexCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
+//                    completion(newArray)
+//                })
             })
         }else{
-            print("монет не добавлено Cryptopia")
+            print("монет не добавлено Binance")
             completion(coinsExchanges)
+//            exchangesCounter = exchangesCounter + 1
+//            updatePoloniexCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
+//                completion(newArray)
+//            })
         }
     }
+    
+//    private func updatePoloniexCoinsRates(btcRate: Double, ethRate: Double, completion: @escaping ([Dictionary<String, Coin>]) -> ()) {
+//        
+//        let exchangeCoinsDict = coinsExchanges[exchangesCounter]
+//        if exchangeCoinsDict.keys.count > 0 {
+//            request(RequestToPoloniexBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+//                print("запрос Poloniex")
+//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON")
+//                    return
+//                }
+//                var currentExchangeCoins = [Coin]()
+//                for currentExchangeCoin in exchangeCoinsDict.values {
+//                    currentExchangeCoins.append(currentExchangeCoin)
+//                }
+//                let poloniexCoins = PoloniexResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate)
+//                
+//                for key in poloniexCoins.keys {
+//                    if exchangeCoinsDict.keys.contains(key) {
+//                        let someCurrentCoin = exchangeCoinsDict[key]
+//                        someCurrentCoin?.exchangeRate = poloniexCoins[key]!
+//                        self.coinsExchanges[self.exchangesCounter].updateValue(someCurrentCoin!, forKey: key)
+//                    }
+//                }
+//                
+//                self.exchangesCounter = self.exchangesCounter + 1
+//                self.updateCryptopiaCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
+//                    completion(newArray)
+//                })
+//            })
+//        }else{
+//            print("монет не добавлено Poloniex")
+//            exchangesCounter = exchangesCounter + 1
+//            updateCryptopiaCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
+//                completion(newArray)
+//            })
+//        }
+//    }
+//    
+//    private func updateCryptopiaCoinsRates(btcRate: Double, ethRate: Double, completion: @escaping ([Dictionary<String, Coin>]) -> ()) {
+//        
+//        let exchangeCoinsDict = coinsExchanges[exchangesCounter]
+//        if exchangeCoinsDict.keys.count > 0 {
+//            request(RequestToCryptopiaBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
+//                print("запрос Cryptopia")
+//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+//                    print("Не могу перевести в JSON")
+//                    return
+//                }
+//                var currentExchangeCoins = [Coin]()
+//                for currentExchangeCoin in exchangeCoinsDict.values {
+//                    currentExchangeCoins.append(currentExchangeCoin)
+//                }
+//                let cryptopiaCoins = CryptopiaResponseParser.parseResponse(response: arrayOfData, coinsArray: currentExchangeCoins, btcRate: btcRate)
+//                
+//                for key in cryptopiaCoins.keys {
+//                    if exchangeCoinsDict.keys.contains(key) {
+//                        let someCurrentCoin = exchangeCoinsDict[key]
+//                        someCurrentCoin?.exchangeRate = cryptopiaCoins[key]!
+//                        self.coinsExchanges[self.exchangesCounter].updateValue(someCurrentCoin!, forKey: key)
+//                    }
+//                }
+//                
+//                completion(self.coinsExchanges)
+//            })
+//        }else{
+//            print("монет не добавлено Cryptopia")
+//            completion(coinsExchanges)
+//        }
+//    }
     
 //    private func updateKucoinCoinsRates(btcRate: Double, ethRate: Double,
 //                                        completion: @escaping ([Dictionary<String, Coin>]) -> ()) {

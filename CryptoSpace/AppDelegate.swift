@@ -9,13 +9,14 @@
 //enTdiaK3E6-zyge2_7ms API_KEY к какому-то сайту с крусом рубля
 
 //Quoine - 3 (BTC, ETH and QASH) | "last_price_24h" = "6842.0"; сразу к доллару
-//bittrex - 110 + | PrevDay = "0.1006195"; - перевести из BTC в USD и посчитать разницу
+//bittrex - 117 + | PrevDay = "0.1006195"; - перевести из BTC в USD и посчитать разницу
 //Hitbtc - 51 + | open = "0.000864"; - перевести из BTC в USD и посчитать разницу
-//binance - 27 + | openPrice = "0.00001212"; prevClosePrice = "0.00001213"; priceChange = "-0.00000027"; priceChangePercent = "-2.228"; - отдает вполне реальные проценты
-//poloniex - 6 + | percentChange = "0.03187250"; отдает вполне реальные проценты
-//cryptopia - 3 + | Change = "-0.55"; - отдает вполне реальные проценты, много монет можно кинуть на bittrex
+//binance - 29 + | openPrice = "0.00001212"; prevClosePrice = "0.00001213"; priceChange = "-0.00000027"; priceChangePercent = "-2.228"; - отдает вполне реальные проценты
+
 
 //for future
+//poloniex - 3 + | percentChange = "0.03187250"; отдает вполне реальные проценты
+//cryptopia - 3 + | Change = "-0.55"; - отдает вполне реальные проценты, много монет можно кинуть на bittrex
 //idex - 13 + (к эфиру) |
 //gate.io - 8 + |
 //kucoin - 26 + | changeRate = "-0.0133"; - перевести из BTC в USD и посчитать разницу //перепроверить
