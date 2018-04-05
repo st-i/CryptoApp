@@ -467,8 +467,8 @@
 			isa = PBXGroup;
 			children = (
 				5407D3DA1FE52BC40063C3A6 /* TotalPortfolioCostCellBuilder.swift */,
-				DDB1FC9C2026FD1E00D83AF7 /* HeaderViewCellBulder.swift */,
 				5407D3DB1FE52BC40063C3A6 /* TrackedPositionCellBuilder.swift */,
+				DDB1FC9C2026FD1E00D83AF7 /* HeaderViewCellBulder.swift */,
 				54CA4E4C1FE55EA800E6357E /* FinalCellBuilder.swift */,
 			);
 			path = TrackedCurrenciesBuilders;
@@ -489,8 +489,8 @@
 			isa = PBXGroup;
 			children = (
 				5407D3DF1FE52BC40063C3A6 /* TotalPortfolioCostCell.swift */,
-				DDB1FC9A2026FC8500D83AF7 /* HeaderViewCell.swift */,
 				5407D3E01FE52BC40063C3A6 /* TrackedPositionCell.swift */,
+				DDB1FC9A2026FC8500D83AF7 /* HeaderViewCell.swift */,
 				54CA4E4A1FE55D5500E6357E /* FinalCell.swift */,
 			);
 			path = TrackedCurrenciesCells;

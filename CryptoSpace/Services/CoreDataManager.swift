@@ -77,6 +77,7 @@ final class CoreDataManager {
         userCoin.setValue(NSNumber.init(value:coin.exchangeRate), forKey: "exchangeRate")
         userCoin.setValue(NSNumber.init(value:coin.amount), forKey: "amount")
         userCoin.setValue(NSNumber.init(value:coin.sum), forKey: "sum")
+        userCoin.setValue(NSNumber.init(value:coin.rate24hPercentChange), forKey: "rate24hPercentChange")
         //4
         do {
             try managedContext.save()

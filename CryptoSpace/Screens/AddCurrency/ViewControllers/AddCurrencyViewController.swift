@@ -95,9 +95,12 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
             currentExchangeRateCell.coinRateIndicator.activityIndicatorViewStyle = .gray
 
             let requestManager = RequestManager.init()
-            requestManager.getExchangeRate(coin: currentCoin) { (coinRate) in
+            requestManager.getExchangeRate(coin: currentCoin) { (coinsRatesDict) in
     //            let currentExchangeRateCell = self.tableView.cellForRow(at: IndexPath.init(row: 1, section: 1)) as! CurrentExchangeRateCell
+
+                let coinRate = (coinsRatesDict[self.currentCoin.shortName]!)[kCoinLastPrice]!
                 self.currentCoin.exchangeRate = coinRate
+                self.currentCoin.rate24hPercentChange = (coinsRatesDict[self.currentCoin.shortName]!)[kCoin24hPercentChange]!
                 currentExchangeRateCell.coinRateIndicator.stopAnimating()
                 currentExchangeRateCell.coinRateIndicator.removeFromSuperview()
                 self.requestWasSend = true

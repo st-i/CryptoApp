@@ -40,7 +40,7 @@ class RequestManager: NSObject {
     }
     
     //запрос для одной монеты
-    func getExchangeRate(coin: Coin, completion: @escaping (Double) -> ()) {
+    func getExchangeRate(coin: Coin, completion: @escaping (Dictionary<String, Dictionary<String, Double>>) -> ()) {
         
         request(RequestToQuoineBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
             print("Запрос Quoine")
@@ -59,8 +59,7 @@ class RequestManager: NSObject {
             
             switch coin.exchange {
             case .Quoine:
-                let quoineCoinRate = (quoineCoinsRatesDict[coin.shortName]! as Dictionary<String, Double>)[kCoinLastPrice]!
-                completion(quoineCoinRate)
+                completion(quoineCoinsRatesDict)
                 break
                 
             case .Bittrex:
@@ -71,7 +70,7 @@ class RequestManager: NSObject {
                         print("Не могу перевести в JSON")
                         return
                     }
-                    completion(BittrexResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange)[coin.shortName]![kCoinLastPrice]!)
+                    completion(BittrexResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange))
                 })
                 break
                 
@@ -83,7 +82,7 @@ class RequestManager: NSObject {
                         print("Не могу перевести в JSON")
                         return
                     }
-                    completion(HitBTCResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange)[coin.shortName]![kCoinLastPrice]!)
+                    completion(HitBTCResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange))
                 })
                 break
                 
@@ -95,7 +94,7 @@ class RequestManager: NSObject {
                         print("Не могу перевести в JSON")
                         return
                     }
-                    completion(BinanceResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange)[coin.shortName]![kCoinLastPrice]!)
+                    completion(BinanceResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange))
                 })
                 break
                 
@@ -259,29 +258,35 @@ class RequestManager: NSObject {
                 return
             }
             let quoineCoinsRatesDict = QuoineResponseParser.parseResponse(response: arrayOfData)
-            let btcRate = (quoineCoinsRatesDict["BTC"]! as Dictionary<String, Double>)[kCoinLastPrice]!
+            let btcRate = (quoineCoinsRatesDict["BTC"]!)[kCoinLastPrice]!
             self.btc24hPercentChange = (quoineCoinsRatesDict["BTC"]!)[kCoin24hPercentChange]!
             
-            let ethRate = (quoineCoinsRatesDict["ETH"]! as Dictionary<String, Double>)[kCoinLastPrice]!
-            let qashRate = (quoineCoinsRatesDict["QASH"]! as Dictionary<String, Double>)[kCoinLastPrice]!
+            let ethRate = (quoineCoinsRatesDict["ETH"]!)[kCoinLastPrice]!
+            let eth24hPercentChange = (quoineCoinsRatesDict["ETH"]!)[kCoin24hPercentChange]!
+            
+            let qashRate = (quoineCoinsRatesDict["QASH"]!)[kCoinLastPrice]!
+            let qash24hPercentChange = (quoineCoinsRatesDict["QASH"]!)[kCoin24hPercentChange]!
             
             let exchangeCoinsDict = self.coinsExchanges[self.exchangesCounter]
             if exchangeCoinsDict.keys.count > 0 {
                 if exchangeCoinsDict.keys.contains("BTC") {
                     let btcCoin = exchangeCoinsDict["BTC"]
                     btcCoin?.exchangeRate = btcRate
+                    btcCoin?.rate24hPercentChange = self.btc24hPercentChange
                     self.coinsExchanges[ExchangeBehavior.Quoine.rawValue].updateValue(btcCoin!, forKey: "BTC")
                 }
                 
                 if exchangeCoinsDict.keys.contains("ETH") {
                     let ethCoin = exchangeCoinsDict["ETH"]
                     ethCoin?.exchangeRate = ethRate
+                    ethCoin?.rate24hPercentChange = eth24hPercentChange
                     self.coinsExchanges[ExchangeBehavior.Quoine.rawValue].updateValue(ethCoin!, forKey: "ETH")
                 }
                 
                 if exchangeCoinsDict.keys.contains("QASH") {
                     let qashCoin = exchangeCoinsDict["QASH"]
                     qashCoin?.exchangeRate = qashRate
+                    qashCoin?.rate24hPercentChange = qash24hPercentChange
                     self.coinsExchanges[ExchangeBehavior.Quoine.rawValue].updateValue(qashCoin!, forKey: "QASH")
                 }
             }
@@ -316,6 +321,7 @@ class RequestManager: NSObject {
                         if exchangeCoinsDict.keys.contains(key) {
                             let someCurrentCoin = exchangeCoinsDict[key]
                             someCurrentCoin?.exchangeRate = bittrexCoins[key]![kCoinLastPrice]!
+                            someCurrentCoin?.rate24hPercentChange = bittrexCoins[key]![kCoin24hPercentChange]!
 //                            someCurrentCoin?.24hPercentChange = bittrexCoins[key]![kBittrexCoin24hPercentChange]!
                             self.coinsExchanges[self.exchangesCounter].updateValue(someCurrentCoin!, forKey: key)
                         }
@@ -356,6 +362,7 @@ class RequestManager: NSObject {
                     if exchangeCoinsDict.keys.contains(key) {
                         let someCurrentCoin = exchangeCoinsDict[key]
                         someCurrentCoin?.exchangeRate = hitBtcCoins[key]![kCoinLastPrice]!
+                        someCurrentCoin?.rate24hPercentChange = hitBtcCoins[key]![kCoin24hPercentChange]!
                         self.coinsExchanges[self.exchangesCounter].updateValue(someCurrentCoin!, forKey: key)
                     }
                 }
@@ -393,6 +400,7 @@ class RequestManager: NSObject {
                     if exchangeCoinsDict.keys.contains(key) {
                         let someCurrentCoin = exchangeCoinsDict[key]
                         someCurrentCoin?.exchangeRate = binanceCoins[key]![kCoinLastPrice]!
+                        someCurrentCoin?.rate24hPercentChange = binanceCoins[key]![kCoin24hPercentChange]!
                         self.coinsExchanges[self.exchangesCounter].updateValue(someCurrentCoin!, forKey: key)
                     }
                 }

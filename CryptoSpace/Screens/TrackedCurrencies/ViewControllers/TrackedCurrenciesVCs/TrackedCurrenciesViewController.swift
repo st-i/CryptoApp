@@ -214,6 +214,7 @@ class TrackedCurrenciesViewController: UIViewController {
                     let updatedCoinRate = (updatedCoin?.exchangeRate)!
                     coin.exchangeRate = updatedCoinRate
                     coin.sum = coin.amount * updatedCoinRate
+                    coin.rate24hPercentChange = (updatedCoin?.rate24hPercentChange)!
                 }
                 
                 var portfolioValuesStringsDict = Dictionary<String, String>()

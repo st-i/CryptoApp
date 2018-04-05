@@ -53,11 +53,20 @@ class TrackedPositionCellBuilder: NSObject {
         currentNumberFormatter.maximumFractionDigits = fractionDigitsNumber
         let coinAmountString = currentNumberFormatter.string(from: NSNumber.init(value: coinAmountSum))
         cell.purchasedCoinsAmountLabel.text = String(format: "%@", coinAmountString!)
-
-//        cell.currencyExchangeRateCostLabel.text = String(format:"%f", coinExchangeRate)
+        
+        let coinRate24hPercentChange = coin.rate24hPercentChange
+        let positiveCoinRate24hPercentChange = fabs(coinRate24hPercentChange)
+        currentNumberFormatter.maximumFractionDigits = 2
+        let positiveCoinRate24hPercentChangeString = currentNumberFormatter.string(from: NSNumber.init(value: positiveCoinRate24hPercentChange))
+        if coinRate24hPercentChange >= 0 {
+            cell.currencyExchangeRatePercentagesChangeLabel.text = String(format: "%@%%", positiveCoinRate24hPercentChangeString!)
+            cell.currencyExchangeRatePercentagesChangeLabel.textColor = UIColor.greenChangeColor()
+        }else{
+            cell.currencyExchangeRatePercentagesChangeLabel.text = String(format: "-%@%%", positiveCoinRate24hPercentChangeString!)
+            cell.currencyExchangeRatePercentagesChangeLabel.textColor = UIColor.redChangeColor()
+        }
         
         cell.lowerSeparator.backgroundColor = UIColor.clear
-        cell.currencyExchangeRatePercentagesChangeLabel.textColor = UIColor.init(red: 0, green: 190.0 / 255.0, blue: 120.0 / 255.0, alpha: 1.0)
         return cell
     }
 }
