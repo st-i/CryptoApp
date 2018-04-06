@@ -209,12 +209,39 @@ class TrackedCurrenciesViewController: UIViewController {
             
             self.requestManager.coinsExchanges = coinsExchangesArray
             self.requestManager.updateCoinsRates(completion: { (newArray) in
+                var portfolio24ChangeInPercentages = 0.0
+                var portfolio24hChangeInDollars = 0.0
+                
+                var initialPortfolioCost = 0.0
+                
                 for coin in self.userCoins {
                     let updatedCoin = newArray[coin.exchange.rawValue][coin.shortName]
+                    
+                    let coinAmount = updatedCoin?.amount
+                    let coinPurchaseRate = updatedCoin?.purchaseExchangeRate
+                    initialPortfolioCost = initialPortfolioCost + (coinAmount! * coinPurchaseRate!)
+                    
                     let updatedCoinRate = (updatedCoin?.exchangeRate)!
                     coin.exchangeRate = updatedCoinRate
-                    coin.sum = coin.amount * updatedCoinRate
-                    coin.rate24hPercentChange = (updatedCoin?.rate24hPercentChange)!
+                    let coinSum = coin.amount * updatedCoinRate
+                    coin.sum = coinSum
+                    let coinRate24hPercentChange = (updatedCoin?.rate24hPercentChange)!
+                    coin.rate24hPercentChange = coinRate24hPercentChange
+                    
+                    if self.userCoins.count == 1 {
+                        portfolio24ChangeInPercentages = coinRate24hPercentChange
+                    }else{
+                        let currentTotalPercent = 100.0 + coinRate24hPercentChange
+                        let openCoinSum = (coinSum * 100.0) / currentTotalPercent
+                        var currentCoinPriceChange = 0.0
+                        if coinSum >= openCoinSum {
+                            currentCoinPriceChange = coinSum - openCoinSum
+                            portfolio24hChangeInDollars = portfolio24hChangeInDollars + currentCoinPriceChange
+                        }else{
+                            currentCoinPriceChange = openCoinSum - coinSum
+                            portfolio24hChangeInDollars = portfolio24hChangeInDollars - currentCoinPriceChange
+                        }
+                    }
                 }
                 
                 var portfolioValuesStringsDict = Dictionary<String, String>()
@@ -231,7 +258,7 @@ class TrackedCurrenciesViewController: UIViewController {
                 let userCoinsSumInRublesWithSignString = String(format:"%@₽", userCoinsSumInRublesString!)
                 portfolioValuesStringsDict.updateValue(userCoinsSumInRublesWithSignString, forKey: "totalSumInRublesString")
                 
-                let initialCoinsCostInDollars = 4000.505
+                let initialCoinsCostInDollars = initialPortfolioCost
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: initialCoinsCostInDollars)
                 let initialCoinsCostInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: initialCoinsCostInDollars))
                 let initialCoinsCostInDollarsWithSignString = String(format:"$%@", initialCoinsCostInDollarsString!)
@@ -243,7 +270,12 @@ class TrackedCurrenciesViewController: UIViewController {
                 let initialCoinsCostInRublesWithSignString = String(format:"%@₽", initialCoinsCostInRublesString!)
                 portfolioValuesStringsDict.updateValue(initialCoinsCostInRublesWithSignString, forKey: "initialCostInRublesString")
                 
-                let profitOrLossInDollars = 1000.505
+                var profitOrLossInDollars = 0.0
+                if initialCoinsCostInDollars >= userCoinsSumInDollars {
+                    profitOrLossInDollars = initialCoinsCostInDollars - userCoinsSumInDollars
+                }else{
+                    profitOrLossInDollars = userCoinsSumInDollars - initialCoinsCostInDollars
+                }
                 let positiveProfitOrLossInDollars = fabs(profitOrLossInDollars)
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: positiveProfitOrLossInDollars)
                 let profitOrLossInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: positiveProfitOrLossInDollars))
@@ -265,6 +297,16 @@ class TrackedCurrenciesViewController: UIViewController {
                 let changeFromBeginningInPercentagesWithSignString = String(format:"%@%@%%", percentagesMinusSign, changeFromBeginningInPercentagesString!)
 //                portfolioValuesStringsDict.updateValue(changeFromBeginningInPercentagesWithSignString, forKey: "changeFromBeginningInPercentages")
                 
+                var portfolio24PercentagesChange = 0.0
+                if self.userCoins.count == 1 {
+                    portfolio24PercentagesChange = portfolio24ChangeInPercentages
+                }else{
+                    portfolio24PercentagesChange = (portfolio24hChangeInDollars / userCoinsSumInDollars) * 100.0
+                }
+                let portfolio24PercentagesChangeString = currentNumberFormatter.string(from: NSNumber.init(value: portfolio24PercentagesChange))
+                let portfolio24PercentagesChangeStringWithSign = String(format:"%@%%", portfolio24PercentagesChangeString!)
+                
+                
                 self.trackedCurrenciesDataSource.coins = self.userCoins
                 self.trackedCurrenciesDelegate.coins = self.userCoins
 //                self.trackedCurrenciesDelegate.rubleRate = newRubleRate
@@ -274,6 +316,7 @@ class TrackedCurrenciesViewController: UIViewController {
                 self.trackedCurrenciesDataSource.initialSumString = initialCoinsCostInDollarsWithSignString
                 self.trackedCurrenciesDataSource.profitOrLossString = profitOrLossInDollarsWithSignString
                 self.trackedCurrenciesDataSource.changeFromBeginningInPercentages = changeFromBeginningInPercentagesWithSignString
+                self.trackedCurrenciesDataSource.portfolio24hPercentagesChange = portfolio24PercentagesChangeStringWithSign
                 
                 self.trackedCurrenciesDelegate.totalSumString = userCoinsSumInDollarsWithSignString
                 self.trackedCurrenciesDelegate.initialSumString = initialCoinsCostInDollarsWithSignString

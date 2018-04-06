@@ -200,7 +200,7 @@
                                         <connections>
                                             <outlet property="changeFromPurchaseMoment" destination="3RN-sB-ggR" id="utN-8y-Hb5"/>
                                             <outlet property="initialPortfolioCostLabel" destination="gEM-x4-SJF" id="xPZ-IT-0n9"/>
-                                            <outlet property="portfolioPercentagesChangesLabel" destination="YUc-OV-V3x" id="w0V-jr-pyw"/>
+                                            <outlet property="portfolio24hChangeLabel" destination="YUc-OV-V3x" id="dPZ-6v-5Xw"/>
                                             <outlet property="portfolioProfitOrLossLabel" destination="miV-NZ-EXQ" id="IfP-Gb-mFl"/>
                                             <outlet property="totalPortfolioValueLabel" destination="Vs8-tg-NFG" id="vf3-YQ-1N7"/>
                                         </connections>

@@ -100,6 +100,8 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
 
                 let coinRate = (coinsRatesDict[self.currentCoin.shortName]!)[kCoinLastPrice]!
                 self.currentCoin.exchangeRate = coinRate
+                self.currentCoin.purchaseExchangeRate = coinRate
+                l;ml
                 self.currentCoin.rate24hPercentChange = (coinsRatesDict[self.currentCoin.shortName]!)[kCoin24hPercentChange]!
                 currentExchangeRateCell.coinRateIndicator.stopAnimating()
                 currentExchangeRateCell.coinRateIndicator.removeFromSuperview()

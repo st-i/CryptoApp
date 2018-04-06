@@ -13,9 +13,10 @@ class TrackedCurrenciesDataSource: NSObject, UITableViewDataSource {
     var arrayWithCells = NSMutableArray() as! [[UITableViewCell]]
     var coins = [Coin]()
     var totalSumString: String = ""
+    var portfolio24hPercentagesChange: String = ""
+    var changeFromBeginningInPercentages: String = ""
     var initialSumString: String = ""
     var profitOrLossString: String = ""
-    var changeFromBeginningInPercentages: String = ""
     
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -47,12 +48,12 @@ class TrackedCurrenciesDataSource: NSObject, UITableViewDataSource {
 //        return arrayWithCells[indexPath.section][indexPath.row]
         switch indexPath.section {
         case 0:
-            return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(for: tableView, totalSum: totalSumString, changeFromPurchaseMoment: changeFromBeginningInPercentages, initialCost: initialSumString, profitOrLoss: profitOrLossString)
+            return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(for: tableView, totalSum: totalSumString, portfolio24hChange: portfolio24hPercentagesChange, changeFromPurchaseMoment: changeFromBeginningInPercentages, initialCost: initialSumString, profitOrLoss: profitOrLossString)
         case 1:
 //            let currentCoin = coins[indexPath.row]
             return TrackedPositionCellBuilder.buildTrackedPositionCell(for: tableView, coin: coins[indexPath.row])
         default:
-            return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(for: tableView, totalSum: totalSumString, changeFromPurchaseMoment: changeFromBeginningInPercentages, initialCost: initialSumString, profitOrLoss: profitOrLossString)
+            return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(for: tableView, totalSum: totalSumString, portfolio24hChange: portfolio24hPercentagesChange, changeFromPurchaseMoment: changeFromBeginningInPercentages, initialCost: initialSumString, profitOrLoss: profitOrLossString)
         }
     }
     

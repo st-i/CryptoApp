@@ -253,6 +253,7 @@ class RequestManager: NSObject {
         
         request(RequestToQuoineBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
             print("запрос Quoine")
+//            print(response)
             guard let arrayOfData = response.result.value as? [Dictionary<String, AnyObject>] else{
                 print("Не могу перевести в JSON")
                 return

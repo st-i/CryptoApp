@@ -75,6 +75,7 @@ final class CoreDataManager {
         userCoin.setValue(currentCoinUniqueId, forKey: "uniqueId")
         userCoin.setValue(NSNumber.init(value:coin.exchange.rawValue), forKey: "exchange")
         userCoin.setValue(NSNumber.init(value:coin.exchangeRate), forKey: "exchangeRate")
+        userCoin.setValue(NSNumber.init(value:coin.purchaseExchangeRate), forKey: "purchaseExchangeRate")
         userCoin.setValue(NSNumber.init(value:coin.amount), forKey: "amount")
         userCoin.setValue(NSNumber.init(value:coin.sum), forKey: "sum")
         userCoin.setValue(NSNumber.init(value:coin.rate24hPercentChange), forKey: "rate24hPercentChange")
