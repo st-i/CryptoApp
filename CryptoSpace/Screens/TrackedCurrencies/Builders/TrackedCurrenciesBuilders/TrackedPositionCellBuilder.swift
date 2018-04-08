@@ -17,7 +17,7 @@ class TrackedPositionCellBuilder: NSObject {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: kTrackedPositionCellIdentifier) as! TrackedPositionCell
         
-        cell.currencyImageView.image = UIImage(named:"Icon placeholder")
+        cell.currencyImageView.image = UIImage(named:coin.id)
         cell.currencyNameLabel.text = coin.shortName
         
         let currentNumberFormatter = NumberFormatter.init()

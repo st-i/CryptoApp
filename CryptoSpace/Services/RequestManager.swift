@@ -11,6 +11,8 @@ import Alamofire
 
 class RequestManager: NSObject {
     
+    var testCounter = 1
+    
     var btcRateInUsd:Double = 0.0
     var btc24hPercentChange: Double = 0.0
     var updatedUserCoins = [Coin]()
@@ -839,8 +841,42 @@ class RequestManager: NSObject {
 //            }
 //            print(QuoineResponseParser.parseResponse(response: arrayOfData))
 //        }
-        request("http://free.currencyconverterapi.com/api/v3/convert?q=USD_RUB&compact=ultra").responseJSON { (response) in
-            print(response)
-        }
+//        request("http://free.currencyconverterapi.com/api/v3/convert?q=USD_RUB&compact=ultra").responseJSON { (response) in
+//            print(response)
+//        }
+        
+        
+        
+//        request(RequestToQuoineBuilder.buildAllCoinsRequest()).response { (response) in
+//            if self.testCounter < 5 { //301
+//                print("testCounter \(self.testCounter)")
+//                self.testCounter = self.testCounter + 1
+//                self.sendSomeRequestForTest()
+//            }
+//        }
+        
+//        request(RequestToBittrexBuilder.buildAllCoinsRequest()).response { (response) in
+//            if self.testCounter < 5 { //50
+//                print("testCounter \(self.testCounter)")
+//                self.testCounter = self.testCounter + 1
+//                self.sendSomeRequestForTest()
+//            }
+//        }
+        
+//        request(RequestToHitBTCBuilder.buildAllCoinsRequest()).response { (response) in
+//            if self.testCounter < 5 { //101
+//                print("testCounter \(self.testCounter)")
+//                self.testCounter = self.testCounter + 1
+//                self.sendSomeRequestForTest()
+//            }
+//        }
+        
+//        request(RequestToBinanceBuilder.buildAllCoinsRequest()).response { (response) in
+//            if self.testCounter < 5 { //50
+//                print("testCounter \(self.testCounter)")
+//                self.testCounter = self.testCounter + 1
+//                self.sendSomeRequestForTest()
+//            }
+//        }
     }
 }

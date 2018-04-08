@@ -63,7 +63,7 @@ class TrackedCurrenciesViewController: UIViewController {
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
         let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addTrackedCurrency))
-        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshCurrenciesRates))
+        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(sendRequestForTest)) //refreshCurrenciesRates
         navigationItem.leftBarButtonItem = refreshButton
         navigationItem.rightBarButtonItem = addButton
 //        navigationItem.rightBarButtonItems = [addButton, refreshButton]
@@ -197,6 +197,10 @@ class TrackedCurrenciesViewController: UIViewController {
 //        self.navigationController?.pushViewController(searchVC, animated: true)
 //    }
     
+    @objc func sendRequestForTest() {
+        requestManager.sendSomeRequestForTest()
+    }
+    
     @objc func refreshCurrenciesRates() {
         
         let coinsExchangesArray = coinsArrayFormatter.createCoinsExchangesArray(coins: userCoins)
@@ -217,9 +221,7 @@ class TrackedCurrenciesViewController: UIViewController {
                 for coin in self.userCoins {
                     let updatedCoin = newArray[coin.exchange.rawValue][coin.shortName]
                     
-                    let coinAmount = updatedCoin?.amount
-                    let coinPurchaseRate = updatedCoin?.purchaseExchangeRate
-                    initialPortfolioCost = initialPortfolioCost + (coinAmount! * coinPurchaseRate!)
+                    initialPortfolioCost = initialPortfolioCost + (updatedCoin?.initialSum)!
                     
                     let updatedCoinRate = (updatedCoin?.exchangeRate)!
                     coin.exchangeRate = updatedCoinRate
@@ -255,7 +257,7 @@ class TrackedCurrenciesViewController: UIViewController {
                 let userCoinsSumInRubles = userCoinsSumInDollars * newRubleRate
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: userCoinsSumInRubles)
                 let userCoinsSumInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: userCoinsSumInRubles))
-                let userCoinsSumInRublesWithSignString = String(format:"%@₽", userCoinsSumInRublesString!)
+                let userCoinsSumInRublesWithSignString = String(format:"₽%@", userCoinsSumInRublesString!)
                 portfolioValuesStringsDict.updateValue(userCoinsSumInRublesWithSignString, forKey: "totalSumInRublesString")
                 
                 let initialCoinsCostInDollars = initialPortfolioCost
@@ -267,34 +269,38 @@ class TrackedCurrenciesViewController: UIViewController {
                 let initialCoinsCostInRubles = initialCoinsCostInDollars * newRubleRate
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: initialCoinsCostInRubles)
                 let initialCoinsCostInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: initialCoinsCostInRubles))
-                let initialCoinsCostInRublesWithSignString = String(format:"%@₽", initialCoinsCostInRublesString!)
+                let initialCoinsCostInRublesWithSignString = String(format:"₽%@", initialCoinsCostInRublesString!)
                 portfolioValuesStringsDict.updateValue(initialCoinsCostInRublesWithSignString, forKey: "initialCostInRublesString")
                 
                 var profitOrLossInDollars = 0.0
+                var minusOrPlusSign = ""
                 if initialCoinsCostInDollars >= userCoinsSumInDollars {
                     profitOrLossInDollars = initialCoinsCostInDollars - userCoinsSumInDollars
+                    minusOrPlusSign = "-"
                 }else{
                     profitOrLossInDollars = userCoinsSumInDollars - initialCoinsCostInDollars
+                    minusOrPlusSign = "+"
                 }
-                let positiveProfitOrLossInDollars = fabs(profitOrLossInDollars)
-                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: positiveProfitOrLossInDollars)
-                let profitOrLossInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: positiveProfitOrLossInDollars))
-                let minusSign = profitOrLossInDollars >= 0 ? "+" : "-"
-                let profitOrLossInDollarsWithSignString = String(format:"%@$%@", minusSign, profitOrLossInDollarsString!)
+//                let positiveProfitOrLossInDollars = fabs(profitOrLossInDollars)
+                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: profitOrLossInDollars)
+                //positiveProfitOrLossInDollars)
+                let profitOrLossInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: profitOrLossInDollars))
+                //positiveProfitOrLossInDollars))
+                let profitOrLossInDollarsWithSignString = String(format:"%@$%@", minusOrPlusSign, profitOrLossInDollarsString!)
                 portfolioValuesStringsDict.updateValue(profitOrLossInDollarsWithSignString, forKey: "profitOrLossInDollarsString")
                 
-                let profitOrLossInRubles = positiveProfitOrLossInDollars * newRubleRate
+                let profitOrLossInRubles = profitOrLossInDollars * newRubleRate
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: profitOrLossInRubles)
                 let profitOrLossInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: profitOrLossInRubles))
-                let profitOrLossInRublesWithSignString = String(format:"%@%@₽", minusSign, profitOrLossInRublesString!)
+                let profitOrLossInRublesWithSignString = String(format:"%@₽%@", minusOrPlusSign, profitOrLossInRublesString!)
                 portfolioValuesStringsDict.updateValue(profitOrLossInRublesWithSignString, forKey: "profitOrLossInRublesString")
                 
-                let changeFromBeginningInPercentages = (positiveProfitOrLossInDollars / initialCoinsCostInDollars) * 100.0
+                let changeFromBeginningInPercentages = (profitOrLossInDollars / initialCoinsCostInDollars) * 100.0
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: changeFromBeginningInPercentages)
                 currentNumberFormatter.maximumFractionDigits = 2
                 let changeFromBeginningInPercentagesString = currentNumberFormatter.string(from: NSNumber.init(value: changeFromBeginningInPercentages))
-                let percentagesMinusSign = profitOrLossInDollars >= 0 ? "+" : "-"
-                let changeFromBeginningInPercentagesWithSignString = String(format:"%@%@%%", percentagesMinusSign, changeFromBeginningInPercentagesString!)
+//                let percentagesMinusSign = profitOrLossInDollars >= 0 ? "+" : "-"
+                let changeFromBeginningInPercentagesWithSignString = String(format:"%@%@%%", minusOrPlusSign, changeFromBeginningInPercentagesString!)
 //                portfolioValuesStringsDict.updateValue(changeFromBeginningInPercentagesWithSignString, forKey: "changeFromBeginningInPercentages")
                 
                 var portfolio24PercentagesChange = 0.0

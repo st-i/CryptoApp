@@ -11,7 +11,7 @@ import UIKit
 class ActionWithCurrencyDateCell: UITableViewCell {
     
     @IBOutlet weak var purchaseDateLabel: UILabel!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

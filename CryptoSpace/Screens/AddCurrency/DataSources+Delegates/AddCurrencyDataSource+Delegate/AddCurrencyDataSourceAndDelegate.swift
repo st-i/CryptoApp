@@ -87,6 +87,8 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
 //            if (currentCell?.isKind(of: PurchaseExchangeRateCell.self))! || (currentCell?.isKind(of: PurchaseSumCell.self))! || (currentCell?.isKind(of: CurrencyAmountCell.self))! {
             if indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 {
                 return CGFloat(kUserNumberCellHeight)
+            }else if indexPath.row == 0 {
+                return 60
             }else{
                 return CGFloat(kDefaultNumberCellHeight)
             }
@@ -178,7 +180,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         if self.currencyPurchase {
             switch rowNumber {
             case 0:
-                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinName: currentCoin.fullName)
+                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinId: currentCoin.id, coinName: currentCoin.fullName)
                 
             case 1:
                 return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс")
@@ -201,7 +203,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         }else{
             switch rowNumber {
             case 0:
-                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinName: currentCoin.fullName)
+                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinId: currentCoin.id, coinName: currentCoin.fullName)
                 
             case 1:
                 return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс")

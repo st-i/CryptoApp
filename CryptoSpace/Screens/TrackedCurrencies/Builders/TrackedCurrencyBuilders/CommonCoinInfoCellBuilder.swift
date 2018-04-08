@@ -23,7 +23,7 @@ class CommonCoinInfoCellBuilder: NSObject {
 //        cell.portfolioPercentagesChangesLabel.textColor = UIColor.green
         cell.exchangeRatePercentagesChangeLabel.textColor = UIColor.init(red: 0, green: 190.0 / 255.0, blue: 120.0 / 255.0, alpha: 1.0)
 //        cell.purchasedCoinsPercentagesChangeLabel.textColor = UIColor.red
-        cell.currencyImageView.image = UIImage(named:"Bitcoin")
+        cell.currencyImageView.image = UIImage(named:coin.id)
 //        cell.lowerSeparator.backgroundColor = UIColor.init(red: 154.0 / 255.0, green: 154.0 / 255.0, blue: 154.0 / 255.0, alpha: 0.4)
         return cell
     }

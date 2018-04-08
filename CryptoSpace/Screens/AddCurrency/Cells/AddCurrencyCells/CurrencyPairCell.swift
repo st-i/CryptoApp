@@ -11,6 +11,7 @@ import UIKit
 class CurrencyPairCell: UITableViewCell {
 
     @IBOutlet weak var coinShortNameLabel: UILabel!
+    @IBOutlet weak var imageCoin: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

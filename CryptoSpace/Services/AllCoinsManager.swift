@@ -42,7 +42,7 @@ class AllCoinsManager: NSObject {
         let rippleCoin = Coin.init()
         rippleCoin.fullName = "Ripple" //1bittrex or okex
         rippleCoin.shortName = "XRP"
-        rippleCoin.id = "xpr"
+        rippleCoin.id = "xrp"
         rippleCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(rippleCoin)
         
@@ -586,8 +586,8 @@ class AllCoinsManager: NSObject {
         //78
         let ethosCoin = Coin.init()
         ethosCoin.fullName = "Ethos" //1hitbtc or coinexchange or livecoin(высокий) or radarrelay or cobinhood
-        ethosCoin.shortName = "BQX"
-        ethosCoin.id = "bqx"
+        ethosCoin.shortName = "BQX" //мб нужно будет поменять на "ETHOS"
+        ethosCoin.id = "bqx" //"ethos"
         ethosCoin.exchange = ExchangeBehavior.HitBTC
         allCoins.append(ethosCoin)
         
@@ -1406,8 +1406,8 @@ class AllCoinsManager: NSObject {
         //177
         let nuBitsCoin = Coin.init()
         nuBitsCoin.fullName = "NuBits" //1bittrex
-        nuBitsCoin.shortName = "USNBT"
-        nuBitsCoin.id = "usnbt"
+        nuBitsCoin.shortName = "NBT"
+        nuBitsCoin.id = "nbt"
         nuBitsCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(nuBitsCoin)
         
@@ -1484,12 +1484,12 @@ class AllCoinsManager: NSObject {
         allCoins.append(feathercoinCoin)
         
         //187
-        let startcoinCoin = Coin.init()
-        startcoinCoin.fullName = "Startcoin" //1bittrex
-        startcoinCoin.shortName = "START"
-        startcoinCoin.id = "start"
-        startcoinCoin.exchange = ExchangeBehavior.Bittrex
-        allCoins.append(startcoinCoin)
+        let neosCoinCoin = Coin.init()
+        neosCoinCoin.fullName = "NeosCoin" //1bittrex
+        neosCoinCoin.shortName = "NEOS"
+        neosCoinCoin.id = "neos"
+        neosCoinCoin.exchange = ExchangeBehavior.Bittrex
+        allCoins.append(neosCoinCoin)
         
         //188
         let expanseCoin = Coin.init()
@@ -1588,20 +1588,20 @@ class AllCoinsManager: NSObject {
         allCoins.append(whiteCoinCoin)
         
         //200
-        let capricoinCoin = Coin.init()
-        capricoinCoin.fullName = "Capricoin" //1bittrex
-        capricoinCoin.shortName = "CPC"
-        capricoinCoin.id = "cpc"
-        capricoinCoin.exchange = ExchangeBehavior.Bittrex
-        allCoins.append(capricoinCoin)
+        let blackCoinCoin = Coin.init()
+        blackCoinCoin.fullName = "BlackCoin" //1bittrex
+        blackCoinCoin.shortName = "BLK"
+        blackCoinCoin.id = "blk"
+        blackCoinCoin.exchange = ExchangeBehavior.Bittrex
+        allCoins.append(blackCoinCoin)
         
         //198
-        let clubCoinCoin = Coin.init()
-        clubCoinCoin.fullName = "ClubCoin" //1bittrex
-        clubCoinCoin.shortName = "CLUB"
-        clubCoinCoin.id = "club"
-        clubCoinCoin.exchange = ExchangeBehavior.Bittrex
-        allCoins.append(clubCoinCoin)
+        let foldingCoinCoin = Coin.init()
+        foldingCoinCoin.fullName = "FoldingCoin" //1bittrex
+        foldingCoinCoin.shortName = "FLDC"
+        foldingCoinCoin.id = "fldc"
+        foldingCoinCoin.exchange = ExchangeBehavior.Bittrex
+        allCoins.append(foldingCoinCoin)
         
         //199
         let potCoinCoin = Coin.init()
@@ -1612,12 +1612,12 @@ class AllCoinsManager: NSObject {
         allCoins.append(potCoinCoin)
         
         //200
-        let globalCurrencyReserveCoin = Coin.init()
-        globalCurrencyReserveCoin.fullName = "Global Currency Reserve" //1bittrex
-        globalCurrencyReserveCoin.shortName = "GCR"
-        globalCurrencyReserveCoin.id = "gcr"
-        globalCurrencyReserveCoin.exchange = ExchangeBehavior.Bittrex
-        allCoins.append(globalCurrencyReserveCoin)
+        let parkByteCoin = Coin.init()
+        parkByteCoin.fullName = "ParkByte" //1bittrex
+        parkByteCoin.shortName = "PKB"
+        parkByteCoin.id = "pkb"
+        parkByteCoin.exchange = ExchangeBehavior.Bittrex
+        allCoins.append(parkByteCoin)
         
         //200
         let projectDecorumCoin = Coin.init()
@@ -1645,6 +1645,34 @@ class AllCoinsManager: NSObject {
     
     
 //for future
+
+//        let globalCurrencyReserveCoin = Coin.init()
+//        globalCurrencyReserveCoin.fullName = "Global Currency Reserve" //1bittrex(нет в json)
+//        globalCurrencyReserveCoin.shortName = "GCR"
+//        globalCurrencyReserveCoin.id = "gcr"
+//        globalCurrencyReserveCoin.exchange = ExchangeBehavior.Bittrex
+//        allCoins.append(globalCurrencyReserveCoin)
+
+//        let startcoinCoin = Coin.init()
+//        startcoinCoin.fullName = "Startcoin" //1bittrex(нет в json)
+//        startcoinCoin.shortName = "START"
+//        startcoinCoin.id = "start"
+//        startcoinCoin.exchange = ExchangeBehavior.Bittrex
+//        allCoins.append(startcoinCoin)
+
+//        let capricoinCoin = Coin.init()
+//        capricoinCoin.fullName = "Capricoin" //1bittrex(нет в json)
+//        capricoinCoin.shortName = "CPC"
+//        capricoinCoin.id = "cpc"
+//        capricoinCoin.exchange = ExchangeBehavior.Bittrex
+//        allCoins.append(capricoinCoin)
+
+//        let clubCoinCoin = Coin.init()
+//        clubCoinCoin.fullName = "ClubCoin" //1bittrex(нет в json)
+//        clubCoinCoin.shortName = "CLUB"
+//        clubCoinCoin.id = "club"
+//        clubCoinCoin.exchange = ExchangeBehavior.Bittrex
+//        allCoins.append(clubCoinCoin)
 
 //        let xtrabytesCoin = Coin.init()
 //        xtrabytesCoin.fullName = "XTRABYTES" //1cryptopia or yobit or coinfalcon or c-cex

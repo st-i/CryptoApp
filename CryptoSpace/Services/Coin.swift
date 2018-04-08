@@ -22,5 +22,6 @@ class Coin: NSObject {
     var purchaseExchangeRate: Double = 0.0
     var amount: Double = 0.0
     var sum: Double = 0.0
+    var initialSum: Double = 0.0
     var rate24hPercentChange: Double = 0.0
 }

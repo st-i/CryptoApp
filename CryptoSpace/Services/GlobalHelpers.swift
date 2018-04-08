@@ -121,6 +121,7 @@ class CoinsArrayGroupingFormatter: NSObject {
             }else{
                 let existingCoin = groupedCoinsDict[coin.shortName]
                 existingCoin?.sum = (existingCoin?.sum)! + coin.sum
+                existingCoin?.initialSum = (existingCoin?.initialSum)! + coin.initialSum
                 existingCoin?.amount = (existingCoin?.amount)! + coin.amount
                 groupedCoinsDict.updateValue(existingCoin!, forKey: coin.shortName)
             }

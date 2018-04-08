@@ -39,8 +39,8 @@ class BigONEResponseParser: NSObject {
                 coinPrice = Double(coinDict[kLastCoinPrice] as! String)! * btcRate
             }
         }
-//        let currentCoinArray = [coinName, coinPrice] as [Any]
-//        print(currentCoinArray)
+        let currentCoinArray = [coinName, coinPrice] as [Any]
+        print(currentCoinArray)
 //        print(coinPrice)
 //        print("BigONE запрос")
         return coinPrice

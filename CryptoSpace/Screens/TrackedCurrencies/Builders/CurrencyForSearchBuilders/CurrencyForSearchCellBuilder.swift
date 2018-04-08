@@ -15,7 +15,7 @@ class CurrencyForSearchCellBuilder: NSObject {
     class func buildCurrencyForSearchCell(coin: Coin, tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kCurrencyForSearchCellIdentifier) as! CurrencyForSearchCell
         cell.lowerSeparator.backgroundColor = UIColor.clear
-        cell.currencyImageView.image = UIImage(named:"Bitcoin")
+        cell.currencyImageView.image = UIImage(named:coin.id)
         cell.currencyNameLabel.text = String.init(format: "%@: %@", coin.shortName, coin.fullName)
         cell.currentCoin = coin
         

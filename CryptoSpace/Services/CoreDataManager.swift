@@ -78,6 +78,7 @@ final class CoreDataManager {
         userCoin.setValue(NSNumber.init(value:coin.purchaseExchangeRate), forKey: "purchaseExchangeRate")
         userCoin.setValue(NSNumber.init(value:coin.amount), forKey: "amount")
         userCoin.setValue(NSNumber.init(value:coin.sum), forKey: "sum")
+        userCoin.setValue(NSNumber.init(value:coin.initialSum), forKey: "initialSum")
         userCoin.setValue(NSNumber.init(value:coin.rate24hPercentChange), forKey: "rate24hPercentChange")
         //4
         do {
@@ -118,9 +119,11 @@ final class CoreDataManager {
                 currentCoin.id = someCoin.value(forKey: "id") as! String
                 currentCoin.uniqueId = someCoin.value(forKey: "uniqueId") as! Int
                 currentCoin.exchangeRate = someCoin.value(forKey: "exchangeRate") as! Double
+                currentCoin.purchaseExchangeRate = someCoin.value(forKey: "purchaseExchangeRate") as! Double
                 currentCoin.coinType = CoinType(rawValue: someCoin.value(forKey: "coinType") as! Int)!
                 currentCoin.exchange = ExchangeBehavior(rawValue: someCoin.value(forKey: "exchange") as! Int)!
                 currentCoin.sum = someCoin.value(forKey: "sum") as! Double
+                currentCoin.initialSum = someCoin.value(forKey: "initialSum") as! Double
                 currentCoin.amount = someCoin.value(forKey: "amount") as! Double
                 coinsArray.append(currentCoin)
             }
