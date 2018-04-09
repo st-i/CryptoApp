@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let kTotalPortfolioCostCellHeight = 143
+private let kTotalPortfolioCostCellHeight = 173 //143
 private let kTrackedPositionCellHeight = 58
 private let kFinalCellHeight = 26
 private let kHeightForSectionHeader = 30

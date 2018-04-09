@@ -63,7 +63,7 @@ class TrackedCurrenciesViewController: UIViewController {
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
         let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addTrackedCurrency))
-        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(sendRequestForTest)) //refreshCurrenciesRates
+        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshCurrenciesRates)) // sendRequestForTest
         navigationItem.leftBarButtonItem = refreshButton
         navigationItem.rightBarButtonItem = addButton
 //        navigationItem.rightBarButtonItems = [addButton, refreshButton]
