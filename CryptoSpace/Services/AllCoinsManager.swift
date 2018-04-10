@@ -1236,12 +1236,12 @@ class AllCoinsManager: NSObject {
         allCoins.append(nulsCoin)
         
         //191
-        let coinDashCoin = Coin.init()
-        coinDashCoin.fullName = "CoinDash" //1hitbtc or gate.io or bigone or Gatecoin
-        coinDashCoin.shortName = "CDT"
-        coinDashCoin.id = "cdt"
-        coinDashCoin.exchange = ExchangeBehavior.HitBTC
-        allCoins.append(coinDashCoin)
+        let bloxCoin = Coin.init() //раньше был CoinDash
+        bloxCoin.fullName = "Blox" //1hitbtc or gate.io or bigone or Gatecoin
+        bloxCoin.shortName = "CDT"
+        bloxCoin.id = "cdt"
+        bloxCoin.exchange = ExchangeBehavior.HitBTC
+        allCoins.append(bloxCoin)
         
         //192
         let breadCoin = Coin.init()

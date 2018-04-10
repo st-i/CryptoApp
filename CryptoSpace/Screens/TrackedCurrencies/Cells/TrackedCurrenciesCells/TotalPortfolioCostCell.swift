@@ -17,6 +17,7 @@ class TotalPortfolioCostCell: UITableViewCell {
     @IBOutlet weak var changeFromPurchaseMoment: UILabel!
     @IBOutlet weak var initialPortfolioCostLabel: UILabel!
     @IBOutlet weak var portfolioProfitOrLossLabel: UILabel!
+    @IBOutlet weak var portfolioProfitOrLoss24hLabel: UILabel!
     
     //    var totalPortfolioCostInDollars: Double = 0.0
     

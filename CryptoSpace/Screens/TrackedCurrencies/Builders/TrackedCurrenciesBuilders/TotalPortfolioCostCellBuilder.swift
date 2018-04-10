@@ -12,7 +12,7 @@ private let kTotalPortfolioCostCellIdentifier = "TotalPortfolioCostCell"
 
 class TotalPortfolioCostCellBuilder: NSObject {
         
-    class func buildTotalPortfolioCostCell(for tableView: UITableView, totalSum: String, portfolio24hChange: String, changeFromPurchaseMoment: String, initialCost: String, profitOrLoss: String) -> UITableViewCell {
+    class func buildTotalPortfolioCostCell(for tableView: UITableView, totalSum: String, portfolio24hChange: String, changeFromPurchaseMoment: String, initialCost: String, profitOrLoss: String, profitOrLoss24h: String) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kTotalPortfolioCostCellIdentifier) as! TotalPortfolioCostCell
         cell.selectionStyle = .none
         
@@ -22,6 +22,7 @@ class TotalPortfolioCostCellBuilder: NSObject {
         cell.changeFromPurchaseMoment.text = changeFromPurchaseMoment
         cell.initialPortfolioCostLabel.text = initialCost
         cell.portfolioProfitOrLossLabel.text = profitOrLoss
+        cell.portfolioProfitOrLoss24hLabel.text = profitOrLoss24h
         
         if portfolio24hChange.contains("-") {
             cell.portfolio24hChangeLabel.textColor = UIColor.redChangeColor()
@@ -39,6 +40,12 @@ class TotalPortfolioCostCellBuilder: NSObject {
             cell.portfolioProfitOrLossLabel.textColor = UIColor.redChangeColor()
         }else{
             cell.portfolioProfitOrLossLabel.textColor = UIColor.greenChangeColor()
+        }
+        
+        if profitOrLoss24h.contains("-") {
+            cell.portfolioProfitOrLoss24hLabel.textColor = UIColor.redChangeColor()
+        }else{
+            cell.portfolioProfitOrLoss24hLabel.textColor = UIColor.greenChangeColor()
         }
         
 //        cell.backgroundColor = UIColor.init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)
