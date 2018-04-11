@@ -9,9 +9,9 @@
 import UIKit
 
 //private let kTrackedCurrencyCellHeight = 700
-private let kCommonCoinInfoCellHeight = 200
-private let kCoinPurchaseWONoteCellIdentifier = 156
-private let kCoinPurchaseWithNoteCellIdentifier = 273
+private let kCommonCoinInfoCellHeight = 224
+private let kCoinPurchaseWONoteCellIdentifier = 196
+private let kCoinPurchaseWithNoteCellIdentifier = 283
 private let kHeightForSectionHeader = 30
 private let kHeightForSectionFooter = 0.5
 
