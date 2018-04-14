@@ -9,6 +9,14 @@
 import UIKit
 
 class CoinPurchaseWithNoteCell: UITableViewCell {
+    
+    @IBOutlet weak var initialPurchaseSum: UILabel!
+    @IBOutlet weak var currentPurchaseSum: UILabel!
+    @IBOutlet weak var purchaseExchangeRate: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var initialPurchaseSumMoneyChangeLabel: UILabel!
+    @IBOutlet weak var purchaseDateLabel: UILabel!
+    @IBOutlet weak var noteLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

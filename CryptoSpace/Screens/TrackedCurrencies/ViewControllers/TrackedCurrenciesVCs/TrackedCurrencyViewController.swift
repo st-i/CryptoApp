@@ -21,6 +21,8 @@ class TrackedCurrencyViewController: UIViewController {
     
     var currentCoin: Coin!
     
+    var firstCell:CommonCoinInfoCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,10 +82,12 @@ class TrackedCurrencyViewController: UIViewController {
             self.tableView.dataSource = self.trackedCurrencyDataSource
             self.tableView.delegate = self.trackedCurrencyDelegate
         
-            let arrayWithCells = TrackedCurrencyScreenDirector.createTrackedCurrencyCells(for: tableView, currentCoin: currentCoin)
-        
-            self.trackedCurrencyDataSource.arrayWithCells = arrayWithCells
-            self.trackedCurrencyDelegate.arrayWithCells = arrayWithCells
+//            let arrayWithCells = TrackedCurrencyScreenDirector.createTrackedCurrencyCells(for: tableView, currentCoin: currentCoin)
+            
+            let modelsArray = CertainCoinInfoMapper.mapTrackedCoinToInfoModelsArray(coin: currentCoin)
+            
+            self.trackedCurrencyDataSource.modelsArray = modelsArray
+            self.trackedCurrencyDelegate.modelsArray = modelsArray
         }else{
             self.observedCurrencyDataSource = ObservedCurrencyDataSource()
             self.observedCurrencyDelegate = ObservedCurrencyDelegate()
@@ -109,9 +113,12 @@ class TrackedCurrencyViewController: UIViewController {
         animation.toValue = NSNumber.init(floatLiteral: 2 * .pi)
         
         if (self.navigationController?.viewControllers[0] .isKind(of: TrackedCurrenciesViewController.self))! {
-            let firstSection = self.trackedCurrencyDelegate.arrayWithCells[0] as! [UITableViewCell]
-            let cell = firstSection[0] as! CommonCoinInfoCell
-            cell.currencyImageView.layer.add(animation, forKey: animation.keyPath)
+//            let firstSection = self.trackedCurrencyDelegate.arrayWithCells[0] as! [UITableViewCell]
+//            let cell = firstSection[0] as! CommonCoinInfoCell
+            if firstCell == nil {
+                firstCell = tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as! CommonCoinInfoCell
+            }
+            firstCell.currencyImageView.layer.add(animation, forKey: animation.keyPath)
             
 //            UIView.animate(withDuration: 1.5, delay: 0.0,
 //                           options: [.curveEaseInOut, .autoreverse, .repeat],

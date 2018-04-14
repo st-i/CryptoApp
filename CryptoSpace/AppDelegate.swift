@@ -29,7 +29,7 @@
 //Yobit - 1 + |
 
 //1.Quoine / Qryptos - API users should not make more than 300 requests per 5 minute (60 per minute)
-//2.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits (все сразу)
+//2.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits (все сразу) (60 per minute)
 //3.Poloniex - 6 calls per second to the public API (99 валют) (360 per minute) (все сразу, 99 валют в ответе)
 //4.Hitbtc - good api, has limits, no info (>200 валют, все сразу)
 //5.Kucoin-есть api, ничего про лимиты (все сразу)

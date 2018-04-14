@@ -10,6 +10,15 @@ import UIKit
 
 class CoinPurchaseWONoteCell: UITableViewCell {
 
+    @IBOutlet weak var initialPurchaseSum: UILabel!
+    @IBOutlet weak var currentPurchaseSum: UILabel!
+    @IBOutlet weak var purchaseExchangeRate: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var initialPurchaseSumMoneyChangeLabel: UILabel!
+    @IBOutlet weak var initialPurchasePercentChangeLabel: UILabel!
+    @IBOutlet weak var last24hPurchaseSumMoneyChangeLabel: UILabel!
+    @IBOutlet weak var last24hPurchaseSumPercentChangeLabel: UILabel!
+    @IBOutlet weak var purchaseDateLabel: UILabel!
     @IBOutlet weak var lowerSeparator: UIView!
     
     override func awakeFromNib() {

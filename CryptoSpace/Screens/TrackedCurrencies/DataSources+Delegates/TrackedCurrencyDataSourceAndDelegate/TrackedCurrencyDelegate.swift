@@ -10,24 +10,35 @@ import UIKit
 
 //private let kTrackedCurrencyCellHeight = 700
 private let kCommonCoinInfoCellHeight = 224
-private let kCoinPurchaseWONoteCellIdentifier = 196
-private let kCoinPurchaseWithNoteCellIdentifier = 283
+private let kCoinPurchaseWONoteCellIdentifier = 152
+private let kCoinPurchaseWithNoteCellIdentifier = 235
 private let kHeightForSectionHeader = 30
 private let kHeightForSectionFooter = 0.5
 
 class TrackedCurrencyDelegate: NSObject, UITableViewDelegate {
     
-    var arrayWithCells = [Any]()
+//    var arrayWithCells = [Any]()
+    var modelsArray = [Any]()
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cell = (arrayWithCells[indexPath.section] as! [UITableViewCell])[indexPath.row] 
-        if cell.isKind(of: CommonCoinInfoCell.self) {
+        if indexPath.section == 0 {
             return CGFloat(kCommonCoinInfoCellHeight)
-        }else if cell.isKind(of: CoinPurchaseWONoteCell.self) {
-            return CGFloat(kCoinPurchaseWONoteCellIdentifier)
         }else{
-            return CGFloat(kCoinPurchaseWithNoteCellIdentifier)
+            let purchaseInfoModel = modelsArray[indexPath.section] as! TrackedCoinPurchaseInfoModel
+            if purchaseInfoModel.note.count > 0 {
+                return CGFloat(kCoinPurchaseWithNoteCellIdentifier)
+            }else{
+                return CGFloat(kCoinPurchaseWONoteCellIdentifier)
+            }
         }
+        
+//        if (cell?.isKind(of: CommonCoinInfoCell.self))! {
+//            return CGFloat(kCommonCoinInfoCellHeight)
+//        }else if (cell?.isKind(of: CoinPurchaseWONoteCell.self))! {
+//            return CGFloat(kCoinPurchaseWONoteCellIdentifier)
+//        }else{
+//            return CGFloat(kCoinPurchaseWithNoteCellIdentifier)
+//        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -75,7 +86,7 @@ class TrackedCurrencyDelegate: NSObject, UITableViewDelegate {
             
             var separatorX = 15.0
             var separatorWidth = Double(tableView.frame.width) - 30.0
-            if section == arrayWithCells.count - 1 {
+            if section == modelsArray.count - 1 {
                 separatorX = 0.0
                 separatorWidth = Double(tableView.frame.width)
             }

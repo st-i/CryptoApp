@@ -10,9 +10,17 @@ import UIKit
 
 class CommonCoinInfoCell: UITableViewCell {
 
-    @IBOutlet weak var coinNameLabel: UILabel!
     @IBOutlet weak var currencyImageView: UIImageView!
-    @IBOutlet weak var exchangeRatePercentagesChangeLabel: UILabel!
+    @IBOutlet weak var coinNameLabel: UILabel!
+    @IBOutlet weak var coinAmountLabel: UILabel!
+    @IBOutlet weak var coinCurrentExchangeRate: UILabel!
+    @IBOutlet weak var initialCoinSum: UILabel!
+    @IBOutlet weak var currentCoinSum: UILabel!
+    @IBOutlet weak var initialCoinSumMoneyChangeLabel: UILabel!
+    @IBOutlet weak var initialCoinPercentChangeLabel: UILabel!
+    @IBOutlet weak var last24hCoinSumMoneyChangeLabel: UILabel!
+    @IBOutlet weak var last24hCoinSumPercentChangeLabel: UILabel!
+    
     @IBOutlet weak var lowerSeparator: UIView!
     
     override func awakeFromNib() {
@@ -25,5 +33,4 @@ class CommonCoinInfoCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

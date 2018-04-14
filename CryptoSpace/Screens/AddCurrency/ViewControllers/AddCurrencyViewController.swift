@@ -339,6 +339,7 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
         currentCoin.sum = purchaseSumValue
         currentCoin.amount = currencyAmountValue
         currentCoin.initialSum = purchaseSumValue
+        currentCoin.coinType = CoinType.Tracked
 
         CoreDataManager.shared.saveUserCoin(coin: currentCoin)
     
@@ -388,7 +389,7 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
             textViewText?.removeLast()
         }
         let tempText = textViewText
-        if countInstances(of: "\n", in: tempText!) > 10 {
+        if countInstances(of: "\n", in: tempText!) > 4 {
             textViewText?.removeLast()
         }
         

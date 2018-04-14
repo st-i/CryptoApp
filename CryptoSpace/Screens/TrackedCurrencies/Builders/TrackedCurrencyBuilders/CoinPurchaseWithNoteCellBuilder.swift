@@ -12,9 +12,19 @@ private let kCoinPurchaseWithNoteCellIdentifier = "CoinPurchaseWithNoteCell"
 
 class CoinPurchaseWithNoteCellBuilder: NSObject {
     
-    class func buildCell(for tableView: UITableView) -> UITableViewCell {
+    class func buildCell(_ tableView: UITableView, purchaseInfoModel: TrackedCoinPurchaseInfoModel) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kCoinPurchaseWithNoteCellIdentifier) as! CoinPurchaseWithNoteCell
         cell.selectionStyle = .none
+        
+        cell.initialPurchaseSum.text = purchaseInfoModel.initialSum
+        cell.currentPurchaseSum.text = purchaseInfoModel.currentSum
+        
+        cell.purchaseExchangeRate.text = purchaseInfoModel.purchaseExchangeRate
+        cell.amountLabel.text = purchaseInfoModel.amount
+
+        cell.initialPurchaseSumMoneyChangeLabel.text = purchaseInfoModel.initialSumMoneyChange
+        cell.initialPurchaseSumMoneyChangeLabel.textColor = TextColorDeterminant.colorForText(text: purchaseInfoModel.initialSumMoneyChange)
+                
         return cell
     }
 }

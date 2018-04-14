@@ -17,7 +17,6 @@ class Coin: NSObject {
     var exchange: ExchangeBehavior = ExchangeBehavior(rawValue: 0)!
     var bitfinexId: String = ""
     var okexId: String = ""
-    var imageLink: String = ""
     var exchangeRate: Double = 0.0
     var purchaseExchangeRate: Double = 0.0
     var amount: Double = 0.0

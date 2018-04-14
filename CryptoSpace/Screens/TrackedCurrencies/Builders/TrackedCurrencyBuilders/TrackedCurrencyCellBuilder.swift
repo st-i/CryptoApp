@@ -24,6 +24,7 @@ class TrackedCurrencyCellBuilder: NSObject {
         cell.exchangeRatePercentagesChangeLabel.textColor = UIColor.init(red: 0, green: 190.0 / 255.0, blue: 120.0 / 255.0, alpha: 1.0)
 //        cell.purchasedCoinsPercentagesChangeLabel.textColor = UIColor.red
 //        cell.currencyImageView.image = UIImage(named:"Bitcoin")
+        
         return cell
     }
 }

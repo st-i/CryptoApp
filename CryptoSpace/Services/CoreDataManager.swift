@@ -73,6 +73,7 @@ final class CoreDataManager {
         userCoin.setValue(coin.shortName, forKey: "shortName")
         userCoin.setValue(coin.id, forKey: "id")
         userCoin.setValue(currentCoinUniqueId, forKey: "uniqueId")
+        userCoin.setValue(NSNumber.init(value:coin.coinType.rawValue), forKey: "coinType")
         userCoin.setValue(NSNumber.init(value:coin.exchange.rawValue), forKey: "exchange")
         userCoin.setValue(NSNumber.init(value:coin.exchangeRate), forKey: "exchangeRate")
         userCoin.setValue(NSNumber.init(value:coin.purchaseExchangeRate), forKey: "purchaseExchangeRate")
@@ -104,7 +105,7 @@ final class CoreDataManager {
         }
     }
     
-    //MARK: - Mapping
+    //MARK: - Mapping from entity to model
     func getUserCoinsArray() -> [Coin] {
         
         var coinsArray = [Coin]()
@@ -122,7 +123,7 @@ final class CoreDataManager {
                 currentCoin.purchaseExchangeRate = someCoin.value(forKey: "purchaseExchangeRate") as! Double
                 currentCoin.coinType = CoinType(rawValue: someCoin.value(forKey: "coinType") as! Int)!
                 currentCoin.exchange = ExchangeBehavior(rawValue: someCoin.value(forKey: "exchange") as! Int)!
-                currentCoin.sum = someCoin.value(forKey: "sum") as! Double
+                currentCoin.sum = someCoin.value(forKey: "sum") as! Double //УБРАТЬ
                 currentCoin.initialSum = someCoin.value(forKey: "initialSum") as! Double
                 currentCoin.amount = someCoin.value(forKey: "amount") as! Double
                 coinsArray.append(currentCoin)
@@ -131,7 +132,26 @@ final class CoreDataManager {
         return coinsArray
     }
     
-    private func getCoreDataUserCoinsArray() -> [NSManagedObject] {
+    func getCertainTrackedUserCoinArray(coinShortName: String) -> [Coin] {
+        
+        var certainCoinArray = [Coin]()
+        let certainTrackedCoinArray = getCoreDataCertainTrackedUserCoinArray(coinShortName: coinShortName)
+        if certainTrackedCoinArray.count > 0 {
+            for someCoin in certainTrackedCoinArray {
+                let currentCoin = Coin()
+                currentCoin.uniqueId = someCoin.value(forKey: "uniqueId") as! Int
+                currentCoin.exchangeRate = someCoin.value(forKey: "exchangeRate") as! Double
+                currentCoin.purchaseExchangeRate = someCoin.value(forKey: "purchaseExchangeRate") as! Double
+                currentCoin.initialSum = someCoin.value(forKey: "initialSum") as! Double
+                currentCoin.amount = someCoin.value(forKey: "amount") as! Double
+                certainCoinArray.append(currentCoin)
+            }
+        }
+        return certainCoinArray
+    }
+    
+    //MARK: - Fetching from CoreData
+    private func getCoreDataUserCoinsArray() -> [NSManagedObject] { //tracked
         
         let managedContext = CoreDataManager.shared.persistentContainer.viewContext
         
@@ -150,6 +170,22 @@ final class CoreDataManager {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
         return userTrackedCoins
+    }
+    
+    private func getCoreDataCertainTrackedUserCoinArray(coinShortName: String) -> [NSManagedObject] {
+        
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserCoin")
+        let coinShortNamePredicate = NSPredicate(format: "shortName = %@", coinShortName) //&& coinType == \(CoinType.Tracked)")
+        fetchRequest.predicate = coinShortNamePredicate
+        
+        var certainTrackedUserCoinArray = [NSManagedObject]()
+        do {
+            certainTrackedUserCoinArray = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch CertainTrackedUserCoinArray. \(error), \(error.userInfo)")
+        }
+        return certainTrackedUserCoinArray
     }
     
     //MARK: - Unique id for coin

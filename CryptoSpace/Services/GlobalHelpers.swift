@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //НАПИСАТЬ ХЕЛПЕР NUMBERFORMATTER
 
@@ -210,6 +211,126 @@ class PercentChangeCalculator: NSObject {
         coinDetailsDict.updateValue(priceDifferencePercent, forKey: kCoin24hPercentChange)
         
         return coinDetailsDict
+    }
+}
+
+class CertainCoinInfoMapper: NSObject {
+    
+    class func mapTrackedCoinToCommonInfoModel(coin: Coin) -> TrackedCoinCommonInfoModel {
+        
+        let commonInfoModel = TrackedCoinCommonInfoModel()
+        
+        commonInfoModel.name = coin.fullName
+        commonInfoModel.id = coin.id
+        
+        let currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: coin.amount)
+        currentNumberFormatter.maximumFractionDigits = 8
+        commonInfoModel.amount = currentNumberFormatter.string(from: NSNumber.init(value: coin.amount))!
+        
+        currentNumberFormatter.maximumFractionDigits = coin.exchangeRate < 1 ? 6 : 2
+        let currentExchangeRate = currentNumberFormatter.string(from: NSNumber.init(value: coin.exchangeRate))!
+        commonInfoModel.currentExchangeRate = String(format: "$%@", currentExchangeRate)
+        
+        currentNumberFormatter.maximumFractionDigits = coin.initialSum < 1 ? 6 : 2
+        let initialSum = currentNumberFormatter.string(from: NSNumber.init(value: coin.initialSum))!
+        commonInfoModel.initialSum = String(format: "$%@", initialSum)
+        
+        currentNumberFormatter.maximumFractionDigits = coin.sum < 1 ? 6 : 2
+        let currentSum = currentNumberFormatter.string(from: NSNumber.init(value: coin.sum))!
+        commonInfoModel.currentSum = String(format: "$%@", currentSum)
+        
+        var initialSumMoneyChange = 0.0
+        if coin.initialSum > coin.sum {
+            initialSumMoneyChange = coin.initialSum - coin.sum
+        }else{
+            initialSumMoneyChange = coin.sum - coin.initialSum
+        }
+        currentNumberFormatter.maximumFractionDigits = initialSumMoneyChange < 1 ? 6 : 2
+        let initialSumMoneyChangeString = currentNumberFormatter.string(from: NSNumber.init(value: initialSumMoneyChange))!
+        var minusOrPlusSign = coin.initialSum >= coin.sum ? "-" : "+"
+        commonInfoModel.initialSumMoneyChange = String(format: "%@$%@", minusOrPlusSign, initialSumMoneyChangeString)
+        
+        let initialSumPercentChange = (initialSumMoneyChange / coin.initialSum) * 100.0
+        let initialSumPercentChangeString = currentNumberFormatter.string(from: NSNumber.init(value: initialSumPercentChange))!
+        commonInfoModel.initialSumPercentChange = String(format: "%@%@%%", minusOrPlusSign, initialSumPercentChangeString)
+        
+        let last24hSumMoneyChange = coin.sum * (coin.rate24hPercentChange / 100.0)
+        minusOrPlusSign = last24hSumMoneyChange < 0 ? "-" : "+"
+        let last24hSumMoneyChangeString = currentNumberFormatter.string(from: NSNumber.init(value: fabs(last24hSumMoneyChange)))!
+        commonInfoModel.last24hSumMoneyChange = String(format: "%@$%@", minusOrPlusSign, last24hSumMoneyChangeString)
+        
+        currentNumberFormatter.maximumFractionDigits = 2
+        let last24hSumPercentChange = currentNumberFormatter.string(from: NSNumber.init(value: coin.rate24hPercentChange))!
+        commonInfoModel.last24hSumPercentChange = String(format: "%@%%", last24hSumPercentChange)
+        
+        return commonInfoModel
+    }
+    
+    class func mapTrackedCoinToInfoModelsArray(coin: Coin) -> [Any] {
+        
+        let certainUserCoinArray = CoreDataManager.shared.getCertainTrackedUserCoinArray(coinShortName: coin.shortName)
+        
+        let currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: coin.purchaseExchangeRate)
+        
+        var coinInfoModelsArray = [Any]()
+        let coinCommonInfoModel = CertainCoinInfoMapper.mapTrackedCoinToCommonInfoModel(coin: coin)
+        coinInfoModelsArray.append(coinCommonInfoModel)
+        
+        for someCoin in certainUserCoinArray {
+            let purchaseInfoModel = TrackedCoinPurchaseInfoModel()
+            
+            let initialSum = someCoin.amount * someCoin.purchaseExchangeRate
+            currentNumberFormatter.maximumFractionDigits = initialSum < 1 ? 6 : 2
+            let initialSumString = currentNumberFormatter.string(from: NSNumber.init(value: initialSum))!
+            purchaseInfoModel.initialSum = String(format: "$%@", initialSumString)
+            
+            let currentSum = someCoin.amount * coin.exchangeRate
+            currentNumberFormatter.maximumFractionDigits = currentSum < 1 ? 6 : 2
+            let currentSumString = currentNumberFormatter.string(from: NSNumber.init(value: currentSum))!
+            purchaseInfoModel.currentSum = String(format: "$%@", currentSumString)
+            
+            currentNumberFormatter.maximumFractionDigits = someCoin.purchaseExchangeRate < 1 ? 6 : 2
+            let purchaseExchangeRate = currentNumberFormatter.string(from: NSNumber.init(value: someCoin.purchaseExchangeRate))!
+            purchaseInfoModel.purchaseExchangeRate = String(format: "$%@", purchaseExchangeRate)
+            
+            currentNumberFormatter.maximumFractionDigits = 8
+            purchaseInfoModel.amount = currentNumberFormatter.string(from: NSNumber.init(value: someCoin.amount))!
+            
+            var initialSumMoneyChange = 0.0
+            if initialSum > currentSum {
+                initialSumMoneyChange = initialSum - currentSum
+            }else{
+                initialSumMoneyChange = currentSum - initialSum
+            }
+            currentNumberFormatter.maximumFractionDigits = initialSumMoneyChange < 1 ? 6 : 2
+            let initialSumMoneyChangeString = currentNumberFormatter.string(from: NSNumber.init(value: initialSumMoneyChange))!
+            var minusOrPlusSign = initialSum >= currentSum ? "-" : "+"
+            purchaseInfoModel.initialSumMoneyChange = String(format: "%@$%@", minusOrPlusSign, initialSumMoneyChangeString)
+            
+            let last24hSumMoneyChange = initialSum * (coin.rate24hPercentChange / 100.0)
+            minusOrPlusSign = last24hSumMoneyChange < 0 ? "-" : "+"
+            let last24hSumMoneyChangeString = currentNumberFormatter.string(from: NSNumber.init(value: fabs(last24hSumMoneyChange)))!
+            purchaseInfoModel.last24hSumMoneyChange = String(format: "%@$%@", minusOrPlusSign, last24hSumMoneyChangeString)
+            
+//            purchaseInfoModel.purchaseDate = DataForm.createDateString(date: someCoin.purchaseDate)
+//            purchaseInfoModel.note = "YO"
+            
+            coinInfoModelsArray.append(purchaseInfoModel)
+        }
+        
+        return coinInfoModelsArray
+    }
+}
+
+class TextColorDeterminant: NSObject {
+    
+    class func colorForText(text: String) -> UIColor {
+        
+        if text.contains("-") {
+            return UIColor.redChangeColor()
+        }else{
+            return UIColor.greenChangeColor()
+        }
     }
 }
 
