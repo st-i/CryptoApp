@@ -8,24 +8,21 @@
 
 import UIKit
 
-private let kCryptoCurrenciesCapitalizationCellHeight = 115
+private let kCryptoCurrenciesCapitalizationCellHeight = 64
 private let kObservedPositionCellHeight = 62
 private let kFinalCellHeight = 26
 private let kHeightForSectionHeader = 30
 
 class ObservedCurrenciesDelegate: NSObject, UITableViewDelegate {
     
-    var arrayWithCells = NSMutableArray() as! [[UITableViewCell]]
-    var viewController = UIViewController()
+//    var arrayWithCells = NSMutableArray() as! [[UITableViewCell]]
+//    var viewController = UIViewController()
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cell = arrayWithCells[indexPath.section][indexPath.row]
-        if cell.isKind(of: CryptoCurrenciesCapitalizationCell.self) {
+        if indexPath.section == 0 {
             return CGFloat(kCryptoCurrenciesCapitalizationCellHeight)
-        }else if cell.isKind(of: ObservedPositionCell.self) {
-            return CGFloat(kObservedPositionCellHeight)
         }else{
-            return CGFloat(kFinalCellHeight)
+            return CGFloat(kObservedPositionCellHeight)
         }
     }
     
@@ -48,11 +45,11 @@ class ObservedCurrenciesDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.section == 1 {
-            let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
-            let trackedCurrencyVC = storyboard.instantiateViewController(withIdentifier: "TrackedCurrencyViewController")
-            viewController.navigationController?.pushViewController(trackedCurrencyVC, animated: true)
-        }
+//        if indexPath.section == 1 {
+//            let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
+//            let trackedCurrencyVC = storyboard.instantiateViewController(withIdentifier: "TrackedCurrencyViewController")
+//            viewController.navigationController?.pushViewController(trackedCurrencyVC, animated: true)
+//        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -103,6 +100,4 @@ class ObservedCurrenciesDelegate: NSObject, UITableViewDelegate {
     //            return nil
     //        }
     //    }
-
-
 }

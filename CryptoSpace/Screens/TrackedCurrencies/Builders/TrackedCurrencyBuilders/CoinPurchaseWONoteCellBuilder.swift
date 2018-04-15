@@ -25,6 +25,8 @@ class CoinPurchaseWONoteCellBuilder: NSObject {
         cell.initialPurchaseSumMoneyChangeLabel.text = purchaseInfoModel.initialSumMoneyChange
         cell.initialPurchaseSumMoneyChangeLabel.textColor = TextColorDeterminant.colorForText(text: purchaseInfoModel.initialSumMoneyChange)
         
+        cell.purchaseDateLabel.text = purchaseInfoModel.purchaseDate
+        
         return cell
     }
 }

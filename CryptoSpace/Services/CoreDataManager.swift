@@ -44,7 +44,7 @@ final class CoreDataManager {
         return container
     }()
     
-    // MARK: - Core Data Saving support
+    // MARK: Core Data Saving support
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -59,7 +59,7 @@ final class CoreDataManager {
         }
     }
     
-    func saveUserCoin(coin: Coin) {
+    func saveTrackedUserCoin(coin: Coin) {
         
         let currentCoinUniqueId = determineUniqueNumberIdForCoin(coin: coin)
         
@@ -69,10 +69,12 @@ final class CoreDataManager {
         let entity = NSEntityDescription.entity(forEntityName: "UserCoin", in: managedContext)!
         let userCoin = NSManagedObject(entity: entity, insertInto: managedContext)
         //3
+        userCoin.setValue(coin.purchaseDate, forKey: "purchaseDate")
         userCoin.setValue(coin.fullName, forKeyPath: "fullName")
         userCoin.setValue(coin.shortName, forKey: "shortName")
         userCoin.setValue(coin.id, forKey: "id")
         userCoin.setValue(currentCoinUniqueId, forKey: "uniqueId")
+        userCoin.setValue(coin.note, forKey: "note")
         userCoin.setValue(NSNumber.init(value:coin.coinType.rawValue), forKey: "coinType")
         userCoin.setValue(NSNumber.init(value:coin.exchange.rawValue), forKey: "exchange")
         userCoin.setValue(NSNumber.init(value:coin.exchangeRate), forKey: "exchangeRate")
@@ -105,12 +107,12 @@ final class CoreDataManager {
         }
     }
     
-    //MARK: - Mapping from entity to model
+    //MARK: Mapping from entity to model
     func getUserCoinsArray() -> [Coin] {
         
         var coinsArray = [Coin]()
         
-        let userTrackedCoins = getCoreDataUserCoinsArray()
+        let userTrackedCoins = getCoreDataTrackedUserCoinsArray()
         
         if userTrackedCoins.count > 0 {
             for someCoin in userTrackedCoins {
@@ -125,6 +127,7 @@ final class CoreDataManager {
                 currentCoin.exchange = ExchangeBehavior(rawValue: someCoin.value(forKey: "exchange") as! Int)!
                 currentCoin.sum = someCoin.value(forKey: "sum") as! Double //УБРАТЬ
                 currentCoin.initialSum = someCoin.value(forKey: "initialSum") as! Double
+                currentCoin.rate24hPercentChange = someCoin.value(forKey: "rate24hPercentChange") as! Double
                 currentCoin.amount = someCoin.value(forKey: "amount") as! Double
                 coinsArray.append(currentCoin)
             }
@@ -144,19 +147,23 @@ final class CoreDataManager {
                 currentCoin.purchaseExchangeRate = someCoin.value(forKey: "purchaseExchangeRate") as! Double
                 currentCoin.initialSum = someCoin.value(forKey: "initialSum") as! Double
                 currentCoin.amount = someCoin.value(forKey: "amount") as! Double
+                currentCoin.purchaseDate = someCoin.value(forKey: "purchaseDate") as! Date
+                currentCoin.note = someCoin.value(forKey: "note") as! String
                 certainCoinArray.append(currentCoin)
             }
         }
         return certainCoinArray
     }
     
-    //MARK: - Fetching from CoreData
-    private func getCoreDataUserCoinsArray() -> [NSManagedObject] { //tracked
+    //MARK: Fetching from CoreData
+    private func getCoreDataTrackedUserCoinsArray() -> [NSManagedObject] { //tracked
         
         let managedContext = CoreDataManager.shared.persistentContainer.viewContext
         
         //2
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserCoin")
+        let coinTypePredicate = NSPredicate(format: "coinType = 0") //CoinType.Tracked
+        fetchRequest.predicate = coinTypePredicate
         
         //3
         var userTrackedCoins = [NSManagedObject]()
@@ -188,10 +195,10 @@ final class CoreDataManager {
         return certainTrackedUserCoinArray
     }
     
-    //MARK: - Unique id for coin
+    //MARK: Unique id for tracked coin
     func determineUniqueNumberIdForCoin(coin: Coin) -> Int {
         
-        let allStoredCoins = getCoreDataUserCoinsArray()
+        let allStoredCoins = getCoreDataTrackedUserCoinsArray()
         if allStoredCoins.count == 0 {
             return 0
         }
@@ -227,8 +234,119 @@ final class CoreDataManager {
         }
     }
     
-//    func mapUserCoinToCoin(userCoin: NSManagedObject) -> Coin {
-//
-//    }
-
+    //MARK: Observed coins
+    private func saveObservedUserCoin(coin: Coin) {
+        
+        //1
+        let managedContext = persistentContainer.viewContext
+        //2
+        let entity = NSEntityDescription.entity(forEntityName: "UserCoin", in: managedContext)!
+        let userCoin = NSManagedObject(entity: entity, insertInto: managedContext)
+        //3
+        userCoin.setValue(coin.fullName, forKeyPath: "fullName")
+        userCoin.setValue(coin.shortName, forKey: "shortName")
+        userCoin.setValue(coin.id, forKey: "id")
+        userCoin.setValue(NSNumber.init(value:coin.exchangeRate), forKey: "exchangeRate")
+        userCoin.setValue(NSNumber.init(value:coin.coinType.rawValue), forKey: "coinType")
+        userCoin.setValue(NSNumber.init(value:coin.exchange.rawValue), forKey: "exchange")
+        userCoin.setValue(NSNumber.init(value:coin.rate24hPercentChange), forKey: "rate24hPercentChange")
+        //4
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    private func getCoreDataObservedUserCoinsArray() -> [NSManagedObject] {
+        
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        
+        //2
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserCoin")
+        let coinTypePredicate = NSPredicate(format: "coinType = 1") //CoinType.Observed
+        fetchRequest.predicate = coinTypePredicate
+        
+        //3
+        var userTrackedCoins = [NSManagedObject]()
+        do {
+            userTrackedCoins = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch getCoreDataObservedUserCoinsArray. \(error), \(error.userInfo)")
+        }
+        return userTrackedCoins
+    }
+    
+    func getObservedUserCoinsArray() -> [Coin] {
+        
+        var coinsArray = [Coin]()
+        
+        let userObservedCoins = getCoreDataObservedUserCoinsArray()
+        
+        if userObservedCoins.count > 0 {
+            for someCoin in userObservedCoins {
+                let currentCoin = Coin()
+                currentCoin.fullName = someCoin.value(forKey: "fullName") as! String
+                currentCoin.shortName = someCoin.value(forKey: "shortName") as! String
+                currentCoin.id = someCoin.value(forKey: "id") as! String
+                currentCoin.exchangeRate = someCoin.value(forKey: "exchangeRate") as! Double
+                currentCoin.coinType = CoinType(rawValue: someCoin.value(forKey: "coinType") as! Int)!
+                currentCoin.exchange = ExchangeBehavior(rawValue: someCoin.value(forKey: "exchange") as! Int)!
+                currentCoin.rate24hPercentChange = someCoin.value(forKey: "rate24hPercentChange") as! Double
+                coinsArray.append(currentCoin)
+            }
+        }
+        return coinsArray
+    }
+    
+    func tryToSaveObservedCoin(coin: Coin) {
+        
+        var alreadyWasSaved = false
+        let allObservedCoins = getObservedUserCoinsArray()
+        for someCoin in allObservedCoins {
+            if someCoin.shortName == coin.shortName {
+                alreadyWasSaved = true
+            }
+        }
+        if alreadyWasSaved == false {
+            saveObservedUserCoin(coin: coin)
+        }else{
+            print("Такая отслеживаемая монета уже сохранена")
+        }
+    }
+    
+    //MARK: Coin Market Cap
+    func saveCoinMarketCap(value: Int) {
+        
+        //1
+        let managedContext = persistentContainer.viewContext
+        //2
+        let entity = NSEntityDescription.entity(forEntityName: "MarketCap", in: managedContext)!
+        let marketCapEntity = NSManagedObject(entity: entity, insertInto: managedContext)
+        //3
+        marketCapEntity.setValue(value, forKey: "marketCapValue")
+        //4
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save saveCoinMarketCap. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func getCoinMarketCap() -> Int {
+        
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MarketCap")
+        
+        var coinMarketCapValue = 0
+        var coinMarketCapEntityArray = [NSManagedObject]()
+        do {
+            coinMarketCapEntityArray = try managedContext.fetch(fetchRequest)
+            let coinMarketCapEntity = coinMarketCapEntityArray.first
+            coinMarketCapValue = coinMarketCapEntity?.value(forKey: "marketCapValue") as! Int
+        } catch let error as NSError {
+            print("Could not fetch getCoinMarketCap. \(error), \(error.userInfo)")
+        }
+        return coinMarketCapValue
+    }
 }

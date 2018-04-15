@@ -23,4 +23,6 @@ class Coin: NSObject {
     var sum: Double = 0.0
     var initialSum: Double = 0.0
     var rate24hPercentChange: Double = 0.0
+    var purchaseDate: Date!
+    var note: String = ""
 }

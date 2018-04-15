@@ -93,6 +93,9 @@
 		DD4F457A2062E3BE002D0A85 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4F45792062E3BE002D0A85 /* CoreDataManager.swift */; };
 		DD595A35205CF68D00ACB26B /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD595A34205CF68D00ACB26B /* GlobalHelpers.swift */; };
 		DD5A92C020548CA100AF268B /* Gate_ioResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A92BF20548CA100AF268B /* Gate_ioResponseParser.swift */; };
+		DD601C6C20833D1C0027F411 /* RequestToCMCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD601C6B20833D1C0027F411 /* RequestToCMCBuilder.swift */; };
+		DD601C6F20833E420027F411 /* CMCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD601C6E20833E420027F411 /* CMCResponseParser.swift */; };
+		DD601C7120835B150027F411 /* CMCInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD601C7020835B150027F411 /* CMCInfoModel.swift */; };
 		DD608CCD2054326B006C537D /* IDEXResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD608CCC2054326B006C537D /* IDEXResponseParser.swift */; };
 		DD608CCF20544974006C537D /* PoloniexResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD608CCE20544974006C537D /* PoloniexResponseParser.swift */; };
 		DD608CD120544E6B006C537D /* CryptopiaResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD608CD020544E6B006C537D /* CryptopiaResponseParser.swift */; };
@@ -246,6 +249,9 @@
 		DD4F45792062E3BE002D0A85 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		DD595A34205CF68D00ACB26B /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
 		DD5A92BF20548CA100AF268B /* Gate_ioResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gate_ioResponseParser.swift; sourceTree = "<group>"; };
+		DD601C6B20833D1C0027F411 /* RequestToCMCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToCMCBuilder.swift; sourceTree = "<group>"; };
+		DD601C6E20833E420027F411 /* CMCResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMCResponseParser.swift; sourceTree = "<group>"; };
+		DD601C7020835B150027F411 /* CMCInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMCInfoModel.swift; sourceTree = "<group>"; };
 		DD608CCC2054326B006C537D /* IDEXResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDEXResponseParser.swift; sourceTree = "<group>"; };
 		DD608CCE20544974006C537D /* PoloniexResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoloniexResponseParser.swift; sourceTree = "<group>"; };
 		DD608CD020544E6B006C537D /* CryptopiaResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptopiaResponseParser.swift; sourceTree = "<group>"; };
@@ -829,9 +835,26 @@
 			path = "DataSources+Delegates";
 			sourceTree = "<group>";
 		};
+		DD601C6A20833CF60027F411 /* CMCReq */ = {
+			isa = PBXGroup;
+			children = (
+				DD601C6B20833D1C0027F411 /* RequestToCMCBuilder.swift */,
+			);
+			name = CMCReq;
+			sourceTree = "<group>";
+		};
+		DD601C6D20833D6A0027F411 /* CMCResp */ = {
+			isa = PBXGroup;
+			children = (
+				DD601C6E20833E420027F411 /* CMCResponseParser.swift */,
+			);
+			name = CMCResp;
+			sourceTree = "<group>";
+		};
 		DD7CB73720526A4C00E6E786 /* RequestBuilders */ = {
 			isa = PBXGroup;
 			children = (
+				DD601C6A20833CF60027F411 /* CMCReq */,
 				DD7E16E72069783900EC83CC /* CryptoReqs */,
 				DD7E16E92069789800EC83CC /* USDRUBReq */,
 			);
@@ -841,6 +864,7 @@
 		DD7CB75620527EAB00E6E786 /* ResponseParsers */ = {
 			isa = PBXGroup;
 			children = (
+				DD601C6D20833D6A0027F411 /* CMCResp */,
 				DD7E16E82069786E00EC83CC /* CryptoResps */,
 				DD7E16EA206978BA00EC83CC /* USDRUBResp */,
 			);
@@ -853,12 +877,12 @@
 				DD82A5E120661BD70073BD73 /* RequestToQuoineBuilder.swift */,
 				DD7CB73820526A9800E6E786 /* RequestToBittrexBuilder.swift */,
 				DD7CB73A20526CC400E6E786 /* RequestToHitBTCBuilder.swift */,
+				DD7CB74620526F2D00E6E786 /* RequestToBinanceBuilder.swift */,
 				DD7CB73C20526D2800E6E786 /* RequestToKucoinBuilder.swift */,
 				DD7CB73E20526D7D00E6E786 /* RequestToIDEXBuilder.swift */,
 				DD7CB74020526DF000E6E786 /* RequestToPoloniexBuilder.swift */,
 				DD7CB74220526E4400E6E786 /* RequestToCryptopiaBuilder.swift */,
 				DD7CB74420526E9800E6E786 /* RequestToGate_ioBuilder.swift */,
-				DD7CB74620526F2D00E6E786 /* RequestToBinanceBuilder.swift */,
 				DD7CB74820526F5B00E6E786 /* RequestToLivecoinBuilder.swift */,
 				DD7CB74A2052700C00E6E786 /* RequestToBigONEBuilder.swift */,
 				DD7CB74C2052707D00E6E786 /* RequestToBTC_AlphaBuilder.swift */,
@@ -958,6 +982,7 @@
 			children = (
 				DDBA44D6207FDE7C001FDE14 /* TrackedCoinCommonInfoModel.swift */,
 				DD7544282081E7D6007CB798 /* TrackedCoinPurchaseInfoModel.swift */,
+				DD601C7020835B150027F411 /* CMCInfoModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1141,6 +1166,7 @@
 				5407D3F61FE52BC40063C3A6 /* TrackedCurrenciesViewController.swift in Sources */,
 				DD30884D201C7252006260C2 /* NoPasteTextField.swift in Sources */,
 				DDC281F920305B60002AAAF0 /* RequestManager.swift in Sources */,
+				DD601C6C20833D1C0027F411 /* RequestToCMCBuilder.swift in Sources */,
 				5407D3F31FE52BC40063C3A6 /* TrackedCurrenciesDelegate.swift in Sources */,
 				5406BA101FF2DEE80022D1C4 /* NotesCell.swift in Sources */,
 				5407D3F41FE52BC40063C3A6 /* TrackedCurrenciesScreenDirector.swift in Sources */,
@@ -1187,6 +1213,7 @@
 				DDAA6AE920039106007045F7 /* CurrencyForPairViewController.swift in Sources */,
 				DD7CB751205271A200E6E786 /* RequestToCoinExchangeBuilder.swift in Sources */,
 				DD7CB73920526A9800E6E786 /* RequestToBittrexBuilder.swift in Sources */,
+				DD601C7120835B150027F411 /* CMCInfoModel.swift in Sources */,
 				DD7CB74B2052700C00E6E786 /* RequestToBigONEBuilder.swift in Sources */,
 				DD91F336205E42F700B5BCD6 /* CommonCoinInfoCellBuilder.swift in Sources */,
 				DD4F457A2062E3BE002D0A85 /* CoreDataManager.swift in Sources */,
@@ -1262,6 +1289,7 @@
 				54BDCC711FF41616000662C5 /* NotesCellBuilder.swift in Sources */,
 				54CA4E301FE5377A00E6357E /* ObservedCurrenciesDelegate.swift in Sources */,
 				54CA4E381FE5380F00E6357E /* ObservedPositionCell.swift in Sources */,
+				DD601C6F20833E420027F411 /* CMCResponseParser.swift in Sources */,
 				DDC4FF0E20387A5E00BFA7C1 /* UserCoinsManager.swift in Sources */,
 				DD7CB75E2052F23800E6E786 /* KucoinResponseParser.swift in Sources */,
 				DD5A92C020548CA100AF268B /* Gate_ioResponseParser.swift in Sources */,

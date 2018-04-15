@@ -10,19 +10,27 @@ import UIKit
 
 class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
     
-    var arrayWithCells = NSMutableArray() as! [[UITableViewCell]]
+//    var arrayWithCells = NSMutableArray() as! [[UITableViewCell]]
+    var cmcInfoModel: CMCInfoModel!
 
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return arrayWithCells.count
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayWithCells[section].count
+        if section == 0 {
+            return 1
+        }else{
+            return 4
+        }
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return arrayWithCells[indexPath.section][indexPath.row]
+        if indexPath.section == 0 {
+            return CryptoCurrenciesCapitalizationCellBuilder.buildCryptoCurrenciesCapitalizationCell(tableView, cmcInfoModel: cmcInfoModel)
+        }else{
+            return ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView)
+        }
     }
 
     //MARK: editing
@@ -42,19 +50,19 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let movedCell = arrayWithCells[1][sourceIndexPath.row]
-        arrayWithCells[1].remove(at: sourceIndexPath.row)
-        arrayWithCells[1].insert(movedCell, at: destinationIndexPath.row)
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            arrayWithCells[1].remove(at: indexPath.row)
-            
-            tableView.beginUpdates()
-            tableView.deleteRows(at: [indexPath], with: .bottom)
-            tableView.endUpdates()
-        }
-    }
+//    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+//        let movedCell = arrayWithCells[1][sourceIndexPath.row]
+//        arrayWithCells[1].remove(at: sourceIndexPath.row)
+//        arrayWithCells[1].insert(movedCell, at: destinationIndexPath.row)
+//    }
+//
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            arrayWithCells[1].remove(at: indexPath.row)
+//
+//            tableView.beginUpdates()
+//            tableView.deleteRows(at: [indexPath], with: .bottom)
+//            tableView.endUpdates()
+//        }
+//    }
 }

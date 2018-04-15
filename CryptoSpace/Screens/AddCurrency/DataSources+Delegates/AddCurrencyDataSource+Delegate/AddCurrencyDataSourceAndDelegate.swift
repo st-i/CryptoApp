@@ -19,7 +19,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     
     var viewController = AddCurrencyViewController()
     
-    var arrayWithCells = [Any]()
+//    var arrayWithCells = [Any]()
     
     var currencyPurchase = Bool()
     var actionСhoice = Bool()
@@ -40,6 +40,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     var indicatorWasShown = false
     
     var dateString: String!
+    var purchaseDate: Date?
     
     override init() {
         super.init()
@@ -49,21 +50,22 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     
     //MARK: dataSource
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return arrayWithCells.count
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
-        }else if section == 1 {
+        }else{
             if self.currencyPurchase {
-                return 6
+                return 7
             }else{
                 return 2
             }
-        }else{
-            return (arrayWithCells[section] as! NSMutableArray).count
         }
+//        else{
+//            return (arrayWithCells[section] as! NSMutableArray).count
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,11 +75,12 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
             }else{
                 return ActionWithCurrencyCellBuilder.buildActionWithCurrencyCell(for: tableView, leftText: "Отслеживание курса")
             }
-        }else if indexPath.section == 1 {
-            return self.cellWithOperationSetting(tableView: tableView, rowNumber: indexPath.row)
         }else{
-            return (arrayWithCells[indexPath.section] as! NSMutableArray)[indexPath.row] as! UITableViewCell
+            return self.cellWithOperationSetting(tableView: tableView, rowNumber: indexPath.row)
         }
+//        else{
+//            return (arrayWithCells[indexPath.section] as! NSMutableArray)[indexPath.row] as! UITableViewCell
+//        }
     }
     
     //MARK: delegate
@@ -89,18 +92,18 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
                 return CGFloat(kUserNumberCellHeight)
             }else if indexPath.row == 0 {
                 return 60
+            }else if indexPath.row == 6 {
+                return CGFloat(kNotesCellHeight)
             }else{
                 return CGFloat(kDefaultNumberCellHeight)
             }
-        }else if indexPath.section == 2 {
-            return CGFloat(kNotesCellHeight)
         }else{
             return CGFloat(kStandardCellHeight)
         }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 || section == 2 {
+        if section == 1 {
             return 0.5
         }else{
             return CGFloat.leastNormalMagnitude
@@ -108,7 +111,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 2 {
+        if section == 1 {
             return 30.0
         }else{
             return CGFloat.leastNormalMagnitude
@@ -145,7 +148,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 1 || section == 2 {
+        if section == 1 {
             let headerView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 0.5))
             if section == 1 {
                 headerView.backgroundColor = UIColor.init(red: 154.0 / 255.0, green: 154.0 / 255.0, blue: 154.0 / 255.0, alpha: 0.4)
@@ -159,7 +162,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == 2 {
+        if section == 1 {
             return UIView.init()
         }else{
             return nil
@@ -196,6 +199,9 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
                 
             case 5:
                 return PurchaseSumCellBuilder.buildPurchaseSumCell(for: tableView, delegate: self.viewController)
+                
+            case 6:
+                return NotesCellBuilder.buildNotesCell(for: tableView)
                 
             default:
                 return PurchaseSumCellBuilder.buildPurchaseSumCell(for: tableView, delegate: self.viewController)
@@ -322,7 +328,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         if !self.currencyPurchase {
             self.currencyPurchase = true
             let indexPaths = NSMutableArray()
-            for i in 2..<6 {
+            for i in 2..<7 {
                 let currentIndexPath = IndexPath.init(row: i, section: 1)
                 indexPaths.add(currentIndexPath)
             }
@@ -348,7 +354,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         if self.currencyPurchase {
             self.currencyPurchase = false
             let indexPaths = NSMutableArray()
-            for i in 2..<6 {
+            for i in 2..<7 {
                 let currentIndexPath = IndexPath.init(row: i, section: 1)
                 indexPaths.add(currentIndexPath)
             }
@@ -455,9 +461,10 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     
     @objc func datePickerChooseAction() {
         let purchaseDate = purchaseDatePicker.date
+        self.purchaseDate = purchaseDate
         
-        let detaildeDataFormatter = DetailedDateFormatter.init()
-        let purchaseDateString = detaildeDataFormatter.stringFromDate(date: purchaseDate)//purchaseDateStringFromDate(date: purchaseDate)
+//        let detaildeDataFormatter = DetailedDateFormatter.init()
+        let purchaseDateString = DetailedDateFormatter.stringFromDate(date: purchaseDate) //purchaseDateStringFromDate(date: purchaseDate)
         
         let dateCell = viewController.tableView.cellForRow(at: IndexPath.init(row: 2, section: 1)) as! ActionWithCurrencyDateCell
         dateCell.purchaseDateLabel.text = purchaseDateString

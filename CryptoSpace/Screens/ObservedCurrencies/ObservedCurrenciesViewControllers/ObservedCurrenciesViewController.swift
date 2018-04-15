@@ -17,11 +17,15 @@ class ObservedCurrenciesViewController: UIViewController {
     var originalEditButton: UIBarButtonItem!
     var originalDoneButton: UIBarButtonItem!
     
+    var requestManager: RequestManager!
+    
+    var cmcInfoModel: CMCInfoModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.isTranslucent = false;
-        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor.navBarColor()
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
         let titleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 140, height: 30))
@@ -45,35 +49,33 @@ class ObservedCurrenciesViewController: UIViewController {
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addCoinAction))
 //        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
+        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshScreenValues)) // sendRequestForTest
+        navigationItem.leftBarButtonItem = refreshButton
+        
         self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
         
+        requestManager = RequestManager()
+
         self.fillTableViewWithData()
     }
     
     func fillTableViewWithData() {
-        self.tableView.backgroundColor = UIColor.groupTableViewBackground
-        self.observedCurrenciesDataSource = ObservedCurrenciesDataSource()
-        self.observedCurrenciesDelegate = ObservedCurrenciesDelegate()
-        
-        self.tableView.dataSource = self.observedCurrenciesDataSource
-        self.tableView.delegate = self.observedCurrenciesDelegate
-        
-        let tempArrayWithCells = ObservedCurrenciesDirector.createObservedCurrenciesCells(for: self.tableView)
-        let arrayWithCells = NSMutableArray.init(array: tempArrayWithCells)
 
-        self.observedCurrenciesDataSource.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
-        self.observedCurrenciesDelegate.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
+        tableView.backgroundColor = UIColor.white //UIColor.groupTableViewBackground
+        observedCurrenciesDataSource = ObservedCurrenciesDataSource()
+        observedCurrenciesDelegate = ObservedCurrenciesDelegate()
         
-        self.observedCurrenciesDelegate.viewController = self
-    }
-    
-    @IBAction func openCryptoMarketGraph(_ sender: UIButton) {
-        let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
-        let portfolioGraphVC = storyboard.instantiateViewController(withIdentifier: "PortfolioGraphViewController")
-        navigationController?.pushViewController(portfolioGraphVC, animated: true)
+        tableView.dataSource = observedCurrenciesDataSource
+        tableView.delegate = observedCurrenciesDelegate
+        
+        let observedCoinsArray = CoreDataManager.shared.getObservedUserCoinsArray()
+        
+        cmcInfoModel = CMCInfoModel()
+        observedCurrenciesDataSource.cmcInfoModel = cmcInfoModel
     }
     
     @objc func editObservedCurrenciesAction() {
+        
         if isEditing {
             setEditing(false, animated: true)
             tableView.setEditing(false, animated: true)
@@ -86,8 +88,21 @@ class ObservedCurrenciesViewController: UIViewController {
     }
     
     func addCoinAction() {
+        
         let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
         let searchVC = storyboard.instantiateViewController(withIdentifier: "CurrencySearchViewController")
         self.navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
+    @objc func refreshScreenValues() {
+        
+        requestManager.getCryptoMarketCap { (value) in
+            let numberFormatter = GlobalNumberFormatter.createNumberFormatter(number: Double(value))
+            numberFormatter.maximumFractionDigits = 0
+            let cmcString = numberFormatter.string(from: NSNumber.init(value: value))!
+            self.cmcInfoModel.marketCap = String(format: "$%@", cmcString)
+            self.tableView.reloadData()
+//            print(value)
+        }
     }
 }

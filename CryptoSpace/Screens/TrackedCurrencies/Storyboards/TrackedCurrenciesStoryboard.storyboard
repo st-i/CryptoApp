@@ -1809,87 +1809,43 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CryptoCurrenciesCapitalizationCell" rowHeight="115" id="VXq-IN-Fct" customClass="CryptoCurrenciesCapitalizationCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="115"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CryptoCurrenciesCapitalizationCell" rowHeight="64" id="VXq-IN-Fct" customClass="CryptoCurrenciesCapitalizationCell" customModule="CryptoSpace" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VXq-IN-Fct" id="m7h-Qz-DTH">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="115"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Последние 24 часа" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9R-Oz-aqF">
-                                                    <rect key="frame" x="22" y="11" width="254" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="Gdp-Hw-3M2"/>
-                                                        <constraint firstAttribute="width" constant="254" id="yIB-G8-u1p"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рыночная капитализация криптовалют" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmM-9E-Vqe">
+                                                    <rect key="frame" x="46" y="11" width="228" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 1000%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLc-KK-MQA">
-                                                    <rect key="frame" x="22" y="32" width="254" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1 875,78" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqE-dK-1dF">
+                                                    <rect key="frame" x="15" y="30" width="290" height="23"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="254" id="6T3-nt-Lnu"/>
-                                                        <constraint firstAttribute="height" constant="21" id="nth-tL-XlB"/>
+                                                        <constraint firstAttribute="height" constant="23" id="CnG-VL-8ev"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Совокупная стоимость криптовалют" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmM-9E-Vqe">
-                                                    <rect key="frame" x="22" y="62" width="276" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="T7V-oX-QYO"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1 000 000 000 000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JkE-F7-SzF">
-                                                    <rect key="frame" x="22" y="80" width="275" height="32"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="v4H-jO-p7i"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hK-KP-330">
-                                                    <rect key="frame" x="276" y="17" width="27" height="27"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="27" id="6Vb-2l-h2e"/>
-                                                        <constraint firstAttribute="height" constant="27" id="rXQ-hx-rWo"/>
-                                                    </constraints>
-                                                    <state key="normal" image="Portfolio"/>
-                                                    <connections>
-                                                        <action selector="openCryptoMarketGraph:" destination="Yht-cf-7JV" eventType="touchUpInside" id="Rpl-VW-Xy1"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="1hK-KP-330" secondAttribute="trailing" constant="17" id="ILt-Hr-9Dw"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="JkE-F7-SzF" secondAttribute="trailing" constant="8" id="UmL-gA-3fk"/>
-                                                <constraint firstItem="JkE-F7-SzF" firstAttribute="top" secondItem="OmM-9E-Vqe" secondAttribute="bottom" constant="2" id="YaI-of-WLI"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="OmM-9E-Vqe" secondAttribute="trailing" constant="7" id="Yu4-xW-H7H"/>
-                                                <constraint firstItem="cLc-KK-MQA" firstAttribute="top" secondItem="Z9R-Oz-aqF" secondAttribute="bottom" id="dvb-ih-dyw"/>
-                                                <constraint firstItem="JkE-F7-SzF" firstAttribute="leading" secondItem="m7h-Qz-DTH" secondAttribute="leadingMargin" constant="7" id="j1u-nv-AH7"/>
-                                                <constraint firstAttribute="topMargin" secondItem="Z9R-Oz-aqF" secondAttribute="top" id="jbK-aH-Xmz"/>
-                                                <constraint firstItem="Z9R-Oz-aqF" firstAttribute="leading" secondItem="m7h-Qz-DTH" secondAttribute="leadingMargin" constant="7" id="oR8-73-rwf"/>
-                                                <constraint firstItem="OmM-9E-Vqe" firstAttribute="leading" secondItem="m7h-Qz-DTH" secondAttribute="leadingMargin" constant="7" id="pCm-WF-Ipu"/>
-                                                <constraint firstItem="1hK-KP-330" firstAttribute="top" secondItem="m7h-Qz-DTH" secondAttribute="top" constant="17" id="rSr-Sh-unR"/>
-                                                <constraint firstItem="OmM-9E-Vqe" firstAttribute="top" secondItem="cLc-KK-MQA" secondAttribute="bottom" constant="9" id="so2-bO-3Xn"/>
-                                                <constraint firstItem="cLc-KK-MQA" firstAttribute="leading" secondItem="m7h-Qz-DTH" secondAttribute="leadingMargin" constant="7" id="tez-TB-AmL"/>
+                                                <constraint firstItem="OmM-9E-Vqe" firstAttribute="top" secondItem="m7h-Qz-DTH" secondAttribute="top" constant="11" id="Dep-Lr-Nh2"/>
+                                                <constraint firstAttribute="trailing" secondItem="FqE-dK-1dF" secondAttribute="trailing" constant="15" id="EgG-OB-6ze"/>
+                                                <constraint firstItem="FqE-dK-1dF" firstAttribute="leading" secondItem="m7h-Qz-DTH" secondAttribute="leading" constant="15" id="HZZ-4Z-tH9"/>
+                                                <constraint firstItem="OmM-9E-Vqe" firstAttribute="centerX" secondItem="m7h-Qz-DTH" secondAttribute="centerX" id="mcW-Ln-YgL"/>
+                                                <constraint firstItem="FqE-dK-1dF" firstAttribute="top" secondItem="OmM-9E-Vqe" secondAttribute="bottom" constant="4" id="pt6-Qx-nIl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="capitalizationHintLabel" destination="OmM-9E-Vqe" id="Wkc-be-wfQ"/>
-                                            <outlet property="capitalizationPercentagesChangesLabel" destination="cLc-KK-MQA" id="Uy3-8z-7qn"/>
-                                            <outlet property="capitalizationValueLabel" destination="JkE-F7-SzF" id="OGL-At-myJ"/>
-                                            <outlet property="lastChangesLabel" destination="Z9R-Oz-aqF" id="avF-rV-sUD"/>
+                                            <outlet property="cmcLabel" destination="FqE-dK-1dF" id="h02-Lp-ycf"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ObservedPositionCell" rowHeight="62" id="bBn-dn-hhD" customClass="ObservedPositionCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="143" width="320" height="62"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bBn-dn-hhD" id="zDR-3G-hbu">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
@@ -1963,7 +1919,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FinalCell" rowHeight="26" id="WJi-gh-XFC" customClass="FinalCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="205" width="320" height="26"/>
+                                        <rect key="frame" x="0.0" y="154" width="320" height="26"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WJi-gh-XFC" id="OvE-If-Wqm">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>

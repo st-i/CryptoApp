@@ -149,13 +149,12 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
         self.tableView.dataSource = self.addCurrencyDataSourceAndDelegate
         self.tableView.delegate = self.addCurrencyDataSourceAndDelegate
         
-        let arrayWithCells = AddCurrencyScreenDirector.createAddCurrencyCells(for: self.tableView)
+//        let arrayWithCells = AddCurrencyScreenDirector.createAddCurrencyCells(for: self.tableView)
         
-        let detailedDateFormatter = DetailedDateFormatter.init()
-        
-        addCurrencyDataSourceAndDelegate.dateString = detailedDateFormatter.stringFromDate(date: Date())
+        addCurrencyDataSourceAndDelegate.dateString = DetailedDateFormatter.stringFromDate(date: Date())
+        addCurrencyDataSourceAndDelegate.purchaseDate = Date()
         addCurrencyDataSourceAndDelegate.currentCoin = currentCoin
-        addCurrencyDataSourceAndDelegate.arrayWithCells = arrayWithCells
+//        addCurrencyDataSourceAndDelegate.arrayWithCells = arrayWithCells
         addCurrencyDataSourceAndDelegate.viewController = self
     }
     
@@ -295,6 +294,7 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
             notesCell.notesTextView.text = "Дoпoлнитeльнaя инфoрмaция"
             notesCell.notesTextView.textColor = UIColor.init(red: 199.0 / 255.0, green: 199.0 / 255.0, blue: 205.0 / 255.0, alpha: 1.0)
         }
+        currentCoin.note = textViewText!
     }
     
     @objc func animateTableViewDown() {
@@ -336,12 +336,18 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
 //        }else{
 //            currentCoin.sum = 0.0
 //        }
-        currentCoin.sum = purchaseSumValue
-        currentCoin.amount = currencyAmountValue
-        currentCoin.initialSum = purchaseSumValue
-        currentCoin.coinType = CoinType.Tracked
-
-        CoreDataManager.shared.saveUserCoin(coin: currentCoin)
+        if addCurrencyDataSourceAndDelegate.currencyPurchase {
+            currentCoin.sum = purchaseSumValue
+            currentCoin.amount = currencyAmountValue
+            currentCoin.initialSum = purchaseSumValue
+            currentCoin.coinType = CoinType.Tracked
+            currentCoin.purchaseDate = addCurrencyDataSourceAndDelegate.purchaseDate
+            CoreDataManager.shared.saveTrackedUserCoin(coin: currentCoin)
+        }else{
+            currentCoin.coinType = CoinType.Observed
+            CoreDataManager.shared.tryToSaveObservedCoin(coin: currentCoin)
+        }
+        
     
         dismiss(animated: true, completion: nil)
         

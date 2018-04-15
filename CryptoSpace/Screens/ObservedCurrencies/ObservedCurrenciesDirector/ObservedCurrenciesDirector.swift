@@ -15,7 +15,7 @@ class ObservedCurrenciesDirector: NSObject {
         let observedPositionCellsArray = NSMutableArray()
         
         //first section
-        cryptoCurrenciesСapitalizationCellArray.add(CryptoCurrenciesCapitalizationCellBuilder.buildCryptoCurrenciesCapitalizationCell(for: tableView))
+//        cryptoCurrenciesСapitalizationCellArray.add(CryptoCurrenciesCapitalizationCellBuilder.buildCryptoCurrenciesCapitalizationCell(for: tableView))
         
         //second section
         observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))

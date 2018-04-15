@@ -831,6 +831,17 @@ class RequestManager: NSObject {
 //        }
 //    }
     
+    func getCryptoMarketCap(completion: @escaping (Int) -> ()) {
+        request("https://api.coinmarketcap.com/v1/global/").responseJSON { (response) in
+            guard let arrayOfData = response.result.value as? [String: AnyObject] else{
+                print("Не могу перевести в JSON")
+                return
+            }
+            completion(CMCResponseParser.parseResponse(response: arrayOfData))
+//            print(response)
+        }
+    }
+    
     
     //обычный тестовый запрос
     func sendSomeRequestForTest() {

@@ -13,7 +13,7 @@ import UIKit
 
 class DetailedDateFormatter: NSObject {
     
-    func stringFromDate(date: Date) -> String {
+    class func stringFromDate(date: Date) -> String {
         let calendar: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
         
         let day = calendar.component(.day, from: date)
@@ -256,12 +256,14 @@ class CertainCoinInfoMapper: NSObject {
         
         let last24hSumMoneyChange = coin.sum * (coin.rate24hPercentChange / 100.0)
         minusOrPlusSign = last24hSumMoneyChange < 0 ? "-" : "+"
+        currentNumberFormatter.maximumFractionDigits = fabs(last24hSumMoneyChange) < 1 ? 6 : 2
         let last24hSumMoneyChangeString = currentNumberFormatter.string(from: NSNumber.init(value: fabs(last24hSumMoneyChange)))!
         commonInfoModel.last24hSumMoneyChange = String(format: "%@$%@", minusOrPlusSign, last24hSumMoneyChangeString)
         
         currentNumberFormatter.maximumFractionDigits = 2
         let last24hSumPercentChange = currentNumberFormatter.string(from: NSNumber.init(value: coin.rate24hPercentChange))!
-        commonInfoModel.last24hSumPercentChange = String(format: "%@%%", last24hSumPercentChange)
+        minusOrPlusSign = coin.rate24hPercentChange < 0 ? "" : "+"
+        commonInfoModel.last24hSumPercentChange = String(format: "%@%@%%", minusOrPlusSign, last24hSumPercentChange)
         
         return commonInfoModel
     }
@@ -304,7 +306,7 @@ class CertainCoinInfoMapper: NSObject {
             }
             currentNumberFormatter.maximumFractionDigits = initialSumMoneyChange < 1 ? 6 : 2
             let initialSumMoneyChangeString = currentNumberFormatter.string(from: NSNumber.init(value: initialSumMoneyChange))!
-            var minusOrPlusSign = initialSum >= currentSum ? "-" : "+"
+            var minusOrPlusSign = initialSum > currentSum ? "-" : "+"
             purchaseInfoModel.initialSumMoneyChange = String(format: "%@$%@", minusOrPlusSign, initialSumMoneyChangeString)
             
             let last24hSumMoneyChange = initialSum * (coin.rate24hPercentChange / 100.0)
@@ -312,8 +314,10 @@ class CertainCoinInfoMapper: NSObject {
             let last24hSumMoneyChangeString = currentNumberFormatter.string(from: NSNumber.init(value: fabs(last24hSumMoneyChange)))!
             purchaseInfoModel.last24hSumMoneyChange = String(format: "%@$%@", minusOrPlusSign, last24hSumMoneyChangeString)
             
-//            purchaseInfoModel.purchaseDate = DataForm.createDateString(date: someCoin.purchaseDate)
-//            purchaseInfoModel.note = "YO"
+            let purchaseDate = someCoin.purchaseDate!
+            purchaseInfoModel.purchaseDate = DetailedDateFormatter.stringFromDate(date: purchaseDate)
+            
+            purchaseInfoModel.note = someCoin.note
             
             coinInfoModelsArray.append(purchaseInfoModel)
         }
