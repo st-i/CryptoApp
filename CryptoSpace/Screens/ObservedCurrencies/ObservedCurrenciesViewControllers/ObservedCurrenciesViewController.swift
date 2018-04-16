@@ -20,6 +20,7 @@ class ObservedCurrenciesViewController: UIViewController {
     var requestManager: RequestManager!
     
     var cmcInfoModel: CMCInfoModel!
+    var observedCoinsArray = [Coin]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +56,17 @@ class ObservedCurrenciesViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
         
         requestManager = RequestManager()
-
-        self.fillTableViewWithData()
+        
+        self.cmcInfoModel = CMCInfoModel()
+        fillTableViewWithData()
+        
+        let marketCapValue = CoreDataManager.shared.getCoinMarketCap()
+        if marketCapValue == 0 {
+            getMarketCapValue()
+        }else{
+            cmcInfoModel.marketCap = createCoinMaketCapString(value: marketCapValue)
+            tableView.reloadData()
+        }
     }
     
     func fillTableViewWithData() {
@@ -68,10 +78,10 @@ class ObservedCurrenciesViewController: UIViewController {
         tableView.dataSource = observedCurrenciesDataSource
         tableView.delegate = observedCurrenciesDelegate
         
-        let observedCoinsArray = CoreDataManager.shared.getObservedUserCoinsArray()
+        observedCoinsArray = CoreDataManager.shared.getObservedUserCoinsArray()
         
-        cmcInfoModel = CMCInfoModel()
         observedCurrenciesDataSource.cmcInfoModel = cmcInfoModel
+        observedCurrenciesDataSource.observedCoinsArray = observedCoinsArray
     }
     
     @objc func editObservedCurrenciesAction() {
@@ -97,12 +107,44 @@ class ObservedCurrenciesViewController: UIViewController {
     @objc func refreshScreenValues() {
         
         requestManager.getCryptoMarketCap { (value) in
-            let numberFormatter = GlobalNumberFormatter.createNumberFormatter(number: Double(value))
-            numberFormatter.maximumFractionDigits = 0
-            let cmcString = numberFormatter.string(from: NSNumber.init(value: value))!
-            self.cmcInfoModel.marketCap = String(format: "$%@", cmcString)
-            self.tableView.reloadData()
-//            print(value)
+            self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)
+            
+            let coinsExchangesArray = CoinsArrayFormatter.createCoinsExchangesArray(coins: self.observedCoinsArray)
+            self.requestManager.coinsExchanges.removeAll()
+            self.requestManager.exchangesCounter = 0
+            
+            self.requestManager.coinsExchanges = coinsExchangesArray
+            
+            self.requestManager.updateCoinsRates(completion: { (newArray) in
+                
+                for coin in self.observedCoinsArray {
+                    let updatedCoin = newArray[coin.exchange.rawValue][coin.shortName]
+                    
+                    let updatedCoinRate = (updatedCoin?.exchangeRate)!
+                    coin.exchangeRate = updatedCoinRate
+                    let coinRate24hPercentChange = (updatedCoin?.rate24hPercentChange)!
+                    coin.rate24hPercentChange = coinRate24hPercentChange
+                    
+                    self.tableView.reloadData()
+                }
+            })
         }
+    }
+    
+    func getMarketCapValue() {
+        
+        requestManager.getCryptoMarketCap { (value) in
+            self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)
+            self.tableView.reloadData()
+        }
+    }
+    
+    func createCoinMaketCapString(value: Int) -> String {
+        
+        let numberFormatter = GlobalNumberFormatter.createNumberFormatter(number: Double(value))
+        numberFormatter.maximumFractionDigits = 0
+        let cmcString = numberFormatter.string(from: NSNumber.init(value: value))!
+        let marketCapString = String(format: "$%@", cmcString)
+        return marketCapString
     }
 }

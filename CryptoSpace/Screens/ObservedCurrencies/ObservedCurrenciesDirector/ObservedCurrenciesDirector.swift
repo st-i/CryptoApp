@@ -18,16 +18,16 @@ class ObservedCurrenciesDirector: NSObject {
 //        cryptoCurrenciesСapitalizationCellArray.add(CryptoCurrenciesCapitalizationCellBuilder.buildCryptoCurrenciesCapitalizationCell(for: tableView))
         
         //second section
-        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
-        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
-        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
-        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
-        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
-        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
-        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
-        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
-        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
-        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
+//        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
+//        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
+//        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
+//        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
+//        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
+//        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
+//        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
+//        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
+//        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
+//        observedPositionCellsArray.add(ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView))
 //        observedPositionCellsArray.add(FinalCellBuilder.buildFinalCell(for: tableView))
         
         let allSections = [cryptoCurrenciesСapitalizationCellArray, observedPositionCellsArray]

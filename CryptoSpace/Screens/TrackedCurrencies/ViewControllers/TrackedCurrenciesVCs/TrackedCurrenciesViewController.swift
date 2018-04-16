@@ -32,7 +32,6 @@ class TrackedCurrenciesViewController: UIViewController {
     var userCoins = [Coin]()
     
     var requestManager: RequestManager!
-    var coinsArrayFormatter: CoinsArrayFormatter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +70,6 @@ class TrackedCurrenciesViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
         
         requestManager = RequestManager()
-        coinsArrayFormatter = CoinsArrayFormatter()
         
         fillTableViewWithData()
         
@@ -203,7 +201,7 @@ class TrackedCurrenciesViewController: UIViewController {
     
     @objc func refreshCurrenciesRates() {
         
-        let coinsExchangesArray = coinsArrayFormatter.createCoinsExchangesArray(coins: userCoins)
+        let coinsExchangesArray = CoinsArrayFormatter.createCoinsExchangesArray(coins: userCoins)
         
         requestManager.getRubleExchangeRate { (newRubleRate) in
             self.rubleRate = newRubleRate

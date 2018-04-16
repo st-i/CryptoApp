@@ -342,8 +342,10 @@ final class CoreDataManager {
         var coinMarketCapEntityArray = [NSManagedObject]()
         do {
             coinMarketCapEntityArray = try managedContext.fetch(fetchRequest)
-            let coinMarketCapEntity = coinMarketCapEntityArray.first
-            coinMarketCapValue = coinMarketCapEntity?.value(forKey: "marketCapValue") as! Int
+            if coinMarketCapEntityArray.count > 0 {
+                let coinMarketCapEntity = coinMarketCapEntityArray.first
+                coinMarketCapValue = coinMarketCapEntity?.value(forKey: "marketCapValue") as! Int
+            }
         } catch let error as NSError {
             print("Could not fetch getCoinMarketCap. \(error), \(error.userInfo)")
         }

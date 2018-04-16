@@ -57,7 +57,7 @@ class DetailedDateFormatter: NSObject {
 
 class CoinsArrayFormatter: NSObject {
     
-    func createCoinsExchangesArray(coins:[Coin]) -> [Dictionary<String, Coin>] {
+    class func createCoinsExchangesArray(coins:[Coin]) -> [Dictionary<String, Coin>] {
         
         //создаем словарь добавленных пользователем монет (из возможного большинства одинаковых монет оставляем лишь упоминание об одной)
         var uniqueCoins = Dictionary<String, Coin>()

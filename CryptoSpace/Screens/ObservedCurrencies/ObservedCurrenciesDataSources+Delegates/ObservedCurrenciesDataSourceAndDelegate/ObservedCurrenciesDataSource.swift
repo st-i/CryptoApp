@@ -12,6 +12,7 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
     
 //    var arrayWithCells = NSMutableArray() as! [[UITableViewCell]]
     var cmcInfoModel: CMCInfoModel!
+    var observedCoinsArray = [Coin]()
 
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -21,7 +22,7 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
         if section == 0 {
             return 1
         }else{
-            return 4
+            return observedCoinsArray.count
         }
     }
     
@@ -29,7 +30,7 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
         if indexPath.section == 0 {
             return CryptoCurrenciesCapitalizationCellBuilder.buildCryptoCurrenciesCapitalizationCell(tableView, cmcInfoModel: cmcInfoModel)
         }else{
-            return ObservedPositionCellBuilder.buildObservedPositionCell(for: tableView)
+            return ObservedPositionCellBuilder.buildCell(tableView, coin: observedCoinsArray[indexPath.row])
         }
     }
 
