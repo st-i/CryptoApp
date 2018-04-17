@@ -339,9 +339,8 @@ final class CoreDataManager {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MarketCap")
         
         var coinMarketCapValue = 0
-        var coinMarketCapEntityArray = [NSManagedObject]()
         do {
-            coinMarketCapEntityArray = try managedContext.fetch(fetchRequest)
+            let coinMarketCapEntityArray = try managedContext.fetch(fetchRequest)
             if coinMarketCapEntityArray.count > 0 {
                 let coinMarketCapEntity = coinMarketCapEntityArray.first
                 coinMarketCapValue = coinMarketCapEntity?.value(forKey: "marketCapValue") as! Int
@@ -350,5 +349,27 @@ final class CoreDataManager {
             print("Could not fetch getCoinMarketCap. \(error), \(error.userInfo)")
         }
         return coinMarketCapValue
+    }
+    
+    func updateCoinMarketCap(value: Int) {
+
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MarketCap")
+        
+        do {
+            let coinMarketCapEntityArray = try managedContext.fetch(fetchRequest)
+            if coinMarketCapEntityArray.count > 0 {
+                let coinMarketCapEntity = coinMarketCapEntityArray.first
+                coinMarketCapEntity?.setValue(value, forKey: "marketCapValue")
+            }
+        } catch let error as NSError {
+            print("Could not update updateCoinMarketCap. \(error), \(error.userInfo)")
+        }
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save updateCoinMarketCap. \(error), \(error.userInfo)")
+        }
     }
 }

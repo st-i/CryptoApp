@@ -50,7 +50,7 @@ class ObservedCurrenciesViewController: UIViewController {
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addCoinAction))
 //        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
-        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshScreenValues)) // sendRequestForTest
+        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(updateCoinMarketCap)) // sendRequestForTest refreshScreenValues
         navigationItem.leftBarButtonItem = refreshButton
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
@@ -62,7 +62,11 @@ class ObservedCurrenciesViewController: UIViewController {
         
         let marketCapValue = CoreDataManager.shared.getCoinMarketCap()
         if marketCapValue == 0 {
-            getMarketCapValue()
+            getMarketCapValue(completion: { (value) in
+                CoreDataManager.shared.saveCoinMarketCap(value: value)
+                self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)
+                self.tableView.reloadData()
+            })
         }else{
             cmcInfoModel.marketCap = createCoinMaketCapString(value: marketCapValue)
             tableView.reloadData()
@@ -131,14 +135,6 @@ class ObservedCurrenciesViewController: UIViewController {
         }
     }
     
-    func getMarketCapValue() {
-        
-        requestManager.getCryptoMarketCap { (value) in
-            self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)
-            self.tableView.reloadData()
-        }
-    }
-    
     func createCoinMaketCapString(value: Int) -> String {
         
         let numberFormatter = GlobalNumberFormatter.createNumberFormatter(number: Double(value))
@@ -146,5 +142,20 @@ class ObservedCurrenciesViewController: UIViewController {
         let cmcString = numberFormatter.string(from: NSNumber.init(value: value))!
         let marketCapString = String(format: "$%@", cmcString)
         return marketCapString
+    }
+    
+    func getMarketCapValue(completion: @escaping (Int) -> ()) {
+        
+        requestManager.getCryptoMarketCap { (value) in
+            completion(value)
+        }
+    }
+    
+    @objc func updateCoinMarketCap() {
+        getMarketCapValue { (value) in
+            CoreDataManager.shared.updateCoinMarketCap(value: value)
+            self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)
+            self.tableView.reloadData()
+        }
     }
 }
