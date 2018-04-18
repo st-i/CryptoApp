@@ -20,8 +20,7 @@ import CoreData
 class TrackedCurrenciesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var trackedCurrenciesDataSource:TrackedCurrenciesDataSource!
-    var trackedCurrenciesDelegate:TrackedCurrenciesDelegate!
+    var trackedCurrenciesDataSourceAndDelegate:TrackedCurrenciesDataSourceAndDelegate!
 
     var originalEditButton: UIBarButtonItem!
     var originalDoneButton: UIBarButtonItem!
@@ -134,11 +133,10 @@ class TrackedCurrenciesViewController: UIViewController {
     func fillTableViewWithData() {
         
         tableView.backgroundColor = UIColor.white //UIColor.groupTableViewBackground
-        trackedCurrenciesDataSource = TrackedCurrenciesDataSource()
-        trackedCurrenciesDelegate = TrackedCurrenciesDelegate()
+        trackedCurrenciesDataSourceAndDelegate = TrackedCurrenciesDataSourceAndDelegate()
         
-        tableView.dataSource = trackedCurrenciesDataSource
-        tableView.delegate = trackedCurrenciesDelegate
+        tableView.dataSource = trackedCurrenciesDataSourceAndDelegate
+        tableView.delegate = trackedCurrenciesDataSourceAndDelegate
         
 //        let tempArrayWithCells = TrackedCurrenciesScreenDirector.createTrackedCurrenciesCells(for: self.tableView, btcRate: btcRate)
 //        let arrayWithCells = NSMutableArray.init(array: tempArrayWithCells)
@@ -148,9 +146,8 @@ class TrackedCurrenciesViewController: UIViewController {
         
         let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
         userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
-        trackedCurrenciesDataSource.coins = userCoins
-        trackedCurrenciesDelegate.coins = userCoins
-        trackedCurrenciesDelegate.viewController = self
+        trackedCurrenciesDataSourceAndDelegate.coins = userCoins
+        trackedCurrenciesDataSourceAndDelegate.viewController = self
 //        trackedCurrenciesDelegate.rubleRate = rubleRate
     }
     
@@ -244,33 +241,38 @@ class TrackedCurrenciesViewController: UIViewController {
                     }
                 }
                 
-                var portfolioValuesStringsDict = Dictionary<String, String>()
+//                var portfolioValuesStringsDict = Dictionary<String, String>()
+                var portfolioModel = PortfolioModel()
                 
                 //текущая стоимость
                 let userCoinsSumInDollars = SumCalculator.getCoinsTotalSum(coins: self.userCoins)
                 var currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: userCoinsSumInDollars)
                 let userCoinsSumInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: userCoinsSumInDollars))
                 let userCoinsSumInDollarsWithSignString = String(format:"$%@", userCoinsSumInDollarsString!)
-                portfolioValuesStringsDict.updateValue(userCoinsSumInDollarsWithSignString, forKey: "totalSumInDollarsString")
+                portfolioModel.currentDollarValue = userCoinsSumInDollarsWithSignString
+//                portfolioValuesStringsDict.updateValue(userCoinsSumInDollarsWithSignString, forKey: "totalSumInDollarsString")
                 
                 let userCoinsSumInRubles = userCoinsSumInDollars * newRubleRate
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: userCoinsSumInRubles)
                 let userCoinsSumInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: userCoinsSumInRubles))
                 let userCoinsSumInRublesWithSignString = String(format:"₽%@", userCoinsSumInRublesString!)
-                portfolioValuesStringsDict.updateValue(userCoinsSumInRublesWithSignString, forKey: "totalSumInRublesString")
+                portfolioModel.currentRubleValue = userCoinsSumInRublesWithSignString
+//                portfolioValuesStringsDict.updateValue(userCoinsSumInRublesWithSignString, forKey: "totalSumInRublesString")
                 
                 //начальная стоимость
                 let initialCoinsCostInDollars = initialPortfolioCost
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: initialCoinsCostInDollars)
                 let initialCoinsCostInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: initialCoinsCostInDollars))
                 let initialCoinsCostInDollarsWithSignString = String(format:"$%@", initialCoinsCostInDollarsString!)
-                portfolioValuesStringsDict.updateValue(initialCoinsCostInDollarsWithSignString, forKey: "initialCostInDollarsString")
+                portfolioModel.initialDollarValue = initialCoinsCostInDollarsWithSignString
+//                portfolioValuesStringsDict.updateValue(initialCoinsCostInDollarsWithSignString, forKey: "initialCostInDollarsString")
                 
                 let initialCoinsCostInRubles = initialCoinsCostInDollars * newRubleRate
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: initialCoinsCostInRubles)
                 let initialCoinsCostInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: initialCoinsCostInRubles))
                 let initialCoinsCostInRublesWithSignString = String(format:"₽%@", initialCoinsCostInRublesString!)
-                portfolioValuesStringsDict.updateValue(initialCoinsCostInRublesWithSignString, forKey: "initialCostInRublesString")
+                portfolioModel.initialRubleValue = initialCoinsCostInRublesWithSignString
+//                portfolioValuesStringsDict.updateValue(initialCoinsCostInRublesWithSignString, forKey: "initialCostInRublesString")
                 
                 //прибыль или убыток с начала
                 var profitOrLossInDollars = 0.0
@@ -289,26 +291,30 @@ class TrackedCurrenciesViewController: UIViewController {
                 let profitOrLossInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: profitOrLossInDollars))
                 //positiveProfitOrLossInDollars))
                 let profitOrLossInDollarsWithSignString = String(format:"%@$%@", minusOrPlusSign, profitOrLossInDollarsString!)
-                portfolioValuesStringsDict.updateValue(profitOrLossInDollarsWithSignString, forKey: "profitOrLossInDollarsString")
+                portfolioModel.dollarProfitOrLoss = profitOrLossInDollarsWithSignString
+//                portfolioValuesStringsDict.updateValue(profitOrLossInDollarsWithSignString, forKey: "profitOrLossInDollarsString")
                 
                 let profitOrLossInRubles = profitOrLossInDollars * newRubleRate
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: profitOrLossInRubles)
                 let profitOrLossInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: profitOrLossInRubles))
                 let profitOrLossInRublesWithSignString = String(format:"%@₽%@", minusOrPlusSign, profitOrLossInRublesString!)
-                portfolioValuesStringsDict.updateValue(profitOrLossInRublesWithSignString, forKey: "profitOrLossInRublesString")
+                portfolioModel.rubleProfitOrLoss = profitOrLossInRublesWithSignString
+//                portfolioValuesStringsDict.updateValue(profitOrLossInRublesWithSignString, forKey: "profitOrLossInRublesString")
                 
                 //прибыль или убыток за 24ч
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: fabs(portfolio24hChangeInDollars))
                 let portfolio24hChangeInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: portfolio24hChangeInDollars))
                 minusOrPlusSign = portfolio24hChangeInDollars < 0 ? "-" : "+"
                 let portfolio24hChangeInDollarsWithSignString = String(format:"%@$%@", minusOrPlusSign, portfolio24hChangeInDollarsString!)
-                portfolioValuesStringsDict.updateValue(portfolio24hChangeInDollarsWithSignString, forKey: "profitOrLoss24hInDollarsString")
+                portfolioModel.last24hValueDollarChange = portfolio24hChangeInDollarsWithSignString
+//                portfolioValuesStringsDict.updateValue(portfolio24hChangeInDollarsWithSignString, forKey: "profitOrLoss24hInDollarsString")
                 
                 let portfolio24hChangeInRubles = portfolio24hChangeInDollars * newRubleRate
                 currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: fabs(portfolio24hChangeInRubles))
                 let portfolio24hChangeInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: portfolio24hChangeInRubles))
                 let portfolio24hChangeInRublesWithSignString = String(format:"%@₽%@", minusOrPlusSign, portfolio24hChangeInRublesString!)
-                portfolioValuesStringsDict.updateValue(portfolio24hChangeInRublesWithSignString, forKey: "profitOrLoss24hInRublesString")
+                portfolioModel.last24hValueRubleChange = portfolio24hChangeInRublesWithSignString
+//                portfolioValuesStringsDict.updateValue(portfolio24hChangeInRublesWithSignString, forKey: "profitOrLoss24hInRublesString")
                 
                 //изменение в процентах с начала
                 let changeFromBeginningInPercentages = (profitOrLossInDollars / initialCoinsCostInDollars) * 100.0
@@ -317,6 +323,7 @@ class TrackedCurrenciesViewController: UIViewController {
                 let changeFromBeginningInPercentagesString = currentNumberFormatter.string(from: NSNumber.init(value: changeFromBeginningInPercentages))
                 minusOrPlusSign = initialCoinsCostInDollars > userCoinsSumInDollars ? "-" : "+"
                 let changeFromBeginningInPercentagesWithSignString = String(format:"%@%@%%", minusOrPlusSign, changeFromBeginningInPercentagesString!)
+                portfolioModel.percentProfitOrLoss = changeFromBeginningInPercentagesWithSignString
 //                portfolioValuesStringsDict.updateValue(changeFromBeginningInPercentagesWithSignString, forKey: "changeFromBeginningInPercentages")
                 
                 //изменение в процентах за 24ч
@@ -333,26 +340,14 @@ class TrackedCurrenciesViewController: UIViewController {
                 }
                 let portfolio24PercentagesChangeString = currentNumberFormatter.string(from: NSNumber.init(value: portfolio24PercentagesChange))
                 let portfolio24PercentagesChangeStringWithSign = String(format:"%@%@%%", minusOrPlusSign, portfolio24PercentagesChangeString!)
+                portfolioModel.last24hValuePercentChange = portfolio24PercentagesChangeStringWithSign
                 
+                //сохраняем в кордату
+                //отображаем
                 
-                self.trackedCurrenciesDataSource.coins = self.userCoins
-                self.trackedCurrenciesDelegate.coins = self.userCoins
-//                self.trackedCurrenciesDelegate.rubleRate = newRubleRate
-                self.trackedCurrenciesDelegate.trackedCurrenciesDataSource = self.trackedCurrenciesDataSource
+                self.trackedCurrenciesDataSourceAndDelegate.coins = self.userCoins
                 
-                self.trackedCurrenciesDataSource.totalSumString = userCoinsSumInDollarsWithSignString
-                self.trackedCurrenciesDataSource.initialSumString = initialCoinsCostInDollarsWithSignString
-                self.trackedCurrenciesDataSource.profitOrLossString = profitOrLossInDollarsWithSignString
-                self.trackedCurrenciesDataSource.profitOrLoss24hString = portfolio24hChangeInDollarsWithSignString
-                self.trackedCurrenciesDataSource.changeFromBeginningInPercentages = changeFromBeginningInPercentagesWithSignString
-                self.trackedCurrenciesDataSource.portfolio24hPercentagesChange = portfolio24PercentagesChangeStringWithSign
-                
-                self.trackedCurrenciesDelegate.totalSumString = userCoinsSumInDollarsWithSignString
-                self.trackedCurrenciesDelegate.initialSumString = initialCoinsCostInDollarsWithSignString
-                self.trackedCurrenciesDelegate.profitOrLossString = profitOrLossInRublesWithSignString
-                self.trackedCurrenciesDelegate.profitOrLoss24hString = portfolio24hChangeInDollarsWithSignString
-                
-                self.trackedCurrenciesDelegate.portfolioValuesStringsDict = portfolioValuesStringsDict
+                self.trackedCurrenciesDataSourceAndDelegate.portfolioModel = portfolioModel
                 
                 self.tableView.reloadData()
 //            print(newArray)
@@ -450,7 +445,7 @@ class TrackedCurrenciesViewController: UIViewController {
 //        }
 //        trackedCurrenciesDataSource.coins = userCoins
 //        createCoinsArray()
-        trackedCurrenciesDataSource.coins = userCoins
+        trackedCurrenciesDataSourceAndDelegate.coins = userCoins
         tableView.reloadData()
     }
 }
