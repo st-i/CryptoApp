@@ -9,8 +9,8 @@
 import UIKit
 
 class Portfolio: NSObject {
-    var initialValueInDollars: Double = 0.0
-    var valueInDollars: Double = 0.0
+    var initialDollarValue: Double = 0.0
+    var currentDollarValue: Double = 0.0
     var last24hValueDollarChange: Double = 0.0
     var last24hValuePercentChange: Double = 0.0
     var rubleExchangeRate: Double = 0.0

@@ -372,4 +372,75 @@ final class CoreDataManager {
             print("Could not save updateCoinMarketCap. \(error), \(error.userInfo)")
         }
     }
+    
+    //MARK: Portfolio
+    func savePortfolio(portfolio: Portfolio) {
+        
+        //1
+        let managedContext = persistentContainer.viewContext
+        //2
+        let entity = NSEntityDescription.entity(forEntityName: "UserPortfolio", in: managedContext)!
+        let userPortfolioEntity = NSManagedObject(entity: entity, insertInto: managedContext)
+        //3
+        userPortfolioEntity.setValue(portfolio.initialDollarValue, forKey: "initialDollarValue")
+        userPortfolioEntity.setValue(portfolio.currentDollarValue, forKey: "currentDollarValue")
+        userPortfolioEntity.setValue(portfolio.last24hValueDollarChange, forKey: "last24hValueDollarChange")
+        userPortfolioEntity.setValue(portfolio.last24hValuePercentChange, forKey: "last24hValuePercentChange")
+        userPortfolioEntity.setValue(portfolio.rubleExchangeRate, forKey: "rubleExchangeRate")
+        //4
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save savePortfolio. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func getUserPortfolio() -> Portfolio {
+        
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserPortfolio")
+        
+        let portfolio = Portfolio()
+        do {
+            let userPortfolioEntityArray = try managedContext.fetch(fetchRequest)
+            if userPortfolioEntityArray.count > 0 {
+                let userPortfolioEntity = userPortfolioEntityArray.first
+                portfolio.initialDollarValue = userPortfolioEntity?.value(forKey: "initialDollarValue") as! Double
+                portfolio.currentDollarValue = userPortfolioEntity?.value(forKey: "currentDollarValue") as! Double
+                portfolio.last24hValueDollarChange = userPortfolioEntity?.value(forKey: "last24hValueDollarChange") as! Double
+                portfolio.last24hValuePercentChange = userPortfolioEntity?.value(forKey: "last24hValuePercentChange") as! Double
+                portfolio.rubleExchangeRate = userPortfolioEntity?.value(forKey: "rubleExchangeRate") as! Double
+            }
+        } catch let error as NSError {
+            print("Could not fetch getUserPortfolio. \(error), \(error.userInfo)")
+        }
+        
+        return portfolio
+    }
+    
+    func updatePortfolio(portfolio: Portfolio) {
+        
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserPortfolio")
+        
+        do {
+            let userPortfolioEntityArray = try managedContext.fetch(fetchRequest)
+            if userPortfolioEntityArray.count > 0 {
+                let userPortfolioEntity = userPortfolioEntityArray.first
+                userPortfolioEntity?.setValue(portfolio.initialDollarValue, forKey: "initialDollarValue")
+                userPortfolioEntity?.setValue(portfolio.currentDollarValue, forKey: "currentDollarValue")
+                userPortfolioEntity?.setValue(portfolio.last24hValueDollarChange, forKey: "last24hValueDollarChange")
+                userPortfolioEntity?.setValue(portfolio.last24hValuePercentChange, forKey: "last24hValuePercentChange")
+                userPortfolioEntity?.setValue(portfolio.rubleExchangeRate, forKey: "rubleExchangeRate")
+            }
+        } catch let error as NSError {
+            print("Could not update updatePortfolio. \(error), \(error.userInfo)")
+        }
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save updatePortfolio. \(error), \(error.userInfo)")
+        }
+    }
 }

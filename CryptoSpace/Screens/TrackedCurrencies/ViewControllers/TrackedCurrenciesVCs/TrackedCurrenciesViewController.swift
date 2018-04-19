@@ -10,13 +10,6 @@ import UIKit
 import Alamofire
 import CoreData
 
-//struct Coin {
-//    //    var id: String
-//    //    var fullName: String
-//    var shortName: String
-//    var exchangeRate: Double
-//}
-
 class TrackedCurrenciesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -30,14 +23,13 @@ class TrackedCurrenciesViewController: UIViewController {
     var rubleRate: Double = 0.0 //57.356798
     var userCoins = [Coin]()
     
+    var currentUserPortfolio: Portfolio!
+    var userPortfolioModel = PortfolioModel()
+    
     var requestManager: RequestManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        request("https ://poloniex.com/public?command=returnTicker").responseJSON { (response) in
-//            print(response)
-//        }
         
         self.navigationController?.navigationBar.isTranslucent = false;
         self.navigationController?.navigationBar.barTintColor = UIColor.navBarColor()
@@ -72,62 +64,19 @@ class TrackedCurrenciesViewController: UIViewController {
         
         fillTableViewWithData()
         
-//        request(RequestToBitfinexBuilder.buildBtcRateRequest()).responseJSON { (firstResponse) in
-//            guard let dataArray = firstResponse.result.value as? [String: AnyObject] else{
-//                print("Не могу перевести в JSON")
-//                return
-//            }
-//            let btcRate = BitfinexResponseParser.getBtcRate(response: dataArray)
-//            print(btcRate)
-//
-//            let allUserCoins = AllCoinsManager.createArrayWithAllCoins()
-//
-////            print(firstResponse)
-//        }
-    
-//        request(RequestToBitfinexBuilder.buildEthRateRequest()).responseJSON { (firstResponse) in
-//
-//            guard let dataArray = firstResponse.result.value as? [String: AnyObject] else{
-//                print("Не могу перевести в JSON")
-//                return
-//            }
-//            let ethRate = BitfinexResponseParser.getEthRate(response: dataArray)
-//            print(ethRate)
-//
-//            let allUserCoins = AllCoinsManager.createArrayWithAllCoins()
-//
-////            print(firstResponse)
-
-//            request(RequestToIDEXBuilder.buildAllCoinsRequest(), method: .post, parameters: nil).responseJSON { (response) in
-//                print(response)
-//                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
-//                    print("Не могу перевести в JSON")
-//                    return
-//                }
-//                IDEXResponseParser.parseResponse(response: arrayOfData, coinsArray: allUserCoins, ethRate: ethRate)
-//            }
-//        }
+        currentUserPortfolio = CoreDataManager.shared.getUserPortfolio()
+        if currentUserPortfolio.initialDollarValue == 0 {
+            refreshCurrenciesRates()
+        }else{
+            userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: currentUserPortfolio, userCoinsCount: userCoins.count
+            )
+            trackedCurrenciesDataSourceAndDelegate.portfolioModel = userPortfolioModel
+            tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        requestManager.sendSomeRequestForTest()
-//        request(RubleRateRequestBuilder.buildRubleRequest()).responseJSON { (response) in
-//            guard let arrayOfData = response.result.value as? Dictionary<String, AnyObject> else{
-//                print("Не могу перевести в JSON")
-//                return
-//            }
-//            
-//            let sonedkfn = RubleRateResponseParser.parseResponse(response: arrayOfData)
-//            print(sonedkfn)
-//        }
-        
-//        let someArray = [4, 6, 2, 7, 1, 3, 5]
-//        let sortedArray = someArray.sorted { $0 < $1 }
-//        print(sortedArray)
-        
-//        loadExchangeRateForBTC()
-//        fillTableViewWithData()
     }
     
     func fillTableViewWithData() {
@@ -138,17 +87,11 @@ class TrackedCurrenciesViewController: UIViewController {
         tableView.dataSource = trackedCurrenciesDataSourceAndDelegate
         tableView.delegate = trackedCurrenciesDataSourceAndDelegate
         
-//        let tempArrayWithCells = TrackedCurrenciesScreenDirector.createTrackedCurrenciesCells(for: self.tableView, btcRate: btcRate)
-//        let arrayWithCells = NSMutableArray.init(array: tempArrayWithCells)
-        
-//        self.trackedCurrenciesDataSource.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
-//        self.trackedCurrenciesDelegate.arrayWithCells = arrayWithCells as! [[UITableViewCell]]
-        
         let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
         userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
         trackedCurrenciesDataSourceAndDelegate.coins = userCoins
         trackedCurrenciesDataSourceAndDelegate.viewController = self
-//        trackedCurrenciesDelegate.rubleRate = rubleRate
+        trackedCurrenciesDataSourceAndDelegate.portfolioModel = userPortfolioModel
     }
     
     @IBAction func openPortfolioGraph(_ sender: UIButton) {
@@ -172,25 +115,9 @@ class TrackedCurrenciesViewController: UIViewController {
     @objc func addTrackedCurrency() {
         let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
         let searchCurrencyVC = storyboard.instantiateViewController(withIdentifier: "CurrencySearchViewController") as! CurrencySearchViewController
-//        searchCurrencyVC.isPresentedVC = true
         let navContr = UINavigationController.init(rootViewController: searchCurrencyVC)
         navigationController?.present(navContr, animated: true, completion: nil)
-        
-//        someVC = UIViewController()
-//        someVC.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
-//        let navContr = UINavigationController.init(rootViewController: someVC)
-//        present(navContr, animated: true, completion: nil)
     }
-    
-//    @objc func dismissVC() {
-//        someVC.dismiss(animated: true, completion: nil)
-//    }
-    
-//    func addCoinAction() {
-//        let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
-//        let searchVC = storyboard.instantiateViewController(withIdentifier: "CurrencySearchViewController")
-//        self.navigationController?.pushViewController(searchVC, animated: true)
-//    }
     
     @objc func sendRequestForTest() {
         requestManager.sendSomeRequestForTest()
@@ -226,7 +153,7 @@ class TrackedCurrenciesViewController: UIViewController {
                     coin.rate24hPercentChange = coinRate24hPercentChange
                     
                     if self.userCoins.count == 1 {
-                        portfolio24ChangeInPercentages = coinRate24hPercentChange
+                        portfolio24ChangeInPercentages = coinRate24hPercentChange //ПОПРАВИТЬ
                     }else{
                         let currentTotalPercent = 100.0 + coinRate24hPercentChange
                         let openCoinSum = (coinSum * 100.0) / currentTotalPercent
@@ -241,90 +168,17 @@ class TrackedCurrenciesViewController: UIViewController {
                     }
                 }
                 
-//                var portfolioValuesStringsDict = Dictionary<String, String>()
-                var portfolioModel = PortfolioModel()
+                self.currentUserPortfolio.last24hValueDollarChange = portfolio24hChangeInDollars
+                self.currentUserPortfolio.rubleExchangeRate = newRubleRate
                 
                 //текущая стоимость
                 let userCoinsSumInDollars = SumCalculator.getCoinsTotalSum(coins: self.userCoins)
-                var currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: userCoinsSumInDollars)
-                let userCoinsSumInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: userCoinsSumInDollars))
-                let userCoinsSumInDollarsWithSignString = String(format:"$%@", userCoinsSumInDollarsString!)
-                portfolioModel.currentDollarValue = userCoinsSumInDollarsWithSignString
-//                portfolioValuesStringsDict.updateValue(userCoinsSumInDollarsWithSignString, forKey: "totalSumInDollarsString")
-                
-                let userCoinsSumInRubles = userCoinsSumInDollars * newRubleRate
-                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: userCoinsSumInRubles)
-                let userCoinsSumInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: userCoinsSumInRubles))
-                let userCoinsSumInRublesWithSignString = String(format:"₽%@", userCoinsSumInRublesString!)
-                portfolioModel.currentRubleValue = userCoinsSumInRublesWithSignString
-//                portfolioValuesStringsDict.updateValue(userCoinsSumInRublesWithSignString, forKey: "totalSumInRublesString")
+                self.currentUserPortfolio.currentDollarValue = userCoinsSumInDollars
                 
                 //начальная стоимость
                 let initialCoinsCostInDollars = initialPortfolioCost
-                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: initialCoinsCostInDollars)
-                let initialCoinsCostInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: initialCoinsCostInDollars))
-                let initialCoinsCostInDollarsWithSignString = String(format:"$%@", initialCoinsCostInDollarsString!)
-                portfolioModel.initialDollarValue = initialCoinsCostInDollarsWithSignString
-//                portfolioValuesStringsDict.updateValue(initialCoinsCostInDollarsWithSignString, forKey: "initialCostInDollarsString")
-                
-                let initialCoinsCostInRubles = initialCoinsCostInDollars * newRubleRate
-                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: initialCoinsCostInRubles)
-                let initialCoinsCostInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: initialCoinsCostInRubles))
-                let initialCoinsCostInRublesWithSignString = String(format:"₽%@", initialCoinsCostInRublesString!)
-                portfolioModel.initialRubleValue = initialCoinsCostInRublesWithSignString
-//                portfolioValuesStringsDict.updateValue(initialCoinsCostInRublesWithSignString, forKey: "initialCostInRublesString")
-                
-                //прибыль или убыток с начала
-                var profitOrLossInDollars = 0.0
-                var minusOrPlusSign = ""
-                if initialCoinsCostInDollars >= userCoinsSumInDollars {
-                    profitOrLossInDollars = initialCoinsCostInDollars - userCoinsSumInDollars
-                    minusOrPlusSign = "-"
-                }else{
-                    profitOrLossInDollars = userCoinsSumInDollars - initialCoinsCostInDollars
-                    minusOrPlusSign = "+"
-                }
-                
-//                let positiveProfitOrLossInDollars = fabs(profitOrLossInDollars)
-                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: profitOrLossInDollars)
-                //positiveProfitOrLossInDollars)
-                let profitOrLossInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: profitOrLossInDollars))
-                //positiveProfitOrLossInDollars))
-                let profitOrLossInDollarsWithSignString = String(format:"%@$%@", minusOrPlusSign, profitOrLossInDollarsString!)
-                portfolioModel.dollarProfitOrLoss = profitOrLossInDollarsWithSignString
-//                portfolioValuesStringsDict.updateValue(profitOrLossInDollarsWithSignString, forKey: "profitOrLossInDollarsString")
-                
-                let profitOrLossInRubles = profitOrLossInDollars * newRubleRate
-                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: profitOrLossInRubles)
-                let profitOrLossInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: profitOrLossInRubles))
-                let profitOrLossInRublesWithSignString = String(format:"%@₽%@", minusOrPlusSign, profitOrLossInRublesString!)
-                portfolioModel.rubleProfitOrLoss = profitOrLossInRublesWithSignString
-//                portfolioValuesStringsDict.updateValue(profitOrLossInRublesWithSignString, forKey: "profitOrLossInRublesString")
-                
-                //прибыль или убыток за 24ч
-                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: fabs(portfolio24hChangeInDollars))
-                let portfolio24hChangeInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: portfolio24hChangeInDollars))
-                minusOrPlusSign = portfolio24hChangeInDollars < 0 ? "-" : "+"
-                let portfolio24hChangeInDollarsWithSignString = String(format:"%@$%@", minusOrPlusSign, portfolio24hChangeInDollarsString!)
-                portfolioModel.last24hValueDollarChange = portfolio24hChangeInDollarsWithSignString
-//                portfolioValuesStringsDict.updateValue(portfolio24hChangeInDollarsWithSignString, forKey: "profitOrLoss24hInDollarsString")
-                
-                let portfolio24hChangeInRubles = portfolio24hChangeInDollars * newRubleRate
-                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: fabs(portfolio24hChangeInRubles))
-                let portfolio24hChangeInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: portfolio24hChangeInRubles))
-                let portfolio24hChangeInRublesWithSignString = String(format:"%@₽%@", minusOrPlusSign, portfolio24hChangeInRublesString!)
-                portfolioModel.last24hValueRubleChange = portfolio24hChangeInRublesWithSignString
-//                portfolioValuesStringsDict.updateValue(portfolio24hChangeInRublesWithSignString, forKey: "profitOrLoss24hInRublesString")
-                
-                //изменение в процентах с начала
-                let changeFromBeginningInPercentages = (profitOrLossInDollars / initialCoinsCostInDollars) * 100.0
-                currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: changeFromBeginningInPercentages)
-                currentNumberFormatter.maximumFractionDigits = 2
-                let changeFromBeginningInPercentagesString = currentNumberFormatter.string(from: NSNumber.init(value: changeFromBeginningInPercentages))
-                minusOrPlusSign = initialCoinsCostInDollars > userCoinsSumInDollars ? "-" : "+"
-                let changeFromBeginningInPercentagesWithSignString = String(format:"%@%@%%", minusOrPlusSign, changeFromBeginningInPercentagesString!)
-                portfolioModel.percentProfitOrLoss = changeFromBeginningInPercentagesWithSignString
-//                portfolioValuesStringsDict.updateValue(changeFromBeginningInPercentagesWithSignString, forKey: "changeFromBeginningInPercentages")
+                let initialDollarValueBeforeUpdate = self.currentUserPortfolio.initialDollarValue
+                self.currentUserPortfolio.initialDollarValue = initialCoinsCostInDollars
                 
                 //изменение в процентах за 24ч
                 var portfolio24PercentagesChange = 0.0
@@ -333,119 +187,22 @@ class TrackedCurrenciesViewController: UIViewController {
                 }else{
                     portfolio24PercentagesChange = (portfolio24hChangeInDollars / userCoinsSumInDollars) * 100.0
                 }
-                if portfolio24hChangeInDollars < 0 {
-                    minusOrPlusSign = "-"
+                self.currentUserPortfolio.last24hValuePercentChange = portfolio24PercentagesChange
+                
+                //сохраняем в кордату или обновляем
+                if initialDollarValueBeforeUpdate == 0 {
+                    CoreDataManager.shared.savePortfolio(portfolio: self.currentUserPortfolio)
                 }else{
-                    minusOrPlusSign = "+"
+                    CoreDataManager.shared.updatePortfolio(portfolio: self.currentUserPortfolio)
                 }
-                let portfolio24PercentagesChangeString = currentNumberFormatter.string(from: NSNumber.init(value: portfolio24PercentagesChange))
-                let portfolio24PercentagesChangeStringWithSign = String(format:"%@%@%%", minusOrPlusSign, portfolio24PercentagesChangeString!)
-                portfolioModel.last24hValuePercentChange = portfolio24PercentagesChangeStringWithSign
                 
-                //сохраняем в кордату
                 //отображаем
-                
                 self.trackedCurrenciesDataSourceAndDelegate.coins = self.userCoins
-                
-                self.trackedCurrenciesDataSourceAndDelegate.portfolioModel = portfolioModel
-                
+                self.userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: self.currentUserPortfolio, userCoinsCount: self.userCoins.count
+                )
+                self.trackedCurrenciesDataSourceAndDelegate.portfolioModel = self.userPortfolioModel
                 self.tableView.reloadData()
-//            print(newArray)
             })
         }
-        
-        
-//            { (coinsDicts) in
-//            print(coinsDicts)
-//        }
-//        let updatedCoinsRates = requestManager.coinsExchanges
-//        print(updatedCoinsRates)
-        
-//        userCoins = CoreDataManager.shared.getAndMapUserCoinsArrayToCoinsArray()
-        
-//        requestManager.updatedUserCoins.removeAll()
-//        requestManager.updateCoinsRates(coins: userCoins, completion: { (updatedUserCoins) in
-//            self.trackedCurrenciesDataSource.coins = updatedUserCoins
-//            self.trackedCurrenciesDelegate.coins = updatedUserCoins
-//            self.tableView.reloadData()
-//        })
-        
-//        requestManager.sendSomeRequestForTest()
-        
-        
-//        let requestManager = RequestManager.init()
-//        requestManager.coinsArray = userCoins
-//        requestManager.currentVC = self
-//        requestManager.updateCoins()
-        
-//         fetchAllTrackedCoins()
-        
-//        requestManager.updateCoins /*(sendedCoinsArray: userCoins)*/ { (coinsRates) in
-//            self.userCoins = UserCoinsManager.refreshValuesForCoins(coinsArray: self.userCoins, coinsRates: coinsRates)
-//            self.refreshCoinsArray()
-//        }
-        
-//        userCoins = UserCoinsManager.refreshValuesForCoins(coinsArray: userCoins, coinsRates: requestManager.coinsRates)
-//        refreshCoinsArray()
-//        requestManager.updateCoins(coinsArray: userCoins) { (coinsRates) in
-//        
-//            self.userCoins = UserCoinsManager.refreshValuesForCoins(coinsArray: self.userCoins, coinsRates: coinsRates)
-//            self.refreshCoinsArray()
-//        }
-        //loadExchangeRateForBTC()
-    }
-    
-    func loadExchangeRateForBTC() {//(completion: @escaping (String) -> Void) {
-        let coinId = "btc"
-        let coinRequestUrl = RequestToBitfinexBuilder.buildRequest(currencyId: coinId)
-        request(coinRequestUrl)
-            .responseJSON(completionHandler: { response in
-                
-                guard response.result.isSuccess else{
-                    print("Ошибка при запросе данных \(String(describing: response.result.error))")
-                    return
-                }
-                
-                guard let arrayOfData = response.result.value as? [String: AnyObject] else{
-                    print("Не могу перевести в JSON")
-                    return
-                }
-                
-                self.btcRate = Double((arrayOfData["mid"] as? String)!)!
-                print(arrayOfData)
-                print(self.btcRate)
-                self.refreshCoinsArray()
-//                self.fillTableViewWithData()
-
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-                
-//                switch response.result {
-//                case .success(let value):
-//                    print(value)
-//                    guard let jsonDict = response.result.value as? [String: String] else { return }
-//                    self.btcRate = jsonDict["mid"]!
-//                    self.tableView.reloadData()
-//                    //completion(btcExchangeRate)
-//
-//                case .failure(let error):
-//                    print(error)
-//                    //completion("")
-//                    //return
-//                }
-            })
-    }
-    
-    func refreshCoinsArray() {
-//        for var someCoin in userCoins {
-//            if someCoin.shortName == "BTC" {
-//                someCoin.exchangeRate = btcRate
-//            }
-//        }
-//        trackedCurrenciesDataSource.coins = userCoins
-//        createCoinsArray()
-        trackedCurrenciesDataSourceAndDelegate.coins = userCoins
-        tableView.reloadData()
     }
 }
