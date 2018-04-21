@@ -286,7 +286,7 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     @objc func textViewDoneAction() {
-        let notesCell = self.tableView.cellForRow(at: IndexPath.init(row: 0, section: 2)) as! NotesCell
+        let notesCell = self.tableView.cellForRow(at: IndexPath.init(row: 6, section: 1)) as! NotesCell
         notesCell.notesTextView.resignFirstResponder()
         animateTableViewDown()
         let textViewText = notesCell.notesTextView.text
@@ -364,7 +364,7 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     //UITextViewDelegate
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        let notesCell = self.tableView.cellForRow(at: IndexPath.init(row: 0, section: 2)) as! NotesCell
+        let notesCell = self.tableView.cellForRow(at: IndexPath.init(row: 6, section: 1)) as! NotesCell
         notesCell.notesTextView.inputAccessoryView = viewAboveTextViewKeyboard()
         return true
     }
@@ -376,7 +376,7 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
         self.tableView.scrollToRow(at: IndexPath.init(row: 4, section: 1), at: .top, animated: true)
         self.tableView.isScrollEnabled = false
         
-        let notesCell = self.tableView.cellForRow(at: IndexPath.init(row: 0, section: 2)) as! NotesCell
+        let notesCell = self.tableView.cellForRow(at: IndexPath.init(row: 6, section: 1)) as! NotesCell
         let textViewText = notesCell.notesTextView.text
         if textViewText == "Дoпoлнитeльнaя инфoрмaция" {
             notesCell.notesTextView.text = ""
@@ -389,7 +389,7 @@ class AddCurrencyViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        let notesCell = self.tableView.cellForRow(at: IndexPath.init(row: 0, section: 2)) as! NotesCell
+        let notesCell = self.tableView.cellForRow(at: IndexPath.init(row: 6, section: 1)) as! NotesCell
         var textViewText = notesCell.notesTextView.text
         if textViewText?.count ?? 0 > 100 {
             textViewText?.removeLast()

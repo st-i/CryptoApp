@@ -831,8 +831,6 @@ class AllCoinsManager: NSObject {
         enjinCoinCoin.exchange = ExchangeBehavior.HitBTC
         allCoins.append(enjinCoinCoin)
         
-        //112
-        
         //114
         let santimentNetworkTokenCoin = Coin.init()
         santimentNetworkTokenCoin.fullName = "Santiment Network Token" //1hitbtc.(к ETH) or okex
@@ -848,8 +846,6 @@ class AllCoinsManager: NSObject {
         storjCoin.id = "storj"
         storjCoin.exchange = ExchangeBehavior.Bittrex
         allCoins.append(storjCoin)
-        
-        //116
         
         //117
         let civicCoin = Coin.init()

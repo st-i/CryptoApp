@@ -17,6 +17,10 @@ internal extension UIColor {
 //        return UIColor.init(red: 20.0 / 255.0, green: 79.0 / 255.0, blue: 142.0 / 255.0, alpha: 1.0)
     }
     
+    class func graphColumnsColor() -> UIColor {
+        return UIColor.init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 0.3) //основа
+    }
+    
     class func greenChangeColor() -> UIColor {
         return UIColor.init(red: 0, green: 190.0 / 255.0, blue: 120.0 / 255.0, alpha: 1.0)
     }

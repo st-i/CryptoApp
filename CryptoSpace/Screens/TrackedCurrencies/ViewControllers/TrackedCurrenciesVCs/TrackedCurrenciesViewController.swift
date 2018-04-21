@@ -95,8 +95,21 @@ class TrackedCurrenciesViewController: UIViewController {
     }
     
     @IBAction func openPortfolioGraph(_ sender: UIButton) {
+        var graphViewModels = [GraphViewModel]()
+        for trackedCoin in userCoins {
+            let graphViewModel = GraphViewModel()
+            graphViewModel.coinFullName = trackedCoin.fullName
+            graphViewModel.coinId = trackedCoin.id
+            graphViewModel.currentCoinValue = trackedCoin.sum
+            graphViewModel.columnWidthPart = CGFloat(trackedCoin.sum / currentUserPortfolio.currentDollarValue)
+            graphViewModels.append(graphViewModel)
+        }
+        
+        let sortedGraphViewModels = graphViewModels.sorted { $0.currentCoinValue > $1.currentCoinValue }
+        
         let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
-        let portfolioGraphVC = storyboard.instantiateViewController(withIdentifier: "PortfolioGraphViewController")
+        let portfolioGraphVC = storyboard.instantiateViewController(withIdentifier: "PortfolioGraphViewController") as! PortfolioGraphViewController
+        portfolioGraphVC.displayModelsArray = sortedGraphViewModels
         navigationController?.pushViewController(portfolioGraphVC, animated: true)
     }
     
@@ -194,6 +207,10 @@ class TrackedCurrenciesViewController: UIViewController {
                     CoreDataManager.shared.savePortfolio(portfolio: self.currentUserPortfolio)
                 }else{
                     CoreDataManager.shared.updatePortfolio(portfolio: self.currentUserPortfolio)
+                }
+                
+                if self.userCoins.count > 0 {
+                    CoreDataManager.shared.updateTrackedUserCoins(trackedCoins: self.userCoins)
                 }
                 
                 //отображаем

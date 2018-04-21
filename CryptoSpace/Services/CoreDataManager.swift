@@ -234,6 +234,37 @@ final class CoreDataManager {
         }
     }
     
+    func updateTrackedUserCoins(trackedCoins: [Coin]) {
+        
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserCoin")
+        let coinTypePredicate = NSPredicate(format: "coinType = 0") //CoinType.Tracked
+        fetchRequest.predicate = coinTypePredicate
+        
+        do {
+            let userTrackedCoinsEntitiesArray = try managedContext.fetch(fetchRequest)
+            if trackedCoins.count > 0 {
+                for trackedCoin in trackedCoins {
+                    for userTrackedCoinsEntity in userTrackedCoinsEntitiesArray {
+                        let userTrackedCoinEntityShortName = userTrackedCoinsEntity.value(forKey: "shortName") as! String
+                        if userTrackedCoinEntityShortName == trackedCoin.shortName {
+                            userTrackedCoinsEntity.setValue(trackedCoin.exchangeRate, forKey: "exchangeRate")
+                            userTrackedCoinsEntity.setValue(trackedCoin.rate24hPercentChange, forKey: "rate24hPercentChange")
+                        }
+                    }
+                }
+            }
+        } catch let error as NSError {
+            print("Could not update updateTrackedUserCoins. \(error), \(error.userInfo)")
+        }
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save updateTrackedUserCoins. \(error), \(error.userInfo)")
+        }
+    }
+    
     //MARK: Observed coins
     private func saveObservedUserCoin(coin: Coin) {
         
@@ -255,6 +286,22 @@ final class CoreDataManager {
             try managedContext.save()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func tryToSaveObservedCoin(coin: Coin) {
+        
+        var alreadyWasSaved = false
+        let allObservedCoins = getObservedUserCoinsArray()
+        for someCoin in allObservedCoins {
+            if someCoin.shortName == coin.shortName {
+                alreadyWasSaved = true
+            }
+        }
+        if alreadyWasSaved == false {
+            saveObservedUserCoin(coin: coin)
+        }else{
+            print("Такая отслеживаемая монета уже сохранена")
         }
     }
     
@@ -299,19 +346,35 @@ final class CoreDataManager {
         return coinsArray
     }
     
-    func tryToSaveObservedCoin(coin: Coin) {
+    func updateObservedUserCoins(observedCoins: [Coin]) {
         
-        var alreadyWasSaved = false
-        let allObservedCoins = getObservedUserCoinsArray()
-        for someCoin in allObservedCoins {
-            if someCoin.shortName == coin.shortName {
-                alreadyWasSaved = true
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserCoin")
+        let coinTypePredicate = NSPredicate(format: "coinType = 1") //CoinType.Observed
+        fetchRequest.predicate = coinTypePredicate
+        
+        do {
+            let userObservedCoinsEntitiesArray = try managedContext.fetch(fetchRequest)
+            if userObservedCoinsEntitiesArray.count > 0 {
+                for userObservedCoinEntity in userObservedCoinsEntitiesArray {
+                    let userObservedCoinEntityShortName = userObservedCoinEntity.value(forKey: "shortName") as! String
+                    for userObservedCoin in observedCoins {
+                        if userObservedCoin.shortName == userObservedCoinEntityShortName {
+                            userObservedCoinEntity.setValue(userObservedCoin.exchangeRate, forKey: "exchangeRate")
+                            userObservedCoinEntity.setValue(userObservedCoin.rate24hPercentChange, forKey: "rate24hPercentChange")
+                            break
+                        }
+                    }
+                }
             }
+        } catch let error as NSError {
+            print("Could not update updateObservedUserCoins. \(error), \(error.userInfo)")
         }
-        if alreadyWasSaved == false {
-            saveObservedUserCoin(coin: coin)
-        }else{
-            print("Такая отслеживаемая монета уже сохранена")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save updateObservedUserCoins. \(error), \(error.userInfo)")
         }
     }
     

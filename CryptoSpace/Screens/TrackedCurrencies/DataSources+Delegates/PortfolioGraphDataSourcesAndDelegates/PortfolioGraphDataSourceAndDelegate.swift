@@ -12,19 +12,19 @@ private let kStandardCellHeight = 50
 
 class PortfolioGraphDataSourceAndDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    var arrayWithCells = [Any]()
+    var arrayWithCells = [PortfolioCurrencyGraphCell]()
 
     //MARK: dataSource
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return arrayWithCells.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (arrayWithCells[section] as! [PortfolioCurrencyGraphCell]).count
+        return arrayWithCells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return (arrayWithCells[indexPath.section] as! [PortfolioCurrencyGraphCell])[indexPath.row]
+        return arrayWithCells[indexPath.row]
     }
     
     //MARK: delegate

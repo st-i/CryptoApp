@@ -50,7 +50,7 @@ class ObservedCurrenciesViewController: UIViewController {
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addCoinAction))
 //        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
-        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(updateCoinMarketCap)) // sendRequestForTest refreshScreenValues
+        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshScreenValues)) // sendRequestForTest updateCoinMarketCap
         navigationItem.leftBarButtonItem = refreshButton
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
@@ -111,6 +111,7 @@ class ObservedCurrenciesViewController: UIViewController {
     @objc func refreshScreenValues() {
         
         requestManager.getCryptoMarketCap { (value) in
+            CoreDataManager.shared.updateCoinMarketCap(value: value)
             self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)
             
             let coinsExchangesArray = CoinsArrayFormatter.createCoinsExchangesArray(coins: self.observedCoinsArray)
@@ -131,6 +132,8 @@ class ObservedCurrenciesViewController: UIViewController {
                     
                     self.tableView.reloadData()
                 }
+                
+                CoreDataManager.shared.updateObservedUserCoins(observedCoins: self.observedCoinsArray)
             })
         }
     }

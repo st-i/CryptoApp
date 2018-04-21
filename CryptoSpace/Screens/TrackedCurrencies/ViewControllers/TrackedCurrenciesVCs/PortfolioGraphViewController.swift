@@ -12,7 +12,9 @@ class PortfolioGraphViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var portfolioGraphDataSourceAndDelegate:PortfolioGraphDataSourceAndDelegate!
-    var arrayWithCells = [Any]()
+    var displayModelsArray = [GraphViewModel]()
+    var arrayWithCells = [PortfolioCurrencyGraphCell]()
+    var graphWasAnimated = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,31 +33,32 @@ class PortfolioGraphViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        animateCurrenciesColumns()
+        if graphWasAnimated == false {
+            animateCurrenciesColumns()
+            graphWasAnimated = true
+        }
     }
     
     func fillTableViewWithData() {
-        tableView.backgroundColor = UIColor.groupTableViewBackground
+        tableView.backgroundColor = UIColor.white
         portfolioGraphDataSourceAndDelegate = PortfolioGraphDataSourceAndDelegate()
         
         tableView.dataSource = portfolioGraphDataSourceAndDelegate
         tableView.delegate = portfolioGraphDataSourceAndDelegate
         
-        arrayWithCells = PortfolioGraphScreenDirector.createCells(for: tableView)
+        arrayWithCells = PortfolioGraphScreenDirector.createCells(tableView, displayModels: displayModelsArray)
 
         portfolioGraphDataSourceAndDelegate.arrayWithCells = arrayWithCells
     }
     
     func animateCurrenciesColumns() {
-        for cellsArray:[PortfolioCurrencyGraphCell] in arrayWithCells as! [[PortfolioCurrencyGraphCell]] {
-            for columnCell:PortfolioCurrencyGraphCell in cellsArray {
-                let columnRect = columnCell.currencyColumnView.frame
-                
-                UIView.animate(withDuration: 0.9, delay: 0, options: .curveEaseOut, animations: {
-                    columnCell.currencyColumnView.frame = CGRect.init(x: columnRect.origin.x, y: columnRect.origin.y, width: columnCell.currencyColumnWidth, height: columnRect.height)
-                }, completion: nil)
-                
-            }
+        for columnCell:PortfolioCurrencyGraphCell in arrayWithCells {
+            let columnRect = columnCell.currencyColumnView.frame
+            
+            UIView.animate(withDuration: 0.9, delay: 0, options: .curveEaseOut, animations: {
+                columnCell.currencyColumnView.frame = CGRect.init(x: columnRect.origin.x, y: columnRect.origin.y, width: columnCell.currencyColumnWidth, height: columnRect.height)
+            }, completion: nil)
+            
         }
     }
 }
