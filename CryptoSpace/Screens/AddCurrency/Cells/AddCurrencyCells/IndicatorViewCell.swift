@@ -1,16 +1,16 @@
 //
-//  CurrencyPairCell.swift
+//  IndicatorViewCell.swift
 //  CryptoSpace
 //
-//  Created by iStef on 26.12.17.
-//  Copyright © 2017 Stefanov. All rights reserved.
+//  Created by st.i on 22.04.2018.
+//  Copyright © 2018 Stefanov. All rights reserved.
 //
 
 import UIKit
 
-class CurrencyPairCell: UITableViewCell {
+class IndicatorViewCell: UITableViewCell {
 
-    @IBOutlet weak var coinShortNameLabel: UILabel!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

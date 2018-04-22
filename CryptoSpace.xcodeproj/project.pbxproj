@@ -124,6 +124,9 @@
 		DD82A5E420661C510073BD73 /* QuoineResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82A5E320661C510073BD73 /* QuoineResponseParser.swift */; };
 		DD82A7B920025E3C00A6DD34 /* ActionWithCurrencyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82A7B820025E3C00A6DD34 /* ActionWithCurrencyTableView.swift */; };
 		DD82A7BB20025E5800A6DD34 /* ActionWithCurrencyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD82A7BA20025E5800A6DD34 /* ActionWithCurrencyTableView.xib */; };
+		DD91483F208BDE1800412040 /* IndicatorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91483E208BDE1800412040 /* IndicatorViewCell.swift */; };
+		DD914843208BDE5700412040 /* IndicatorViewCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD914842208BDE5700412040 /* IndicatorViewCellBuilder.swift */; };
+		DD914847208BE02400412040 /* IndicatorViewDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD914846208BE02400412040 /* IndicatorViewDataSourceAndDelegate.swift */; };
 		DD91F32E205E40F800B5BCD6 /* CommonCoinInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91F32D205E40F800B5BCD6 /* CommonCoinInfoCell.swift */; };
 		DD91F332205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91F331205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift */; };
 		DD91F334205E41A700B5BCD6 /* CoinPurchaseWithNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD91F333205E41A700B5BCD6 /* CoinPurchaseWithNoteCell.swift */; };
@@ -146,6 +149,8 @@
 		DDAA6AE7200390EA007045F7 /* CurrencyForPairDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAA6AE6200390EA007045F7 /* CurrencyForPairDataSourceAndDelegate.swift */; };
 		DDAA6AE920039106007045F7 /* CurrencyForPairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAA6AE820039106007045F7 /* CurrencyForPairViewController.swift */; };
 		DDAD3BAE2034B5A500B08AA6 /* RequestToOKEXBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAD3BAD2034B5A500B08AA6 /* RequestToOKEXBuilder.swift */; };
+		DDAD79C4208C5DA60045BD44 /* AddCoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAD79C3208C5DA60045BD44 /* AddCoinModel.swift */; };
+		DDAD79C7208C71DA0045BD44 /* AddCurrencyTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAD79C6208C71DA0045BD44 /* AddCurrencyTextFieldDelegate.swift */; };
 		DDAE166C208B7B5D00771504 /* GraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAE166B208B7B5D00771504 /* GraphViewModel.swift */; };
 		DDB1FC9B2026FC8500D83AF7 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1FC9A2026FC8500D83AF7 /* HeaderViewCell.swift */; };
 		DDB1FC9D2026FD1E00D83AF7 /* HeaderViewCellBulder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1FC9C2026FD1E00D83AF7 /* HeaderViewCellBulder.swift */; };
@@ -282,6 +287,9 @@
 		DD82A5E320661C510073BD73 /* QuoineResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoineResponseParser.swift; sourceTree = "<group>"; };
 		DD82A7B820025E3C00A6DD34 /* ActionWithCurrencyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionWithCurrencyTableView.swift; sourceTree = "<group>"; };
 		DD82A7BA20025E5800A6DD34 /* ActionWithCurrencyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionWithCurrencyTableView.xib; sourceTree = "<group>"; };
+		DD91483E208BDE1800412040 /* IndicatorViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorViewCell.swift; sourceTree = "<group>"; };
+		DD914842208BDE5700412040 /* IndicatorViewCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorViewCellBuilder.swift; sourceTree = "<group>"; };
+		DD914846208BE02400412040 /* IndicatorViewDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorViewDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		DD91F32D205E40F800B5BCD6 /* CommonCoinInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonCoinInfoCell.swift; sourceTree = "<group>"; };
 		DD91F331205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPurchaseWONoteCell.swift; sourceTree = "<group>"; };
 		DD91F333205E41A700B5BCD6 /* CoinPurchaseWithNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPurchaseWithNoteCell.swift; sourceTree = "<group>"; };
@@ -304,6 +312,8 @@
 		DDAA6AE6200390EA007045F7 /* CurrencyForPairDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyForPairDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		DDAA6AE820039106007045F7 /* CurrencyForPairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyForPairViewController.swift; sourceTree = "<group>"; };
 		DDAD3BAD2034B5A500B08AA6 /* RequestToOKEXBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToOKEXBuilder.swift; sourceTree = "<group>"; };
+		DDAD79C3208C5DA60045BD44 /* AddCoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinModel.swift; sourceTree = "<group>"; };
+		DDAD79C6208C71DA0045BD44 /* AddCurrencyTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyTextFieldDelegate.swift; sourceTree = "<group>"; };
 		DDAE166B208B7B5D00771504 /* GraphViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewModel.swift; sourceTree = "<group>"; };
 		DDB1FC9A2026FC8500D83AF7 /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		DDB1FC9C2026FD1E00D83AF7 /* HeaderViewCellBulder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCellBulder.swift; sourceTree = "<group>"; };
@@ -364,6 +374,7 @@
 		5406B9FA1FF2DB890022D1C4 /* AddCurrencyBuilders */ = {
 			isa = PBXGroup;
 			children = (
+				DD914842208BDE5700412040 /* IndicatorViewCellBuilder.swift */,
 				54BDCC621FF4155A000662C5 /* ActionWithCurrencyCellBuilder.swift */,
 				54306C0C1FFAAA070094A894 /* ActionChoiceCellBuilder.swift */,
 				5482F41B1FFFCF6B00BDD14C /* EmptyCellBuilder.swift */,
@@ -391,6 +402,7 @@
 		5406B9FC1FF2DB890022D1C4 /* AddCurrencyCells */ = {
 			isa = PBXGroup;
 			children = (
+				DD91483E208BDE1800412040 /* IndicatorViewCell.swift */,
 				5406BA011FF2DBE00022D1C4 /* ActionWithCurrencyCell.swift */,
 				54306C0A1FFAA9C60094A894 /* ActionChoiceCell.swift */,
 				54DAF51C2000BF5A00D18017 /* ActionChoiceCell.xib */,
@@ -421,6 +433,7 @@
 			children = (
 				54306C081FFA5DB50094A894 /* AddCurrencyDataSourceAndDelegate.swift */,
 				54DAF51A2000BE2E00D18017 /* ActionWithCurrencyDataSourceAndDelegate.swift */,
+				DD914846208BE02400412040 /* IndicatorViewDataSourceAndDelegate.swift */,
 			);
 			path = "AddCurrencyDataSource+Delegate";
 			sourceTree = "<group>";
@@ -436,6 +449,7 @@
 		5406BA001FF2DB890022D1C4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DDAD79C5208C71AB0045BD44 /* Extensions */,
 				54BDCC781FF416C9000662C5 /* AddCurrencyViewController.swift */,
 				DDAA6AE820039106007045F7 /* CurrencyForPairViewController.swift */,
 			);
@@ -980,6 +994,14 @@
 			path = "CurrencyForPairDataSource+Delegate";
 			sourceTree = "<group>";
 		};
+		DDAD79C5208C71AB0045BD44 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DDAD79C6208C71DA0045BD44 /* AddCurrencyTextFieldDelegate.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		DDBA44D5207FDDC6001FDE14 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -990,6 +1012,7 @@
 				DDB2B5752087C4ED007A496D /* PortfolioModel.swift */,
 				DDA1607F203DEE890020B602 /* Coin.swift */,
 				DDAE166B208B7B5D00771504 /* GraphViewModel.swift */,
+				DDAD79C3208C5DA60045BD44 /* AddCoinModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1178,6 +1201,7 @@
 				DD7CB755205273C400E6E786 /* RequestToTidexBuilder.swift in Sources */,
 				DDBA44D7207FDE7C001FDE14 /* TrackedCoinCommonInfoModel.swift in Sources */,
 				DD91F332205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift in Sources */,
+				DDAD79C7208C71DA0045BD44 /* AddCurrencyTextFieldDelegate.swift in Sources */,
 				DD7E16EC2069790600EC83CC /* RubleRateRequestBuilder.swift in Sources */,
 				54081FBD1FE6686F0098195F /* TrackedCurrencyScreenDirector.swift in Sources */,
 				DDA1607E203DED000020B602 /* AllCoinsManager.swift in Sources */,
@@ -1193,6 +1217,7 @@
 				DDAD3BAE2034B5A500B08AA6 /* RequestToOKEXBuilder.swift in Sources */,
 				DDAE166C208B7B5D00771504 /* GraphViewModel.swift in Sources */,
 				54EBA4721FE84A8500E9F412 /* ObservedCurrencyCell.swift in Sources */,
+				DD914847208BE02400412040 /* IndicatorViewDataSourceAndDelegate.swift in Sources */,
 				5406BA061FF2DD310022D1C4 /* ActionWithCurrencyDateCell.swift in Sources */,
 				54306C0D1FFAAA070094A894 /* ActionChoiceCellBuilder.swift in Sources */,
 				54CA4E4B1FE55D5500E6357E /* FinalCell.swift in Sources */,
@@ -1225,6 +1250,7 @@
 				DD91F336205E42F700B5BCD6 /* CommonCoinInfoCellBuilder.swift in Sources */,
 				DD4F457A2062E3BE002D0A85 /* CoreDataManager.swift in Sources */,
 				DD7CB74520526E9800E6E786 /* RequestToGate_ioBuilder.swift in Sources */,
+				DDAD79C4208C5DA60045BD44 /* AddCoinModel.swift in Sources */,
 				DD7CB74720526F2D00E6E786 /* RequestToBinanceBuilder.swift in Sources */,
 				54306C0B1FFAA9C60094A894 /* ActionChoiceCell.swift in Sources */,
 				5406BA0E1FF2DED00022D1C4 /* PurchasedAmountCostCell.swift in Sources */,
@@ -1245,6 +1271,7 @@
 				DDD9B19A201F985900D7F437 /* UIColor+Extension.swift in Sources */,
 				54BDCC6F1FF415F9000662C5 /* PurchasedAmountCostCellBuilder.swift in Sources */,
 				54081FC01FE668E40098195F /* TrackedCurrencyDataSource.swift in Sources */,
+				DD91483F208BDE1800412040 /* IndicatorViewCell.swift in Sources */,
 				DD7CB74120526DF000E6E786 /* RequestToPoloniexBuilder.swift in Sources */,
 				54BDCC6D1FF415DC000662C5 /* CurrencyAmountCellBuilder.swift in Sources */,
 				DD608CCF20544974006C537D /* PoloniexResponseParser.swift in Sources */,
@@ -1265,6 +1292,7 @@
 				5406BA041FF2DC2B0022D1C4 /* CurrencyPairCell.swift in Sources */,
 				54081FC41FE6694E0098195F /* TrackedCurrencyViewController.swift in Sources */,
 				5406BA0A1FF2DE010022D1C4 /* PurchaseExchangeRateCell.swift in Sources */,
+				DD914843208BDE5700412040 /* IndicatorViewCellBuilder.swift in Sources */,
 				540C34801FEECE2B00D39C43 /* RecentCurrencySearchDelegate.swift in Sources */,
 				DD7CB73F20526D7D00E6E786 /* RequestToIDEXBuilder.swift in Sources */,
 				54BDCC6B1FF415C2000662C5 /* PurchaseExchangeRateCellBuilder.swift in Sources */,

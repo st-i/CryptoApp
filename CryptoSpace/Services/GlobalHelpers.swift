@@ -319,6 +319,9 @@ class CertainCoinInfoMapper: NSObject {
             
             purchaseInfoModel.note = someCoin.note
             
+            purchaseInfoModel.shortName = coin.shortName
+            purchaseInfoModel.uniqueId = someCoin.uniqueId
+            
             coinInfoModelsArray.append(purchaseInfoModel)
         }
         

@@ -15,7 +15,7 @@ private let imageViewHeight: CGFloat = 36
 
 class PortfolioCurrencyGraphCellBuilder: NSObject {
     
-    class func buildCell(_ tableView: UITableView, graphViewModel: GraphViewModel) -> PortfolioCurrencyGraphCell {
+    class func buildCell(_ tableView: UITableView, graphViewModel: GraphViewModel) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kPortfolioCurrencyGraphCellIdentifier) as! PortfolioCurrencyGraphCell
         cell.selectionStyle = .none
         

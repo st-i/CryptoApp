@@ -1293,8 +1293,28 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActionWithCurrencyCell" rowHeight="50" id="EkM-1k-blR" customClass="ActionWithCurrencyCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IndicatorViewCell" rowHeight="50" id="4HG-tj-b26" customClass="IndicatorViewCell" customModule="CryptoSpace">
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4HG-tj-b26" id="zSm-P8-FHM">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xAi-5P-MRC">
+                                                    <rect key="frame" x="150" y="15" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xAi-5P-MRC" firstAttribute="centerX" secondItem="zSm-P8-FHM" secondAttribute="centerX" id="Mg9-3g-yhH"/>
+                                                <constraint firstItem="xAi-5P-MRC" firstAttribute="centerY" secondItem="zSm-P8-FHM" secondAttribute="centerY" id="tFj-Rb-GgH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="indicatorView" destination="xAi-5P-MRC" id="0p5-4K-fVW"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActionWithCurrencyCell" rowHeight="50" id="EkM-1k-blR" customClass="ActionWithCurrencyCell" customModule="CryptoSpace" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="78" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EkM-1k-blR" id="fQj-8v-YMK">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -1331,7 +1351,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyPairCell" rowHeight="60" id="6Bm-TQ-ZBb" customClass="CurrencyPairCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="78" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="128" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Bm-TQ-ZBb" id="c6b-UD-5xQ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -1356,32 +1376,22 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mta-sA-K0I">
-                                                    <rect key="frame" x="130" y="0.0" width="60" height="60"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="hvY-F0-eWj"/>
-                                                        <constraint firstAttribute="width" constant="60" id="x29-Ax-kIu"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="Mta-sA-K0I" firstAttribute="centerY" secondItem="c6b-UD-5xQ" secondAttribute="centerY" id="ArK-qV-psM"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Hd8-cx-ZGQ" secondAttribute="trailing" constant="7" id="Fps-Wh-YBe"/>
                                                 <constraint firstItem="pcw-Yg-9k2" firstAttribute="centerY" secondItem="c6b-UD-5xQ" secondAttribute="centerY" id="GzN-Zm-3C7"/>
                                                 <constraint firstItem="Hd8-cx-ZGQ" firstAttribute="leading" secondItem="pcw-Yg-9k2" secondAttribute="trailing" constant="8" id="XBB-lY-lWz"/>
-                                                <constraint firstItem="Mta-sA-K0I" firstAttribute="centerX" secondItem="c6b-UD-5xQ" secondAttribute="centerX" id="ZEi-Tj-zO8"/>
                                                 <constraint firstItem="pcw-Yg-9k2" firstAttribute="leading" secondItem="c6b-UD-5xQ" secondAttribute="leadingMargin" constant="7" id="ybl-Zq-00w"/>
                                                 <constraint firstItem="Hd8-cx-ZGQ" firstAttribute="centerY" secondItem="pcw-Yg-9k2" secondAttribute="centerY" id="z8U-Bi-4Wg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="coinShortNameLabel" destination="Hd8-cx-ZGQ" id="wtT-hc-g5K"/>
-                                            <outlet property="imageCoin" destination="Mta-sA-K0I" id="jBi-1m-nnf"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActionWithCurrencyDateCell" rowHeight="40" id="bUx-zi-bmy" customClass="ActionWithCurrencyDateCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="138" width="320" height="40"/>
+                                        <rect key="frame" x="0.0" y="188" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bUx-zi-bmy" id="iws-hD-jo1">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
@@ -1420,7 +1430,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrentExchangeRateCell" rowHeight="40" id="Ovo-xo-jZY" customClass="CurrentExchangeRateCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="178" width="320" height="40"/>
+                                        <rect key="frame" x="0.0" y="228" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ovo-xo-jZY" id="gxc-ac-nAC">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
@@ -1445,10 +1455,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="aQa-gZ-U0u">
-                                                    <rect key="frame" x="278" y="10" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="qme-7l-d1B" firstAttribute="leading" secondItem="gxc-ac-nAC" secondAttribute="leadingMargin" constant="7" id="4et-ye-xRZ"/>
@@ -1459,13 +1465,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="coinRateIndicator" destination="aQa-gZ-U0u" id="SEj-No-z83"/>
                                             <outlet property="leftTextLabel" destination="qme-7l-d1B" id="57Q-IA-o0l"/>
                                             <outlet property="rightTextLabel" destination="ivc-Pj-PKh" id="HpZ-A2-7sa"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PurchaseExchangeRateCell" rowHeight="68" id="XRD-sP-v5m" customClass="PurchaseExchangeRateCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="218" width="320" height="68"/>
+                                        <rect key="frame" x="0.0" y="268" width="320" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XRD-sP-v5m" id="P3Q-m1-Hg9">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
@@ -1518,7 +1523,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PurchaseSumCell" rowHeight="72" id="D3b-W2-hVm" customClass="PurchaseSumCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="286" width="320" height="72"/>
+                                        <rect key="frame" x="0.0" y="336" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D3b-W2-hVm" id="evY-0Y-bPv">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
@@ -1572,7 +1577,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyAmountCell" rowHeight="72" id="tVd-QE-2JZ" customClass="CurrencyAmountCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="358" width="320" height="72"/>
+                                        <rect key="frame" x="0.0" y="408" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tVd-QE-2JZ" id="mTh-C1-CFs">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
@@ -1625,7 +1630,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotesCell" rowHeight="110" id="7Y2-bN-vYH" customClass="NotesCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="430" width="320" height="110"/>
+                                        <rect key="frame" x="0.0" y="480" width="320" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Y2-bN-vYH" id="EFF-a9-VYB">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
@@ -1667,27 +1672,27 @@
                                             <outlet property="notesTextView" destination="69g-9d-Yih" id="3dT-l0-fTk"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PurchasedAmountCostCell" rowHeight="50" id="4HG-tj-b26" customClass="PurchasedAmountCostCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="540" width="320" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PurchasedAmountCostCell" rowHeight="50" id="Ggm-Pf-CK4" customClass="PurchasedAmountCostCell" customModule="CryptoSpace" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="590" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4HG-tj-b26" id="zSm-P8-FHM">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ggm-Pf-CK4" id="Yc9-nN-nNR">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Итого" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZZ-it-Ro4">
-                                                    <rect key="frame" x="22" y="10" width="53" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Итого" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeu-VV-qww">
+                                                    <rect key="frame" x="15" y="10" width="53" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="53" id="EiO-uZ-cBm"/>
-                                                        <constraint firstAttribute="height" constant="30" id="oBW-En-Bkd"/>
+                                                        <constraint firstAttribute="width" constant="53" id="mkm-Yr-pZl"/>
+                                                        <constraint firstAttribute="height" constant="30" id="wqc-zW-7mB"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$23 000 000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oa3-VQ-XUF">
-                                                    <rect key="frame" x="83" y="10" width="215" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$23 000 000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bI-Ue-zyF">
+                                                    <rect key="frame" x="76" y="10" width="229" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="xSB-3m-uwM"/>
+                                                        <constraint firstAttribute="height" constant="30" id="waf-Ib-323"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -1695,11 +1700,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="JZZ-it-Ro4" firstAttribute="leading" secondItem="zSm-P8-FHM" secondAttribute="leadingMargin" constant="7" id="3UX-FK-Cpi"/>
-                                                <constraint firstItem="oa3-VQ-XUF" firstAttribute="leading" secondItem="JZZ-it-Ro4" secondAttribute="trailing" constant="8" id="CCg-nO-6SJ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="oa3-VQ-XUF" secondAttribute="trailing" constant="7" id="TF2-Cn-IlN"/>
-                                                <constraint firstItem="JZZ-it-Ro4" firstAttribute="centerY" secondItem="zSm-P8-FHM" secondAttribute="centerY" id="jem-P2-u6l"/>
-                                                <constraint firstItem="oa3-VQ-XUF" firstAttribute="centerY" secondItem="JZZ-it-Ro4" secondAttribute="centerY" id="nNi-Ri-jzT"/>
+                                                <constraint firstItem="2bI-Ue-zyF" firstAttribute="leading" secondItem="xeu-VV-qww" secondAttribute="trailing" constant="8" id="4Rk-hf-cqj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="2bI-Ue-zyF" secondAttribute="trailing" constant="7" id="6ki-b5-dbP"/>
+                                                <constraint firstItem="xeu-VV-qww" firstAttribute="centerY" secondItem="Yc9-nN-nNR" secondAttribute="centerY" id="Gtq-80-nLb"/>
+                                                <constraint firstItem="xeu-VV-qww" firstAttribute="leading" secondItem="Yc9-nN-nNR" secondAttribute="leadingMargin" constant="7" id="RNS-v5-YeM"/>
+                                                <constraint firstItem="2bI-Ue-zyF" firstAttribute="centerY" secondItem="xeu-VV-qww" secondAttribute="centerY" id="YCq-zL-A0R"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

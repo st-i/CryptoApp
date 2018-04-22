@@ -15,7 +15,7 @@ private let kNotesCellHeight = 110
 
 class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
 
-    var currentCoin: Coin!
+//    var currentCoin: Coin!
     
     var viewController = AddCurrencyViewController()
     
@@ -39,8 +39,10 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     
     var indicatorWasShown = false
     
-    var dateString: String!
+//    var dateString: String!
     var purchaseDate: Date?
+    
+    var addCoinModel = AddCoinModel()
     
     override init() {
         super.init()
@@ -183,16 +185,16 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         if self.currencyPurchase {
             switch rowNumber {
             case 0:
-                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinId: currentCoin.id, coinName: currentCoin.fullName)
+                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinId: addCoinModel.currentCoin.id, coinName: addCoinModel.currentCoin.fullName)
                 
             case 1:
-                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс")
+                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", exchangeRateString: addCoinModel.coinExchangeRate)
                 
             case 2:
-                return ActionWithCurrencyDateCellBuilder.buildActionWithCurrencyDateCell(for: tableView, date: dateString)
+                return ActionWithCurrencyDateCellBuilder.buildActionWithCurrencyDateCell(for: tableView, date: addCoinModel.dateString)
                 
             case 3:
-                return PurchaseExchangeRateCellBuilder.buildPurchaseExchangeRateCell(for: tableView, delegate: self.viewController)
+                return PurchaseExchangeRateCellBuilder.buildPurchaseExchangeRateCell(for: tableView, delegate: self.viewController, exchangeRateString: addCoinModel.coinExchangeRate)
                 
             case 4:
                 return CurrencyAmountCellBuilder.buildCurrencyAmountCell(for: tableView, delegate: self.viewController)
@@ -209,13 +211,13 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         }else{
             switch rowNumber {
             case 0:
-                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinId: currentCoin.id, coinName: currentCoin.fullName)
+                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinId: addCoinModel.currentCoin.id, coinName: addCoinModel.currentCoin.fullName)
                 
             case 1:
-                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс")
+                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", exchangeRateString: addCoinModel.coinExchangeRate)
                 
             default:
-                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс")
+                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", exchangeRateString: addCoinModel.coinExchangeRate)
             }
         }
     }
@@ -468,7 +470,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         
         let dateCell = viewController.tableView.cellForRow(at: IndexPath.init(row: 2, section: 1)) as! ActionWithCurrencyDateCell
         dateCell.purchaseDateLabel.text = purchaseDateString
-        dateString = purchaseDateString
+        addCoinModel.dateString = purchaseDateString
         hideDatePicker()
     }
     

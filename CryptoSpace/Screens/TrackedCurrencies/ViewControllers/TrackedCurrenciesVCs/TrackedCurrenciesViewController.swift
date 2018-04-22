@@ -14,6 +14,7 @@ class TrackedCurrenciesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var trackedCurrenciesDataSourceAndDelegate:TrackedCurrenciesDataSourceAndDelegate!
+    var indicatorViewDataSourceAndDelegate: IndicatorViewDataSourceAndDelegate!
 
     var originalEditButton: UIBarButtonItem!
     var originalDoneButton: UIBarButtonItem!
@@ -73,6 +74,8 @@ class TrackedCurrenciesViewController: UIViewController {
             trackedCurrenciesDataSourceAndDelegate.portfolioModel = userPortfolioModel
             tableView.reloadData()
         }
+        
+//        CoreDataManager.shared.deleteGroupOfTrackedUserCoinsFromCoreData(coinShortName: "LTC")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -218,6 +221,7 @@ class TrackedCurrenciesViewController: UIViewController {
                 self.userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: self.currentUserPortfolio, userCoinsCount: self.userCoins.count
                 )
                 self.trackedCurrenciesDataSourceAndDelegate.portfolioModel = self.userPortfolioModel
+                self.fillTableViewWithData()
                 self.tableView.reloadData()
             })
         }

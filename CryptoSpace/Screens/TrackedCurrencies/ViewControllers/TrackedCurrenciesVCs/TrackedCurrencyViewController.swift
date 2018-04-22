@@ -85,6 +85,8 @@ class TrackedCurrencyViewController: UIViewController {
 //            let arrayWithCells = TrackedCurrencyScreenDirector.createTrackedCurrencyCells(for: tableView, currentCoin: currentCoin)
             
             let modelsArray = CertainCoinInfoMapper.mapTrackedCoinToInfoModelsArray(coin: currentCoin)
+//            let certainCoin = modelsArray.last as! TrackedCoinPurchaseInfoModel
+//            CoreDataManager.shared.deleteCertainTrackedUserCoinFromCoreData(coinModel: certainCoin)
             
             self.trackedCurrencyDataSource.modelsArray = modelsArray
             self.trackedCurrencyDelegate.modelsArray = modelsArray

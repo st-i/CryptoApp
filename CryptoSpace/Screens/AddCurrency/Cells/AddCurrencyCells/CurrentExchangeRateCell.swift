@@ -11,7 +11,7 @@ import UIKit
 class CurrentExchangeRateCell: UITableViewCell {
     @IBOutlet weak var leftTextLabel: UILabel!
     @IBOutlet weak var rightTextLabel: UILabel!
-    @IBOutlet weak var coinRateIndicator: UIActivityIndicatorView!
+//    @IBOutlet weak var coinRateIndicator: UIActivityIndicatorView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

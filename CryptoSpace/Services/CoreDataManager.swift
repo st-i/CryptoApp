@@ -59,6 +59,7 @@ final class CoreDataManager {
         }
     }
     
+    //MARK: Tracked Coins Part
     func saveTrackedUserCoin(coin: Coin) {
         
         let currentCoinUniqueId = determineUniqueNumberIdForCoin(coin: coin)
@@ -91,23 +92,60 @@ final class CoreDataManager {
         }
     }
     
-    //MARK: - Core Data Delete
-    //ДОРАБОТАТЬ!!
-    func deleteUserCoinFromCoreData(coin: Coin) {
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserCoin")
-        fetchRequest.predicate = NSPredicate.init(format: "id==\(coin.id)")
-        
+    //Deletion of tracked coins group from core data
+    func deleteGroupOfTrackedUserCoinsFromCoreData(coinShortName: String) {
         let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserCoin")
+        fetchRequest.predicate = NSPredicate.init(format: "shortName == %@ && coinType == 0", coinShortName)
         
-        if let result = try? managedContext.fetch(fetchRequest) {
-            for object in result {
-                managedContext.delete(object)
+        var coinsArray = [NSManagedObject]()
+        do {
+            coinsArray = try managedContext.fetch(fetchRequest)
+            if coinsArray.count > 0 {
+                for coin in coinsArray {
+                    managedContext.delete(coin)
+                }
             }
+        } catch let error as NSError {
+            print("Could not fetch fetchCoinsGroupForDelete. \(error), \(error.userInfo)")
+        }
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save coinsGroupForDelete. \(error), \(error.userInfo)")
         }
     }
     
-    //MARK: Mapping from entity to model
+    //Deletion of certain tracked coin from core data
+    func deleteCertainTrackedUserCoinFromCoreData(coinModel: TrackedCoinPurchaseInfoModel) {
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserCoin")
+        fetchRequest.predicate = NSPredicate.init(format: "shortName == %@ && uniqueId == %i && coinType == 0", coinModel.shortName, coinModel.uniqueId)
+        
+        var coinsArray = [NSManagedObject]()
+        do {
+            coinsArray = try managedContext.fetch(fetchRequest)
+            //на всякий случай удалим все с этим uniqueId
+            if coinsArray.count > 0 {
+                for coin in coinsArray {
+                    managedContext.delete(coin)
+                }
+            }
+        } catch let error as NSError {
+            print("Could not fetch fetchCertainCoinForDelete. \(error), \(error.userInfo)")
+        }
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save certainCoinForDelete. \(error), \(error.userInfo)")
+        }
+    }
+    
+    //Mapping from entity to model
     func getUserCoinsArray() -> [Coin] {
         
         var coinsArray = [Coin]()
@@ -155,7 +193,7 @@ final class CoreDataManager {
         return certainCoinArray
     }
     
-    //MARK: Fetching from CoreData
+    //Fetching from CoreData
     private func getCoreDataTrackedUserCoinsArray() -> [NSManagedObject] { //tracked
         
         let managedContext = CoreDataManager.shared.persistentContainer.viewContext
@@ -169,10 +207,6 @@ final class CoreDataManager {
         var userTrackedCoins = [NSManagedObject]()
         do {
             userTrackedCoins = try managedContext.fetch(fetchRequest)
-//            let someCoin = userTrackedCoins[2]
-//            let someCoinName = someCoin.value(forKey: "fullName") as! String
-//            print(someCoinName)
-//            print(userTrackedCoins)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -195,7 +229,7 @@ final class CoreDataManager {
         return certainTrackedUserCoinArray
     }
     
-    //MARK: Unique id for tracked coin
+    //Unique id for tracked coin
     func determineUniqueNumberIdForCoin(coin: Coin) -> Int {
         
         let allStoredCoins = getCoreDataTrackedUserCoinsArray()
@@ -265,7 +299,7 @@ final class CoreDataManager {
         }
     }
     
-    //MARK: Observed coins
+    //MARK: Observed Coins Part
     private func saveObservedUserCoin(coin: Coin) {
         
         //1
@@ -378,7 +412,7 @@ final class CoreDataManager {
         }
     }
     
-    //MARK: Coin Market Cap
+    //MARK: Coin Market Cap Part
     func saveCoinMarketCap(value: Int) {
         
         //1
@@ -436,7 +470,7 @@ final class CoreDataManager {
         }
     }
     
-    //MARK: Portfolio
+    //MARK: Portfolio Part
     func savePortfolio(portfolio: Portfolio) {
         
         //1

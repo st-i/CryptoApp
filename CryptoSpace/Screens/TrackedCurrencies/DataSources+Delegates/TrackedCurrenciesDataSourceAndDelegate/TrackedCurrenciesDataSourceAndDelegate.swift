@@ -19,7 +19,7 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
     var coins = [Coin]()
     var viewController = UIViewController()
     var portfolioModel = PortfolioModel()
-    
+        
     var showInDollars = true
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
