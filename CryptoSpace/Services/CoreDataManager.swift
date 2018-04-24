@@ -339,6 +339,33 @@ final class CoreDataManager {
         }
     }
     
+    //Deletion of observed coin from core data
+    func deleteObservedUserCoinFromCoreData(coin: Coin) {
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserCoin")
+        fetchRequest.predicate = NSPredicate.init(format: "shortName == %@ && coinType == 1", coin.shortName)
+        
+        var coinsArray = [NSManagedObject]()
+        do {
+            coinsArray = try managedContext.fetch(fetchRequest)
+            //на всякий случай удалим все с этим shortName
+            if coinsArray.count > 0 {
+                for coin in coinsArray {
+                    managedContext.delete(coin)
+                }
+            }
+        } catch let error as NSError {
+            print("Could not fetch fetchObservedCoinForDelete. \(error), \(error.userInfo)")
+        }
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save observedCoinForDelete. \(error), \(error.userInfo)")
+        }
+    }
+    
     private func getCoreDataObservedUserCoinsArray() -> [NSManagedObject] {
         
         let managedContext = CoreDataManager.shared.persistentContainer.viewContext
@@ -513,6 +540,24 @@ final class CoreDataManager {
         }
         
         return portfolio
+    }
+    
+    func checkPortfolioExistance() -> Bool {
+        
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserPortfolio")
+        
+        var portfolioExistance = false
+        do {
+            let userPortfolioEntityArray = try managedContext.fetch(fetchRequest)
+            if userPortfolioEntityArray.count > 0 {
+                portfolioExistance = true
+            }
+        } catch let error as NSError {
+            print("Could not fetch checkPortfolioExistance. \(error), \(error.userInfo)")
+        }
+        
+        return portfolioExistance
     }
     
     func updatePortfolio(portfolio: Portfolio) {

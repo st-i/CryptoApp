@@ -36,4 +36,25 @@ class TrackedCurrencyDataSource: NSObject, UITableViewDataSource {
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return false
+        }else{
+            return true
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            let modelToDelete = modelsArray[indexPath.section] as! TrackedCoinPurchaseInfoModel
+            modelsArray.remove(at: indexPath.section)
+            CoreDataManager.shared.deleteCertainTrackedUserCoinFromCoreData(coinModel: modelToDelete)
+            
+            tableView.beginUpdates()
+            tableView.deleteSections([indexPath.section], with: .bottom)
+            tableView.endUpdates()
+        }
+    }
 }

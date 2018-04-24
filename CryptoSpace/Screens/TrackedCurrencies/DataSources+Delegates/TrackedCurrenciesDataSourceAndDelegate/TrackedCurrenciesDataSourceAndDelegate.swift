@@ -87,14 +87,6 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
     //        }
     //    }
     
-    //    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
-    //        if sourceIndexPath.section != proposedDestinationIndexPath.section {
-    //            return IndexPath.init(row: 0, section: sourceIndexPath.section)
-    //        }else{
-    //            return proposedDestinationIndexPath
-    //        }
-    //    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -160,14 +152,28 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
         }
     }
     
-    //    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    //        if indexPath.section == 0 {
-    //            return false
-    //        }else{
-    //            return true
-    //        }
-    //    }
-    //
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return false
+        }else{
+            return true
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            let coinToDelete = coins[indexPath.row]
+            coins.remove(at: indexPath.row)
+            CoreDataManager.shared.deleteGroupOfTrackedUserCoinsFromCoreData(coinShortName: coinToDelete.shortName)
+            
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .bottom)
+            tableView.endUpdates()
+        }
+    }
+
+    
     //    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
     //        if indexPath.section == 0 {
     //            return false
@@ -181,14 +187,13 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
     //        arrayWithCells[1].remove(at: sourceIndexPath.row)
     //        arrayWithCells[1].insert(movedCell, at: destinationIndexPath.row)
     //    }
-    //
-    //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    //        if editingStyle == .delete {
-    //            arrayWithCells[1].remove(at: indexPath.row)
-    //
-    //            tableView.beginUpdates()
-    //            tableView.deleteRows(at: [indexPath], with: .bottom)
-    //            tableView.endUpdates()
+    
+    
+    //    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+    //        if sourceIndexPath.section != proposedDestinationIndexPath.section {
+    //            return IndexPath.init(row: 0, section: sourceIndexPath.section)
+    //        }else{
+    //            return proposedDestinationIndexPath
     //        }
     //    }
 }

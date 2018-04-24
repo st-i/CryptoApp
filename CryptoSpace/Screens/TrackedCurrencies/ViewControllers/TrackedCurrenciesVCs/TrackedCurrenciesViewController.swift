@@ -63,57 +63,87 @@ class TrackedCurrenciesViewController: UIViewController {
         
         requestManager = RequestManager()
         
-        fillTableViewWithData()
-        
-        currentUserPortfolio = CoreDataManager.shared.getUserPortfolio()
-        if currentUserPortfolio.initialDollarValue == 0 {
-            refreshCurrenciesRates()
-        }else{
-            userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: currentUserPortfolio, userCoinsCount: userCoins.count
-            )
-            trackedCurrenciesDataSourceAndDelegate.portfolioModel = userPortfolioModel
-            tableView.reloadData()
+        if CoreDataManager.shared.checkPortfolioExistance() == false {
+            CoreDataManager.shared.savePortfolio(portfolio: Portfolio())
         }
+//        CoreDataManager.shared.updatePortfolio(portfolio: Portfolio())
         
-//        CoreDataManager.shared.deleteGroupOfTrackedUserCoinsFromCoreData(coinShortName: "LTC")
+        showIndicatorViewScreen()
+        let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
+        if allSavedCoins.count == 0 {
+            userPortfolioModel = PortfolioModel()
+            fillTableViewWithData()
+            tableView.reloadData()
+        }else{
+            userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
+            currentUserPortfolio = CoreDataManager.shared.getUserPortfolio()
+            userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: currentUserPortfolio, userCoinsCount: userCoins.count)
+            
+            refreshCurrenciesRates()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    func showIndicatorViewScreen() {
+        tableView.backgroundColor = UIColor.white
+        indicatorViewDataSourceAndDelegate = IndicatorViewDataSourceAndDelegate()
+        
+        tableView.isScrollEnabled = false
+        tableView.dataSource = indicatorViewDataSourceAndDelegate
+        tableView.delegate = indicatorViewDataSourceAndDelegate
+//        fillTableViewWithData()
+    }
+    
     func fillTableViewWithData() {
         
-        tableView.backgroundColor = UIColor.white //UIColor.groupTableViewBackground
+        tableView.isScrollEnabled = true
+//        tableView.backgroundColor = UIColor.white //UIColor.groupTableViewBackground
         trackedCurrenciesDataSourceAndDelegate = TrackedCurrenciesDataSourceAndDelegate()
+        
+        if userCoins.count == 0 {
+            
+        }else{
+            trackedCurrenciesDataSourceAndDelegate.coins = userCoins
+            trackedCurrenciesDataSourceAndDelegate.viewController = self
+        }
+        trackedCurrenciesDataSourceAndDelegate.portfolioModel = userPortfolioModel
         
         tableView.dataSource = trackedCurrenciesDataSourceAndDelegate
         tableView.delegate = trackedCurrenciesDataSourceAndDelegate
-        
-        let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
-        userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
-        trackedCurrenciesDataSourceAndDelegate.coins = userCoins
-        trackedCurrenciesDataSourceAndDelegate.viewController = self
-        trackedCurrenciesDataSourceAndDelegate.portfolioModel = userPortfolioModel
+//        tableView.reloadData()
     }
     
     @IBAction func openPortfolioGraph(_ sender: UIButton) {
-        var graphViewModels = [GraphViewModel]()
-        for trackedCoin in userCoins {
-            let graphViewModel = GraphViewModel()
-            graphViewModel.coinFullName = trackedCoin.fullName
-            graphViewModel.coinId = trackedCoin.id
-            graphViewModel.currentCoinValue = trackedCoin.sum
-            graphViewModel.columnWidthPart = CGFloat(trackedCoin.sum / currentUserPortfolio.currentDollarValue)
-            graphViewModels.append(graphViewModel)
+        if userCoins.count > 0 {
+            var graphViewModels = [GraphViewModel]()
+            for trackedCoin in userCoins {
+                let graphViewModel = GraphViewModel()
+                graphViewModel.coinFullName = trackedCoin.fullName
+                graphViewModel.coinId = trackedCoin.id
+                graphViewModel.currentCoinValue = trackedCoin.sum
+                graphViewModel.columnWidthPart = CGFloat(trackedCoin.sum / currentUserPortfolio.currentDollarValue)
+                graphViewModels.append(graphViewModel)
+            }
+            
+            let sortedGraphViewModels = graphViewModels.sorted { $0.currentCoinValue > $1.currentCoinValue }
+            
+            let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
+            let portfolioGraphVC = storyboard.instantiateViewController(withIdentifier: "PortfolioGraphViewController") as! PortfolioGraphViewController
+            portfolioGraphVC.displayModelsArray = sortedGraphViewModels
+            navigationController?.pushViewController(portfolioGraphVC, animated: true)
+        }else{
+            let noCoinsAlert = UIAlertController.init(title: "Данные отсутствуют", message: "Добавьте криптовалюты, чтобы посмотреть статистику портфеля", preferredStyle: .alert)
+            let okAction = UIAlertAction.init(title: "ОK", style: .cancel, handler: nil)
+            noCoinsAlert.addAction(okAction)
+            present(noCoinsAlert, animated: true, completion: nil)
         }
-        
-        let sortedGraphViewModels = graphViewModels.sorted { $0.currentCoinValue > $1.currentCoinValue }
-        
-        let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
-        let portfolioGraphVC = storyboard.instantiateViewController(withIdentifier: "PortfolioGraphViewController") as! PortfolioGraphViewController
-        portfolioGraphVC.displayModelsArray = sortedGraphViewModels
-        navigationController?.pushViewController(portfolioGraphVC, animated: true)
     }
     
     @objc func editPortfolioAction() {
@@ -184,6 +214,10 @@ class TrackedCurrenciesViewController: UIViewController {
                     }
                 }
                 
+//                self.currentUserPortfolio = CoreDataManager.shared.getUserPortfolio()
+//                self.userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: self.currentUserPortfolio, userCoinsCount: self.userCoins.count
+//                )
+
                 self.currentUserPortfolio.last24hValueDollarChange = portfolio24hChangeInDollars
                 self.currentUserPortfolio.rubleExchangeRate = newRubleRate
                 
@@ -193,7 +227,7 @@ class TrackedCurrenciesViewController: UIViewController {
                 
                 //начальная стоимость
                 let initialCoinsCostInDollars = initialPortfolioCost
-                let initialDollarValueBeforeUpdate = self.currentUserPortfolio.initialDollarValue
+//                let initialDollarValueBeforeUpdate = self.currentUserPortfolio.initialDollarValue
                 self.currentUserPortfolio.initialDollarValue = initialCoinsCostInDollars
                 
                 //изменение в процентах за 24ч
@@ -206,23 +240,28 @@ class TrackedCurrenciesViewController: UIViewController {
                 self.currentUserPortfolio.last24hValuePercentChange = portfolio24PercentagesChange
                 
                 //сохраняем в кордату или обновляем
-                if initialDollarValueBeforeUpdate == 0 {
-                    CoreDataManager.shared.savePortfolio(portfolio: self.currentUserPortfolio)
-                }else{
-                    CoreDataManager.shared.updatePortfolio(portfolio: self.currentUserPortfolio)
-                }
+//                if initialDollarValueBeforeUpdate == 0 {
+//                    CoreDataManager.shared.savePortfolio(portfolio: self.currentUserPortfolio)
+//                }else{
+//                    CoreDataManager.shared.updatePortfolio(portfolio: self.currentUserPortfolio)
+//                }
+                
+                //Обновляем
+                CoreDataManager.shared.updatePortfolio(portfolio: self.currentUserPortfolio)
                 
                 if self.userCoins.count > 0 {
                     CoreDataManager.shared.updateTrackedUserCoins(trackedCoins: self.userCoins)
                 }
                 
                 //отображаем
-                self.trackedCurrenciesDataSourceAndDelegate.coins = self.userCoins
+//                let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
+//                self.userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
                 self.userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: self.currentUserPortfolio, userCoinsCount: self.userCoins.count
                 )
-                self.trackedCurrenciesDataSourceAndDelegate.portfolioModel = self.userPortfolioModel
                 self.fillTableViewWithData()
                 self.tableView.reloadData()
+//                self.trackedCurrenciesDataSourceAndDelegate.coins = self.userCoins
+//                self.trackedCurrenciesDataSourceAndDelegate.portfolioModel = self.userPortfolioModel
             })
         }
     }

@@ -70,8 +70,28 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IndicatorViewCell" rowHeight="50" id="oqN-JZ-lPw" customClass="IndicatorViewCell" customModule="CryptoSpace">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oqN-JZ-lPw" id="vxX-63-DbW">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dcb-06-y3O">
+                                                    <rect key="frame" x="150" y="15" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dcb-06-y3O" firstAttribute="centerX" secondItem="vxX-63-DbW" secondAttribute="centerX" id="a8k-ia-1BH"/>
+                                                <constraint firstItem="dcb-06-y3O" firstAttribute="centerY" secondItem="vxX-63-DbW" secondAttribute="centerY" id="k7S-IY-Wim"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="indicatorView" destination="dcb-06-y3O" id="sUg-vx-eSW"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TotalPortfolioCostCell" rowHeight="173" id="DkJ-Se-3D5" customClass="TotalPortfolioCostCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="173"/>
+                                        <rect key="frame" x="0.0" y="78" width="320" height="173"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DkJ-Se-3D5" id="HpN-gd-SME">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="173"/>
@@ -208,7 +228,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HeaderViewCell" rowHeight="30" id="6PG-l7-KWv" customClass="HeaderViewCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="201" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="251" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6PG-l7-KWv" id="aC3-Ki-IgW">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
@@ -248,7 +268,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrackedPositionCell" rowHeight="58" id="9ho-02-jar" customClass="TrackedPositionCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="231" width="320" height="58"/>
+                                        <rect key="frame" x="0.0" y="281" width="320" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9ho-02-jar" id="Erz-fc-dod">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
@@ -348,7 +368,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FinalCell" rowHeight="26" id="Bsb-x3-sGg" customClass="FinalCell" customModule="CryptoSpace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="289" width="320" height="26"/>
+                                        <rect key="frame" x="0.0" y="339" width="320" height="26"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bsb-x3-sGg" id="jZf-hR-6N5">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>

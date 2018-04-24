@@ -33,8 +33,7 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
             return ObservedPositionCellBuilder.buildCell(tableView, coin: observedCoinsArray[indexPath.row])
         }
     }
-
-    //MARK: editing
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if indexPath.section == 0 {
             return false
@@ -43,6 +42,20 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            let coinToDelete = observedCoinsArray[indexPath.row]
+            observedCoinsArray.remove(at: indexPath.row)
+            CoreDataManager.shared.deleteObservedUserCoinFromCoreData(coin: coinToDelete)
+            
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .bottom)
+            tableView.endUpdates()
+        }
+    }
+
+    //MARK: editing
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         if indexPath.section == 0 {
             return false

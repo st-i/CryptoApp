@@ -9,14 +9,14 @@
 import UIKit
 
 class PortfolioModel: NSObject {
-    var currentDollarValue = ""
-    var currentRubleValue = ""
-    var initialDollarValue = ""
-    var initialRubleValue = ""
-    var dollarProfitOrLoss = ""
-    var rubleProfitOrLoss = ""
-    var last24hValueDollarChange = ""
-    var last24hValueRubleChange = ""
-    var percentProfitOrLoss = ""
-    var last24hValuePercentChange = ""
+    var currentDollarValue = "$0"
+    var currentRubleValue = "₽0"
+    var initialDollarValue = "$0"
+    var initialRubleValue = "₽0"
+    var dollarProfitOrLoss = "$0"
+    var rubleProfitOrLoss = "₽0"
+    var last24hValueDollarChange = "$0"
+    var last24hValueRubleChange = "₽0"
+    var percentProfitOrLoss = "0%"
+    var last24hValuePercentChange = "0%"
 }

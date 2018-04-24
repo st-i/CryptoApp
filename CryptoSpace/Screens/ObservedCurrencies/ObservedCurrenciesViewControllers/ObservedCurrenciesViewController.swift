@@ -83,6 +83,7 @@ class ObservedCurrenciesViewController: UIViewController {
         tableView.delegate = observedCurrenciesDelegate
         
         observedCoinsArray = CoreDataManager.shared.getObservedUserCoinsArray()
+//        CoreDataManager.shared.deleteObservedUserCoinFromCoreData(coin: observedCoinsArray.first!)
         
         observedCurrenciesDataSource.cmcInfoModel = cmcInfoModel
         observedCurrenciesDataSource.observedCoinsArray = observedCoinsArray
