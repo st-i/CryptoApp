@@ -88,6 +88,8 @@
 		DD30884D201C7252006260C2 /* NoPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD30884C201C7252006260C2 /* NoPasteTextField.swift */; };
 		DD308853201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD308852201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift */; };
 		DD37B25920518A6500519443 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37B25820518A6500519443 /* Enums.swift */; };
+		DD46BDBB20910298001EB1D0 /* NoPortfolioCoinsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD46BDBA20910298001EB1D0 /* NoPortfolioCoinsCell.swift */; };
+		DD46BDBD209102B4001EB1D0 /* NoPortfolioCoinsCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD46BDBC209102B4001EB1D0 /* NoPortfolioCoinsCellBuilder.swift */; };
 		DD4F457A2062E3BE002D0A85 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4F45792062E3BE002D0A85 /* CoreDataManager.swift */; };
 		DD595A35205CF68D00ACB26B /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD595A34205CF68D00ACB26B /* GlobalHelpers.swift */; };
 		DD5A92C020548CA100AF268B /* Gate_ioResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A92BF20548CA100AF268B /* Gate_ioResponseParser.swift */; };
@@ -251,6 +253,8 @@
 		DD30884C201C7252006260C2 /* NoPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPasteTextField.swift; sourceTree = "<group>"; };
 		DD308852201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		DD37B25820518A6500519443 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		DD46BDBA20910298001EB1D0 /* NoPortfolioCoinsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPortfolioCoinsCell.swift; sourceTree = "<group>"; };
+		DD46BDBC209102B4001EB1D0 /* NoPortfolioCoinsCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPortfolioCoinsCellBuilder.swift; sourceTree = "<group>"; };
 		DD4F45792062E3BE002D0A85 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		DD595A34205CF68D00ACB26B /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
 		DD5A92BF20548CA100AF268B /* Gate_ioResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gate_ioResponseParser.swift; sourceTree = "<group>"; };
@@ -494,6 +498,7 @@
 		5407D3D91FE52BC40063C3A6 /* TrackedCurrenciesBuilders */ = {
 			isa = PBXGroup;
 			children = (
+				DD46BDBC209102B4001EB1D0 /* NoPortfolioCoinsCellBuilder.swift */,
 				5407D3DA1FE52BC40063C3A6 /* TotalPortfolioCostCellBuilder.swift */,
 				5407D3DB1FE52BC40063C3A6 /* TrackedPositionCellBuilder.swift */,
 				DDB1FC9C2026FD1E00D83AF7 /* HeaderViewCellBulder.swift */,
@@ -516,6 +521,7 @@
 		5407D3DE1FE52BC40063C3A6 /* TrackedCurrenciesCells */ = {
 			isa = PBXGroup;
 			children = (
+				DD46BDBA20910298001EB1D0 /* NoPortfolioCoinsCell.swift */,
 				5407D3DF1FE52BC40063C3A6 /* TotalPortfolioCostCell.swift */,
 				5407D3E01FE52BC40063C3A6 /* TrackedPositionCell.swift */,
 				DDB1FC9A2026FC8500D83AF7 /* HeaderViewCell.swift */,
@@ -1201,6 +1207,7 @@
 				DD7CB755205273C400E6E786 /* RequestToTidexBuilder.swift in Sources */,
 				DDBA44D7207FDE7C001FDE14 /* TrackedCoinCommonInfoModel.swift in Sources */,
 				DD91F332205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift in Sources */,
+				DD46BDBB20910298001EB1D0 /* NoPortfolioCoinsCell.swift in Sources */,
 				DDAD79C7208C71DA0045BD44 /* AddCurrencyTextFieldDelegate.swift in Sources */,
 				DD7E16EC2069790600EC83CC /* RubleRateRequestBuilder.swift in Sources */,
 				54081FBD1FE6686F0098195F /* TrackedCurrencyScreenDirector.swift in Sources */,
@@ -1237,6 +1244,7 @@
 				54EBA4771FE84BC100E9F412 /* ObservedCurrencyScreenDirector.swift in Sources */,
 				DD7CB74F205270DA00E6E786 /* RequestToCobinhoodBuilder.swift in Sources */,
 				542E45DB1FDC14E3006D52C9 /* CryptoSpace.xcdatamodeld in Sources */,
+				DD46BDBD209102B4001EB1D0 /* NoPortfolioCoinsCellBuilder.swift in Sources */,
 				54CA4E3F1FE53EF600E6357E /* ObservedPositionCellBuilder.swift in Sources */,
 				DD93DF552055505C007EB222 /* RequestToC2CXBuilder.swift in Sources */,
 				DD82A7B920025E3C00A6DD34 /* ActionWithCurrencyTableView.swift in Sources */,

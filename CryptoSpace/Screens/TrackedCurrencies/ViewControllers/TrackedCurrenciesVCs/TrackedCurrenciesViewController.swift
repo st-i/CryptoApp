@@ -70,12 +70,12 @@ class TrackedCurrenciesViewController: UIViewController {
         
         showIndicatorViewScreen()
         let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
+        userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
         if allSavedCoins.count == 0 {
             userPortfolioModel = PortfolioModel()
             fillTableViewWithData()
             tableView.reloadData()
         }else{
-            userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
             currentUserPortfolio = CoreDataManager.shared.getUserPortfolio()
             userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: currentUserPortfolio, userCoinsCount: userCoins.count)
             
@@ -98,18 +98,17 @@ class TrackedCurrenciesViewController: UIViewController {
         tableView.isScrollEnabled = false
         tableView.dataSource = indicatorViewDataSourceAndDelegate
         tableView.delegate = indicatorViewDataSourceAndDelegate
-//        fillTableViewWithData()
     }
     
     func fillTableViewWithData() {
         
         tableView.isScrollEnabled = true
-//        tableView.backgroundColor = UIColor.white //UIColor.groupTableViewBackground
         trackedCurrenciesDataSourceAndDelegate = TrackedCurrenciesDataSourceAndDelegate()
         
         if userCoins.count == 0 {
-            
+            trackedCurrenciesDataSourceAndDelegate.noCoins = true
         }else{
+            trackedCurrenciesDataSourceAndDelegate.noCoins = false
             trackedCurrenciesDataSourceAndDelegate.coins = userCoins
             trackedCurrenciesDataSourceAndDelegate.viewController = self
         }
@@ -117,7 +116,6 @@ class TrackedCurrenciesViewController: UIViewController {
         
         tableView.dataSource = trackedCurrenciesDataSourceAndDelegate
         tableView.delegate = trackedCurrenciesDataSourceAndDelegate
-//        tableView.reloadData()
     }
     
     @IBAction func openPortfolioGraph(_ sender: UIButton) {

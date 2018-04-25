@@ -21,6 +21,7 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
     var portfolioModel = PortfolioModel()
         
     var showInDollars = true
+    var noCoins = false
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
@@ -117,10 +118,12 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
             firstCell.portfolioProfitOrLossLabel.text = profitOrLoss
             firstCell.portfolioProfitOrLoss24hLabel.text = last24hValueChange
         }else if indexPath.section == 1 {
-            let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
-            let trackedCurrencyVC = storyboard.instantiateViewController(withIdentifier: "TrackedCurrencyViewController") as! TrackedCurrencyViewController
-            trackedCurrencyVC.currentCoin = coins[indexPath.row]
-            viewController.navigationController?.pushViewController(trackedCurrencyVC, animated: true)
+            if noCoins == false {
+                let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
+                let trackedCurrencyVC = storyboard.instantiateViewController(withIdentifier: "TrackedCurrencyViewController") as! TrackedCurrencyViewController
+                trackedCurrencyVC.currentCoin = coins[indexPath.row]
+                viewController.navigationController?.pushViewController(trackedCurrencyVC, animated: true)
+            }
         }
     }
     
@@ -135,7 +138,11 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
         case 0:
             return 1
         case 1:
-            return coins.count
+            if noCoins {
+                return 1
+            }else{
+                return coins.count
+            }
         default:
             return 0
         }
@@ -146,7 +153,11 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
         case 0:
             return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(tableView, portfolioModel: portfolioModel, showInDollars: showInDollars)
         case 1:
-            return TrackedPositionCellBuilder.buildTrackedPositionCell(for: tableView, coin: coins[indexPath.row])
+            if noCoins {
+                return NoPortfolioCoinsCellBuilder.buildCell(tableView)
+            }else{
+                return TrackedPositionCellBuilder.buildTrackedPositionCell(for: tableView, coin: coins[indexPath.row])
+            }
         default:
             return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(tableView, portfolioModel: portfolioModel, showInDollars: showInDollars)
         }
@@ -156,20 +167,41 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
         if indexPath.section == 0 {
             return false
         }else{
-            return true
+            if noCoins {
+                return false
+            }else{
+                return true
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            let coinToDelete = coins[indexPath.row]
-            coins.remove(at: indexPath.row)
-            CoreDataManager.shared.deleteGroupOfTrackedUserCoinsFromCoreData(coinShortName: coinToDelete.shortName)
-            
-            tableView.beginUpdates()
-            tableView.deleteRows(at: [indexPath], with: .bottom)
-            tableView.endUpdates()
+            let alert = UIAlertController.init(title: "Удалить позицию?", message: "Все покупки данной криптовалюты также будут удалены", preferredStyle: .alert)
+            let cancelAction = UIAlertAction.init(title: "Отмена", style: .cancel, handler: { (action) in
+                tableView.setEditing(false, animated: true)
+            })
+            let deleteAction = UIAlertAction.init(title: "Удалить", style: .default, handler: { (action) in
+                if self.coins.count == 1 {
+                    self.noCoins = true
+                    self.portfolioModel = PortfolioModel()
+                }
+                let coinToDelete = self.coins[indexPath.row]
+                self.coins.remove(at: indexPath.row)
+                CoreDataManager.shared.deleteGroupOfTrackedUserCoinsFromCoreData(coinShortName: coinToDelete.shortName)
+                
+                if self.noCoins {
+                    tableView.reloadData()
+                }else{
+                    tableView.beginUpdates()
+                    tableView.deleteRows(at: [indexPath], with: .bottom)
+                    tableView.endUpdates()
+                }
+            })
+            alert.addAction(cancelAction)
+            alert.addAction(deleteAction)
+            viewController.present(alert, animated: true, completion: nil)
         }
     }
 
