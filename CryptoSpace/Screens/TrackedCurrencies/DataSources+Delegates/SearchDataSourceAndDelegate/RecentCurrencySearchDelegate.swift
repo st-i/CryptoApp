@@ -70,7 +70,8 @@ class RecentCurrencySearchDelegate: NSObject, UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        fromVC.currencySearchBar.resignFirstResponder()
-        fromVC.currencySearchBar.showsCancelButton = false
+        fromVC.view.endEditing(true)
+//        fromVC.currencySearchBar.resignFirstResponder()
+//        fromVC.currencySearchBar.showsCancelButton = false
     }
 }

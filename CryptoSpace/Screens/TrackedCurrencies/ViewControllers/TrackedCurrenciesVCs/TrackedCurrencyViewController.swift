@@ -75,7 +75,7 @@ class TrackedCurrencyViewController: UIViewController {
     
     func fillTableViewWithData() {
         self.tableView.backgroundColor = UIColor.white //groupTableViewBackground
-        if (self.navigationController?.viewControllers[0].isKind(of: TrackedCurrenciesViewController.self))! {
+//        if (self.navigationController?.viewControllers[0].isKind(of: TrackedCurrenciesViewController.self))! {
             self.trackedCurrencyDataSource = TrackedCurrencyDataSource()
             self.trackedCurrencyDelegate = TrackedCurrencyDelegate()
         
@@ -90,18 +90,18 @@ class TrackedCurrencyViewController: UIViewController {
             
             self.trackedCurrencyDataSource.modelsArray = modelsArray
             self.trackedCurrencyDelegate.modelsArray = modelsArray
-        }else{
-            self.observedCurrencyDataSource = ObservedCurrencyDataSource()
-            self.observedCurrencyDelegate = ObservedCurrencyDelegate()
-            
-            self.tableView.dataSource = self.observedCurrencyDataSource
-            self.tableView.delegate = self.observedCurrencyDelegate
-            
-            let arrayWithCells = ObservedCurrencyScreenDirector.createObservedCurrencyCells(for: self.tableView)
-            
-            self.observedCurrencyDataSource.arrayWithCells = arrayWithCells
-            self.observedCurrencyDelegate.arrayWithCells = arrayWithCells
-        }
+//        }else{
+//            self.observedCurrencyDataSource = ObservedCurrencyDataSource()
+//            self.observedCurrencyDelegate = ObservedCurrencyDelegate()
+//            
+//            self.tableView.dataSource = self.observedCurrencyDataSource
+//            self.tableView.delegate = self.observedCurrencyDelegate
+//            
+//            let arrayWithCells = ObservedCurrencyScreenDirector.createObservedCurrencyCells(for: self.tableView)
+//            
+//            self.observedCurrencyDataSource.arrayWithCells = arrayWithCells
+//            self.observedCurrencyDelegate.arrayWithCells = arrayWithCells
+//        }
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
 //            self.startCurrencyImageAnimation()
 //        }

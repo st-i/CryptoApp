@@ -18,6 +18,7 @@ class TrackedCoinPurchaseInfoModel: NSObject {
     var last24hSumMoneyChange = ""
     var last24hSumPercentChange = ""
     var purchaseDate = ""
+    var purchaseDateValue: Date?
     var note = ""
     var shortName = ""
     var uniqueId: Int!

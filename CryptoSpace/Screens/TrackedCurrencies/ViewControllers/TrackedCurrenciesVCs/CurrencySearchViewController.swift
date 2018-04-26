@@ -21,7 +21,8 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
     var searchDelegate:SearchDelegate!
     
     var topSixCoins = [Coin]()
-    var allCoins = [Coin]()
+    var allUntouchableCoins = [Coin]()
+    var searchedCoins = [Coin]()
     
 //    var isPresentedVC: Bool!
     
@@ -74,7 +75,7 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
 //        self.searchBar.searchBarStyle = .minimal
 //        self.searchBar.backgroundColor = UIColor.groupTableViewBackground
         
-        allCoins = AllCoinsManager.createArrayWithAllCoins()
+        allUntouchableCoins = AllCoinsManager.createArrayWithAllCoins()
         
         showRecentAndPopularResults()
     }
@@ -118,8 +119,8 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
         self.searchDataSource = SearchDataSource()
         self.searchDelegate = SearchDelegate()
         
-        searchDelegate.allCoinsArray = allCoins
-        searchDataSource.allCoinsArray = allCoins
+        searchDelegate.allCoinsArray = searchedCoins
+        searchDataSource.allCoinsArray = searchedCoins
         
         self.tableView.dataSource = self.searchDataSource
         self.tableView.delegate = self.searchDelegate
@@ -133,13 +134,22 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         currencySearchBar.showsCancelButton = true
+        searchedCoins = allUntouchableCoins
+        showRecentResults()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if (searchBar.text?.count)! > 0 {
-            self.showRecentResults()
+            var coinsForSearchTextArray = [Coin]()
+            for someCoin in allUntouchableCoins {
+                if someCoin.fullName.contains(searchText) || someCoin.shortName.contains(searchText) {
+                    coinsForSearchTextArray.append(someCoin)
+                }
+            }
+            searchedCoins = coinsForSearchTextArray
+            showRecentResults()
         }else{
-            self.showRecentAndPopularResults()
+            showRecentAndPopularResults()
         }
     }
     

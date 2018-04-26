@@ -49,7 +49,7 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
             headerView.addSubview(upperSeparator)
             
             let headerViewRateLabel = UILabel.init(frame: CGRect(x: headerView.frame.width - 90 - 15, y: 5, width: 90, height: 20))
-            //            headerViewRateLabel.backgroundColor = UIColor.black
+//            headerViewRateLabel.backgroundColor = UIColor.black
             headerViewRateLabel.textAlignment = .right
             headerViewRateLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium)
             headerViewRateLabel.textColor = UIColor.gray

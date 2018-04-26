@@ -280,6 +280,7 @@ class CertainCoinInfoMapper: NSObject {
         var coinInfoModelsArray = [Any]()
         let coinCommonInfoModel = CertainCoinInfoMapper.mapTrackedCoinToCommonInfoModel(coin: coin)
         coinInfoModelsArray.append(coinCommonInfoModel)
+        var unsortedPurchases = [TrackedCoinPurchaseInfoModel]()
         
         for someCoin in certainUserCoinArray {
             let purchaseInfoModel = TrackedCoinPurchaseInfoModel()
@@ -318,6 +319,7 @@ class CertainCoinInfoMapper: NSObject {
             purchaseInfoModel.last24hSumMoneyChange = String(format: "%@$%@", minusOrPlusSign, last24hSumMoneyChangeString)
             
             let purchaseDate = someCoin.purchaseDate!
+            purchaseInfoModel.purchaseDateValue = purchaseDate
             purchaseInfoModel.purchaseDate = DetailedDateFormatter.stringFromDate(date: purchaseDate)
             
             purchaseInfoModel.note = someCoin.note
@@ -325,7 +327,12 @@ class CertainCoinInfoMapper: NSObject {
             purchaseInfoModel.shortName = coin.shortName
             purchaseInfoModel.uniqueId = someCoin.uniqueId
             
-            coinInfoModelsArray.append(purchaseInfoModel)
+            unsortedPurchases.append(purchaseInfoModel)
+        }
+        
+        let sortedPurchases = unsortedPurchases.sorted { ($0.purchaseDateValue! > $1.purchaseDateValue!) }
+        for someModel in sortedPurchases {
+            coinInfoModelsArray.append(someModel)
         }
         
         return coinInfoModelsArray

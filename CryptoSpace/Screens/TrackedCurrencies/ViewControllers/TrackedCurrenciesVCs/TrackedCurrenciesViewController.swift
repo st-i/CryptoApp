@@ -22,6 +22,7 @@ class TrackedCurrenciesViewController: UIViewController {
     
     var btcRate:Double = 0.0
     var rubleRate: Double = 0.0 //57.356798
+    var allUnsortedCoins = [Coin]()
     var userCoins = [Coin]()
     
     var currentUserPortfolio: Portfolio!
@@ -70,6 +71,7 @@ class TrackedCurrenciesViewController: UIViewController {
         
         showIndicatorViewScreen()
         let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
+        allUnsortedCoins = allSavedCoins
         userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
         if allSavedCoins.count == 0 {
             userPortfolioModel = PortfolioModel()
@@ -85,6 +87,17 @@ class TrackedCurrenciesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
+        if allSavedCoins.count != allUnsortedCoins.count {
+            userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
+            if allSavedCoins.count == 0 {
+                userPortfolioModel = PortfolioModel()
+                fillTableViewWithData()
+                tableView.reloadData()
+            }else{
+                refreshCurrenciesRates()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -211,10 +224,6 @@ class TrackedCurrenciesViewController: UIViewController {
                         }
                     }
                 }
-                
-//                self.currentUserPortfolio = CoreDataManager.shared.getUserPortfolio()
-//                self.userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: self.currentUserPortfolio, userCoinsCount: self.userCoins.count
-//                )
 
                 self.currentUserPortfolio.last24hValueDollarChange = portfolio24hChangeInDollars
                 self.currentUserPortfolio.rubleExchangeRate = newRubleRate
@@ -225,7 +234,6 @@ class TrackedCurrenciesViewController: UIViewController {
                 
                 //начальная стоимость
                 let initialCoinsCostInDollars = initialPortfolioCost
-//                let initialDollarValueBeforeUpdate = self.currentUserPortfolio.initialDollarValue
                 self.currentUserPortfolio.initialDollarValue = initialCoinsCostInDollars
                 
                 //изменение в процентах за 24ч
@@ -237,13 +245,6 @@ class TrackedCurrenciesViewController: UIViewController {
                 }
                 self.currentUserPortfolio.last24hValuePercentChange = portfolio24PercentagesChange
                 
-                //сохраняем в кордату или обновляем
-//                if initialDollarValueBeforeUpdate == 0 {
-//                    CoreDataManager.shared.savePortfolio(portfolio: self.currentUserPortfolio)
-//                }else{
-//                    CoreDataManager.shared.updatePortfolio(portfolio: self.currentUserPortfolio)
-//                }
-                
                 //Обновляем
                 CoreDataManager.shared.updatePortfolio(portfolio: self.currentUserPortfolio)
                 
@@ -252,14 +253,10 @@ class TrackedCurrenciesViewController: UIViewController {
                 }
                 
                 //отображаем
-//                let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
-//                self.userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
                 self.userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: self.currentUserPortfolio, userCoinsCount: self.userCoins.count
                 )
                 self.fillTableViewWithData()
                 self.tableView.reloadData()
-//                self.trackedCurrenciesDataSourceAndDelegate.coins = self.userCoins
-//                self.trackedCurrenciesDataSourceAndDelegate.portfolioModel = self.userPortfolioModel
             })
         }
     }
