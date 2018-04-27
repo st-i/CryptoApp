@@ -151,7 +151,8 @@ class GlobalNumberFormatter: NSObject {
         currentNumberFormatter.decimalSeparator = ","
         currentNumberFormatter.numberStyle = .decimal
         var fractionDigitsNumber = 0
-        if number < 1 {
+        let positiveNumber = fabs(number)
+        if positiveNumber < 1 {
             fractionDigitsNumber = 6
         }else{
             fractionDigitsNumber = 2
@@ -372,7 +373,7 @@ class PortfolioMapper: NSObject {
         
         var profitOrLossInDollars = 0.0
         var minusOrPlusSign = ""
-        if initialCoinsCostInDollars >= userCoinsSumInDollars {
+        if initialCoinsCostInDollars > userCoinsSumInDollars {
             profitOrLossInDollars = initialCoinsCostInDollars - userCoinsSumInDollars
             minusOrPlusSign = "-"
         }else{
@@ -380,8 +381,9 @@ class PortfolioMapper: NSObject {
             minusOrPlusSign = "+"
         }
         
+        //прибыль или убыток с момента покупки
         currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: profitOrLossInDollars)
-        let profitOrLossInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: profitOrLossInDollars))
+        let profitOrLossInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: profitOrLossInDollars)) //переводить будем всегда положительное число
         let profitOrLossInDollarsWithSignString = String(format:"%@$%@", minusOrPlusSign, profitOrLossInDollarsString!)
         portfolioModel.dollarProfitOrLoss = profitOrLossInDollarsWithSignString
         
@@ -393,21 +395,21 @@ class PortfolioMapper: NSObject {
         
         //прибыль или убыток за 24ч
         let portfolio24hChangeInDollars = userPortfolio.last24hValueDollarChange
-        currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: fabs(portfolio24hChangeInDollars))
-        let portfolio24hChangeInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: portfolio24hChangeInDollars))
-        minusOrPlusSign = portfolio24hChangeInDollars < 0 ? "" : "+"
+        currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: portfolio24hChangeInDollars)
+        let portfolio24hChangeInDollarsString = currentNumberFormatter.string(from: NSNumber.init(value: fabs(portfolio24hChangeInDollars)))
+        minusOrPlusSign = portfolio24hChangeInDollars < 0 ? "-" : "+"
         let portfolio24hChangeInDollarsWithSignString = String(format:"%@$%@", minusOrPlusSign, portfolio24hChangeInDollarsString!)
         portfolioModel.last24hValueDollarChange = portfolio24hChangeInDollarsWithSignString
         
         let portfolio24hChangeInRubles = portfolio24hChangeInDollars * rubleExchangeRate
-        currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: fabs(portfolio24hChangeInRubles))
-        let portfolio24hChangeInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: portfolio24hChangeInRubles))
+        currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: portfolio24hChangeInRubles)
+        let portfolio24hChangeInRublesString = currentNumberFormatter.string(from: NSNumber.init(value: fabs(portfolio24hChangeInRubles)))
         let portfolio24hChangeInRublesWithSignString = String(format:"%@₽%@", minusOrPlusSign, portfolio24hChangeInRublesString!)
         portfolioModel.last24hValueRubleChange = portfolio24hChangeInRublesWithSignString
         
-        //изменение в процентах с начала
+        //изменение в процентах с момента покупки
         let changeFromBeginningInPercentages = (profitOrLossInDollars / initialCoinsCostInDollars) * 100.0
-        currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: changeFromBeginningInPercentages)
+//        currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: changeFromBeginningInPercentages)
         currentNumberFormatter.maximumFractionDigits = 2
         let changeFromBeginningInPercentagesString = currentNumberFormatter.string(from: NSNumber.init(value: changeFromBeginningInPercentages))
         minusOrPlusSign = initialCoinsCostInDollars > userCoinsSumInDollars ? "-" : "+"
@@ -421,11 +423,8 @@ class PortfolioMapper: NSObject {
         }else{
             portfolio24PercentagesChange = (portfolio24hChangeInDollars / userCoinsSumInDollars) * 100.0
         }
-        if portfolio24hChangeInDollars < 0 {
-            minusOrPlusSign = "-"
-        }else{
-            minusOrPlusSign = "+"
-        }
+        minusOrPlusSign = portfolio24hChangeInDollars > 0 ? "+" : ""
+    
         let portfolio24PercentagesChangeString = currentNumberFormatter.string(from: NSNumber.init(value: portfolio24PercentagesChange))
         let portfolio24PercentagesChangeStringWithSign = String(format:"%@%@%%", minusOrPlusSign, portfolio24PercentagesChangeString!)
         portfolioModel.last24hValuePercentChange = portfolio24PercentagesChangeStringWithSign
