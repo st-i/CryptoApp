@@ -100,6 +100,7 @@ class ObservedCurrenciesViewController: UIViewController {
         observedCurrenciesDataSource.cmcInfoModel = cmcInfoModel
         observedCurrenciesDataSource.observedCoinsArray = observedCoinsArray
         
+        tableView.isScrollEnabled = true
         tableView.dataSource = observedCurrenciesDataSource
         tableView.delegate = observedCurrenciesDelegate
     }
