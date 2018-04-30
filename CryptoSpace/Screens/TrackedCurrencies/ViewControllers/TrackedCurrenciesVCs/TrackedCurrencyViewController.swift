@@ -42,6 +42,7 @@ class TrackedCurrencyViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        
         self.startCurrencyImageAnimation()
         
         self.animationTimer =
@@ -56,6 +57,7 @@ class TrackedCurrencyViewController: UIViewController {
     }
     
     func fillTableViewWithData() {
+        
         tableView.backgroundColor = UIColor.white //groupTableViewBackground
         trackedCurrencyDataSource = TrackedCurrencyDataSource()
         trackedCurrencyDelegate = TrackedCurrencyDelegate()
@@ -84,6 +86,7 @@ class TrackedCurrencyViewController: UIViewController {
     }
     
     @objc func deleteCoinGroupAction() {
+        
         let alert = UIAlertController.init(title: "Удалить позицию?", message: "Все покупки данной криптовалюты также будут удалены", preferredStyle: .alert)
         let cancelAction = UIAlertAction.init(title: "Отмена", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction.init(title: "Удалить", style: .default, handler: { (action) in

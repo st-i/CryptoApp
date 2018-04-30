@@ -23,16 +23,20 @@ class SearchDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
-        let addCurrencyVC = storyboard.instantiateViewController(withIdentifier: "AddCurrencyViewController") as! AddCurrencyViewController
-        addCurrencyVC.coinType = fromVC.coinType
-        addCurrencyVC.currentCoin = allCoinsArray[indexPath.row]
-        self.fromVC.navigationController?.pushViewController(addCurrencyVC, animated: true)
+        if allCoinsArray.count > 0 {
+            let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
+            let addCurrencyVC = storyboard.instantiateViewController(withIdentifier: "AddCurrencyViewController") as! AddCurrencyViewController
+            addCurrencyVC.coinType = fromVC.coinType
+            addCurrencyVC.currentCoin = allCoinsArray[indexPath.row]
+            self.fromVC.navigationController?.pushViewController(addCurrencyVC, animated: true)
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        fromVC.view.endEditing(true)
-//        fromVC.currencySearchBar.resignFirstResponder()
+//        fromVC.view.endEditing(true)
+        if fromVC.currencySearchBar.isFirstResponder {
+            fromVC.currencySearchBar.resignFirstResponder()
+        }
 //        fromVC.currencySearchBar.showsCancelButton = false
     }
 }

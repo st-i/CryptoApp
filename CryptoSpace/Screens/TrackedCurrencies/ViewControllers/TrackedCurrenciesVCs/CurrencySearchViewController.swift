@@ -38,9 +38,9 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
 //            navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "X", style: .plain, target: self, action: #selector(dismissVC))
 //        }
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "X", style: .plain, target: self, action: #selector(dismissVC))
-        self.navigationController?.navigationBar.isTranslucent = false;
-        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.isTranslucent = false;
+        navigationController?.navigationBar.barTintColor = UIColor.init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)
+        navigationController?.navigationBar.tintColor = UIColor.white
         
         let titleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
         let titleViewLabel = UILabel.init(frame: titleView.frame)
@@ -49,7 +49,7 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
         titleViewLabel.textColor = UIColor.white
         titleViewLabel.text = "Поиск"
         titleView.addSubview(titleViewLabel)
-        self.navigationItem.titleView = titleView
+        navigationItem.titleView = titleView
         
 //        let titleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
 //        let titleViewLabel = UILabel.init(frame: titleView.frame)
@@ -60,32 +60,33 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
 //        titleView.addSubview(titleViewLabel)
 //        self.navigationItem.titleView = titleView
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
         
 //        let searchBar = UISearchBar()
 //        searchBar.placeholder = "Поиск"
         
-        currencySearchBar.showsCancelButton = false
+//        currencySearchBar.showsCancelButton = false
         currencySearchBar.delegate = self
+        currencySearchBar.returnKeyType = .done
 //        searchBar.backgroundColor = UIColor.init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)
 //        currencySearchBar = searchBar
-        currencySearchBar.setValue("Отмена", forKey:"_cancelButtonText")
+//        currencySearchBar.setValue("Отмена", forKey:"_cancelButtonText")
 //        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], for: .normal)
 //        navigationItem.titleView = currencySearchBar
         
-        self.tableView.backgroundColor = UIColor.white //groupTableViewBackground
+        tableView.backgroundColor = UIColor.white //groupTableViewBackground
 //        self.searchBar.searchBarStyle = .minimal
 //        self.searchBar.backgroundColor = UIColor.groupTableViewBackground
         
         allUntouchableCoins = AllCoinsManager.createArrayWithAllCoins()
-        
-        showRecentAndPopularResults()
+        searchedCoins = allUntouchableCoins
+        showCoins()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         currencySearchBar.resignFirstResponder()
-        currencySearchBar.showsCancelButton = false
+//        currencySearchBar.showsCancelButton = false
     }
     
     @objc func dismissVC() {
@@ -100,75 +101,77 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
     
     
     func showRecentAndPopularResults() {
-        self.recentCurrencySearchDataSource = RecentCurrencySearchDataSource()
-        self.recentCurrencySearchDelegate = RecentCurrencySearchDelegate()
+        recentCurrencySearchDataSource = RecentCurrencySearchDataSource()
+        recentCurrencySearchDelegate = RecentCurrencySearchDelegate()
         
-        self.tableView.dataSource = self.recentCurrencySearchDataSource
-        self.tableView.delegate = self.recentCurrencySearchDelegate
+        tableView.dataSource = recentCurrencySearchDataSource
+        tableView.delegate = recentCurrencySearchDelegate
         
-        let arrayWithCells = CurrencyForSearchScreenDirector.createCurrencyForSearchCells(for: self.tableView)
+        let arrayWithCells = CurrencyForSearchScreenDirector.createCurrencyForSearchCells(for: tableView)
 
-        self.recentCurrencySearchDataSource.arrayWithCells = arrayWithCells
-        self.recentCurrencySearchDelegate.arrayWithCells = arrayWithCells
-        self.recentCurrencySearchDelegate.fromVC = self
+        recentCurrencySearchDataSource.arrayWithCells = arrayWithCells
+        recentCurrencySearchDelegate.arrayWithCells = arrayWithCells
+        recentCurrencySearchDelegate.fromVC = self
         
-//        self.tableView.tableHeaderView = nil
+//        tableView.tableHeaderView = nil
         
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
-    func showRecentResults() {
-        self.searchDataSource = SearchDataSource()
-        self.searchDelegate = SearchDelegate()
+    func showCoins() {
+        searchDataSource = SearchDataSource()
+        searchDelegate = SearchDelegate()
         
         searchDelegate.allCoinsArray = searchedCoins
         searchDataSource.allCoinsArray = searchedCoins
         
-        self.tableView.dataSource = self.searchDataSource
-        self.tableView.delegate = self.searchDelegate
+        tableView.dataSource = searchDataSource
+        tableView.delegate = searchDelegate
         
-        self.searchDelegate.fromVC = self
-        
+        searchDelegate.fromVC = self
 //        self.specifyTableViewHeader()
-        
-        self.tableView.reloadData()
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        currencySearchBar.resignFirstResponder()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        currencySearchBar.showsCancelButton = true
-        searchedCoins = allUntouchableCoins
-        showRecentResults()
+        tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
+        currencySearchBar.becomeFirstResponder()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if (searchBar.text?.count)! > 0 {
+        if searchText.count > 0 {
             var coinsForSearchTextArray = [Coin]()
             for someCoin in allUntouchableCoins {
-                if someCoin.fullName.contains(searchText) || someCoin.shortName.contains(searchText) {
+                if someCoin.fullName.lowercased().contains(searchText.lowercased()) ||
+                    someCoin.shortName.lowercased().contains(searchText.lowercased()) {
                     coinsForSearchTextArray.append(someCoin)
                 }
             }
             searchedCoins = coinsForSearchTextArray
-            showRecentResults()
         }else{
-            showRecentAndPopularResults()
+            searchedCoins = allUntouchableCoins
         }
+        showCoins()
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+////        currencySearchBar.text = ""
+////        currencySearchBar.resignFirstResponder()
+////        searchBar.showsCancelButton = false
+////        showRecentAndPopularResults()
+//        cancelSearchBar()
+//    }
+    
+//    public func cancelSearchBar () {
 //        currencySearchBar.text = ""
 //        currencySearchBar.resignFirstResponder()
-//        searchBar.showsCancelButton = false
+//        currencySearchBar.showsCancelButton = false
 //        showRecentAndPopularResults()
-        cancelSearchBar()
-    }
-    
-    public func cancelSearchBar () {
-        currencySearchBar.text = ""
-        currencySearchBar.resignFirstResponder()
-        currencySearchBar.showsCancelButton = false
-        showRecentAndPopularResults()
-    }
+//    }
     
 //    func specifyTableViewHeader() {
 //        let tableViewHeaderView = UIView.init(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 40))

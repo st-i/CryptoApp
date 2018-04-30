@@ -251,7 +251,7 @@ class CertainCoinInfoMapper: NSObject {
         }
         currentNumberFormatter.maximumFractionDigits = initialSumMoneyChange < 1 ? 6 : 2
         let initialSumMoneyChangeString = currentNumberFormatter.string(from: NSNumber.init(value: initialSumMoneyChange))!
-        var minusOrPlusSign = coin.initialSum >= coin.sum ? "-" : "+"
+        var minusOrPlusSign = coin.initialSum <= coin.sum ? "+" : "-"
         commonInfoModel.initialSumMoneyChange = String(format: "%@$%@", minusOrPlusSign, initialSumMoneyChangeString)
         
         let initialSumPercentChange = (initialSumMoneyChange / coin.initialSum) * 100.0

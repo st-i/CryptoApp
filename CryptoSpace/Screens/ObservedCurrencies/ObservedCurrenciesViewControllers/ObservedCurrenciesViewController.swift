@@ -11,8 +11,7 @@ import UIKit
 class ObservedCurrenciesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var observedCurrenciesDataSource:ObservedCurrenciesDataSource!
-    var observedCurrenciesDelegate:ObservedCurrenciesDelegate!
+    var observedCurrenciesDataSourceAndDelegate:ObservedCurrenciesDataSourceAndDelegate!
     var indicatorViewDataSourceAndDelegate: IndicatorViewDataSourceAndDelegate!
     
     var originalEditButton: UIBarButtonItem!
@@ -106,24 +105,23 @@ class ObservedCurrenciesViewController: UIViewController {
     
     func fillTableViewWithData() {
 
-        observedCurrenciesDataSource = ObservedCurrenciesDataSource()
-        observedCurrenciesDelegate = ObservedCurrenciesDelegate()
+        observedCurrenciesDataSourceAndDelegate = ObservedCurrenciesDataSourceAndDelegate()
     
         navigationItem.rightBarButtonItem?.isEnabled = true
-        observedCurrenciesDataSource.cmcInfoModel = cmcInfoModel
+        observedCurrenciesDataSourceAndDelegate.cmcInfoModel = cmcInfoModel
         if observedCoinsArray.count == 0 {
             navigationItem.leftBarButtonItem = nil
-            observedCurrenciesDataSource.noCoins = true
+            observedCurrenciesDataSourceAndDelegate.noCoins = true
         }else{
             navigationItem.leftBarButtonItem = leftBarButtonItem
             navigationItem.leftBarButtonItem?.isEnabled = true
-            observedCurrenciesDataSource.noCoins = false
-            observedCurrenciesDataSource.observedCoinsArray = observedCoinsArray
+            observedCurrenciesDataSourceAndDelegate.noCoins = false
+            observedCurrenciesDataSourceAndDelegate.observedCoinsArray = observedCoinsArray
         }
         
         tableView.isScrollEnabled = true
-        tableView.dataSource = observedCurrenciesDataSource
-        tableView.delegate = observedCurrenciesDelegate
+        tableView.dataSource = observedCurrenciesDataSourceAndDelegate
+        tableView.delegate = observedCurrenciesDataSourceAndDelegate
     }
     
     @objc func editObservedCurrenciesAction() {

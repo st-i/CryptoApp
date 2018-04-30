@@ -59,7 +59,7 @@ class TrackedPositionCellBuilder: NSObject {
         currentNumberFormatter.maximumFractionDigits = 2
         let positiveCoinRate24hPercentChangeString = currentNumberFormatter.string(from: NSNumber.init(value: positiveCoinRate24hPercentChange))
         if coinRate24hPercentChange >= 0 {
-            cell.currencyExchangeRatePercentagesChangeLabel.text = String(format: "%@%%", positiveCoinRate24hPercentChangeString!)
+            cell.currencyExchangeRatePercentagesChangeLabel.text = String(format: "+%@%%", positiveCoinRate24hPercentChangeString!)
             cell.currencyExchangeRatePercentagesChangeLabel.textColor = UIColor.greenChangeColor()
         }else{
             cell.currencyExchangeRatePercentagesChangeLabel.text = String(format: "-%@%%", positiveCoinRate24hPercentChangeString!)

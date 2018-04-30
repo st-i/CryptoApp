@@ -13,14 +13,20 @@ class SearchDataSource: NSObject, UITableViewDataSource {
     var allCoinsArray = [Coin]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allCoinsArray.count
+        
+        if allCoinsArray.count > 0 {
+            return allCoinsArray.count
+        }else{
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let triggersCoin = Coin.init()
-//        triggersCoin.fullName = "Triggers"
-//        triggersCoin.shortName = "TRIG"
         
-        return CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(coin: allCoinsArray[indexPath.row], tableView: tableView)
+        if allCoinsArray.count > 0 {
+            return CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(coin: allCoinsArray[indexPath.row], tableView: tableView)
+        }else{
+            return NoDataCellBuilder.buildCell(tableView, textType: .searchingResults)
+        }
     }
 }

@@ -48,19 +48,26 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
             upperSeparator.backgroundColor = UIColor.init(red: 154.0 / 255.0, green: 154.0 / 255.0, blue: 154.0 / 255.0, alpha: 0.4)
             headerView.addSubview(upperSeparator)
             
-            let headerViewRateLabel = UILabel.init(frame: CGRect(x: headerView.frame.width - 90 - 15, y: 5, width: 90, height: 20))
+            var exchangeRateText = "Курс"
+            var costText = "Стоимость"
+            if noCoins {
+                exchangeRateText = ""
+                costText = ""
+            }
+            
+            let headerViewRateLabel = UILabel.init(frame: CGRect(x: headerView.frame.width - 30 - 15, y: 5, width: 30, height: 20))
 //            headerViewRateLabel.backgroundColor = UIColor.black
             headerViewRateLabel.textAlignment = .right
             headerViewRateLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium)
             headerViewRateLabel.textColor = UIColor.gray
-            headerViewRateLabel.text = "Курс"
+            headerViewRateLabel.text = exchangeRateText
             headerView.addSubview(headerViewRateLabel)
             
             let headerViewValueLabel = UILabel.init(frame: CGRect(x: headerView.frame.width - 90 - 15 - 22 - 118, y: 5, width: 118, height: 20))
             headerViewValueLabel.textAlignment = .right
             headerViewValueLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium)
             headerViewValueLabel.textColor = UIColor.gray
-            headerViewValueLabel.text = "Стоимость"
+            headerViewValueLabel.text = costText
             headerView.addSubview(headerViewValueLabel)
             
             return headerView

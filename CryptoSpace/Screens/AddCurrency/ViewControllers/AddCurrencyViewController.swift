@@ -180,6 +180,7 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
     @objc func addCurrencyAction() {
         if addCurrencyDataSourceAndDelegate.currencyPurchase {
             currentCoin.exchangeRate = purchaseExchangeRateValue
+            currentCoin.purchaseExchangeRate = purchaseExchangeRateValue
             currentCoin.amount = currencyAmountValue
             currentCoin.sum = purchaseSumValue
             currentCoin.initialSum = purchaseSumValue
