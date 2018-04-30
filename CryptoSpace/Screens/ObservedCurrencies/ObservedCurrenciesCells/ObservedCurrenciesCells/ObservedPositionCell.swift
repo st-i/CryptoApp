@@ -12,6 +12,7 @@ class ObservedPositionCell: UITableViewCell {
 
     @IBOutlet weak var currencyImageView: UIImageView!
     @IBOutlet weak var currencyPairLabel: UILabel!
+    @IBOutlet weak var currencyFullNameLabel: UILabel!
     @IBOutlet weak var currencyExchangeRateCostLabel: UILabel!
     @IBOutlet weak var currencyExchangeRatePercentagesChangeLabel: UILabel!
     

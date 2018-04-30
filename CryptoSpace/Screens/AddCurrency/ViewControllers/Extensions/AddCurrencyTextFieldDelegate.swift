@@ -502,5 +502,10 @@ extension AddCurrencyViewController: UITextFieldDelegate {
                 purchaseSumCell.purchaseSumTextField.text = ""
             }
         }
+        
+        purchaseExchRateText = purchaseExchangeRateCell.purchaseExchangeRateTextField.text
+        currencyAmountText = currencyAmountCell.currencyAmountTextField.text
+        purchaseSumText = purchaseSumCell.purchaseSumTextField.text
+        enableOrDisableAddButton()
     }
 }

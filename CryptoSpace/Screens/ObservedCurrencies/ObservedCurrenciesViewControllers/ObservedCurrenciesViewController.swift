@@ -17,6 +17,7 @@ class ObservedCurrenciesViewController: UIViewController {
     
     var originalEditButton: UIBarButtonItem!
     var originalDoneButton: UIBarButtonItem!
+    var leftBarButtonItem: UIBarButtonItem?
     
     var requestManager: RequestManager!
     
@@ -39,9 +40,10 @@ class ObservedCurrenciesViewController: UIViewController {
         titleView.addSubview(titleViewLabel)
         self.navigationItem.titleView = titleView
         
-        originalEditButton = UIBarButtonItem.init(title: "Изм.", style: .plain, target: self, action: #selector(editObservedCurrenciesAction))
-        originalDoneButton = UIBarButtonItem.init(title: "Готово", style: .done, target: self, action: #selector(editObservedCurrenciesAction))
-        self.navigationItem.rightBarButtonItem = originalEditButton
+//        originalEditButton = UIBarButtonItem.init(title: "Изм.", style: .plain, target: self, action: #selector(editObservedCurrenciesAction))
+//        originalDoneButton = UIBarButtonItem.init(title: "Готово", style: .done, target: self, action: #selector(editObservedCurrenciesAction))
+//        self.navigationItem.rightBarButtonItem = originalEditButton
+        
 //        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
 //        self.navigationItem.rightBarButtonItem =
@@ -51,10 +53,13 @@ class ObservedCurrenciesViewController: UIViewController {
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addCoinAction))
 //        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
-        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshMarketCapAndCurrenciesRates)) // sendRequestForTest updateCoinMarketCap
-        navigationItem.leftBarButtonItem = refreshButton
+        leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshMarketCapAndCurrenciesRates)) // sendRequestForTest updateCoinMarketCap
+        let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addObservedCurrency))
+//        navigationItem.leftBarButtonItem = refreshButton
+        navigationItem.rightBarButtonItem = addButton
+        navigationItem.rightBarButtonItem?.isEnabled = false
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
         
         requestManager = RequestManager()
         cmcInfoModel = CMCInfoModel()
@@ -69,7 +74,8 @@ class ObservedCurrenciesViewController: UIViewController {
                 CoreDataManager.shared.saveCoinMarketCap(value: value)
                 self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)
                 if self.observedCoinsArray.count == 0 {
-                    //показываем ячейку "нет монет"
+                    self.fillTableViewWithData() //показываем ячейку "нет монет"
+                    self.tableView.reloadData()
                 }else{
                     self.refreshMarketCapAndCurrenciesRates() //такого не должно произойти
                 }
@@ -78,12 +84,18 @@ class ObservedCurrenciesViewController: UIViewController {
             if observedCoinsArray.count > 0 {
                 refreshMarketCapAndCurrenciesRates()
             }else{
-                //показываем ячейку "нет монет"
+                getMarketCapValue(completion: { (value) in
+                    CoreDataManager.shared.updateCoinMarketCap(value: value)
+                    self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)
+                    self.fillTableViewWithData() //показываем ячейку "нет монет"
+                    self.tableView.reloadData()
+                })
             }
         }
     }
     
     func showIndicatorViewScreen() {
+        
         tableView.backgroundColor = UIColor.white
         indicatorViewDataSourceAndDelegate = IndicatorViewDataSourceAndDelegate()
         
@@ -97,8 +109,17 @@ class ObservedCurrenciesViewController: UIViewController {
         observedCurrenciesDataSource = ObservedCurrenciesDataSource()
         observedCurrenciesDelegate = ObservedCurrenciesDelegate()
     
+        navigationItem.rightBarButtonItem?.isEnabled = true
         observedCurrenciesDataSource.cmcInfoModel = cmcInfoModel
-        observedCurrenciesDataSource.observedCoinsArray = observedCoinsArray
+        if observedCoinsArray.count == 0 {
+            navigationItem.leftBarButtonItem = nil
+            observedCurrenciesDataSource.noCoins = true
+        }else{
+            navigationItem.leftBarButtonItem = leftBarButtonItem
+            navigationItem.leftBarButtonItem?.isEnabled = true
+            observedCurrenciesDataSource.noCoins = false
+            observedCurrenciesDataSource.observedCoinsArray = observedCoinsArray
+        }
         
         tableView.isScrollEnabled = true
         tableView.dataSource = observedCurrenciesDataSource
@@ -118,11 +139,13 @@ class ObservedCurrenciesViewController: UIViewController {
         }
     }
     
-    func addCoinAction() {
+    @objc func addObservedCurrency() {
         
         let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
-        let searchVC = storyboard.instantiateViewController(withIdentifier: "CurrencySearchViewController")
-        self.navigationController?.pushViewController(searchVC, animated: true)
+        let searchCurrencyVC = storyboard.instantiateViewController(withIdentifier: "CurrencySearchViewController") as! CurrencySearchViewController
+        searchCurrencyVC.coinType = CoinType.Observed
+        let navContr = UINavigationController.init(rootViewController: searchCurrencyVC)
+        navigationController?.present(navContr, animated: true, completion: nil)
     }
     
     @objc func refreshMarketCapAndCurrenciesRates() {
@@ -172,6 +195,7 @@ class ObservedCurrenciesViewController: UIViewController {
     }
     
     @objc func updateCoinMarketCap() {
+        
         getMarketCapValue { (value) in
             CoreDataManager.shared.updateCoinMarketCap(value: value)
             self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)

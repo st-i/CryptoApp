@@ -30,9 +30,15 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
     var purchaseSumValue: Double!
     var currencyAmountValue: Double!
     
+    var purchaseExchRateText: String?
+    var currencyAmountText: String?
+    var purchaseSumText: String?
+    
     var commonNumberFormatter: NumberFormatter!
     
     var requestWasSend = false
+    
+    var coinType: CoinType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +50,11 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
         titleViewLabel.textColor = UIColor.white
         titleViewLabel.text = currentCoin.shortName
         titleView.addSubview(titleViewLabel)
-        self.navigationItem.titleView = titleView
+        navigationItem.titleView = titleView
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "\\/", style: .plain, target: self, action: #selector(addCurrencyAction))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Добавить", style: .plain, target: self, action: #selector(addCurrencyAction))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem?.isEnabled = false
         
         firstZeroAndComma = false
         secondZeroAndComma = false
@@ -81,6 +88,12 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
                 self.purchaseExchangeRateValue = coinRate
 
                 self.requestWasSend = true
+                if self.coinType == CoinType.Tracked {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
+                }else{
+                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+                }
+                
                 self.fillTableViewWithData()
             }
         }
@@ -98,7 +111,7 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
     
     func fillTableViewWithData() {
         self.addCurrencyDataSourceAndDelegate = AddCurrencyDataSourceAndDelegate()
-        self.addCurrencyDataSourceAndDelegate.currencyPurchase = true
+        self.addCurrencyDataSourceAndDelegate.currencyPurchase = coinType == CoinType.Tracked ? true : false
         
         self.tableView.dataSource = self.addCurrencyDataSourceAndDelegate
         self.tableView.delegate = self.addCurrencyDataSourceAndDelegate
@@ -284,5 +297,14 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
             tempSomeString = tempSomeString.replacingCharacters(in: foundRange, with: "")
         }
         return tempSomeString
+    }
+    
+    func enableOrDisableAddButton() {
+        if purchaseExchRateText?.count == 0 || currencyAmountText?.count == 0 || purchaseSumText?.count == 0 ||
+            purchaseExchangeRateValue == 0.0 || purchaseSumValue == 0.0 || currencyAmountValue == 0.0 {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }else{
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        }
     }
 }

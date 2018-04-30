@@ -217,7 +217,7 @@ final class CoreDataManager {
         
         let managedContext = CoreDataManager.shared.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserCoin")
-        let coinShortNamePredicate = NSPredicate(format: "shortName = %@", coinShortName) //&& coinType == \(CoinType.Tracked)")
+        let coinShortNamePredicate = NSPredicate(format: "shortName = %@ && coinType = 0", coinShortName) //&& coinType == \(CoinType.Tracked)")
         fetchRequest.predicate = coinShortNamePredicate
         
         var certainTrackedUserCoinArray = [NSManagedObject]()

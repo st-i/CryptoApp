@@ -17,7 +17,6 @@ private let kHeightForSectionFooter = 0.5
 
 class TrackedCurrencyDelegate: NSObject, UITableViewDelegate {
     
-//    var arrayWithCells = [Any]()
     var modelsArray = [Any]()
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -31,14 +30,6 @@ class TrackedCurrencyDelegate: NSObject, UITableViewDelegate {
                 return CGFloat(kCoinPurchaseWONoteCellIdentifier)
             }
         }
-        
-//        if (cell?.isKind(of: CommonCoinInfoCell.self))! {
-//            return CGFloat(kCommonCoinInfoCellHeight)
-//        }else if (cell?.isKind(of: CoinPurchaseWONoteCell.self))! {
-//            return CGFloat(kCoinPurchaseWONoteCellIdentifier)
-//        }else{
-//            return CGFloat(kCoinPurchaseWithNoteCellIdentifier)
-//        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -103,5 +94,9 @@ class TrackedCurrencyDelegate: NSObject, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Удалить"
     }
 }

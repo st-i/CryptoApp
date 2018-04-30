@@ -61,7 +61,6 @@
 		54D3EAF31FEAE30B002DDB7F /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D3EAF21FEAE30B002DDB7F /* SearchDataSource.swift */; };
 		54D3EAF51FEAE33C002DDB7F /* SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D3EAF41FEAE33C002DDB7F /* SearchDelegate.swift */; };
 		54D3EAF71FEAE387002DDB7F /* CurrencySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D3EAF61FEAE387002DDB7F /* CurrencySearchViewController.swift */; };
-		54DAF51B2000BE2E00D18017 /* ActionWithCurrencyDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DAF51A2000BE2E00D18017 /* ActionWithCurrencyDataSourceAndDelegate.swift */; };
 		54DAF51D2000BF5A00D18017 /* ActionChoiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DAF51C2000BF5A00D18017 /* ActionChoiceCell.xib */; };
 		54EE2CFD1FF69F950008CAC2 /* PurchaseSumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EE2CFC1FF69F950008CAC2 /* PurchaseSumCell.swift */; };
 		54EE2CFF1FF69FDE0008CAC2 /* PurchaseSumCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EE2CFE1FF69FDE0008CAC2 /* PurchaseSumCellBuilder.swift */; };
@@ -205,7 +204,6 @@
 		54D3EAF21FEAE30B002DDB7F /* SearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
 		54D3EAF41FEAE33C002DDB7F /* SearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDelegate.swift; sourceTree = "<group>"; };
 		54D3EAF61FEAE387002DDB7F /* CurrencySearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencySearchViewController.swift; sourceTree = "<group>"; };
-		54DAF51A2000BE2E00D18017 /* ActionWithCurrencyDataSourceAndDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionWithCurrencyDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		54DAF51C2000BF5A00D18017 /* ActionChoiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionChoiceCell.xib; sourceTree = "<group>"; };
 		54EE2CFC1FF69F950008CAC2 /* PurchaseSumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseSumCell.swift; sourceTree = "<group>"; };
 		54EE2CFE1FF69FDE0008CAC2 /* PurchaseSumCellBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseSumCellBuilder.swift; sourceTree = "<group>"; };
@@ -391,7 +389,6 @@
 			isa = PBXGroup;
 			children = (
 				54306C081FFA5DB50094A894 /* AddCurrencyDataSourceAndDelegate.swift */,
-				54DAF51A2000BE2E00D18017 /* ActionWithCurrencyDataSourceAndDelegate.swift */,
 				DD914846208BE02400412040 /* IndicatorViewDataSourceAndDelegate.swift */,
 			);
 			path = "AddCurrencyDataSource+Delegate";
@@ -417,6 +414,7 @@
 		5407D3D51FE52BC40063C3A6 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				DDB2F1EE20972D2E00C568F1 /* CommonResources */,
 				5407D3D61FE52BC40063C3A6 /* TrackedCurrencies */,
 				5407D3F91FE52DDF0063C3A6 /* ObservedCurrencies */,
 				5406B9F81FF2DB890022D1C4 /* AddCurrency */,
@@ -892,6 +890,37 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		DDB2F1EE20972D2E00C568F1 /* CommonResources */ = {
+			isa = PBXGroup;
+			children = (
+				DDB2F1EF20972D5900C568F1 /* DataSourcesAndDelegates */,
+				DDB2F1F020972D6D00C568F1 /* Builders */,
+				DDB2F1F120972D7B00C568F1 /* Cells */,
+			);
+			path = CommonResources;
+			sourceTree = "<group>";
+		};
+		DDB2F1EF20972D5900C568F1 /* DataSourcesAndDelegates */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataSourcesAndDelegates;
+			sourceTree = "<group>";
+		};
+		DDB2F1F020972D6D00C568F1 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		DDB2F1F120972D7B00C568F1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		DDBA44D5207FDDC6001FDE14 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1151,7 +1180,6 @@
 				54BDCC791FF416C9000662C5 /* AddCurrencyViewController.swift in Sources */,
 				54CA4E2F1FE5377A00E6357E /* ObservedCurrenciesDataSource.swift in Sources */,
 				5407D3F11FE52BC40063C3A6 /* TrackedPositionCell.swift in Sources */,
-				54DAF51B2000BE2E00D18017 /* ActionWithCurrencyDataSourceAndDelegate.swift in Sources */,
 				DD93DF5720555121007EB222 /* C2CXResponseParser.swift in Sources */,
 				DD04D11D201DB0B900D67AA5 /* SettingsViewController.swift in Sources */,
 				540C347E1FEECE1200D39C43 /* RecentCurrencySearchDataSource.swift in Sources */,

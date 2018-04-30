@@ -90,6 +90,10 @@ class ObservedCurrenciesDelegate: NSObject, UITableViewDelegate {
         }
     }
     
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Удалить"
+    }
+    
     //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
     //        if section == 2 {
     //            let footerView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))

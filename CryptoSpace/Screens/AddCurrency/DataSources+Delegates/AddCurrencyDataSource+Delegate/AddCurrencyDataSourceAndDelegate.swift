@@ -339,6 +339,8 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
             self.viewController.tableView.beginUpdates()
             self.viewController.tableView.insertRows(at: indexPaths as! [IndexPath], with: .bottom)
             self.viewController.tableView.endUpdates()
+            
+            viewController.enableOrDisableAddButton()
         }
         
         self.hideChoiceView()
@@ -365,6 +367,8 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
             self.viewController.tableView.beginUpdates()
             self.viewController.tableView.deleteRows(at: indexPaths as! [IndexPath], with: .top)
             self.viewController.tableView.endUpdates()
+            
+            viewController.navigationItem.rightBarButtonItem?.isEnabled = true
         }
         
         self.hideChoiceView()

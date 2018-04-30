@@ -24,6 +24,8 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
     var allUntouchableCoins = [Coin]()
     var searchedCoins = [Coin]()
     
+    var coinType: CoinType?
+    
 //    var isPresentedVC: Bool!
     
     override func viewDidLoad() {
@@ -35,7 +37,7 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
 //        if isPresentedVC {
 //            navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "X", style: .plain, target: self, action: #selector(dismissVC))
 //        }
-        navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "X", style: .plain, target: self, action: #selector(dismissVC))
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "X", style: .plain, target: self, action: #selector(dismissVC))
         self.navigationController?.navigationBar.isTranslucent = false;
         self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)
         self.navigationController?.navigationBar.tintColor = UIColor.white

@@ -10,8 +10,8 @@ import UIKit
 
 class TrackedCurrencyDataSource: NSObject, UITableViewDataSource {
     
-//    var arrayWithCells = [Any]()
     var modelsArray = [Any]()
+    var viewController: UIViewController?
     
     public func numberOfSections(in tableView: UITableView) -> Int {
         return modelsArray.count
@@ -19,12 +19,10 @@ class TrackedCurrencyDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
-//        return (arrayWithCells[section] as! NSMutableArray).count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        return (arrayWithCells[indexPath.section] as! [UITableViewCell])[indexPath.row]
         if indexPath.section == 0 {
             return CommonCoinInfoCellBuilder.buildCell(tableView, commonInfoModel: modelsArray[0] as! TrackedCoinCommonInfoModel) as! CommonCoinInfoCell
         }else{
@@ -55,6 +53,10 @@ class TrackedCurrencyDataSource: NSObject, UITableViewDataSource {
             tableView.beginUpdates()
             tableView.deleteSections([indexPath.section], with: .bottom)
             tableView.endUpdates()
+            
+            if modelsArray.count == 1 {
+                viewController?.navigationController?.popViewController(animated: true)
+            }
         }
     }
 }

@@ -154,7 +154,7 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
             return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(tableView, portfolioModel: portfolioModel, showInDollars: showInDollars)
         case 1:
             if noCoins {
-                return NoPortfolioCoinsCellBuilder.buildCell(tableView)
+                return NoPortfolioCoinsCellBuilder.buildCell(tableView, trackedCurrencies: true)
             }else{
                 return TrackedPositionCellBuilder.buildTrackedPositionCell(for: tableView, coin: coins[indexPath.row])
             }
@@ -204,7 +204,10 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
             viewController.present(alert, animated: true, completion: nil)
         }
     }
-
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Удалить"
+    }
     
     //    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
     //        if indexPath.section == 0 {

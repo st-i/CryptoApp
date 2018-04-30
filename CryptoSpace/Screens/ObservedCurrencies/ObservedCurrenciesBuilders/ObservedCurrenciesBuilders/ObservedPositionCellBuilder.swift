@@ -17,6 +17,7 @@ class ObservedPositionCellBuilder: NSObject {
         cell.selectionStyle = .none
         cell.currencyImageView.image = UIImage(named:coin.id)
         cell.currencyPairLabel.text = coin.shortName
+        cell.currencyFullNameLabel.text = coin.fullName
         
         let numberFormatter = GlobalNumberFormatter.createNumberFormatter(number: coin.exchangeRate)
         let coinExchangeRate = numberFormatter.string(from: NSNumber.init(value: coin.exchangeRate))!

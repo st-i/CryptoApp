@@ -56,18 +56,18 @@ class TrackedCurrencyViewController: UIViewController {
     }
     
     func fillTableViewWithData() {
-        self.tableView.backgroundColor = UIColor.white //groupTableViewBackground
-        self.trackedCurrencyDataSource = TrackedCurrencyDataSource()
-        self.trackedCurrencyDelegate = TrackedCurrencyDelegate()
+        tableView.backgroundColor = UIColor.white //groupTableViewBackground
+        trackedCurrencyDataSource = TrackedCurrencyDataSource()
+        trackedCurrencyDelegate = TrackedCurrencyDelegate()
     
-        self.tableView.dataSource = self.trackedCurrencyDataSource
-        self.tableView.delegate = self.trackedCurrencyDelegate
-    
+        tableView.dataSource = trackedCurrencyDataSource
+        tableView.delegate = trackedCurrencyDelegate
     
         let modelsArray = CertainCoinInfoMapper.mapTrackedCoinToInfoModelsArray(coin: currentCoin)
     
-        self.trackedCurrencyDataSource.modelsArray = modelsArray
-        self.trackedCurrencyDelegate.modelsArray = modelsArray
+        trackedCurrencyDataSource.viewController = self
+        trackedCurrencyDataSource.modelsArray = modelsArray
+        trackedCurrencyDelegate.modelsArray = modelsArray
     }
     
     @objc func startCurrencyImageAnimation() {
@@ -84,6 +84,15 @@ class TrackedCurrencyViewController: UIViewController {
     }
     
     @objc func deleteCoinGroupAction() {
+        let alert = UIAlertController.init(title: "Удалить позицию?", message: "Все покупки данной криптовалюты также будут удалены", preferredStyle: .alert)
+        let cancelAction = UIAlertAction.init(title: "Отмена", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction.init(title: "Удалить", style: .default, handler: { (action) in
+            CoreDataManager.shared.deleteGroupOfTrackedUserCoinsFromCoreData(coinShortName: self.currentCoin.shortName)
+            self.navigationController?.popViewController(animated: true)
+        })
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
         
+        present(alert, animated: true, completion: nil)
     }
 }

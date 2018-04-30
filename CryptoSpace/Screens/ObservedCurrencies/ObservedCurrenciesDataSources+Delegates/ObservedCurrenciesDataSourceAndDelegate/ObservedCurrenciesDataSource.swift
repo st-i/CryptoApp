@@ -13,6 +13,7 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
 //    var arrayWithCells = NSMutableArray() as! [[UITableViewCell]]
     var cmcInfoModel: CMCInfoModel!
     var observedCoinsArray = [Coin]()
+    var noCoins = false
 
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -22,7 +23,11 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
         if section == 0 {
             return 1
         }else{
-            return observedCoinsArray.count
+            if noCoins {
+                return 1
+            }else{
+                return observedCoinsArray.count
+            }
         }
     }
     
@@ -30,7 +35,11 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
         if indexPath.section == 0 {
             return CryptoCurrenciesCapitalizationCellBuilder.buildCryptoCurrenciesCapitalizationCell(tableView, cmcInfoModel: cmcInfoModel)
         }else{
-            return ObservedPositionCellBuilder.buildCell(tableView, coin: observedCoinsArray[indexPath.row])
+            if noCoins {
+                return NoPortfolioCoinsCellBuilder.buildCell(tableView, trackedCurrencies: false)
+            }else{
+                return ObservedPositionCellBuilder.buildCell(tableView, coin: observedCoinsArray[indexPath.row])
+            }
         }
     }
     
@@ -38,7 +47,11 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
         if indexPath.section == 0 {
             return false
         }else{
-            return true
+            if noCoins {
+                return false
+            }else{
+                return true
+            }
         }
     }
     
@@ -49,9 +62,19 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
             observedCoinsArray.remove(at: indexPath.row)
             CoreDataManager.shared.deleteObservedUserCoinFromCoreData(coin: coinToDelete)
             
-            tableView.beginUpdates()
-            tableView.deleteRows(at: [indexPath], with: .bottom)
-            tableView.endUpdates()
+            if observedCoinsArray.count == 0 {
+                noCoins = true
+            }else{
+                noCoins = false
+            }
+            
+            if self.noCoins {
+                tableView.reloadData()
+            }else{
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .bottom)
+                tableView.endUpdates()
+            }
         }
     }
 
@@ -60,7 +83,11 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
         if indexPath.section == 0 {
             return false
         }else{
-            return true
+            if noCoins {
+                return false
+            }else{
+                return true
+            }
         }
     }
     

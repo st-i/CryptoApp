@@ -25,6 +25,7 @@ class SearchDelegate: NSObject, UITableViewDelegate {
         
         let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
         let addCurrencyVC = storyboard.instantiateViewController(withIdentifier: "AddCurrencyViewController") as! AddCurrencyViewController
+        addCurrencyVC.coinType = fromVC.coinType
         addCurrencyVC.currentCoin = allCoinsArray[indexPath.row]
         self.fromVC.navigationController?.pushViewController(addCurrencyVC, animated: true)
     }
