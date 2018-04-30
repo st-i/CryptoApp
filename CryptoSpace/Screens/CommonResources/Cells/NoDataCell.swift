@@ -1,18 +1,17 @@
 //
-//  ActionChoiceCell.swift
+//  NoDataCell.swift
 //  CryptoSpace
 //
-//  Created by iStef on 01.01.18.
+//  Created by st.i on 30.04.2018.
 //  Copyright © 2018 Stefanov. All rights reserved.
 //
 
 import UIKit
 
-class ActionChoiceCell: UITableViewCell {
+class NoDataCell: UITableViewCell {
     
-    @IBOutlet weak var leftImageView: UIImageView!
-    @IBOutlet weak var mainTextLabel: UILabel!
-    
+    @IBOutlet weak var mainLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

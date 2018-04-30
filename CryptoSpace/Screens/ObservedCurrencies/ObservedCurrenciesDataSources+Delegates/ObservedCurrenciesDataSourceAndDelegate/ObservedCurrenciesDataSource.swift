@@ -36,7 +36,7 @@ class ObservedCurrenciesDataSource: NSObject, UITableViewDataSource {
             return CryptoCurrenciesCapitalizationCellBuilder.buildCryptoCurrenciesCapitalizationCell(tableView, cmcInfoModel: cmcInfoModel)
         }else{
             if noCoins {
-                return NoPortfolioCoinsCellBuilder.buildCell(tableView, trackedCurrencies: false)
+                return NoDataCellBuilder.buildCell(tableView, textType: .observedCoins)
             }else{
                 return ObservedPositionCellBuilder.buildCell(tableView, coin: observedCoinsArray[indexPath.row])
             }

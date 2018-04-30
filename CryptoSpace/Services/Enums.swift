@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum NoDataTextType {
+    case trackedCoins
+    case observedCoins
+    case searchingResults
+}
+
 enum CoinType: Int {
     case Tracked
     case Observed

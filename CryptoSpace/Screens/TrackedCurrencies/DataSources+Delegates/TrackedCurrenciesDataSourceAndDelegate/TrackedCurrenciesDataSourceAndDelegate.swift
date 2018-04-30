@@ -154,7 +154,7 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
             return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(tableView, portfolioModel: portfolioModel, showInDollars: showInDollars)
         case 1:
             if noCoins {
-                return NoPortfolioCoinsCellBuilder.buildCell(tableView, trackedCurrencies: true)
+                return NoDataCellBuilder.buildCell(tableView, textType: .trackedCoins)
             }else{
                 return TrackedPositionCellBuilder.buildTrackedPositionCell(for: tableView, coin: coins[indexPath.row])
             }

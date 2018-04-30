@@ -90,7 +90,7 @@
                                             <outlet property="indicatorView" destination="dcb-06-y3O" id="sUg-vx-eSW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoPortfolioCoinsCell" rowHeight="50" id="aa0-Qx-U0S" customClass="NoPortfolioCoinsCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDataCell" rowHeight="50" id="aa0-Qx-U0S" customClass="NoDataCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="78" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aa0-Qx-U0S" id="nm7-SB-SIg">
@@ -438,22 +438,6 @@
             </objects>
             <point key="canvasLocation" x="148.125" y="-575.70422535211264"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="oXV-Li-f2r">
-            <objects>
-                <navigationController id="6M8-p7-FfM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="n4Z-YI-7Ip">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Rtd-uJ-TS1" kind="relationship" relationship="rootViewController" id="jpo-0s-v90"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VME-so-jFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="949" y="-575"/>
-        </scene>
         <!--Tracked Currency View Controller-->
         <scene sceneID="Y6z-Cd-FMn">
             <objects>
@@ -467,7 +451,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="339" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="54e-BU-FHy">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommonCoinInfoCell" rowHeight="224" id="W6z-gu-7On" customClass="CommonCoinInfoCell" customModule="CryptoSpace" customModuleProvider="target">
@@ -1145,7 +1129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAa-hs-t4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1725" y="-575.70422535211264"/>
+            <point key="canvasLocation" x="718" y="-574"/>
         </scene>
         <!--Portfolio Graph View Controller-->
         <scene sceneID="VNi-VW-gck">
@@ -1188,24 +1172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhH-C6-oTR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2514.375" y="-575.70422535211264"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="GXK-P2-qQf">
-            <objects>
-                <navigationController id="MHc-Z7-5go" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="search" id="PfT-uO-FQw"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gya-ai-Axx">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="v6Q-Ts-sNb" kind="relationship" relationship="rootViewController" id="SyE-Io-8zw"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uFW-Yv-4aW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-735" y="811"/>
+            <point key="canvasLocation" x="1212" y="-574"/>
         </scene>
         <!--Currency Search View Controller-->
         <scene sceneID="6uY-UN-zFE">
@@ -1220,11 +1187,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dvg-6o-TXs">
-                                <rect key="frame" x="0.0" y="120" width="320" height="448"/>
+                                <rect key="frame" x="0.0" y="76" width="320" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyForSearchCell" rowHeight="50" id="DsZ-Vj-ARl" customClass="CurrencyForSearchCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDataCell" rowHeight="50" id="zFR-cl-XTs" customClass="NoDataCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zFR-cl-XTs" id="Uf1-az-ebQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добавьте криптовалюты в портфель" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYl-Xq-oSY">
+                                                    <rect key="frame" x="15" y="15" width="290" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="Hwg-pP-cYB"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eYl-Xq-oSY" firstAttribute="leading" secondItem="Uf1-az-ebQ" secondAttribute="leading" constant="15" id="O8C-8C-XTI"/>
+                                                <constraint firstItem="eYl-Xq-oSY" firstAttribute="centerY" secondItem="Uf1-az-ebQ" secondAttribute="centerY" id="Var-ho-MXH"/>
+                                                <constraint firstAttribute="trailing" secondItem="eYl-Xq-oSY" secondAttribute="trailing" constant="15" id="rte-Ke-hll"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="mainLabel" destination="eYl-Xq-oSY" id="M6T-7G-73x"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyForSearchCell" rowHeight="50" id="DsZ-Vj-ARl" customClass="CurrencyForSearchCell" customModule="CryptoSpace" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="78" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DsZ-Vj-ARl" id="sKr-N5-Tey">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -1269,7 +1263,7 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Например, Bitcoin или BTC" translatesAutoresizingMaskIntoConstraints="NO" id="09s-5G-Tng">
-                                <rect key="frame" x="0.0" y="64" width="320" height="56"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -1749,7 +1743,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F4a-k4-mA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="948.75" y="809.15492957746483"/>
+            <point key="canvasLocation" x="718" y="809"/>
         </scene>
         <!--Криптовалюты-->
         <scene sceneID="P7j-Pa-E76">
@@ -1787,7 +1781,7 @@
                                             <outlet property="indicatorView" destination="OXl-bz-3gy" id="XhU-uQ-8Hb"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoPortfolioCoinsCell" rowHeight="50" id="TIT-Kf-alF" customClass="NoPortfolioCoinsCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDataCell" rowHeight="50" id="TIT-Kf-alF" customClass="NoDataCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="78" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TIT-Kf-alF" id="ZOd-ea-9Qa">
@@ -2021,23 +2015,6 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="wCB-T9-1uF" rowHeight="50" style="IBUITableViewCellStyleDefault" id="kfG-9U-zvn">
-                                        <rect key="frame" x="0.0" y="78" width="320" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kfG-9U-zvn" id="Rg3-9g-q4y">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="49.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wCB-T9-1uF">
-                                                    <rect key="frame" x="15" y="0.0" width="270" height="49.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -2113,7 +2090,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEX-4l-Pxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1676" y="1500"/>
+            <point key="canvasLocation" x="1212" y="1502"/>
         </scene>
         <!--Responsibility View Controller-->
         <scene sceneID="tNY-Qd-V7J">
@@ -2170,7 +2147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbG-Vq-feW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="949" y="1501"/>
+            <point key="canvasLocation" x="719" y="1501"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kvz-km-cXZ">
