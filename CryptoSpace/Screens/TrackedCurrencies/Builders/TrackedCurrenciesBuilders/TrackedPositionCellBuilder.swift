@@ -38,15 +38,15 @@ class TrackedPositionCellBuilder: NSObject {
         let coinRateString = currentNumberFormatter.string(from: NSNumber.init(value: coinExchangeRate))
         cell.currencyExchangeRateCostLabel.text = String(format:"$%@", coinRateString!) //сделать 0 после числа
         
-        let coinPurchaseSum = coin.sum
-        if coinPurchaseSum < 1 {
+        let coinCurrentCost = coin.amount * coin.exchangeRate
+        if coinCurrentCost < 1 {
             fractionDigitsNumber = 6
         }else{
             fractionDigitsNumber = 2
         }
         currentNumberFormatter.maximumFractionDigits = fractionDigitsNumber
-        let coinSumString = currentNumberFormatter.string(from: NSNumber.init(value: coinPurchaseSum))
-        cell.purchasedCoinsCostLabel.text = String(format: "$%@", coinSumString!)
+        let coinCurrentCostString = currentNumberFormatter.string(from: NSNumber.init(value: coinCurrentCost))
+        cell.purchasedCoinsCostLabel.text = String(format: "$%@", coinCurrentCostString!)
         
         let coinAmountSum = coin.amount
         fractionDigitsNumber = 8

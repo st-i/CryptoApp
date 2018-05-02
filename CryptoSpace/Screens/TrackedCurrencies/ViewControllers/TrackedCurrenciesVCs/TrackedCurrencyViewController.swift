@@ -17,6 +17,7 @@ class TrackedCurrencyViewController: UIViewController {
     var animationTimer = Timer()
     
     var currentCoin: Coin!
+    var trackedGroupedCoins = [Coin]()
     
     var firstCell:CommonCoinInfoCell!
     
@@ -32,28 +33,25 @@ class TrackedCurrencyViewController: UIViewController {
         titleView.addSubview(titleViewLabel)
         self.navigationItem.titleView = titleView
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .trash, target: self, action: #selector(deleteCoinGroupAction))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .trash, target: self, action: #selector(deleteCoinGroupAction))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
-        self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
+        navigationItem.backBarButtonItem?.tintColor = UIColor.white
         
-        self.fillTableViewWithData()
+        fillTableViewWithData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        self.startCurrencyImageAnimation()
+        startCurrencyImageAnimation()
         
-        self.animationTimer =
-            Timer.scheduledTimer(timeInterval: 10.0, target: self,
-                                 selector: #selector(startCurrencyImageAnimation),
-                                 userInfo: nil, repeats: true)
+        animationTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(startCurrencyImageAnimation), userInfo: nil, repeats: true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        self.animationTimer.invalidate()
+        animationTimer.invalidate()
     }
     
     func fillTableViewWithData() {
@@ -91,6 +89,12 @@ class TrackedCurrencyViewController: UIViewController {
         let cancelAction = UIAlertAction.init(title: "Отмена", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction.init(title: "Удалить", style: .default, handler: { (action) in
             CoreDataManager.shared.deleteGroupOfTrackedUserCoinsFromCoreData(coinShortName: self.currentCoin.shortName)
+            for trackedCoin in self.trackedGroupedCoins {
+                if trackedCoin.shortName == self.currentCoin.shortName {
+                    self.trackedGroupedCoins.remove(at: self.trackedGroupedCoins.index(of: trackedCoin)!)
+                }
+            }
+            CoinsOrderManager.updateCoinsOrder(coinsType: .Tracked, disorderedCoins: self.trackedGroupedCoins)
             self.navigationController?.popViewController(animated: true)
         })
         alert.addAction(cancelAction)

@@ -35,10 +35,10 @@ class TrackedCurrenciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.isTranslucent = false;
-        self.navigationController?.navigationBar.barTintColor = UIColor.navBarColor()
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = UIColor.navBarColor()
         //init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.white
         
         let titleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
         let titleViewLabel = UILabel.init(frame: titleView.frame)
@@ -49,19 +49,15 @@ class TrackedCurrenciesViewController: UIViewController {
         titleView.addSubview(titleViewLabel)
         navigationItem.titleView = titleView
         
-//        originalEditButton = UIBarButtonItem.init(title: "Изм.", style: .plain, target: self, action: #selector(editPortfolioAction))
-//        (barButtonSystemItem: .edit, target: self, action: #selector(editPortfolioAction))
+        originalEditButton = UIBarButtonItem.init(title: "Изм.", style: .plain, target: self, action: #selector(editPortfolioAction))
         originalDoneButton = UIBarButtonItem.init(title: "Готово", style: .done, target: self, action: #selector(editPortfolioAction))
-//        (barButtonSystemItem: .done, target: self, action: #selector(editPortfolioAction))
-        self.navigationItem.leftBarButtonItem = originalEditButton
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        leftBarButtonItem = originalEditButton
         
-        leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshCurrenciesRates)) // sendRequestForTest
+        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshCurrenciesRates))
         let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addTrackedCurrency))
-        navigationItem.rightBarButtonItem = addButton
-//        navigationItem.leftBarButtonItem?.isEnabled = false
+        
+        navigationItem.rightBarButtonItems = [addButton, refreshButton]
         navigationItem.rightBarButtonItem?.isEnabled = false
-//        navigationItem.rightBarButtonItems = [addButton, refreshButton]
         
         navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
         
@@ -70,12 +66,23 @@ class TrackedCurrenciesViewController: UIViewController {
         if CoreDataManager.shared.checkPortfolioExistance() == false {
             CoreDataManager.shared.savePortfolio(portfolio: Portfolio())
         }
-//        CoreDataManager.shared.updatePortfolio(portfolio: Portfolio())
+        
+//        let refm = TrackedCoinPurchaseInfoModel()
+//        refm.shortName = "BTC"
+//        refm.uniqueId = 0
+//        CoreDataManager.shared.deleteCertainTrackedUserCoinFromCoreData(coinModel: refm)
+        
+//        UserDefaults.standard.set(Dictionary<String, Int>(), forKey: kTrackedCoinsQueueIndexesDict)
         
         showIndicatorViewScreen()
-        let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
+        let allSavedCoins = CoreDataManager.shared.getUserCoinsArray() //allSavedTrackedCoins
         allUnsortedCoins = allSavedCoins
         userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
+        
+        if userCoins.count > 0 {
+            userCoins = CoinsOrderManager.orderCoins(coinsType: .Tracked, disorderedCoins: userCoins)
+        }
+        
         if allSavedCoins.count == 0 {
             currentUserPortfolio = Portfolio()
             userPortfolioModel = PortfolioModel()
@@ -94,14 +101,16 @@ class TrackedCurrenciesViewController: UIViewController {
         
         let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
         if allSavedCoins.count != allUnsortedCoins.count {
-            userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
             if allSavedCoins.count == 0 {
+                allUnsortedCoins = allSavedCoins
+                userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
+                userCoins = CoinsOrderManager.orderCoins(coinsType: .Tracked, disorderedCoins: userCoins)
                 userPortfolioModel = PortfolioModel()
                 fillTableViewWithData()
-                tableView.reloadData()
             }else{
-                refreshCurrenciesRates()
+                 updateScreenWithoutRequest()
             }
+            tableView.reloadData()
         }
     }
     
@@ -111,6 +120,7 @@ class TrackedCurrenciesViewController: UIViewController {
     
     //MARK: TableView Data
     func showIndicatorViewScreen() {
+        
         tableView.backgroundColor = UIColor.white
         indicatorViewDataSourceAndDelegate = IndicatorViewDataSourceAndDelegate()
         
@@ -143,6 +153,7 @@ class TrackedCurrenciesViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func openPortfolioGraph(_ sender: UIButton) {
+        
         if userCoins.count > 0 {
             var graphViewModels = [GraphViewModel]()
             for trackedCoin in userCoins {
@@ -169,18 +180,22 @@ class TrackedCurrenciesViewController: UIViewController {
     }
     
     @objc func editPortfolioAction() {
+        
         if isEditing {
             setEditing(false, animated: true)
             tableView.setEditing(false, animated: true)
             navigationItem.leftBarButtonItem = originalEditButton
+            navigationItem.rightBarButtonItem?.isEnabled = true
         }else{
             setEditing(true, animated: true)
             tableView.setEditing(true, animated: true)
             navigationItem.leftBarButtonItem = originalDoneButton
+            navigationItem.rightBarButtonItem?.isEnabled = false
         }
     }
     
     @objc func addTrackedCurrency() {
+        
         let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
         let searchCurrencyVC = storyboard.instantiateViewController(withIdentifier: "CurrencySearchViewController") as! CurrencySearchViewController
         searchCurrencyVC.coinType = CoinType.Tracked
@@ -266,10 +281,76 @@ class TrackedCurrenciesViewController: UIViewController {
                 }
                 
                 //отображаем
+                self.userCoins = CoinsOrderManager.orderCoins(coinsType: .Tracked, disorderedCoins: self.userCoins)
                 self.userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: self.currentUserPortfolio, userCoinsCount:self.userCoins.count)
                 self.fillTableViewWithData()
                 self.tableView.reloadData()
             })
         }
+    }
+    
+    func updateScreenWithoutRequest() {
+        
+        let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
+        allUnsortedCoins = allSavedCoins
+        userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
+        
+        if userCoins.count > 0 {
+            var portfolio24ChangeInPercentages = 0.0
+            var portfolio24hChangeInDollars = 0.0
+            
+            var initialPortfolioCost = 0.0
+            
+            for coin in userCoins {
+                initialPortfolioCost = initialPortfolioCost + coin.initialSum
+
+                let coinSum = coin.amount * coin.exchangeRate
+                let coinRate24hPercentChange = coin.rate24hPercentChange
+                
+                if userCoins.count == 1 {
+                    portfolio24ChangeInPercentages = coinRate24hPercentChange
+                }
+                let currentTotalPercent = 100.0 + coinRate24hPercentChange //100% + изменение за 24ч
+                let openCoinSum = (coinSum * 100.0) / currentTotalPercent //сумма при открытии торгов
+                var currentCoinPriceChange = 0.0
+                if coinSum >= openCoinSum {
+                    currentCoinPriceChange = coinSum - openCoinSum
+                    portfolio24hChangeInDollars = portfolio24hChangeInDollars + currentCoinPriceChange
+                }else{
+                    currentCoinPriceChange = openCoinSum - coinSum
+                    portfolio24hChangeInDollars = portfolio24hChangeInDollars - currentCoinPriceChange
+                }
+            }
+            
+            currentUserPortfolio.last24hValueDollarChange = portfolio24hChangeInDollars
+            
+            //текущая стоимость
+            let userCoinsSumInDollars = SumCalculator.getCoinsTotalSum(coins: userCoins)
+            currentUserPortfolio.currentDollarValue = userCoinsSumInDollars
+            
+            //начальная стоимость
+            let initialCoinsCostInDollars = initialPortfolioCost
+            currentUserPortfolio.initialDollarValue = initialCoinsCostInDollars
+            
+            //изменение в процентах за 24ч
+            var portfolio24PercentagesChange = 0.0
+            if userCoins.count == 1 {
+                portfolio24PercentagesChange = portfolio24ChangeInPercentages
+            }else{
+                portfolio24PercentagesChange = (portfolio24hChangeInDollars / userCoinsSumInDollars) * 100.0
+            }
+            currentUserPortfolio.last24hValuePercentChange = portfolio24PercentagesChange
+            
+            //Обновляем
+            CoreDataManager.shared.updatePortfolio(portfolio: currentUserPortfolio)
+            
+            //отображаем
+            userCoins = CoinsOrderManager.orderCoins(coinsType: .Tracked, disorderedCoins: userCoins)
+            userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: currentUserPortfolio, userCoinsCount:userCoins.count)
+        }else{
+            CoreDataManager.shared.updatePortfolio(portfolio: Portfolio())
+            userPortfolioModel = PortfolioModel()
+        }
+        fillTableViewWithData()
     }
 }

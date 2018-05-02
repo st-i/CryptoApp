@@ -11,7 +11,7 @@ import UIKit
 class TrackedCurrencyDataSource: NSObject, UITableViewDataSource {
     
     var modelsArray = [Any]()
-    var viewController: UIViewController?
+    var viewController: TrackedCurrencyViewController?
     
     public func numberOfSections(in tableView: UITableView) -> Int {
         return modelsArray.count
@@ -49,6 +49,7 @@ class TrackedCurrencyDataSource: NSObject, UITableViewDataSource {
             let modelToDelete = modelsArray[indexPath.section] as! TrackedCoinPurchaseInfoModel
             modelsArray.remove(at: indexPath.section)
             CoreDataManager.shared.deleteCertainTrackedUserCoinFromCoreData(coinModel: modelToDelete)
+            viewController?.fillTableViewWithData()
             
             tableView.beginUpdates()
             tableView.deleteSections([indexPath.section], with: .bottom)

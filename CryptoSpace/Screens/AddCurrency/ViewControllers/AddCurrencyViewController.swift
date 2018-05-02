@@ -178,23 +178,32 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
     
     //MARK: BarButtons actions
     @objc func addCurrencyAction() {
+        
+        let currentCoinType = addCurrencyDataSourceAndDelegate.currencyPurchase ? CoinType.Tracked : CoinType.Observed
         if addCurrencyDataSourceAndDelegate.currencyPurchase {
             currentCoin.exchangeRate = purchaseExchangeRateValue
             currentCoin.purchaseExchangeRate = purchaseExchangeRateValue
             currentCoin.amount = currencyAmountValue
             currentCoin.sum = purchaseSumValue
             currentCoin.initialSum = purchaseSumValue
-            currentCoin.coinType = CoinType.Tracked
+            currentCoin.coinType = currentCoinType
             currentCoin.purchaseDate = addCurrencyDataSourceAndDelegate.purchaseDate
             CoreDataManager.shared.saveTrackedUserCoin(coin: currentCoin)
         }else{
-            currentCoin.coinType = CoinType.Observed
+            currentCoin.coinType = currentCoinType
             CoreDataManager.shared.tryToSaveObservedCoin(coin: currentCoin)
+        }
+        CoinsOrderManager.addNewCoinToQueue(coinType: currentCoinType, newCoin: currentCoin)
+        
+        //возврат на экран в зависимости от добавленного типа
+        let presentingTabBarContr = navigationController?.presentingViewController as! UITabBarController
+        if coinType == CoinType.Tracked && addCurrencyDataSourceAndDelegate.currencyPurchase == false {
+            presentingTabBarContr.selectedIndex = 1
+        }else if coinType == CoinType.Observed && addCurrencyDataSourceAndDelegate.currencyPurchase {
+            presentingTabBarContr.selectedIndex = 0
         }
         
         dismiss(animated: true, completion: nil)
-        
-        print("Added!")
     }
     
     //MARK: UITextViewFuncs and Delegate

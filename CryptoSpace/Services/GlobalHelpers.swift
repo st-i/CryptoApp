@@ -168,7 +168,7 @@ class SumCalculator: NSObject {
     class func getCoinsTotalSum(coins: [Coin]) -> Double {
         var totalPortfolioCost = 0.0
         for coin in coins {
-            totalPortfolioCost = totalPortfolioCost + coin.sum
+            totalPortfolioCost = totalPortfolioCost + (coin.exchangeRate * coin.amount)
         }
         return totalPortfolioCost
     }
@@ -221,6 +221,21 @@ class PercentChangeCalculator: NSObject {
 class CertainCoinInfoMapper: NSObject {
     
     class func mapTrackedCoinToCommonInfoModel(coin: Coin) -> TrackedCoinCommonInfoModel {
+        
+        let trackedCoinArray = CoreDataManager.shared.getCertainTrackedUserCoinArray(coinShortName: coin.shortName)
+        var coinsAmount = 0.0
+        var coinsInitialCost = 0.0
+        var coinsCurrentCost = 0.0
+        
+        for someCoin in trackedCoinArray {
+            coinsAmount = coinsAmount + someCoin.amount
+        }
+        coinsInitialCost = coinsAmount * coin.purchaseExchangeRate
+        coinsCurrentCost = coinsAmount * coin.exchangeRate
+        
+        coin.amount = coinsAmount
+        coin.initialSum = coinsInitialCost
+        coin.sum = coinsCurrentCost
         
         let commonInfoModel = TrackedCoinCommonInfoModel()
         
@@ -443,5 +458,110 @@ class TextColorDeterminant: NSObject {
             return UIColor.greenChangeColor()
         }
     }
+}
+
+class CoinsOrderManager: NSObject {
+    
+    private class func keyForDict(coinType: CoinType) -> String {
+        
+        let dictKey: String!
+        if coinType == CoinType.Tracked {
+            dictKey = kTrackedCoinsQueueIndexesDict
+        }else{
+            dictKey = kObservedCoinsQueueIndexesDict
+        }
+        return dictKey
+    }
+    
+    class func orderCoins(coinsType: CoinType, disorderedCoins: [Coin]) -> [Coin] {
+        
+        let dictKey = keyForDict(coinType: coinsType)
+//        if coinsType == CoinType.Tracked {
+//            dictKey = kTrackedCoinsQueueIndexesDict
+//        }else{
+//            dictKey = kObservedCoinsQueueIndexesDict
+//        }
+        
+        if UserDefaults.standard.object(forKey: dictKey) != nil {
+            let coinsIndexes = UserDefaults.standard.object(forKey: dictKey) as! Dictionary<String, Int>
+            
+            if coinsIndexes.keys.count != 0 {
+                var orderedCoins = [Coin]()
+                for _ in 0..<disorderedCoins.count {
+                    orderedCoins.append(Coin())
+                }
+                for someTrackedCoin in disorderedCoins {
+                    let coinIndex = coinsIndexes[someTrackedCoin.shortName]!
+                    orderedCoins.remove(at: coinIndex)
+                    orderedCoins.insert(someTrackedCoin, at: coinIndex)
+                }
+                return orderedCoins
+            }else{
+                return disorderedCoins
+            }
+        }else{
+            return disorderedCoins
+        }
+    }
+    
+    class func updateCoinsOrder(coinsType: CoinType, disorderedCoins: [Coin]) {
+        
+        let dictKey = keyForDict(coinType: coinsType)
+//        let dictKey: String!
+//        if coinsType == CoinType.Tracked {
+//            dictKey = kTrackedCoinsQueueIndexesDict
+//        }else{
+//            dictKey = kObservedCoinsQueueIndexesDict
+//        }
+        
+        if disorderedCoins.count > 0 {
+            var newCoinsIndexes = Dictionary<String, Int>()
+            for someCoin in disorderedCoins {
+                newCoinsIndexes.updateValue(disorderedCoins.index(of: someCoin)!, forKey: someCoin.shortName)
+            }
+            UserDefaults.standard.set(newCoinsIndexes, forKey: dictKey)
+        }else{
+            UserDefaults.standard.set(Dictionary<String, Int>(), forKey: dictKey)
+        }
+    }
+    
+    class func addNewCoinToQueue(coinType: CoinType, newCoin: Coin) {
+        
+        let dictKey = keyForDict(coinType: coinType)
+//        let dictKey: String!
+//        if coinsType == CoinType.Tracked {
+//            dictKey = kTrackedCoinsQueueIndexesDict
+//        }else{
+//            dictKey = kObservedCoinsQueueIndexesDict
+//        }
+        
+        if UserDefaults.standard.object(forKey: dictKey) != nil {
+            var coinsIndexes = UserDefaults.standard.object(forKey: dictKey) as! Dictionary<String, Int>
+            if coinsIndexes.keys.count != 0 {
+                coinsIndexes.updateValue(coinsIndexes.count, forKey: newCoin.shortName)
+                UserDefaults.standard.set(coinsIndexes, forKey: dictKey)
+            }else{
+                var newCoinsQueue = Dictionary<String, Int>()
+                newCoinsQueue.updateValue(0, forKey: newCoin.shortName)
+                UserDefaults.standard.set(newCoinsQueue, forKey: dictKey)
+            }
+        }else{
+            var newCoinsQueue = Dictionary<String, Int>()
+            newCoinsQueue.updateValue(0, forKey: newCoin.shortName)
+            UserDefaults.standard.set(newCoinsQueue, forKey: dictKey)
+        }
+    }
+    
+//    class func removeCoinFromQueue(coinType: CoinType, coinToRemove: Coin) { //только для экрана покупок монеты
+//
+//        let dictKey = keyForDict(coinType: coinType)
+//
+//        let coinsIndexes = UserDefaults.standard.object(forKey: dictKey) as! Dictionary<String, Int>
+//        if coinsIndexes.keys.count == 1 {
+//            UserDefaults.standard.set(Dictionary<String, Int>(), forKey: dictKey)
+//        }else{
+//
+//        }
+//    }
 }
 

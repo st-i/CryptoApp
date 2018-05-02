@@ -138,6 +138,7 @@
 		DDC31FAD20712240005E9235 /* ExchangesDictsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC31FAC20712240005E9235 /* ExchangesDictsKeys.swift */; };
 		DDD38AC92037651800462783 /* RequestToBitfinexBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD38AC82037651800462783 /* RequestToBitfinexBuilder.swift */; };
 		DDD9B19A201F985900D7F437 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD9B199201F985900D7F437 /* UIColor+Extension.swift */; };
+		DDE2281C2099C829002E4612 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE2281B2099C829002E4612 /* UserDefaultsKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -276,6 +277,7 @@
 		DDC31FAC20712240005E9235 /* ExchangesDictsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesDictsKeys.swift; sourceTree = "<group>"; };
 		DDD38AC82037651800462783 /* RequestToBitfinexBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToBitfinexBuilder.swift; sourceTree = "<group>"; };
 		DDD9B199201F985900D7F437 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		DDE2281B2099C829002E4612 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -929,6 +931,7 @@
 				DD7CB73720526A4C00E6E786 /* RequestBuilders */,
 				DD7CB75620527EAB00E6E786 /* ResponseParsers */,
 				DDC31FAC20712240005E9235 /* ExchangesDictsKeys.swift */,
+				DDE2281B2099C829002E4612 /* UserDefaultsKeys.swift */,
 				DD37B25820518A6500519443 /* Enums.swift */,
 				DD7CB75B2052DBA000E6E786 /* Checkups.swift */,
 				DD595A34205CF68D00ACB26B /* GlobalHelpers.swift */,
@@ -1183,6 +1186,7 @@
 				DD64CD3D204C73F700C19202 /* BittrexResponseParser.swift in Sources */,
 				DD04D121201DC82300D67AA5 /* AboutAppViewController.swift in Sources */,
 				54D3EAF71FEAE387002DDB7F /* CurrencySearchViewController.swift in Sources */,
+				DDE2281C2099C829002E4612 /* UserDefaultsKeys.swift in Sources */,
 				DD37B25920518A6500519443 /* Enums.swift in Sources */,
 				5482F41C1FFFCF6B00BDD14C /* EmptyCellBuilder.swift in Sources */,
 				DD04D12D201E189D00D67AA5 /* PortfolioGraphDataSourceAndDelegate.swift in Sources */,

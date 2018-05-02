@@ -15,15 +15,53 @@ private let kHeightForSectionHeader = 30
 
 class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
     
-    var arrayWithCells = NSMutableArray() as! [[UITableViewCell]]
     var coins = [Coin]()
-    var viewController = UIViewController()
+    var viewController = TrackedCurrenciesViewController()
     var portfolioModel = PortfolioModel()
         
     var showInDollars = true
     var noCoins = false
     
+    //MARK: DataSource
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        switch section {
+            case 0:
+                return 1
+            case 1:
+                if noCoins {
+                    return 1
+                }else{
+                    return coins.count
+                }
+            default:
+                return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        switch indexPath.section {
+            case 0:
+                return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(tableView, portfolioModel: portfolioModel, showInDollars: showInDollars)
+            case 1:
+                if noCoins {
+                    return NoDataCellBuilder.buildCell(tableView, textType: .trackedCoins)
+                }else{
+                    return TrackedPositionCellBuilder.buildTrackedPositionCell(for: tableView, coin: coins[indexPath.row])
+                }
+            default:
+                return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(tableView, portfolioModel: portfolioModel, showInDollars: showInDollars)
+        }
+    }
+    
+    //MARK: Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         if indexPath.section == 0 {
             return CGFloat(kTotalPortfolioCostCellHeight)
         }else{
@@ -32,6 +70,7 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
         if section == 1 {
             return CGFloat(kHeightForSectionHeader)
         }else{
@@ -40,6 +79,7 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         if section == 1 {
             let headerView = UIView.init(frame: CGRect(x: 0, y: 0, width: Int(tableView.frame.width), height: kHeightForSectionHeader))
             headerView.backgroundColor = UIColor.white
@@ -56,14 +96,13 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
             }
             
             let headerViewRateLabel = UILabel.init(frame: CGRect(x: headerView.frame.width - 30 - 15, y: 5, width: 30, height: 20))
-//            headerViewRateLabel.backgroundColor = UIColor.black
             headerViewRateLabel.textAlignment = .right
             headerViewRateLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium)
             headerViewRateLabel.textColor = UIColor.gray
             headerViewRateLabel.text = exchangeRateText
-            headerView.addSubview(headerViewRateLabel)
+            headerView.addSubview(headerViewRateLabel)//134
             
-            let headerViewValueLabel = UILabel.init(frame: CGRect(x: headerView.frame.width - 90 - 15 - 22 - 118, y: 5, width: 118, height: 20))
+            let headerViewValueLabel = UILabel.init(frame: CGRect(x: headerView.frame.width - 30 - 15 - 89 - 118, y: 5, width: 118, height: 20))
             headerViewValueLabel.textAlignment = .right
             headerViewValueLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium)
             headerViewValueLabel.textColor = UIColor.gray
@@ -75,7 +114,6 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
             return nil
         }
     }
-    
     
     //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     //        if section == 1 {
@@ -96,6 +134,7 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
     //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.section == 0 {
@@ -129,48 +168,15 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
                 let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
                 let trackedCurrencyVC = storyboard.instantiateViewController(withIdentifier: "TrackedCurrencyViewController") as! TrackedCurrencyViewController
                 trackedCurrencyVC.currentCoin = coins[indexPath.row]
+                trackedCurrencyVC.trackedGroupedCoins = coins
                 viewController.navigationController?.pushViewController(trackedCurrencyVC, animated: true)
             }
         }
     }
     
-    //DataSource
-    
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            if noCoins {
-                return 1
-            }else{
-                return coins.count
-            }
-        default:
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(tableView, portfolioModel: portfolioModel, showInDollars: showInDollars)
-        case 1:
-            if noCoins {
-                return NoDataCellBuilder.buildCell(tableView, textType: .trackedCoins)
-            }else{
-                return TrackedPositionCellBuilder.buildTrackedPositionCell(for: tableView, coin: coins[indexPath.row])
-            }
-        default:
-            return TotalPortfolioCostCellBuilder.buildTotalPortfolioCostCell(tableView, portfolioModel: portfolioModel, showInDollars: showInDollars)
-        }
-    }
-    
+    //MARK: Editing
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
         if indexPath.section == 0 {
             return false
         }else{
@@ -182,9 +188,10 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
         }
     }
     
+    //MARK: Deletion
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
-            
             let alert = UIAlertController.init(title: "Удалить позицию?", message: "Все покупки данной криптовалюты также будут удалены", preferredStyle: .alert)
             let cancelAction = UIAlertAction.init(title: "Отмена", style: .cancel, handler: { (action) in
                 tableView.setEditing(false, animated: true)
@@ -192,11 +199,12 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
             let deleteAction = UIAlertAction.init(title: "Удалить", style: .default, handler: { (action) in
                 if self.coins.count == 1 {
                     self.noCoins = true
-                    self.portfolioModel = PortfolioModel()
                 }
                 let coinToDelete = self.coins[indexPath.row]
                 self.coins.remove(at: indexPath.row)
                 CoreDataManager.shared.deleteGroupOfTrackedUserCoinsFromCoreData(coinShortName: coinToDelete.shortName)
+                CoinsOrderManager.updateCoinsOrder(coinsType: .Tracked, disorderedCoins: self.coins)
+                self.viewController.updateScreenWithoutRequest()
                 
                 if self.noCoins {
                     tableView.reloadData()
@@ -216,26 +224,35 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
         return "Удалить"
     }
     
-    //    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-    //        if indexPath.section == 0 {
-    //            return false
-    //        }else{
-    //            return true
-    //        }
-    //    }
-    
-    //    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-    //        let movedCell = arrayWithCells[1][sourceIndexPath.row]
-    //        arrayWithCells[1].remove(at: sourceIndexPath.row)
-    //        arrayWithCells[1].insert(movedCell, at: destinationIndexPath.row)
-    //    }
-    
-    
-    //    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
-    //        if sourceIndexPath.section != proposedDestinationIndexPath.section {
-    //            return IndexPath.init(row: 0, section: sourceIndexPath.section)
-    //        }else{
-    //            return proposedDestinationIndexPath
-    //        }
-    //    }
+    //MARK: Rows Moving
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        
+        if indexPath.section == 0 {
+            return false
+        }else{
+            if noCoins {
+                return false
+            }else{
+                return true
+            }
+        }
+    }
+
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        let coinToMove = coins[sourceIndexPath.row]
+        coins.remove(at: sourceIndexPath.row)
+        coins.insert(coinToMove, at: destinationIndexPath.row)
+        
+        CoinsOrderManager.updateCoinsOrder(coinsType: .Tracked, disorderedCoins: coins)
+    }
+
+    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        
+        if sourceIndexPath.section != proposedDestinationIndexPath.section {
+            return IndexPath.init(row: 0, section: sourceIndexPath.section)
+        }else{
+            return proposedDestinationIndexPath
+        }
+    }
 }
