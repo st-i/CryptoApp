@@ -163,6 +163,8 @@ class ObservedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDataSource, 
             }else{
                 noCoins = false
             }
+            CoinsOrderManager.updateCoinsOrder(coinsType: .Observed, disorderedCoins: observedCoinsArray)
+            observedCoinsArray = CoinsOrderManager.orderCoins(coinsType: .Observed, disorderedCoins: observedCoinsArray)
             viewController.allObservedCoins = observedCoinsArray
             
             if self.noCoins {
@@ -198,6 +200,8 @@ class ObservedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDataSource, 
         let coinToMove = observedCoinsArray[sourceIndexPath.row]
         observedCoinsArray.remove(at: sourceIndexPath.row)
         observedCoinsArray.insert(coinToMove, at: destinationIndexPath.row)
+        
+        CoinsOrderManager.updateCoinsOrder(coinsType: .Observed, disorderedCoins: observedCoinsArray)
     }
 
     func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {

@@ -70,7 +70,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IndicatorViewCell" rowHeight="50" id="oqN-JZ-lPw" customClass="IndicatorViewCell" customModule="CryptoSpace">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IndicatorViewCell" rowHeight="50" id="oqN-JZ-lPw" customClass="IndicatorViewCell" customModule="CryptoSpace">
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oqN-JZ-lPw" id="vxX-63-DbW">
@@ -90,7 +90,7 @@
                                             <outlet property="indicatorView" destination="dcb-06-y3O" id="sUg-vx-eSW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDataCell" rowHeight="50" id="aa0-Qx-U0S" customClass="NoDataCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDataCell" rowHeight="50" id="aa0-Qx-U0S" customClass="NoDataCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="78" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aa0-Qx-U0S" id="nm7-SB-SIg">
@@ -117,7 +117,7 @@
                                             <outlet property="mainLabel" destination="r5B-23-vr6" id="VO5-jY-Zw5"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TotalPortfolioCostCell" rowHeight="173" id="DkJ-Se-3D5" customClass="TotalPortfolioCostCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TotalPortfolioCostCell" rowHeight="173" id="DkJ-Se-3D5" customClass="TotalPortfolioCostCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="128" width="320" height="173"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DkJ-Se-3D5" id="HpN-gd-SME">
@@ -130,7 +130,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1 875,78" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vs8-tg-NFG">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$999 999 999 999,99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vs8-tg-NFG">
                                                     <rect key="frame" x="15" y="30" width="290" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="23" id="Cbw-qZ-Hvt"/>
@@ -254,7 +254,7 @@
                                             <outlet property="totalPortfolioValueLabel" destination="Vs8-tg-NFG" id="vf3-YQ-1N7"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HeaderViewCell" rowHeight="30" id="6PG-l7-KWv" customClass="HeaderViewCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HeaderViewCell" rowHeight="30" id="6PG-l7-KWv" customClass="HeaderViewCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="301" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6PG-l7-KWv" id="aC3-Ki-IgW">
@@ -453,7 +453,7 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommonCoinInfoCell" rowHeight="224" id="W6z-gu-7On" customClass="CommonCoinInfoCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommonCoinInfoCell" rowHeight="224" id="W6z-gu-7On" customClass="CommonCoinInfoCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="320" height="224"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W6z-gu-7On" id="bO4-lK-fpQ">
@@ -671,7 +671,7 @@
                                             <outlet property="lowerSeparator" destination="CNO-rh-TbE" id="eiZ-9G-sip"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CoinPurchaseWONoteCell" rowHeight="152" id="Otm-46-4i3" customClass="CoinPurchaseWONoteCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CoinPurchaseWONoteCell" rowHeight="152" id="Otm-46-4i3" customClass="CoinPurchaseWONoteCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="279.5" width="320" height="152"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Otm-46-4i3" id="JF7-gC-VUi">
@@ -830,7 +830,7 @@
                                             <outlet property="purchaseExchangeRate" destination="8gA-eS-Jjo" id="5oW-gV-v1g"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CoinPurchaseWithNoteCell" rowHeight="235" id="oLD-gC-y1i" customClass="CoinPurchaseWithNoteCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CoinPurchaseWithNoteCell" rowHeight="235" id="oLD-gC-y1i" customClass="CoinPurchaseWithNoteCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="431.5" width="320" height="235"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oLD-gC-y1i" id="qIl-Vd-hA4">
@@ -1013,7 +1013,7 @@
                                             <outlet property="purchaseExchangeRate" destination="Rra-VX-tdd" id="aRv-hz-sBf"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ObservedCurrencyCell" rowHeight="300" id="MrZ-EL-dVM" customClass="ObservedCurrencyCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ObservedCurrencyCell" rowHeight="300" id="MrZ-EL-dVM" customClass="ObservedCurrencyCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="666.5" width="320" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MrZ-EL-dVM" id="3Fi-y6-0p2">
@@ -1021,14 +1021,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tSE-LV-mRd">
-                                                    <rect key="frame" x="328" y="36" width="60" height="60"/>
+                                                    <rect key="frame" x="241" y="36" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="SwN-qS-SKu"/>
                                                         <constraint firstAttribute="height" constant="60" id="Ybd-vk-XCH"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Курс" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlJ-fF-kxc">
-                                                    <rect key="frame" x="26" y="29" width="75" height="22"/>
+                                                    <rect key="frame" x="19" y="29" width="75" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="75" id="3uN-ne-Ccg"/>
                                                         <constraint firstAttribute="height" constant="22" id="wff-9d-Fjj"/>
@@ -1038,7 +1038,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$15 000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNS-CW-Jhb">
-                                                    <rect key="frame" x="26" y="53" width="75" height="24"/>
+                                                    <rect key="frame" x="19" y="53" width="75" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="Thd-Ga-JQz"/>
                                                         <constraint firstAttribute="width" constant="75" id="lJE-vY-5jl"/>
@@ -1048,7 +1048,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1.84%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1L-CP-INq">
-                                                    <rect key="frame" x="26" y="79" width="75" height="24"/>
+                                                    <rect key="frame" x="19" y="79" width="75" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="75" id="R7r-Ny-JpD"/>
                                                         <constraint firstAttribute="height" constant="24" id="RUp-BH-xPJ"/>
@@ -1058,10 +1058,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jyr-DO-4hV">
-                                                    <rect key="frame" x="26" y="115" width="362" height="138"/>
+                                                    <rect key="frame" x="19" y="115" width="282" height="138"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="График" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79S-9B-ayp">
-                                                            <rect key="frame" x="143" y="58" width="77" height="22"/>
+                                                            <rect key="frame" x="103" y="58" width="77" height="22"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="77" id="KXn-Gh-xcA"/>
                                                                 <constraint firstAttribute="height" constant="22" id="NKY-Bu-oZc"/>
@@ -1079,7 +1079,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Обновлено 17.12.17 в 18:13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkL-wh-wWk">
-                                                    <rect key="frame" x="26" y="254" width="362" height="21"/>
+                                                    <rect key="frame" x="19" y="254" width="282" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="bYB-rm-h3L"/>
                                                     </constraints>
@@ -1146,7 +1146,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PortfolioCurrencyGraphCell" rowHeight="50" id="Ryw-TT-FsF" customClass="PortfolioCurrencyGraphCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PortfolioCurrencyGraphCell" rowHeight="50" id="Ryw-TT-FsF" customClass="PortfolioCurrencyGraphCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ryw-TT-FsF" id="fRK-Vf-XyS">
@@ -1189,7 +1189,7 @@
                                 <rect key="frame" x="0.0" y="76" width="320" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDataCell" rowHeight="50" id="zFR-cl-XTs" customClass="NoDataCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDataCell" rowHeight="50" id="zFR-cl-XTs" customClass="NoDataCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zFR-cl-XTs" id="Uf1-az-ebQ">
@@ -1216,7 +1216,7 @@
                                             <outlet property="mainLabel" destination="eYl-Xq-oSY" id="M6T-7G-73x"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyForSearchCell" rowHeight="50" id="DsZ-Vj-ARl" customClass="CurrencyForSearchCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyForSearchCell" rowHeight="50" id="DsZ-Vj-ARl" customClass="CurrencyForSearchCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="78" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DsZ-Vj-ARl" id="sKr-N5-Tey">
@@ -1309,7 +1309,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IndicatorViewCell" rowHeight="50" id="4HG-tj-b26" customClass="IndicatorViewCell" customModule="CryptoSpace">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IndicatorViewCell" rowHeight="50" id="4HG-tj-b26" customClass="IndicatorViewCell" customModule="CryptoSpace">
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4HG-tj-b26" id="zSm-P8-FHM">
@@ -1329,7 +1329,7 @@
                                             <outlet property="indicatorView" destination="xAi-5P-MRC" id="0p5-4K-fVW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActionWithCurrencyCell" rowHeight="50" id="EkM-1k-blR" customClass="ActionWithCurrencyCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActionWithCurrencyCell" rowHeight="50" id="EkM-1k-blR" customClass="ActionWithCurrencyCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="78" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EkM-1k-blR" id="fQj-8v-YMK">
@@ -1366,7 +1366,7 @@
                                             <outlet property="leftTextLabel" destination="6QM-rN-FmS" id="NFg-ze-NRW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyPairCell" rowHeight="60" id="6Bm-TQ-ZBb" customClass="CurrencyPairCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyPairCell" rowHeight="60" id="6Bm-TQ-ZBb" customClass="CurrencyPairCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="128" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Bm-TQ-ZBb" id="c6b-UD-5xQ">
@@ -1406,7 +1406,7 @@
                                             <outlet property="coinShortNameLabel" destination="Hd8-cx-ZGQ" id="wtT-hc-g5K"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActionWithCurrencyDateCell" rowHeight="40" id="bUx-zi-bmy" customClass="ActionWithCurrencyDateCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActionWithCurrencyDateCell" rowHeight="40" id="bUx-zi-bmy" customClass="ActionWithCurrencyDateCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="188" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bUx-zi-bmy" id="iws-hD-jo1">
@@ -1445,7 +1445,7 @@
                                             <outlet property="purchaseDateLabel" destination="Kah-Dl-lM8" id="See-oh-Vky"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrentExchangeRateCell" rowHeight="40" id="Ovo-xo-jZY" customClass="CurrentExchangeRateCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrentExchangeRateCell" rowHeight="40" id="Ovo-xo-jZY" customClass="CurrentExchangeRateCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="228" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ovo-xo-jZY" id="gxc-ac-nAC">
@@ -1485,7 +1485,7 @@
                                             <outlet property="rightTextLabel" destination="ivc-Pj-PKh" id="HpZ-A2-7sa"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PurchaseExchangeRateCell" rowHeight="68" id="XRD-sP-v5m" customClass="PurchaseExchangeRateCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PurchaseExchangeRateCell" rowHeight="68" id="XRD-sP-v5m" customClass="PurchaseExchangeRateCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="268" width="320" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XRD-sP-v5m" id="P3Q-m1-Hg9">
@@ -1538,7 +1538,7 @@
                                             <outlet property="purchaseExchangeRateTextField" destination="oMG-Fr-DT1" id="j0M-MK-qWw"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PurchaseSumCell" rowHeight="72" id="D3b-W2-hVm" customClass="PurchaseSumCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PurchaseSumCell" rowHeight="72" id="D3b-W2-hVm" customClass="PurchaseSumCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="336" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D3b-W2-hVm" id="evY-0Y-bPv">
@@ -1592,7 +1592,7 @@
                                             <outlet property="purchaseSumTextField" destination="uzZ-UO-you" id="xrj-q6-qyZ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyAmountCell" rowHeight="72" id="tVd-QE-2JZ" customClass="CurrencyAmountCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyAmountCell" rowHeight="72" id="tVd-QE-2JZ" customClass="CurrencyAmountCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="408" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tVd-QE-2JZ" id="mTh-C1-CFs">
@@ -1645,7 +1645,7 @@
                                             <outlet property="currencyAmountTextField" destination="uwx-X9-jgU" id="iJs-Si-Hgv"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotesCell" rowHeight="110" id="7Y2-bN-vYH" customClass="NotesCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotesCell" rowHeight="110" id="7Y2-bN-vYH" customClass="NotesCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="480" width="320" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Y2-bN-vYH" id="EFF-a9-VYB">
@@ -1688,7 +1688,7 @@
                                             <outlet property="notesTextView" destination="69g-9d-Yih" id="3dT-l0-fTk"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PurchasedAmountCostCell" rowHeight="50" id="Ggm-Pf-CK4" customClass="PurchasedAmountCostCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PurchasedAmountCostCell" rowHeight="50" id="Ggm-Pf-CK4" customClass="PurchasedAmountCostCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="590" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ggm-Pf-CK4" id="Yc9-nN-nNR">
@@ -1696,7 +1696,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Итого" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeu-VV-qww">
-                                                    <rect key="frame" x="22" y="10" width="53" height="30"/>
+                                                    <rect key="frame" x="15" y="10" width="53" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="53" id="mkm-Yr-pZl"/>
                                                         <constraint firstAttribute="height" constant="30" id="wqc-zW-7mB"/>
@@ -1706,7 +1706,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$23 000 000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bI-Ue-zyF">
-                                                    <rect key="frame" x="83" y="10" width="309" height="30"/>
+                                                    <rect key="frame" x="76" y="10" width="229" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="waf-Ib-323"/>
                                                     </constraints>
@@ -1760,7 +1760,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IndicatorViewCell" rowHeight="50" id="JSK-O6-094" customClass="IndicatorViewCell" customModule="CryptoSpace">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IndicatorViewCell" rowHeight="50" id="JSK-O6-094" customClass="IndicatorViewCell" customModule="CryptoSpace">
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JSK-O6-094" id="8fs-bc-YC3">
@@ -1780,7 +1780,7 @@
                                             <outlet property="indicatorView" destination="OXl-bz-3gy" id="XhU-uQ-8Hb"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDataCell" rowHeight="50" id="TIT-Kf-alF" customClass="NoDataCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoDataCell" rowHeight="50" id="TIT-Kf-alF" customClass="NoDataCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="78" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TIT-Kf-alF" id="ZOd-ea-9Qa">
@@ -1807,7 +1807,7 @@
                                             <outlet property="mainLabel" destination="MoT-tS-HUk" id="cvM-K5-1vI"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CryptoCurrenciesCapitalizationCell" rowHeight="64" id="VXq-IN-Fct" customClass="CryptoCurrenciesCapitalizationCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CryptoCurrenciesCapitalizationCell" rowHeight="64" id="VXq-IN-Fct" customClass="CryptoCurrenciesCapitalizationCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="128" width="320" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VXq-IN-Fct" id="m7h-Qz-DTH">
@@ -1842,7 +1842,7 @@
                                             <outlet property="cmcLabel" destination="FqE-dK-1dF" id="h02-Lp-ycf"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ObservedPositionCell" rowHeight="62" id="bBn-dn-hhD" customClass="ObservedPositionCell" customModule="CryptoSpace" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ObservedPositionCell" rowHeight="62" id="bBn-dn-hhD" customClass="ObservedPositionCell" customModule="CryptoSpace" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="192" width="320" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bBn-dn-hhD" id="zDR-3G-hbu">
@@ -1997,7 +1997,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="basicSettingsCell" textLabel="cXr-5a-H5l" rowHeight="50" style="IBUITableViewCellStyleDefault" id="sM0-hJ-FmU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="basicSettingsCell" textLabel="cXr-5a-H5l" rowHeight="50" style="IBUITableViewCellStyleDefault" id="sM0-hJ-FmU">
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sM0-hJ-FmU" id="6Su-ud-bP5">

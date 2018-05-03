@@ -12,7 +12,8 @@ class TrackedCurrencyDataSource: NSObject, UITableViewDataSource {
     
     var modelsArray = [Any]()
     var viewController: TrackedCurrencyViewController?
-    
+    var trackedGroupedCoins = [Coin]()
+
     public func numberOfSections(in tableView: UITableView) -> Int {
         return modelsArray.count
     }
@@ -56,6 +57,12 @@ class TrackedCurrencyDataSource: NSObject, UITableViewDataSource {
             tableView.endUpdates()
             
             if modelsArray.count == 1 {
+                for trackedCoin in trackedGroupedCoins {
+                    if trackedCoin.shortName == modelToDelete.shortName {
+                        trackedGroupedCoins.remove(at: trackedGroupedCoins.index(of: trackedCoin)!)
+                    }
+                }
+                CoinsOrderManager.updateCoinsOrder(coinsType: .Tracked, disorderedCoins: trackedGroupedCoins)
                 viewController?.navigationController?.popViewController(animated: true)
             }
         }

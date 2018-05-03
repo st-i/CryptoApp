@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-//НАПИСАТЬ ХЕЛПЕР NUMBERFORMATTER
-
 class DetailedDateFormatter: NSObject {
     
     class func stringFromDate(date: Date) -> String {
@@ -270,6 +268,7 @@ class CertainCoinInfoMapper: NSObject {
         commonInfoModel.initialSumMoneyChange = String(format: "%@$%@", minusOrPlusSign, initialSumMoneyChangeString)
         
         let initialSumPercentChange = (initialSumMoneyChange / coin.initialSum) * 100.0
+        currentNumberFormatter.maximumFractionDigits = 2
         let initialSumPercentChangeString = currentNumberFormatter.string(from: NSNumber.init(value: initialSumPercentChange))!
         commonInfoModel.initialSumPercentChange = String(format: "%@%@%%", minusOrPlusSign, initialSumPercentChangeString)
         
@@ -485,7 +484,7 @@ class CoinsOrderManager: NSObject {
         if UserDefaults.standard.object(forKey: dictKey) != nil {
             let coinsIndexes = UserDefaults.standard.object(forKey: dictKey) as! Dictionary<String, Int>
             
-            if coinsIndexes.keys.count != 0 {
+            if coinsIndexes.keys.count != 0 && coinsIndexes.keys.count == disorderedCoins.count {
                 var orderedCoins = [Coin]()
                 for _ in 0..<disorderedCoins.count {
                     orderedCoins.append(Coin())

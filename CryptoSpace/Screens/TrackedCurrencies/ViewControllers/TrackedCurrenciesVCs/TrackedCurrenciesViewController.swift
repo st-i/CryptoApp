@@ -35,6 +35,12 @@ class TrackedCurrenciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let someDouble = 999999999999.99 //999 999 999 999,99
+        let numbForm = GlobalNumberFormatter.createNumberFormatter(number: someDouble)
+        numbForm.maximumIntegerDigits = 10
+        let stringNumb = numbForm.string(from: NSNumber.init(value: someDouble))
+        print(stringNumb!)
+        
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.navBarColor()
         //init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)

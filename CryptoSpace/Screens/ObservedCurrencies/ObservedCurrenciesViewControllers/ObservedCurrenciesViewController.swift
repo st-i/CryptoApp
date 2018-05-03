@@ -59,6 +59,10 @@ class ObservedCurrenciesViewController: UIViewController {
         
         let allSavedObservedCoins = CoreDataManager.shared.getObservedUserCoinsArray()
         allObservedCoins = allSavedObservedCoins
+        
+        if allObservedCoins.count > 0 {
+            allObservedCoins = CoinsOrderManager.orderCoins(coinsType: .Observed, disorderedCoins: allObservedCoins)
+        }
 
         if marketCapValue == 0 {
 //            if есть интернет
@@ -92,6 +96,7 @@ class ObservedCurrenciesViewController: UIViewController {
         let allSavedObservedCoins = CoreDataManager.shared.getObservedUserCoinsArray()
         if allSavedObservedCoins.count != allObservedCoins.count {
             allObservedCoins = allSavedObservedCoins
+            allObservedCoins = CoinsOrderManager.orderCoins(coinsType: .Observed, disorderedCoins: allObservedCoins)
             fillTableViewWithData()
             tableView.reloadData()
         }
@@ -179,6 +184,7 @@ class ObservedCurrenciesViewController: UIViewController {
                 }
                 
                 CoreDataManager.shared.updateObservedUserCoins(observedCoins: self.allObservedCoins)
+                self.allObservedCoins = CoinsOrderManager.orderCoins(coinsType: .Observed, disorderedCoins: self.allObservedCoins)
                 self.fillTableViewWithData()
                 self.tableView.reloadData()
             })
