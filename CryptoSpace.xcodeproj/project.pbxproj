@@ -134,6 +134,7 @@
 		DDB2F1F520972FC700C568F1 /* NoDataCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB2F1F420972FC700C568F1 /* NoDataCellBuilder.swift */; };
 		DDB2F1F720977EB700C568F1 /* ObservedCurrenciesDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB2F1F620977EB700C568F1 /* ObservedCurrenciesDataSourceAndDelegate.swift */; };
 		DDBA44D7207FDE7C001FDE14 /* TrackedCoinCommonInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBA44D6207FDE7C001FDE14 /* TrackedCoinCommonInfoModel.swift */; };
+		DDBEA461209DCD5D00413D37 /* RequestResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBEA460209DCD5D00413D37 /* RequestResultModel.swift */; };
 		DDC281F920305B60002AAAF0 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC281F820305B60002AAAF0 /* RequestManager.swift */; };
 		DDC31FAD20712240005E9235 /* ExchangesDictsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC31FAC20712240005E9235 /* ExchangesDictsKeys.swift */; };
 		DDD38AC92037651800462783 /* RequestToBitfinexBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD38AC82037651800462783 /* RequestToBitfinexBuilder.swift */; };
@@ -273,6 +274,7 @@
 		DDB2F1F420972FC700C568F1 /* NoDataCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataCellBuilder.swift; sourceTree = "<group>"; };
 		DDB2F1F620977EB700C568F1 /* ObservedCurrenciesDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedCurrenciesDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		DDBA44D6207FDE7C001FDE14 /* TrackedCoinCommonInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedCoinCommonInfoModel.swift; sourceTree = "<group>"; };
+		DDBEA460209DCD5D00413D37 /* RequestResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResultModel.swift; sourceTree = "<group>"; };
 		DDC281F820305B60002AAAF0 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		DDC31FAC20712240005E9235 /* ExchangesDictsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesDictsKeys.swift; sourceTree = "<group>"; };
 		DDD38AC82037651800462783 /* RequestToBitfinexBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToBitfinexBuilder.swift; sourceTree = "<group>"; };
@@ -919,6 +921,7 @@
 				DDA1607F203DEE890020B602 /* Coin.swift */,
 				DDAE166B208B7B5D00771504 /* GraphViewModel.swift */,
 				DDAD79C3208C5DA60045BD44 /* AddCoinModel.swift */,
+				DDBEA460209DCD5D00413D37 /* RequestResultModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1188,6 +1191,7 @@
 				54D3EAF71FEAE387002DDB7F /* CurrencySearchViewController.swift in Sources */,
 				DDE2281C2099C829002E4612 /* UserDefaultsKeys.swift in Sources */,
 				DD37B25920518A6500519443 /* Enums.swift in Sources */,
+				DDBEA461209DCD5D00413D37 /* RequestResultModel.swift in Sources */,
 				5482F41C1FFFCF6B00BDD14C /* EmptyCellBuilder.swift in Sources */,
 				DD04D12D201E189D00D67AA5 /* PortfolioGraphDataSourceAndDelegate.swift in Sources */,
 				54CA4E3C1FE53D1600E6357E /* CryptoCurrenciesCapitalizationCell.swift in Sources */,

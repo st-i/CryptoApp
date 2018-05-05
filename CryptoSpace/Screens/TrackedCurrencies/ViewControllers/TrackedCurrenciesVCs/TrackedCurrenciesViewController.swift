@@ -35,12 +35,6 @@ class TrackedCurrenciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let someDouble = 999999999999.99 //999 999 999 999,99
-        let numbForm = GlobalNumberFormatter.createNumberFormatter(number: someDouble)
-        numbForm.maximumIntegerDigits = 10
-        let stringNumb = numbForm.string(from: NSNumber.init(value: someDouble))
-        print(stringNumb!)
-        
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.navBarColor()
         //init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)
@@ -176,7 +170,12 @@ class TrackedCurrenciesViewController: UIViewController {
             let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
             let portfolioGraphVC = storyboard.instantiateViewController(withIdentifier: "PortfolioGraphViewController") as! PortfolioGraphViewController
             portfolioGraphVC.displayModelsArray = sortedGraphViewModels
-            navigationController?.pushViewController(portfolioGraphVC, animated: true)
+//            navigationController?.pushViewController(portfolioGraphVC, animated: true)
+
+            let navContr = UINavigationController.init(rootViewController: portfolioGraphVC)
+            navContr.modalTransitionStyle = .crossDissolve
+            navContr.modalPresentationStyle = .overFullScreen
+            present(navContr, animated: true, completion: nil)
         }else{
             let noCoinsAlert = UIAlertController.init(title: "Данные отсутствуют", message: "Добавьте криптовалюты, чтобы посмотреть статистику портфеля", preferredStyle: .alert)
             let okAction = UIAlertAction.init(title: "ОK", style: .cancel, handler: nil)
@@ -219,79 +218,92 @@ class TrackedCurrenciesViewController: UIViewController {
         
         let coinsExchangesArray = CoinsArrayFormatter.createCoinsExchangesArray(coins: userCoins)
         
-        requestManager.getRubleExchangeRate { (newRubleRate) in
-            self.rubleRate = newRubleRate
-            
-            self.requestManager.coinsExchanges.removeAll()
-            self.requestManager.exchangesCounter = 0
-            
-            self.requestManager.coinsExchanges = coinsExchangesArray
-            self.requestManager.updateCoinsRates(completion: { (newArray) in
-                var portfolio24ChangeInPercentages = 0.0
-                var portfolio24hChangeInDollars = 0.0
+        requestManager.getRubleExchangeRate { (rubleRequestResultModel) in
+            if rubleRequestResultModel.error != convertToJSONError {
+                self.rubleRate = rubleRequestResultModel.value!
                 
-                var initialPortfolioCost = 0.0
+                self.requestManager.coinsExchanges.removeAll()
+                self.requestManager.exchangesCounter = 0
+                self.requestManager.globalRequestResultModel = RequestResultModel()
                 
-                for coin in self.userCoins {
-                    let updatedCoin = newArray[coin.exchange.rawValue][coin.shortName]
-                    
-                    initialPortfolioCost = initialPortfolioCost + (updatedCoin?.initialSum)!
-                    
-                    let updatedCoinRate = (updatedCoin?.exchangeRate)!
-                    coin.exchangeRate = updatedCoinRate
-                    let coinSum = coin.amount * updatedCoinRate
-                    coin.sum = coinSum
-                    let coinRate24hPercentChange = (updatedCoin?.rate24hPercentChange)!
-                    coin.rate24hPercentChange = coinRate24hPercentChange
-                    
-                    if self.userCoins.count == 1 {
-                        portfolio24ChangeInPercentages = coinRate24hPercentChange
-                    }
-                    let currentTotalPercent = 100.0 + coinRate24hPercentChange //100% + изменение за 24ч
-                    let openCoinSum = (coinSum * 100.0) / currentTotalPercent //сумма при открытии торгов
-                    var currentCoinPriceChange = 0.0
-                    if coinSum >= openCoinSum {
-                        currentCoinPriceChange = coinSum - openCoinSum
-                        portfolio24hChangeInDollars = portfolio24hChangeInDollars + currentCoinPriceChange
-                    }else{
-                        currentCoinPriceChange = openCoinSum - coinSum
-                        portfolio24hChangeInDollars = portfolio24hChangeInDollars - currentCoinPriceChange
-                    }
-                }
+                self.requestManager.coinsExchanges = coinsExchangesArray
+                self.requestManager.updateCoinsRates(completion: { (coinsRequestResultModel) in
+                    if coinsRequestResultModel.error != convertToJSONError {
+                        var portfolio24ChangeInPercentages = 0.0
+                        var portfolio24hChangeInDollars = 0.0
+                        
+                        var initialPortfolioCost = 0.0
+                        
+                        for coin in self.userCoins {
+                            let updatedCoin = coinsRequestResultModel.coinsSortedByExchanges![coin.exchange.rawValue][coin.shortName]
+                            
+                            initialPortfolioCost = initialPortfolioCost + (updatedCoin?.initialSum)!
+                            
+                            let updatedCoinRate = (updatedCoin?.exchangeRate)!
+                            coin.exchangeRate = updatedCoinRate
+                            let coinSum = coin.amount * updatedCoinRate
+                            coin.sum = coinSum
+                            let coinRate24hPercentChange = (updatedCoin?.rate24hPercentChange)!
+                            coin.rate24hPercentChange = coinRate24hPercentChange
+                            
+                            if self.userCoins.count == 1 {
+                                portfolio24ChangeInPercentages = coinRate24hPercentChange
+                            }
+                            let currentTotalPercent = 100.0 + coinRate24hPercentChange //100% + изменение за 24ч
+                            let openCoinSum = (coinSum * 100.0) / currentTotalPercent //сумма при открытии торгов
+                            var currentCoinPriceChange = 0.0
+                            if coinSum >= openCoinSum {
+                                currentCoinPriceChange = coinSum - openCoinSum
+                                portfolio24hChangeInDollars = portfolio24hChangeInDollars + currentCoinPriceChange
+                            }else{
+                                currentCoinPriceChange = openCoinSum - coinSum
+                                portfolio24hChangeInDollars = portfolio24hChangeInDollars - currentCoinPriceChange
+                            }
+                        }
 
-                self.currentUserPortfolio.last24hValueDollarChange = portfolio24hChangeInDollars
-                self.currentUserPortfolio.rubleExchangeRate = newRubleRate
-                
-                //текущая стоимость
-                let userCoinsSumInDollars = SumCalculator.getCoinsTotalSum(coins: self.userCoins)
-                self.currentUserPortfolio.currentDollarValue = userCoinsSumInDollars
-                
-                //начальная стоимость
-                let initialCoinsCostInDollars = initialPortfolioCost
-                self.currentUserPortfolio.initialDollarValue = initialCoinsCostInDollars
-                
-                //изменение в процентах за 24ч
-                var portfolio24PercentagesChange = 0.0
-                if self.userCoins.count == 1 {
-                    portfolio24PercentagesChange = portfolio24ChangeInPercentages
-                }else{
-                    portfolio24PercentagesChange = (portfolio24hChangeInDollars / userCoinsSumInDollars) * 100.0
-                }
-                self.currentUserPortfolio.last24hValuePercentChange = portfolio24PercentagesChange
-                
-                //Обновляем
-                CoreDataManager.shared.updatePortfolio(portfolio: self.currentUserPortfolio)
-                
-                if self.userCoins.count > 0 {
-                    CoreDataManager.shared.updateTrackedUserCoins(trackedCoins: self.userCoins)
-                }
-                
-                //отображаем
-                self.userCoins = CoinsOrderManager.orderCoins(coinsType: .Tracked, disorderedCoins: self.userCoins)
-                self.userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: self.currentUserPortfolio, userCoinsCount:self.userCoins.count)
-                self.fillTableViewWithData()
+                        self.currentUserPortfolio.last24hValueDollarChange = portfolio24hChangeInDollars
+                        self.currentUserPortfolio.rubleExchangeRate = self.rubleRate
+                        
+                        //текущая стоимость
+                        let userCoinsSumInDollars = SumCalculator.getCoinsTotalSum(coins: self.userCoins)
+                        self.currentUserPortfolio.currentDollarValue = userCoinsSumInDollars
+                        
+                        //начальная стоимость
+                        let initialCoinsCostInDollars = initialPortfolioCost
+                        self.currentUserPortfolio.initialDollarValue = initialCoinsCostInDollars
+                        
+                        //изменение в процентах за 24ч
+                        var portfolio24PercentagesChange = 0.0
+                        if self.userCoins.count == 1 {
+                            portfolio24PercentagesChange = portfolio24ChangeInPercentages
+                        }else{
+                            portfolio24PercentagesChange = (portfolio24hChangeInDollars / userCoinsSumInDollars) * 100.0
+                        }
+                        self.currentUserPortfolio.last24hValuePercentChange = portfolio24PercentagesChange
+                        
+                        //Обновляем
+                        CoreDataManager.shared.updatePortfolio(portfolio: self.currentUserPortfolio)
+                        
+                        if self.userCoins.count > 0 {
+                            CoreDataManager.shared.updateTrackedUserCoins(trackedCoins: self.userCoins)
+                        }
+                        
+                        //отображаем
+                        self.userCoins = CoinsOrderManager.orderCoins(coinsType: .Tracked, disorderedCoins: self.userCoins)
+                        self.userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: self.currentUserPortfolio, userCoinsCount:self.userCoins.count)
+                        self.fillTableViewWithData()
+                        self.tableView.reloadData()
+                    }else{
+                        self.updateScreenWithoutRequest()
+                        self.tableView.reloadData()
+                        AlertsManager.showTryToUpdateLater(inViewController: self)
+                    }
+                })
+            }else{
+                self.updateScreenWithoutRequest()
                 self.tableView.reloadData()
-            })
+                AlertsManager.showTryToUpdateLater(inViewController: self)
+            }
         }
     }
     

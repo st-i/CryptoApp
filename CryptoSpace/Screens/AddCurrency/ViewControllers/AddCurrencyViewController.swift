@@ -73,28 +73,27 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
         if !requestWasSend {
             let requestManager = RequestManager.init()
-            requestManager.getExchangeRate(coin: currentCoin) { (coinsRatesDict) in
-                let coinRate = (coinsRatesDict[self.currentCoin.shortName]!)[kCoinLastPrice]!
-                self.currentCoin.exchangeRate = coinRate
-                self.currentCoin.purchaseExchangeRate = coinRate
-                self.currentCoin.rate24hPercentChange = (coinsRatesDict[self.currentCoin.shortName]!)[kCoin24hPercentChange]!
-                self.purchaseExchangeRateValue = coinRate
+            requestManager.getExchangeRate(coin: currentCoin) { (singleCoinRequestResultModel) in
+                if singleCoinRequestResultModel.error != convertToJSONError {
+                    let coinRate = (singleCoinRequestResultModel.singleCoinDict![self.currentCoin.shortName]!)[kCoinLastPrice]!
+                    self.currentCoin.exchangeRate = coinRate
+                    self.currentCoin.purchaseExchangeRate = coinRate
+                    self.currentCoin.rate24hPercentChange = (singleCoinRequestResultModel.singleCoinDict![self.currentCoin.shortName]!)[kCoin24hPercentChange]!
+                    self.purchaseExchangeRateValue = coinRate
 
-                self.requestWasSend = true
-                if self.coinType == CoinType.Tracked {
-                    self.navigationItem.rightBarButtonItem?.isEnabled = false
+                    self.requestWasSend = true
+                    if self.coinType == CoinType.Tracked {
+                        self.navigationItem.rightBarButtonItem?.isEnabled = false
+                    }else{
+                        self.navigationItem.rightBarButtonItem?.isEnabled = true
+                    }
+                    self.fillTableViewWithData()
                 }else{
-                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+                    AlertsManager.showTryToUpdateLaterAndDismiss(inViewController: self)
                 }
-                
-                self.fillTableViewWithData()
             }
         }
     }
@@ -181,7 +180,7 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
         
         let currentCoinType = addCurrencyDataSourceAndDelegate.currencyPurchase ? CoinType.Tracked : CoinType.Observed
         if addCurrencyDataSourceAndDelegate.currencyPurchase {
-            currentCoin.exchangeRate = purchaseExchangeRateValue
+//            currentCoin.exchangeRate = purchaseExchangeRateValue
             currentCoin.purchaseExchangeRate = purchaseExchangeRateValue
             currentCoin.amount = currencyAmountValue
             currentCoin.sum = purchaseSumValue

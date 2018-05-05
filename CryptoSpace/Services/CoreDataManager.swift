@@ -440,7 +440,7 @@ final class CoreDataManager {
     }
     
     //MARK: Coin Market Cap Part
-    func saveCoinMarketCap(value: Int) {
+    func saveCoinMarketCap(value: Double) {
         
         //1
         let managedContext = persistentContainer.viewContext
@@ -457,17 +457,17 @@ final class CoreDataManager {
         }
     }
     
-    func getCoinMarketCap() -> Int {
+    func getCoinMarketCap() -> Double {
         
         let managedContext = CoreDataManager.shared.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MarketCap")
         
-        var coinMarketCapValue = 0
+        var coinMarketCapValue = 0.0
         do {
             let coinMarketCapEntityArray = try managedContext.fetch(fetchRequest)
             if coinMarketCapEntityArray.count > 0 {
                 let coinMarketCapEntity = coinMarketCapEntityArray.first
-                coinMarketCapValue = coinMarketCapEntity?.value(forKey: "marketCapValue") as! Int
+                coinMarketCapValue = coinMarketCapEntity?.value(forKey: "marketCapValue") as! Double
             }
         } catch let error as NSError {
             print("Could not fetch getCoinMarketCap. \(error), \(error.userInfo)")
@@ -475,7 +475,7 @@ final class CoreDataManager {
         return coinMarketCapValue
     }
     
-    func updateCoinMarketCap(value: Int) {
+    func updateCoinMarketCap(value: Double) {
 
         let managedContext = CoreDataManager.shared.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MarketCap")

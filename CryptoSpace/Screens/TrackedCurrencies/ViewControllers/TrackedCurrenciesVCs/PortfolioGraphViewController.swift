@@ -19,6 +19,10 @@ class PortfolioGraphViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = UIColor.navBarColor()
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
         let titleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 140, height: 30))
         let titleViewLabel = UILabel.init(frame: titleView.frame)
         titleViewLabel.textAlignment = .center
@@ -27,6 +31,8 @@ class PortfolioGraphViewController: UIViewController {
         titleViewLabel.text = "Статистика"
         titleView.addSubview(titleViewLabel)
         navigationItem.titleView = titleView
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "X", style: .plain, target: self, action: #selector(dismissViewController))
     
         fillTableViewWithData()
     }
@@ -60,5 +66,9 @@ class PortfolioGraphViewController: UIViewController {
             }, completion: nil)
             
         }
+    }
+    
+    @objc func dismissViewController() {
+        dismiss(animated: true, completion: nil)
     }
 }

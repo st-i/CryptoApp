@@ -20,10 +20,10 @@ import UIKit
 
 class CMCResponseParser: NSObject {
     
-    class func parseResponse(response: [String: AnyObject]) -> Int {
+    class func parseResponse(response: [String: AnyObject]) -> Double {
         
         let kTotalMarketCap = "total_market_cap_usd"
-        let coinMarketCapValue = (response[kTotalMarketCap] as! NSNumber).intValue
+        let coinMarketCapValue = (response[kTotalMarketCap] as! NSNumber).doubleValue
         return coinMarketCapValue
     }
 }

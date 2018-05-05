@@ -100,7 +100,7 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
             headerViewRateLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium)
             headerViewRateLabel.textColor = UIColor.gray
             headerViewRateLabel.text = exchangeRateText
-            headerView.addSubview(headerViewRateLabel)//134
+            headerView.addSubview(headerViewRateLabel) //134
             
             let headerViewValueLabel = UILabel.init(frame: CGRect(x: headerView.frame.width - 30 - 15 - 89 - 118, y: 5, width: 118, height: 20))
             headerViewValueLabel.textAlignment = .right

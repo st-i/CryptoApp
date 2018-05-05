@@ -65,27 +65,35 @@ class ObservedCurrenciesViewController: UIViewController {
         }
 
         if marketCapValue == 0 {
-//            if есть интернет
-            getMarketCapValue(completion: { (value) in
-                CoreDataManager.shared.saveCoinMarketCap(value: value)
-                self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)
+            requestManager.getCryptoMarketCap { (cmcRequestResultModel) in
+                if cmcRequestResultModel.error != convertToJSONError {
+                    CoreDataManager.shared.saveCoinMarketCap(value: cmcRequestResultModel.value!)
+                    self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: cmcRequestResultModel.value!)
+                }else{
+                    self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: 0.0)
+                }
                 if allSavedObservedCoins.count == 0 {
                     self.fillTableViewWithData() //показываем ячейку "нет монет"
                     self.tableView.reloadData()
                 }else{
                     self.refreshMarketCapAndCurrenciesRates() //такого не должно произойти
                 }
-            })
+            }
         }else{
             if allSavedObservedCoins.count > 0 {
                 refreshMarketCapAndCurrenciesRates()
             }else{
-                getMarketCapValue(completion: { (value) in
-                    CoreDataManager.shared.updateCoinMarketCap(value: value)
-                    self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)
+                requestManager.getCryptoMarketCap { (cmcRequestResultModel) in
+                    if cmcRequestResultModel.error != convertToJSONError {
+                        CoreDataManager.shared.updateCoinMarketCap(value: cmcRequestResultModel.value!)
+                        self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: cmcRequestResultModel.value!)
+                    }else{
+                        self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: CoreDataManager.shared.getCoinMarketCap())
+                        AlertsManager.showTryToUpdateLater(inViewController: self)
+                    }
                     self.fillTableViewWithData() //показываем ячейку "нет монет"
                     self.tableView.reloadData()
-                })
+                }
             }
         }
     }
@@ -162,9 +170,13 @@ class ObservedCurrenciesViewController: UIViewController {
         
         allObservedCoins = CoreDataManager.shared.getObservedUserCoinsArray()
         
-        requestManager.getCryptoMarketCap { (value) in
-            CoreDataManager.shared.updateCoinMarketCap(value: value)
-            self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)
+        requestManager.getCryptoMarketCap { (cmcRequestResultModel) in
+            if cmcRequestResultModel.error != convertToJSONError {
+                CoreDataManager.shared.updateCoinMarketCap(value: cmcRequestResultModel.value!)
+                self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: cmcRequestResultModel.value!)
+            }else{
+                self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: CoreDataManager.shared.getCoinMarketCap())
+            }
             
             let coinsExchangesArray = CoinsArrayFormatter.createCoinsExchangesArray(coins: self.allObservedCoins)
             self.requestManager.coinsExchanges.removeAll()
@@ -172,18 +184,20 @@ class ObservedCurrenciesViewController: UIViewController {
             
             self.requestManager.coinsExchanges = coinsExchangesArray
             
-            self.requestManager.updateCoinsRates(completion: { (newArray) in
-                
-                for coin in self.allObservedCoins {
-                    let updatedCoin = newArray[coin.exchange.rawValue][coin.shortName]
-                    
-                    let updatedCoinRate = (updatedCoin?.exchangeRate)!
-                    coin.exchangeRate = updatedCoinRate
-                    let coinRate24hPercentChange = (updatedCoin?.rate24hPercentChange)!
-                    coin.rate24hPercentChange = coinRate24hPercentChange
+            self.requestManager.updateCoinsRates(completion: { (coinsRequestResultModel) in
+                if coinsRequestResultModel.error != convertToJSONError {
+                    for coin in self.allObservedCoins {
+                        let updatedCoin = coinsRequestResultModel.coinsSortedByExchanges![coin.exchange.rawValue][coin.shortName]
+                        
+                        let updatedCoinRate = (updatedCoin?.exchangeRate)!
+                        coin.exchangeRate = updatedCoinRate
+                        let coinRate24hPercentChange = (updatedCoin?.rate24hPercentChange)!
+                        coin.rate24hPercentChange = coinRate24hPercentChange
+                    }
+                    CoreDataManager.shared.updateObservedUserCoins(observedCoins: self.allObservedCoins)
+                }else{
+                    AlertsManager.showTryToUpdateLater(inViewController: self)
                 }
-                
-                CoreDataManager.shared.updateObservedUserCoins(observedCoins: self.allObservedCoins)
                 self.allObservedCoins = CoinsOrderManager.orderCoins(coinsType: .Observed, disorderedCoins: self.allObservedCoins)
                 self.fillTableViewWithData()
                 self.tableView.reloadData()
@@ -191,28 +205,33 @@ class ObservedCurrenciesViewController: UIViewController {
         }
     }
     
-    func createCoinMaketCapString(value: Int) -> String {
+    func createCoinMaketCapString(value: Double) -> String {
         
-        let numberFormatter = GlobalNumberFormatter.createNumberFormatter(number: Double(value))
+        let numberFormatter = GlobalNumberFormatter.createNumberFormatter(number: value)
         numberFormatter.maximumFractionDigits = 0
         let cmcString = numberFormatter.string(from: NSNumber.init(value: value))!
         let marketCapString = String(format: "$%@", cmcString)
         return marketCapString
     }
     
-    func getMarketCapValue(completion: @escaping (Int) -> ()) {
-        
-        requestManager.getCryptoMarketCap { (value) in
-            completion(value)
-        }
-    }
+//    func getMarketCapValue(completion: @escaping (Int) -> ()) {
+//
+//        requestManager.getCryptoMarketCap { (cmcRequestResultModel) in
+//            if
+//            completion(value)
+//        }
+//    }
     
-    @objc func updateCoinMarketCap() {
-        
-        getMarketCapValue { (value) in
-            CoreDataManager.shared.updateCoinMarketCap(value: value)
-            self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: value)
-            self.tableView.reloadData()
-        }
-    }
+//    @objc func updateCoinMarketCap() {
+//        requestManager.getCryptoMarketCap { (cmcRequestResultModel) in
+//            if cmcRequestResultModel.error != convertToJSONError {
+//                CoreDataManager.shared.updateCoinMarketCap(value: cmcRequestResultModel.value!)
+//                self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: cmcRequestResultModel.value!)
+//            }else{
+//                self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: 0.0)
+//                AlertsManager.showTryToUpdateLater(inViewController: self)
+//            }
+//            self.tableView.reloadData()
+//        }
+//    }
 }

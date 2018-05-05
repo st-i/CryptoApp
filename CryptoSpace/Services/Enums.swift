@@ -8,6 +8,8 @@
 
 import Foundation
 
+let convertToJSONError = "Не могу перевести в JSON"
+
 enum NoDataTextType {
     case trackedCoins
     case observedCoins

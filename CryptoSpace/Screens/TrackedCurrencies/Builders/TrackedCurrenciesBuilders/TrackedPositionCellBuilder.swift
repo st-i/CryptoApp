@@ -46,7 +46,7 @@ class TrackedPositionCellBuilder: NSObject {
         }
         currentNumberFormatter.maximumFractionDigits = fractionDigitsNumber
         let coinCurrentCostString = currentNumberFormatter.string(from: NSNumber.init(value: coinCurrentCost))
-        cell.purchasedCoinsCostLabel.text = String(format: "$%@", coinCurrentCostString!)
+        cell.purchasedCoinsCostLabel.text = String(format: "$%@", coinCurrentCostString!) //текущая стоимость
         
         let coinAmountSum = coin.amount
         fractionDigitsNumber = 8

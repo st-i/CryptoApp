@@ -462,7 +462,6 @@ class TextColorDeterminant: NSObject {
 class CoinsOrderManager: NSObject {
     
     private class func keyForDict(coinType: CoinType) -> String {
-        
         let dictKey: String!
         if coinType == CoinType.Tracked {
             dictKey = kTrackedCoinsQueueIndexesDict
@@ -473,7 +472,6 @@ class CoinsOrderManager: NSObject {
     }
     
     class func orderCoins(coinsType: CoinType, disorderedCoins: [Coin]) -> [Coin] {
-        
         let dictKey = keyForDict(coinType: coinsType)
 //        if coinsType == CoinType.Tracked {
 //            dictKey = kTrackedCoinsQueueIndexesDict
@@ -504,7 +502,6 @@ class CoinsOrderManager: NSObject {
     }
     
     class func updateCoinsOrder(coinsType: CoinType, disorderedCoins: [Coin]) {
-        
         let dictKey = keyForDict(coinType: coinsType)
 //        let dictKey: String!
 //        if coinsType == CoinType.Tracked {
@@ -525,7 +522,6 @@ class CoinsOrderManager: NSObject {
     }
     
     class func addNewCoinToQueue(coinType: CoinType, newCoin: Coin) {
-        
         let dictKey = keyForDict(coinType: coinType)
 //        let dictKey: String!
 //        if coinsType == CoinType.Tracked {
@@ -562,5 +558,24 @@ class CoinsOrderManager: NSObject {
 //
 //        }
 //    }
+}
+
+class AlertsManager: NSObject {
+    
+    class func showTryToUpdateLater(inViewController: UIViewController) {
+        let alert = UIAlertController.init(title: "Что-то пошло не так", message: "Произошла ошибка при выполнении запроса. Пожалуйста, попробуйте обновить информацию позже", preferredStyle: .alert)
+        let okAction = UIAlertAction.init(title: "ОК", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        inViewController.present(alert, animated: true, completion: nil)
+    }
+    
+    class func showTryToUpdateLaterAndDismiss(inViewController: UIViewController) {
+        let alert = UIAlertController.init(title: "Что-то пошло не так", message: "Произошла ошибка при выполнении запроса. Пожалуйста, попробуйте обновить информацию позже", preferredStyle: .alert)
+        let okAction = UIAlertAction.init(title: "ОК", style: .cancel) { (action) in
+            inViewController.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(okAction)
+        inViewController.present(alert, animated: true, completion: nil)
+    }
 }
 
