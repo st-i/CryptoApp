@@ -20,6 +20,8 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
     var indicatorViewDataSourceAndDelegate: IndicatorViewDataSourceAndDelegate!
     var currentCoin: Coin!
     
+    var showDataTimer = Timer()
+    
     var firstZeroAndComma: Bool!
     var secondZeroAndComma: Bool!
     var thirdZeroAndComma: Bool!
@@ -40,6 +42,7 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
     
     var coinType: CoinType?
     
+    //MARK: VC LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,25 +78,36 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
         super.viewWillAppear(animated)
         
         if !requestWasSend {
-            let requestManager = RequestManager.init()
-            requestManager.getExchangeRate(coin: currentCoin) { (singleCoinRequestResultModel) in
-                if singleCoinRequestResultModel.error != convertToJSONError {
-                    let coinRate = (singleCoinRequestResultModel.singleCoinDict![self.currentCoin.shortName]!)[kCoinLastPrice]!
-                    self.currentCoin.exchangeRate = coinRate
-                    self.currentCoin.purchaseExchangeRate = coinRate
-                    self.currentCoin.rate24hPercentChange = (singleCoinRequestResultModel.singleCoinDict![self.currentCoin.shortName]!)[kCoin24hPercentChange]!
-                    self.purchaseExchangeRateValue = coinRate
-
-                    self.requestWasSend = true
-                    if self.coinType == CoinType.Tracked {
-                        self.navigationItem.rightBarButtonItem?.isEnabled = false
-                    }else{
-                        self.navigationItem.rightBarButtonItem?.isEnabled = true
-                    }
-                    self.fillTableViewWithData()
+            showDataTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(showSingleCoinData), userInfo: nil, repeats: false)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        showDataTimer.invalidate()
+    }
+    
+    //MARK: show data after delay
+    @objc func showSingleCoinData() {
+        let requestManager = RequestManager.init()
+        requestManager.getExchangeRate(coin: currentCoin) { (singleCoinRequestResultModel) in
+            if singleCoinRequestResultModel.error != convertToJSONError {
+                let coinRate = (singleCoinRequestResultModel.singleCoinDict![self.currentCoin.shortName]!)[kCoinLastPrice]!
+                self.currentCoin.exchangeRate = coinRate
+                self.currentCoin.purchaseExchangeRate = coinRate
+                self.currentCoin.rate24hPercentChange = (singleCoinRequestResultModel.singleCoinDict![self.currentCoin.shortName]!)[kCoin24hPercentChange]!
+                self.purchaseExchangeRateValue = coinRate
+                
+                self.requestWasSend = true
+                if self.coinType == CoinType.Tracked {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
                 }else{
-                    AlertsManager.showTryToUpdateLaterAndDismiss(inViewController: self)
+                    self.navigationItem.rightBarButtonItem?.isEnabled = true
                 }
+                self.fillTableViewWithData()
+            }else{
+                AlertsManager.showTryToUpdateLaterAndDismiss(inViewController: self)
             }
         }
     }

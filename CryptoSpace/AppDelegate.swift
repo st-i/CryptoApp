@@ -26,7 +26,6 @@
 //cobinhood - 1 + | убрал биржу
 //coinexchange - 1 + | убрал биржу
 //Yobit - 1 + | убрал биржу
-//Yobit - 1 + |
 
 //1.Quoine / Qryptos - API users should not make more than 300 requests per 5 minute (60 per minute)
 //2.bittrex - We are currently restricting orders to 500 open orders and 200,000 orders a day. nothing else about limits (все сразу) (60 per minute)

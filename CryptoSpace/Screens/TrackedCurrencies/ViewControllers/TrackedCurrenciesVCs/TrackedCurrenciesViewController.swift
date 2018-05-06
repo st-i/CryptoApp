@@ -15,6 +15,9 @@ class TrackedCurrenciesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var trackedCurrenciesDataSourceAndDelegate:TrackedCurrenciesDataSourceAndDelegate!
     var indicatorViewDataSourceAndDelegate: IndicatorViewDataSourceAndDelegate!
+    
+    var refreshDataTimer = Timer()
+    var refreshDataControl = UIRefreshControl()
 
     var originalEditButton: UIBarButtonItem?
     var originalDoneButton: UIBarButtonItem?
@@ -40,6 +43,9 @@ class TrackedCurrenciesViewController: UIViewController {
         //init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)
         navigationController?.navigationBar.tintColor = UIColor.white
         
+        refreshDataControl.addTarget(self, action: #selector(refreshCurrenciesRatesAfterDelay), for: .valueChanged)
+        tableView.refreshControl = refreshDataControl
+        
         let titleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
         let titleViewLabel = UILabel.init(frame: titleView.frame)
         titleViewLabel.textAlignment = .center
@@ -53,10 +59,11 @@ class TrackedCurrenciesViewController: UIViewController {
         originalDoneButton = UIBarButtonItem.init(title: "Готово", style: .done, target: self, action: #selector(editPortfolioAction))
         leftBarButtonItem = originalEditButton
         
-        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshCurrenciesRates))
+//        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshCurrenciesRates))
         let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addTrackedCurrency))
         
-        navigationItem.rightBarButtonItems = [addButton, refreshButton]
+//        navigationItem.rightBarButtonItems = [addButton, refreshButton]
+        navigationItem.rightBarButtonItem = addButton
         navigationItem.rightBarButtonItem?.isEnabled = false
         
         navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
@@ -91,7 +98,6 @@ class TrackedCurrenciesViewController: UIViewController {
         }else{
             currentUserPortfolio = CoreDataManager.shared.getUserPortfolio()
             userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: currentUserPortfolio, userCoinsCount: userCoins.count)
-            
             refreshCurrenciesRates()
         }
     }
@@ -114,8 +120,11 @@ class TrackedCurrenciesViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        refreshDataTimer.invalidate()
+        refreshDataControl.endRefreshing()
     }
     
     //MARK: TableView Data
@@ -130,7 +139,6 @@ class TrackedCurrenciesViewController: UIViewController {
     }
     
     func fillTableViewWithData() {
-        
         tableView.isScrollEnabled = true
         trackedCurrenciesDataSourceAndDelegate = TrackedCurrenciesDataSourceAndDelegate()
         
@@ -153,7 +161,8 @@ class TrackedCurrenciesViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func openPortfolioGraph(_ sender: UIButton) {
-        
+        refreshDataTimer.invalidate()
+        refreshDataControl.endRefreshing()
         if userCoins.count > 0 {
             var graphViewModels = [GraphViewModel]()
             for trackedCoin in userCoins {
@@ -185,7 +194,8 @@ class TrackedCurrenciesViewController: UIViewController {
     }
     
     @objc func editPortfolioAction() {
-        
+        refreshDataTimer.invalidate()
+        refreshDataControl.endRefreshing()
         if isEditing {
             setEditing(false, animated: true)
             tableView.setEditing(false, animated: true)
@@ -200,7 +210,8 @@ class TrackedCurrenciesViewController: UIViewController {
     }
     
     @objc func addTrackedCurrency() {
-        
+        refreshDataTimer.invalidate()
+        refreshDataControl.endRefreshing()
         let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
         let searchCurrencyVC = storyboard.instantiateViewController(withIdentifier: "CurrencySearchViewController") as! CurrencySearchViewController
         searchCurrencyVC.coinType = CoinType.Tracked
@@ -214,8 +225,11 @@ class TrackedCurrenciesViewController: UIViewController {
 //        requestManager.sendSomeRequestForTest()
 //    }
     
+    @objc func refreshCurrenciesRatesAfterDelay() {
+        refreshDataTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(refreshCurrenciesRates), userInfo: nil, repeats: false)
+    }
+    
     @objc func refreshCurrenciesRates() {
-        
         let coinsExchangesArray = CoinsArrayFormatter.createCoinsExchangesArray(coins: userCoins)
         
         requestManager.getRubleExchangeRate { (rubleRequestResultModel) in
@@ -298,12 +312,16 @@ class TrackedCurrenciesViewController: UIViewController {
                         self.tableView.reloadData()
                         AlertsManager.showTryToUpdateLater(inViewController: self)
                     }
+                    self.refreshDataTimer.invalidate()
+                    self.refreshDataControl.endRefreshing()
                 })
             }else{
                 self.updateScreenWithoutRequest()
                 self.tableView.reloadData()
                 AlertsManager.showTryToUpdateLater(inViewController: self)
             }
+            self.refreshDataTimer.invalidate()
+            self.refreshDataControl.endRefreshing()
         }
     }
     

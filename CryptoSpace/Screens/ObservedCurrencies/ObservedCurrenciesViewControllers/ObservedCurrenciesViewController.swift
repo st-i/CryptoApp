@@ -14,6 +14,9 @@ class ObservedCurrenciesViewController: UIViewController {
     var observedCurrenciesDataSourceAndDelegate:ObservedCurrenciesDataSourceAndDelegate!
     var indicatorViewDataSourceAndDelegate: IndicatorViewDataSourceAndDelegate!
     
+    var refreshDataTimer = Timer()
+    var refreshDataControl = UIRefreshControl()
+    
     var originalEditButton: UIBarButtonItem!
     var originalDoneButton: UIBarButtonItem!
     var leftBarButtonItem: UIBarButtonItem?
@@ -30,6 +33,9 @@ class ObservedCurrenciesViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.navBarColor()
         navigationController?.navigationBar.tintColor = UIColor.white
         
+        refreshDataControl.addTarget(self, action: #selector(refreshMarketCapAndCurrenciesRatesAfterDelay), for: .valueChanged)
+        tableView.refreshControl = refreshDataControl
+        
         let titleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 140, height: 30))
         let titleViewLabel = UILabel.init(frame: titleView.frame)
         titleViewLabel.textAlignment = .center
@@ -43,10 +49,11 @@ class ObservedCurrenciesViewController: UIViewController {
         originalDoneButton = UIBarButtonItem.init(title: "Готово", style: .done, target: self, action: #selector(editObservedCurrenciesAction))
         leftBarButtonItem = originalEditButton
         
-        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshMarketCapAndCurrenciesRates))
+//        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshMarketCapAndCurrenciesRates))
         let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addObservedCurrency))
 
-        navigationItem.rightBarButtonItems = [addButton, refreshButton]
+//        navigationItem.rightBarButtonItems = [addButton, refreshButton]
+        navigationItem.rightBarButtonItem = addButton
         navigationItem.rightBarButtonItem?.isEnabled = false
         
         navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
@@ -110,8 +117,14 @@ class ObservedCurrenciesViewController: UIViewController {
         }
     }
     
-    func showIndicatorViewScreen() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
+        refreshDataTimer.invalidate()
+        refreshDataControl.endRefreshing()
+    }
+    
+    func showIndicatorViewScreen() {
         tableView.backgroundColor = UIColor.white
         indicatorViewDataSourceAndDelegate = IndicatorViewDataSourceAndDelegate()
         
@@ -121,7 +134,6 @@ class ObservedCurrenciesViewController: UIViewController {
     }
     
     func fillTableViewWithData() {
-
         observedCurrenciesDataSourceAndDelegate = ObservedCurrenciesDataSourceAndDelegate()
     
         navigationItem.rightBarButtonItem?.isEnabled = true
@@ -143,7 +155,8 @@ class ObservedCurrenciesViewController: UIViewController {
     }
     
     @objc func editObservedCurrenciesAction() {
-        
+        refreshDataTimer.invalidate()
+        refreshDataControl.endRefreshing()
         if isEditing {
             setEditing(false, animated: true)
             tableView.setEditing(false, animated: true)
@@ -158,12 +171,18 @@ class ObservedCurrenciesViewController: UIViewController {
     }
     
     @objc func addObservedCurrency() {
-        
+        refreshDataTimer.invalidate()
+        refreshDataControl.endRefreshing()
         let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
         let searchCurrencyVC = storyboard.instantiateViewController(withIdentifier: "CurrencySearchViewController") as! CurrencySearchViewController
         searchCurrencyVC.coinType = CoinType.Observed
         let navContr = UINavigationController.init(rootViewController: searchCurrencyVC)
         navigationController?.present(navContr, animated: true, completion: nil)
+    }
+    
+    @objc func refreshMarketCapAndCurrenciesRatesAfterDelay() {
+        refreshDataTimer.invalidate()
+        refreshDataTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(refreshMarketCapAndCurrenciesRates), userInfo: nil, repeats: false)
     }
     
     @objc func refreshMarketCapAndCurrenciesRates() {
@@ -184,7 +203,7 @@ class ObservedCurrenciesViewController: UIViewController {
             
             self.requestManager.coinsExchanges = coinsExchangesArray
             
-            self.requestManager.updateCoinsRates(completion: { (coinsRequestResultModel) in
+            self.requestManager.updateCoinsRates { (coinsRequestResultModel) in
                 if coinsRequestResultModel.error != convertToJSONError {
                     for coin in self.allObservedCoins {
                         let updatedCoin = coinsRequestResultModel.coinsSortedByExchanges![coin.exchange.rawValue][coin.shortName]
@@ -201,7 +220,12 @@ class ObservedCurrenciesViewController: UIViewController {
                 self.allObservedCoins = CoinsOrderManager.orderCoins(coinsType: .Observed, disorderedCoins: self.allObservedCoins)
                 self.fillTableViewWithData()
                 self.tableView.reloadData()
-            })
+                
+                self.refreshDataTimer.invalidate()
+                self.refreshDataControl.endRefreshing()
+            }
+            self.refreshDataTimer.invalidate()
+            self.refreshDataControl.endRefreshing()
         }
     }
     

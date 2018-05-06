@@ -19,7 +19,7 @@ class TrackedCurrencyViewController: UIViewController {
     var currentCoin: Coin!
     var trackedGroupedCoins = [Coin]()
     
-    var firstCell:CommonCoinInfoCell!
+    var firstCell: CommonCoinInfoCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
