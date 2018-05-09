@@ -13,9 +13,6 @@
         <array key="ChalkboardSE.ttc">
             <string>ChalkboardSE-Regular</string>
         </array>
-        <array key="Chalkduster.ttf">
-            <string>Chalkduster</string>
-        </array>
     </customFonts>
     <scenes>
         <!--Navigation Controller-->
@@ -67,7 +64,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="122" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GMv-ts-y1F">
-                                <rect key="frame" x="0.0" y="64" width="320" height="400"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="405"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IndicatorViewCell" rowHeight="50" id="oqN-JZ-lPw" customClass="IndicatorViewCell" customModule="CryptoSpace">
@@ -395,34 +392,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3kk-wh-hod">
-                                <rect key="frame" x="0.0" y="464" width="320" height="55"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Здесь могла быть ваша реклама" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUZ-Q9-OXK">
-                                        <rect key="frame" x="15" y="16" width="290" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="mgO-Dn-WqG"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.91963404215299172" green="0.92018681636223432" blue="0.93873949050903316" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="EUZ-Q9-OXK" firstAttribute="centerY" secondItem="3kk-wh-hod" secondAttribute="centerY" id="9dw-k9-PZe"/>
-                                    <constraint firstAttribute="trailing" secondItem="EUZ-Q9-OXK" secondAttribute="trailing" constant="15" id="Rz7-0n-qvw"/>
-                                    <constraint firstAttribute="height" constant="55" id="Wq6-pk-F1A"/>
-                                    <constraint firstItem="EUZ-Q9-OXK" firstAttribute="leading" secondItem="3kk-wh-hod" secondAttribute="leading" constant="15" id="uP4-8K-jbz"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3kk-wh-hod" firstAttribute="top" secondItem="GMv-ts-y1F" secondAttribute="bottom" id="Cxu-Qo-5V5"/>
-                            <constraint firstItem="mbZ-e2-YXK" firstAttribute="top" secondItem="3kk-wh-hod" secondAttribute="bottom" id="Rk5-d0-3sh"/>
-                            <constraint firstItem="3kk-wh-hod" firstAttribute="leading" secondItem="d7x-mB-uxb" secondAttribute="leading" id="ZlA-Cf-tvi"/>
-                            <constraint firstAttribute="trailing" secondItem="3kk-wh-hod" secondAttribute="trailing" id="iJL-ec-s4b"/>
+                            <constraint firstItem="mbZ-e2-YXK" firstAttribute="top" secondItem="GMv-ts-y1F" secondAttribute="bottom" constant="50" id="cRJ-Og-nli"/>
                             <constraint firstAttribute="trailing" secondItem="GMv-ts-y1F" secondAttribute="trailing" id="n6K-iC-ikb"/>
                             <constraint firstItem="GMv-ts-y1F" firstAttribute="leading" secondItem="d7x-mB-uxb" secondAttribute="leading" id="xo3-cz-1jg"/>
                             <constraint firstItem="GMv-ts-y1F" firstAttribute="top" secondItem="EQb-gn-m9N" secondAttribute="bottom" id="zu1-OB-Fi5"/>
@@ -450,7 +423,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="339" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="54e-BU-FHy">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="498"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommonCoinInfoCell" rowHeight="224" id="W6z-gu-7On" customClass="CommonCoinInfoCell" customModule="CryptoSpace" customModuleProvider="target">
@@ -1115,7 +1088,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vWf-5k-5Pe" firstAttribute="top" secondItem="54e-BU-FHy" secondAttribute="bottom" id="FOx-eU-XOW"/>
+                            <constraint firstItem="vWf-5k-5Pe" firstAttribute="top" secondItem="54e-BU-FHy" secondAttribute="bottom" constant="50" id="FOx-eU-XOW"/>
                             <constraint firstItem="54e-BU-FHy" firstAttribute="top" secondItem="zsC-qf-vcd" secondAttribute="bottom" id="c7k-83-HwD"/>
                             <constraint firstAttribute="trailing" secondItem="54e-BU-FHy" secondAttribute="trailing" id="skm-uP-RE4"/>
                             <constraint firstItem="54e-BU-FHy" firstAttribute="leading" secondItem="CI6-mR-Tm8" secondAttribute="leading" id="zw1-jL-2jn"/>
@@ -1143,7 +1116,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="3Hp-Og-DDZ">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="454"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PortfolioCurrencyGraphCell" rowHeight="50" id="Ryw-TT-FsF" customClass="PortfolioCurrencyGraphCell" customModule="CryptoSpace" customModuleProvider="target">
@@ -1159,7 +1132,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="WTy-Hy-rcL" firstAttribute="top" secondItem="3Hp-Og-DDZ" secondAttribute="bottom" id="WRx-Xa-swR"/>
+                            <constraint firstItem="WTy-Hy-rcL" firstAttribute="top" secondItem="3Hp-Og-DDZ" secondAttribute="bottom" constant="50" id="WRx-Xa-swR"/>
                             <constraint firstItem="3Hp-Og-DDZ" firstAttribute="leading" secondItem="le4-eD-9BY" secondAttribute="leading" id="cdC-4l-i4b"/>
                             <constraint firstItem="3Hp-Og-DDZ" firstAttribute="top" secondItem="XpK-K8-ADz" secondAttribute="bottom" id="iYX-fk-vQr"/>
                             <constraint firstAttribute="trailing" secondItem="3Hp-Og-DDZ" secondAttribute="trailing" id="poz-uX-AU0"/>
@@ -1758,7 +1731,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MXv-Gq-UMH">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="405"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IndicatorViewCell" rowHeight="50" id="JSK-O6-094" customClass="IndicatorViewCell" customModule="CryptoSpace">
@@ -1925,35 +1898,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KHc-TR-Axn">
-                                <rect key="frame" x="0.0" y="400" width="320" height="55"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Здесь могла быть ваша реклама" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fn-8j-zK7">
-                                        <rect key="frame" x="15" y="16" width="290" height="22"/>
-                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="0fn-8j-zK7" secondAttribute="bottom" constant="17" id="9wr-Gn-ami"/>
-                                    <constraint firstAttribute="height" constant="55" id="Cem-b2-9lt"/>
-                                    <constraint firstItem="0fn-8j-zK7" firstAttribute="top" secondItem="KHc-TR-Axn" secondAttribute="top" constant="16" id="hbg-fl-182"/>
-                                    <constraint firstItem="0fn-8j-zK7" firstAttribute="leading" secondItem="KHc-TR-Axn" secondAttribute="leading" constant="15" id="reE-aq-Ga9"/>
-                                    <constraint firstAttribute="trailing" secondItem="0fn-8j-zK7" secondAttribute="trailing" constant="15" id="xq0-Yj-ozh"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="KHc-TR-Axn" secondAttribute="trailing" id="ZVL-xm-zgd"/>
                             <constraint firstItem="MXv-Gq-UMH" firstAttribute="top" secondItem="p4Y-fm-dKZ" secondAttribute="bottom" id="aQP-KY-9QA"/>
-                            <constraint firstItem="KHc-TR-Axn" firstAttribute="top" secondItem="MXv-Gq-UMH" secondAttribute="bottom" id="c8v-6p-98x"/>
                             <constraint firstAttribute="trailing" secondItem="MXv-Gq-UMH" secondAttribute="trailing" id="cil-9d-tWn"/>
-                            <constraint firstItem="iRS-ak-1c3" firstAttribute="top" secondItem="KHc-TR-Axn" secondAttribute="bottom" id="jCA-c4-R34"/>
                             <constraint firstItem="MXv-Gq-UMH" firstAttribute="leading" secondItem="zCW-ja-6ux" secondAttribute="leading" id="nwT-qd-MTu"/>
-                            <constraint firstItem="KHc-TR-Axn" firstAttribute="leading" secondItem="zCW-ja-6ux" secondAttribute="leading" id="sY6-c0-bLw"/>
+                            <constraint firstItem="iRS-ak-1c3" firstAttribute="top" secondItem="MXv-Gq-UMH" secondAttribute="bottom" constant="50" id="qtd-jR-Fsb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Криптовалюты" id="0hd-qZ-W1I"/>
@@ -1995,7 +1946,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tJU-yf-m5L">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="156"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="basicSettingsCell" textLabel="cXr-5a-H5l" rowHeight="50" style="IBUITableViewCellStyleDefault" id="sM0-hJ-FmU">
@@ -2020,7 +1971,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1y9-k2-wdd" firstAttribute="top" secondItem="tJU-yf-m5L" secondAttribute="bottom" id="AHg-MR-nZM"/>
+                            <constraint firstItem="1y9-k2-wdd" firstAttribute="top" secondItem="tJU-yf-m5L" secondAttribute="bottom" constant="299" id="AHg-MR-nZM"/>
                             <constraint firstAttribute="trailing" secondItem="tJU-yf-m5L" secondAttribute="trailing" id="I6p-OK-Awe"/>
                             <constraint firstItem="tJU-yf-m5L" firstAttribute="top" secondItem="KDJ-RU-SD5" secondAttribute="bottom" id="MMy-0E-PUt"/>
                             <constraint firstItem="tJU-yf-m5L" firstAttribute="leading" secondItem="CgG-PD-bXX" secondAttribute="leading" id="erk-oE-3hR"/>
@@ -2033,7 +1984,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYz-Di-yUH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="23" y="1501"/>
+            <point key="canvasLocation" x="22.5" y="1500"/>
         </scene>
         <!--About App View Controller-->
         <scene sceneID="6iw-XL-Is3">
@@ -2048,7 +1999,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3m-1J-IhM">
-                                <rect key="frame" x="15" y="43" width="80" height="80"/>
+                                <rect key="frame" x="15" y="87" width="80" height="80"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="Ayh-NX-IJo"/>
@@ -2056,19 +2007,21 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CryptoSpace" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZP7-C5-hxi">
-                                <rect key="frame" x="106" y="58" width="195" height="50"/>
+                                <rect key="frame" x="106" y="102" width="195" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bei-6l-pej"/>
                                     <constraint firstAttribute="width" constant="195" id="pjd-rD-XOZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="34"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KX6-gr-hnG">
-                                <rect key="frame" x="16" y="148" width="288" height="167.5"/>
-                                <string key="text">Такое-то приложение. Позволяет отслеживать, добавлять, удалять. Туда-сюда, что-то еще. Будем рады услышать предложения и отзывы: inbox@inbox.ru. Команда CryptoSpace</string>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="16" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KX6-gr-hnG">
+                                <rect key="frame" x="16" y="192" width="288" height="284.5"/>
+                                <string key="text">Приложение CryptoSpace позволяет создавать портфель криптоактивов, добавлять в него различные криптовалюты и получать актуальную информацию о его состоянии, а также отслеживать курс иных криптовалют. Если у вас есть какие-либо замечания или предложения по работе приложения, всегда будем рады вас услышать: cryptospace@inbox.ru
+
+Команда CryptoSpace</string>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2084,13 +2037,15 @@
                             <constraint firstItem="o3m-1J-IhM" firstAttribute="leading" secondItem="n4G-rD-zSi" secondAttribute="leading" constant="15" id="srj-Jk-R17"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="appIconView" destination="o3m-1J-IhM" id="oqI-EQ-3eM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEX-4l-Pxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1547" y="1501"/>
+            <point key="canvasLocation" x="1546.875" y="1500"/>
         </scene>
         <!--Responsibility View Controller-->
         <scene sceneID="tNY-Qd-V7J">
@@ -2104,20 +2059,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQO-z8-jJu">
-                                <rect key="frame" x="16" y="148" width="288" height="215"/>
-                                <string key="text">Приложение CryptoSpace использует данные из открытых API и не несет ответственности за всякие косяки. Приложение является лишь поставщиком информации и не использует личные данные пользователя. Что-то еще, бла-бла.</string>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQO-z8-jJu">
+                                <rect key="frame" x="16" y="192" width="288" height="284.5"/>
+                                <string key="text">Приложение CryptoSpace использует данные, предоставленные исключительно публичным API, и не несет ответственности за предоставление некорректной информации, связанной с курсом различных криптовалют. Любые данные, сохранённые пользователем в приложении, существуют только на его устройстве и не передаются сторонним серверам или сервисам.</string>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCk-uL-9nG">
-                                <rect key="frame" x="120" y="43" width="80" height="80"/>
+                                <rect key="frame" x="120" y="87" width="80" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbv-bM-lzz">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="55"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -2141,13 +2096,16 @@
                             <constraint firstItem="jCk-uL-9nG" firstAttribute="centerX" secondItem="3kY-Su-Pdi" secondAttribute="centerX" id="xcO-fq-AL2"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="exclamationSignLabel" destination="Fbv-bM-lzz" id="buy-Ke-PqG"/>
                         <outlet property="exclamationSignView" destination="jCk-uL-9nG" id="Rap-zD-dEw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbG-Vq-feW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="773" y="1501"/>
+            <point key="canvasLocation" x="772.5" y="1500"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kvz-km-cXZ">

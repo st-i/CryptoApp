@@ -533,8 +533,10 @@ class CoinsOrderManager: NSObject {
         if UserDefaults.standard.object(forKey: dictKey) != nil {
             var coinsIndexes = UserDefaults.standard.object(forKey: dictKey) as! Dictionary<String, Int>
             if coinsIndexes.keys.count != 0 {
-                coinsIndexes.updateValue(coinsIndexes.count, forKey: newCoin.shortName)
-                UserDefaults.standard.set(coinsIndexes, forKey: dictKey)
+                if !coinsIndexes.keys.contains(newCoin.shortName) {
+                    coinsIndexes.updateValue(coinsIndexes.count, forKey: newCoin.shortName)
+                    UserDefaults.standard.set(coinsIndexes, forKey: dictKey)
+                }
             }else{
                 var newCoinsQueue = Dictionary<String, Int>()
                 newCoinsQueue.updateValue(0, forKey: newCoin.shortName)

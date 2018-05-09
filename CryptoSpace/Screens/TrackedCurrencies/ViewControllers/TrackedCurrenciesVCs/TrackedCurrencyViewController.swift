@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class TrackedCurrencyViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    var bannerView: GADBannerView!
+
     var trackedCurrencyDataSource:TrackedCurrencyDataSource!
     var trackedCurrencyDelegate:TrackedCurrencyDelegate!
     
@@ -21,8 +24,22 @@ class TrackedCurrencyViewController: UIViewController {
     
     var firstCell: CommonCoinInfoCell!
     
+    var viewDidLoaded = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // In this case, we instantiate the banner with desired ad size.
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        
+        bannerView.adUnitID = testAdMobAppId
+        bannerView.rootViewController = self
+        let adRequest = GADRequest()
+        adRequest.testDevices = [kGADSimulatorID]
+        bannerView.load(adRequest)
+        bannerView.delegate = self
+        
+        addBannerViewToView(bannerView)
         
         let titleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
         let titleViewLabel = UILabel.init(frame: titleView.frame)
@@ -44,9 +61,13 @@ class TrackedCurrencyViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        startCurrencyImageAnimation()
-        
-        animationTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(startCurrencyImageAnimation), userInfo: nil, repeats: true)
+        if !viewDidLoaded {
+            startCurrencyImageAnimation()
+            
+            animationTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(startCurrencyImageAnimation), userInfo: nil, repeats: true)
+            
+            viewDidLoaded = true
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {

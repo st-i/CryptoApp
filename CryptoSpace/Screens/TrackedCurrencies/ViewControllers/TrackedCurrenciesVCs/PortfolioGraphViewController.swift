@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class PortfolioGraphViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    var bannerView: GADBannerView!
+
     var portfolioGraphDataSourceAndDelegate:PortfolioGraphDataSourceAndDelegate!
     var displayModelsArray = [GraphViewModel]()
     var arrayWithCells = [PortfolioCurrencyGraphCell]()
@@ -18,6 +21,18 @@ class PortfolioGraphViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // In this case, we instantiate the banner with desired ad size.
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        
+        bannerView.adUnitID = testAdMobAppId
+        bannerView.rootViewController = self
+        let adRequest = GADRequest()
+        adRequest.testDevices = [kGADSimulatorID]
+        bannerView.load(adRequest)
+        bannerView.delegate = self
+        
+        addBannerViewToView(bannerView)
         
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.navBarColor()

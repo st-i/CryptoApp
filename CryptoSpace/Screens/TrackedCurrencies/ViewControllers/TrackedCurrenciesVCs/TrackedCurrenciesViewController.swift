@@ -7,12 +7,15 @@
 //
 
 import UIKit
-import Alamofire
-import CoreData
+//import Alamofire
+//import CoreData
+import GoogleMobileAds
 
 class TrackedCurrenciesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    var bannerView: GADBannerView!
+    
     var trackedCurrenciesDataSourceAndDelegate:TrackedCurrenciesDataSourceAndDelegate!
     var indicatorViewDataSourceAndDelegate: IndicatorViewDataSourceAndDelegate!
     
@@ -37,6 +40,18 @@ class TrackedCurrenciesViewController: UIViewController {
     //MARK: VC LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // In this case, we instantiate the banner with desired ad size.
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        
+        bannerView.adUnitID = testAdMobAppId
+        bannerView.rootViewController = self
+        let adRequest = GADRequest()
+        adRequest.testDevices = [kGADSimulatorID]
+        bannerView.load(adRequest)
+        bannerView.delegate = self
+        
+        addBannerViewToView(bannerView)
         
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.navBarColor()

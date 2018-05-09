@@ -8,6 +8,11 @@
 
 import Foundation
 
+// Test AdMob app ID: ca-app-pub-3940256099942544/2934735716
+let testAdMobAppId = "ca-app-pub-3940256099942544/2934735716"
+// Prod AdMob app ID: ca-app-pub-5229719486999701/4762328246
+let prodAdMobAppId = "ca-app-pub-5229719486999701/4762328246"
+
 let convertToJSONError = "Не могу перевести в JSON"
 
 enum NoDataTextType {

@@ -450,8 +450,8 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
             self.dateChoiceBlurView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.4)
-            self.viewAboveDatePicker.frame.origin.y = self.dateChoiceBlurView.frame.maxY - 200 - 110 - 40
-            self.purchaseDatePicker.frame.origin.y = self.dateChoiceBlurView.frame.maxY - 200 - 110
+            self.viewAboveDatePicker.frame.origin.y = self.dateChoiceBlurView.frame.maxY - 200 - 40 - 63 // - 110
+            self.purchaseDatePicker.frame.origin.y = self.dateChoiceBlurView.frame.maxY - 200 - 63 // - 110
         }, completion: nil)
     }
     

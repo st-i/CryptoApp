@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Screens/TrackedCurrencies/ViewControllers/TrackedCurrenciesVCs/CurrencySearchViewController.swift"
-            timestampString = "547222654.851362"
+            timestampString = "547574202.388301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "103"
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/GlobalHelpers.swift"
-            timestampString = "547240332.370338"
+            timestampString = "547576542.740086"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/GlobalHelpers.swift"
-            timestampString = "547240332.370406"
+            timestampString = "547576542.741153"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "103"
@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/GlobalHelpers.swift"
-            timestampString = "547240332.370466"
+            timestampString = "547576542.7434241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -234,7 +234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/GlobalHelpers.swift"
-            timestampString = "547240332.372167"
+            timestampString = "547576542.743927"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
@@ -294,27 +294,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CryptoSpace/Services/GlobalHelpers.swift"
-            timestampString = "547240332.372345"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
-            landmarkName = "mapTrackedCoinToCommonInfoModel(coin:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/GlobalHelpers.swift"
-            timestampString = "547240332.372403"
+            timestampString = "547576542.744701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "255"
@@ -330,7 +314,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/GlobalHelpers.swift"
-            timestampString = "547240332.372461"
+            timestampString = "547576542.745067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "319"
@@ -346,7 +330,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/GlobalHelpers.swift"
-            timestampString = "547240332.3725179"
+            timestampString = "547576542.745396"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "330"
@@ -378,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Screens/TrackedCurrencies/ViewControllers/TrackedCurrenciesVCs/PortfolioGraphViewController.swift"
-            timestampString = "547240332.3730201"
+            timestampString = "547576542.746101"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -394,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Screens/TrackedCurrencies/ViewControllers/TrackedCurrenciesVCs/PortfolioGraphViewController.swift"
-            timestampString = "547240332.3730921"
+            timestampString = "547576542.746791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -442,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Screens/TrackedCurrencies/ViewControllers/TrackedCurrenciesVCs/TrackedCurrenciesViewController.swift"
-            timestampString = "547301043.6994309"
+            timestampString = "547576542.7474819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "343"
-            endingLineNumber = "343"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
             landmarkName = "updateScreenWithoutRequest()"
             landmarkType = "7">
          </BreakpointContent>
@@ -457,13 +441,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "CryptoSpace/Screens/ObservedCurrencies/ObservedCurrenciesViewControllers/ObservedCurrenciesViewController.swift"
+            timestampString = "547576542.7480479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "refreshMarketCapAndCurrenciesRates()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Services/GlobalHelpers.swift"
-            timestampString = "547240332.373315"
+            timestampString = "547576542.749862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "290"
-            endingLineNumber = "290"
-            landmarkName = "mapTrackedCoinToInfoModelsArray(coin:)"
+            startingLineNumber = "525"
+            endingLineNumber = "525"
+            landmarkName = "addNewCoinToQueue(coinType:newCoin:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -474,39 +474,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoSpace/Screens/AddCurrency/ViewControllers/AddCurrencyViewController.swift"
-            timestampString = "547301043.700313"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CryptoSpace/Screens/AddCurrency/ViewControllers/AddCurrencyViewController.swift"
-            timestampString = "547301043.700386"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "showSingleCoinData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CryptoSpace/Screens/AddCurrency/ViewControllers/AddCurrencyViewController.swift"
-            timestampString = "547301043.700449"
+            timestampString = "547560042.110163"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
@@ -521,13 +489,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CryptoSpace/Screens/ObservedCurrencies/ObservedCurrenciesViewControllers/ObservedCurrenciesViewController.swift"
-            timestampString = "547301043.70052"
+            filePath = "CryptoSpace/Screens/TrackedCurrencies/ViewControllers/TrackedCurrenciesVCs/TrackedCurrencyViewController.swift"
+            timestampString = "547576542.750594"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
-            landmarkName = "refreshMarketCapAndCurrenciesRates()"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "viewDidDisappear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
