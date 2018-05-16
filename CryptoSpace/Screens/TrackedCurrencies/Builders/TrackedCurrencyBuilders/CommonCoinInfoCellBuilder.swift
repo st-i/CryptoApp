@@ -16,7 +16,10 @@ class CommonCoinInfoCellBuilder: NSObject {
         let cell = tableView.dequeueReusableCell(withIdentifier: kCommonCoinInfoCellIdentifier) as! CommonCoinInfoCell
         cell.selectionStyle = .none
         cell.currencyImageView.image = UIImage(named:commonInfoModel.id)
+        
+        cell.coinNameLabel.font = commonInfoModel.name.count < 23 ? UIFont.systemFont(ofSize: 19.0, weight: .medium) : UIFont.systemFont(ofSize: 17.0, weight: .medium)
         cell.coinNameLabel.text = commonInfoModel.name
+        
         cell.coinAmountLabel.text = commonInfoModel.amount
         cell.coinCurrentExchangeRate.text = commonInfoModel.currentExchangeRate
         cell.initialCoinSum.text = commonInfoModel.initialSum

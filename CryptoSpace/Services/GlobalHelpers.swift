@@ -523,12 +523,6 @@ class CoinsOrderManager: NSObject {
     
     class func addNewCoinToQueue(coinType: CoinType, newCoin: Coin) {
         let dictKey = keyForDict(coinType: coinType)
-//        let dictKey: String!
-//        if coinsType == CoinType.Tracked {
-//            dictKey = kTrackedCoinsQueueIndexesDict
-//        }else{
-//            dictKey = kObservedCoinsQueueIndexesDict
-//        }
         
         if UserDefaults.standard.object(forKey: dictKey) != nil {
             var coinsIndexes = UserDefaults.standard.object(forKey: dictKey) as! Dictionary<String, Int>

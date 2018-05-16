@@ -1010,6 +1010,7 @@
 				542E45CD1FDC14E3006D52C9 /* Resources */,
 				D9349B457898B0A32EF9023E /* [CP] Embed Pods Frameworks */,
 				DE8632D70C602EAAB16589E4 /* [CP] Copy Pods Resources */,
+				DD5EE8FF20A60F23005CC32E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1096,15 +1097,30 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CryptoSpace/Pods-CryptoSpace-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${PODS_ROOT}/YandexMobileMetrica/dynamic/YandexMobileMetrica.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YandexMobileMetrica.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CryptoSpace/Pods-CryptoSpace-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		DD5EE8FF20A60F23005CC32E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 6b224d091bd7f788b759d199f1d857786113cbfd c00390c9d1fa91416d1ef27e4b63f6be4051aeb5652b7581333db84258179938";
 		};
 		DE8632D70C602EAAB16589E4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1389,6 +1405,7 @@
 			baseConfigurationReference = 12CD3728D7BA21281A942EEE /* Pods-CryptoSpace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 47SH5K5922;
 				INFOPLIST_FILE = CryptoSpace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

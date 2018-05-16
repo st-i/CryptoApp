@@ -8,5 +8,8 @@ target 'CryptoSpace' do
   # Pods for CryptoSpace
   pod 'Alamofire', '~> 4.5'
   pod 'Google-Mobile-Ads-SDK'
+  pod 'YandexMobileMetrica/Dynamic', '3.0.0'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
 end

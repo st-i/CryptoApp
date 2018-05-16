@@ -38,6 +38,7 @@ class CurrencySearchViewController: UIViewController, UISearchBarDelegate {
 //            navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "X", style: .plain, target: self, action: #selector(dismissVC))
 //        }
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "X", style: .plain, target: self, action: #selector(dismissVC))
+//        UIBarButtonItem.init(image: UIImage.init(named: "x1"), style: .plain, target: self, action: #selector(dismissVC))
         navigationController?.navigationBar.isTranslucent = false;
         navigationController?.navigationBar.barTintColor = UIColor.init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)
         navigationController?.navigationBar.tintColor = UIColor.white

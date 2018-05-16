@@ -1,15 +1,25 @@
 PODS:
   - Alamofire (4.6.0)
+  - Crashlytics (3.10.1):
+    - Fabric (~> 1.7.5)
+  - Fabric (1.7.6)
   - Google-Mobile-Ads-SDK (7.30.0)
+  - YandexMobileMetrica/Dynamic (3.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
+  - Crashlytics
+  - Fabric
   - Google-Mobile-Ads-SDK
+  - YandexMobileMetrica/Dynamic (= 3.0.0)
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
   Google-Mobile-Ads-SDK: 7404f68120ae8682afeb5af001fbf4aad731c78e
+  YandexMobileMetrica: 8dcf67ce99c73f351c55b5a21cff1e1f56b706e0
 
-PODFILE CHECKSUM: 68706d5e171ac04b641231d2ede3c57b68ca2d55
+PODFILE CHECKSUM: 2b691aca815d3e3e589d1757f3ff40e8307d07eb
 
 COCOAPODS: 1.4.0

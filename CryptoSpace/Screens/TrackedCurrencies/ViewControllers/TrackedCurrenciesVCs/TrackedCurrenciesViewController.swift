@@ -7,8 +7,6 @@
 //
 
 import UIKit
-//import Alamofire
-//import CoreData
 import GoogleMobileAds
 
 class TrackedCurrenciesViewController: UIViewController {
@@ -28,7 +26,7 @@ class TrackedCurrenciesViewController: UIViewController {
     var someVC: UIViewController!
     
     var btcRate:Double = 0.0
-    var rubleRate: Double = 0.0 //57.356798
+    var rubleRate: Double = 62.0
     var allUnsortedCoins = [Coin]()
     var userCoins = [Coin]()
     
@@ -241,7 +239,11 @@ class TrackedCurrenciesViewController: UIViewController {
 //    }
     
     @objc func refreshCurrenciesRatesAfterDelay() {
-        refreshDataTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(refreshCurrenciesRates), userInfo: nil, repeats: false)
+        if userCoins.count > 0 {
+            refreshDataTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(refreshCurrenciesRates), userInfo: nil, repeats: false)
+        }else{
+            refreshDataControl.endRefreshing()
+        }
     }
     
     @objc func refreshCurrenciesRates() {
@@ -266,7 +268,7 @@ class TrackedCurrenciesViewController: UIViewController {
                         for coin in self.userCoins {
                             let updatedCoin = coinsRequestResultModel.coinsSortedByExchanges![coin.exchange.rawValue][coin.shortName]
                             
-                            initialPortfolioCost = initialPortfolioCost + (updatedCoin?.initialSum)!
+                            initialPortfolioCost = initialPortfolioCost + ((updatedCoin?.amount)! * (updatedCoin?.purchaseExchangeRate)!) //(updatedCoin?.initialSum)!
                             
                             let updatedCoinRate = (updatedCoin?.exchangeRate)!
                             coin.exchangeRate = updatedCoinRate
@@ -353,7 +355,7 @@ class TrackedCurrenciesViewController: UIViewController {
             var initialPortfolioCost = 0.0
             
             for coin in userCoins {
-                initialPortfolioCost = initialPortfolioCost + coin.initialSum
+                initialPortfolioCost = initialPortfolioCost + (coin.amount * coin.purchaseExchangeRate) //coin.initialSum
 
                 let coinSum = coin.amount * coin.exchangeRate
                 let coinRate24hPercentChange = coin.rate24hPercentChange
@@ -374,6 +376,7 @@ class TrackedCurrenciesViewController: UIViewController {
             }
             
             currentUserPortfolio.last24hValueDollarChange = portfolio24hChangeInDollars
+            currentUserPortfolio.rubleExchangeRate = rubleRate
             
             //текущая стоимость
             let userCoinsSumInDollars = SumCalculator.getCoinsTotalSum(coins: userCoins)

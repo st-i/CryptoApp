@@ -216,6 +216,9 @@
 
 import UIKit
 import GoogleMobileAds
+import YandexMobileMetrica
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -228,6 +231,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Initialize the Google Mobile Ads SDK.
         GADMobileAds.configure(withApplicationID: testAdMobAppId)
+        
+        // Инициализация AppMetrica SDK
+        let configuration: YMMYandexMetricaConfiguration = YMMYandexMetricaConfiguration.init(apiKey: "d49ffe17-9a23-41c4-8bfd-d67c05122c2a")!
+        YMMYandexMetrica.activate(with: configuration)
+        
+        Fabric.with([Crashlytics.self])
         
         return true
     }
