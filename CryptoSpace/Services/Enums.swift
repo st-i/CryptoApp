@@ -49,10 +49,3 @@ enum ExchangeBehavior: Int {
 let HitBTCCoinsToEth = ["DENT", "DCN", "ENG", "SAN", "GVT", "JNT"]
 
 let Gate_ioCoinsToEth = ["med", "mds", "rcn", "ost"]
-
-
-
-
-
-
-

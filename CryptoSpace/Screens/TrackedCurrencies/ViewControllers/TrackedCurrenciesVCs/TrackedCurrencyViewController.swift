@@ -51,7 +51,6 @@ class TrackedCurrencyViewController: UIViewController {
         self.navigationItem.titleView = titleView
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "TrashBin"), style: .plain, target: self, action: #selector(deleteCoinGroupAction))
-//        UIBarButtonItem.init(image: UIImage.init(named: "trash"), style: .plain, target: self, action: #selector(deleteCoinGroupAction))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
         navigationItem.backBarButtonItem?.tintColor = UIColor.white
@@ -78,7 +77,7 @@ class TrackedCurrencyViewController: UIViewController {
     
     func fillTableViewWithData() {
         
-        tableView.backgroundColor = UIColor.white //groupTableViewBackground
+        tableView.backgroundColor = UIColor.white
         trackedCurrencyDataSource = TrackedCurrencyDataSource()
         trackedCurrencyDelegate = TrackedCurrencyDelegate()
     

@@ -194,7 +194,6 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
         
         let currentCoinType = addCurrencyDataSourceAndDelegate.currencyPurchase ? CoinType.Tracked : CoinType.Observed
         if addCurrencyDataSourceAndDelegate.currencyPurchase {
-//            currentCoin.exchangeRate = purchaseExchangeRateValue
             currentCoin.purchaseExchangeRate = purchaseExchangeRateValue
             currentCoin.amount = currencyAmountValue
             currentCoin.sum = purchaseSumValue
@@ -222,8 +221,6 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
     //MARK: UITextViewFuncs and Delegate
     func viewAboveTextViewKeyboard() -> UIView {
         let helperView = UIView.init(frame: CGRect.init(x: 0, y: view.bounds.height + 40, width: view.bounds.width, height: 40))
-        //        UIColor.init(red: 245.0 / 255.0, green: 245.0 / 255.0, blue: 245.0 / 255.0, alpha: 1.0)
-        //        UIColor.init(red: 213.0 / 255.0, green: 217.0 / 255.0, blue: 223.0 / 255.0, alpha: 1.0)
         helperView.backgroundColor = UIColor.init(red: 213.0 / 255.0, green: 217.0 / 255.0, blue: 223.0 / 255.0, alpha: 1.0)
         
         let doneButton = UIButton.init(type: .custom)
@@ -231,7 +228,7 @@ class AddCurrencyViewController: UIViewController, UITextViewDelegate {
         doneButton.setTitleColor(UIColor.init(red: 0.0, green: 122.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0), for: .normal)
         doneButton.setTitleColor(UIColor.white, for: .highlighted)
         doneButton.setTitle("Готово", for: .normal)
-        doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 16) //UIFont.systemFont(ofSize: 16, weight: .semibold)
+        doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         doneButton.frame = CGRect.init(x: helperView.frame.maxX - 80, y: 0, width: 60, height: 40)
         doneButton.backgroundColor = UIColor.clear
         helperView.addSubview(doneButton)

@@ -34,12 +34,7 @@ class RecentCurrencySearchDelegate: NSObject, UITableViewDelegate {
         let headerView = UIView.init(frame: CGRect(x: 0, y: 0, width: Int(tableView.frame.width), height: kHeightForSectionHeader))
         headerView.backgroundColor = UIColor.white
         
-        //        let upperSeparator = UIView.init(frame: CGRect.init(x: 0, y: 0, width: headerView.frame.width, height: 0.5))
-        //        upperSeparator.backgroundColor = UIColor.init(red: 154.0 / 255.0, green: 154.0 / 255.0, blue: 154.0 / 255.0, alpha: 0.4)
-        //        headerView.addSubview(upperSeparator)
-        
         let headerViewLabel = UILabel.init(frame: CGRect(x: 15, y: 5, width: 90, height: 20))
-        //        headerViewRateLabel.backgroundColor = UIColor.black
         headerViewLabel.textAlignment = .left
         headerViewLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium)
         headerViewLabel.textColor = UIColor.gray
@@ -71,7 +66,5 @@ class RecentCurrencySearchDelegate: NSObject, UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         fromVC.view.endEditing(true)
-//        fromVC.currencySearchBar.resignFirstResponder()
-//        fromVC.currencySearchBar.showsCancelButton = false
     }
 }

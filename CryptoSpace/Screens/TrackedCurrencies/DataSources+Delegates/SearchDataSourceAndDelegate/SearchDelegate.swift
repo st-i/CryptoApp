@@ -33,10 +33,8 @@ class SearchDelegate: NSObject, UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        fromVC.view.endEditing(true)
         if fromVC.currencySearchBar.isFirstResponder {
             fromVC.currencySearchBar.resignFirstResponder()
         }
-//        fromVC.currencySearchBar.showsCancelButton = false
     }
 }

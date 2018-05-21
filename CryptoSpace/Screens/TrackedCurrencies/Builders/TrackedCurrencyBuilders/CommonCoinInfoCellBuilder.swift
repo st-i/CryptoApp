@@ -37,9 +37,6 @@ class CommonCoinInfoCellBuilder: NSObject {
         cell.last24hCoinSumPercentChangeLabel.text = commonInfoModel.last24hSumPercentChange
         cell.last24hCoinSumPercentChangeLabel.textColor = TextColorDeterminant.colorForText(text: commonInfoModel.last24hSumPercentChange)
 
-//        cell.backgroundColor = UIColor.init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)
-//        cell.exchangeRatePercentagesChangeLabel.textColor = UIColor.init(red: 0, green: 190.0 / 255.0, blue: 120.0 / 255.0, alpha: 1.0)
-//        cell.lowerSeparator.backgroundColor = UIColor.init(red: 154.0 / 255.0, green: 154.0 / 255.0, blue: 154.0 / 255.0, alpha: 0.4)
         return cell
     }
 }

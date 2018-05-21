@@ -18,5 +18,4 @@ class CryptoCurrenciesCapitalizationCellBuilder: NSObject {
         cell.cmcLabel.text = cmcInfoModel.marketCap
         return cell
     }
-
 }

@@ -31,4 +31,3 @@ class Gate_ioCoinToEth: NSObject {
         return false
     }
 }
-

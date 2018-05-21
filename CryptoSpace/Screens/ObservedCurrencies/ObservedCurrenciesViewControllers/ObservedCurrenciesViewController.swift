@@ -64,10 +64,8 @@ class ObservedCurrenciesViewController: UIViewController {
         originalDoneButton = UIBarButtonItem.init(title: "Готово", style: .done, target: self, action: #selector(editObservedCurrenciesAction))
         leftBarButtonItem = originalEditButton
         
-//        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshMarketCapAndCurrenciesRates))
         let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addObservedCurrency))
 
-//        navigationItem.rightBarButtonItems = [addButton, refreshButton]
         navigationItem.rightBarButtonItem = addButton
         navigationItem.rightBarButtonItem?.isEnabled = false
         
@@ -252,25 +250,4 @@ class ObservedCurrenciesViewController: UIViewController {
         let marketCapString = String(format: "$%@", cmcString)
         return marketCapString
     }
-    
-//    func getMarketCapValue(completion: @escaping (Int) -> ()) {
-//
-//        requestManager.getCryptoMarketCap { (cmcRequestResultModel) in
-//            if
-//            completion(value)
-//        }
-//    }
-    
-//    @objc func updateCoinMarketCap() {
-//        requestManager.getCryptoMarketCap { (cmcRequestResultModel) in
-//            if cmcRequestResultModel.error != convertToJSONError {
-//                CoreDataManager.shared.updateCoinMarketCap(value: cmcRequestResultModel.value!)
-//                self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: cmcRequestResultModel.value!)
-//            }else{
-//                self.cmcInfoModel.marketCap = self.createCoinMaketCapString(value: 0.0)
-//                AlertsManager.showTryToUpdateLater(inViewController: self)
-//            }
-//            self.tableView.reloadData()
-//        }
-//    }
 }

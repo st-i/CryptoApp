@@ -22,7 +22,6 @@ class TrackedCurrencyDataSource: NSObject, UITableViewDataSource {
         return 1
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             return CommonCoinInfoCellBuilder.buildCell(tableView, commonInfoModel: modelsArray[0] as! TrackedCoinCommonInfoModel) as! CommonCoinInfoCell

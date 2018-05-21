@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let kTotalPortfolioCostCellHeight = 173 //143
+private let kTotalPortfolioCostCellHeight = 173
 private let kTrackedPositionCellHeight = 58
 private let kFinalCellHeight = 26
 private let kHeightForSectionHeader = 30
@@ -100,7 +100,7 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
             headerViewRateLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium)
             headerViewRateLabel.textColor = UIColor.gray
             headerViewRateLabel.text = exchangeRateText
-            headerView.addSubview(headerViewRateLabel) //134
+            headerView.addSubview(headerViewRateLabel)
             
             let headerViewValueLabel = UILabel.init(frame: CGRect(x: headerView.frame.width - 30 - 15 - 89 - 118, y: 5, width: 118, height: 20))
             headerViewValueLabel.textAlignment = .right
@@ -114,24 +114,6 @@ class TrackedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDelegate, UIT
             return nil
         }
     }
-    
-    //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    //        if section == 1 {
-    //            return 0.5
-    //        }else{
-    //            return CGFloat.leastNormalMagnitude
-    //        }
-    //    }
-    
-    //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    //        if section == 1 {
-    //            let footerView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 0.5))
-    //            footerView.backgroundColor = UIColor.init(red: 154.0 / 255.0, green: 154.0 / 255.0, blue: 154.0 / 255.0, alpha: 0.4)
-    //            return footerView
-    //        }else{
-    //            return nil
-    //        }
-    //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

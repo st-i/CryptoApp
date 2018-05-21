@@ -86,54 +86,17 @@ class ObservedCurrenciesDataSourceAndDelegate: NSObject, UITableViewDataSource, 
             }
             
             let headerViewRateLabel = UILabel.init(frame: CGRect(x: headerView.frame.width - 30 - 15, y: 5, width: 30, height: 20))
-            //            headerViewRateLabel.backgroundColor = UIColor.black
             headerViewRateLabel.textAlignment = .right
             headerViewRateLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium)
             headerViewRateLabel.textColor = UIColor.gray
             headerViewRateLabel.text = exchangeRateText
             headerView.addSubview(headerViewRateLabel)
             
-            //            let headerViewValueLabel = UILabel.init(frame: CGRect(x: headerView.frame.width - 86 - 15 - 28 - 132, y: 5, width: 132, height: 20))
-            //            headerViewValueLabel.textAlignment = .right
-            //            headerViewValueLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium)
-            //            headerViewValueLabel.textColor = UIColor.gray
-            //            headerViewValueLabel.text = "Курс"
-            //            headerView.addSubview(headerViewValueLabel)
-            
             return headerView
         }else{
             return nil
         }
     }
-    
-    //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    //        if section == 2 {
-    //            return 60
-    //        }else{
-    //            return CGFloat.leastNormalMagnitude
-    //        }
-    //    }
-    
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        tableView.deselectRow(at: indexPath, animated: true)
-    
-    //        if indexPath.section == 1 {
-    //            let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
-    //            let trackedCurrencyVC = storyboard.instantiateViewController(withIdentifier: "TrackedCurrencyViewController")
-    //            viewController.navigationController?.pushViewController(trackedCurrencyVC, animated: true)
-    //        }
-    //    }
-    
-    //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    //        if section == 2 {
-    //            let footerView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
-    //            footerView.backgroundColor = UIColor.groupTableViewBackground
-    //
-    //            return footerView
-    //        }else{
-    //            return nil
-    //        }
-    //    }
     
     //MARK: Editing
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

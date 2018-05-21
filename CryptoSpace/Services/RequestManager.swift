@@ -31,16 +31,16 @@ class RequestManager: NSObject {
         
         request(RubleRateRequestBuilder.buildRubleRequest()).responseJSON { (response) in
             let requestResultModel = RequestResultModel()
-            print("Запрос курса рубля")
+//            print("Запрос курса рубля")
             var arrayOfData = Dictionary<String, AnyObject>()
             if response.result.value != nil {
                 arrayOfData = response.result.value as! Dictionary<String, AnyObject>
                 let rubleExchangeRate = RubleRateResponseParser.parseResponse(response: arrayOfData)
-                print("RUB \(rubleExchangeRate)")
+//                print("RUB \(rubleExchangeRate)")
                 requestResultModel.value = rubleExchangeRate
                 requestResultModel.error = ""
             }else{
-                print(convertToJSONError)
+//                print(convertToJSONError)
                 requestResultModel.value = 0.0
                 requestResultModel.error = convertToJSONError
             }
@@ -52,7 +52,7 @@ class RequestManager: NSObject {
     func getExchangeRate(coin: Coin, completion: @escaping (RequestResultModel) -> ()) {
         
         request(RequestToQuoineBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-            print("Запрос Quoine")
+//            print("Запрос Quoine")
             let requestResultModel = RequestResultModel()
             if response.result.value != nil {
                 let arrayOfData = response.result.value as! [Dictionary<String, AnyObject>]
@@ -71,12 +71,12 @@ class RequestManager: NSObject {
                     
                     case .Bittrex:
                         request(RequestToBittrexBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                            print("Запрос Bittrex")
+//                            print("Запрос Bittrex")
                             if response.result.value != nil {
                                 let bittrexArrayOfData = response.result.value as! [String: AnyObject]
                                 requestResultModel.singleCoinDict = BittrexResponseParser.parseResponse(response: bittrexArrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange)
                             }else{
-                                print(convertToJSONError)
+//                                print(convertToJSONError)
                                 requestResultModel.error = convertToJSONError
                             }
                             completion(requestResultModel)
@@ -85,12 +85,12 @@ class RequestManager: NSObject {
                     
                     case .HitBTC:
                         request(RequestToHitBTCBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                            print("Запрос HitBTC")
+//                            print("Запрос HitBTC")
                             if response.result.value != nil {
                                 let hitBtcArrayOfData = response.result.value as! [Dictionary<String, AnyObject>]
                                 requestResultModel.singleCoinDict = HitBTCResponseParser.parseResponse(response: hitBtcArrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange)
                             }else{
-                                print(convertToJSONError)
+//                                print(convertToJSONError)
                                 requestResultModel.error = convertToJSONError
                             }
                             completion(requestResultModel)
@@ -99,12 +99,12 @@ class RequestManager: NSObject {
                     
                     case .Binance:
                         request(RequestToBinanceBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                            print("Запрос Binance")
+//                            print("Запрос Binance")
                             if response.result.value != nil {
                                 let binanceArrayOfData = response.result.value as! [Dictionary<String, AnyObject>]
                                 requestResultModel.singleCoinDict = BinanceResponseParser.parseResponse(response: binanceArrayOfData, coinsArray: allUserCoins, btcRate: btcRate, btc24hPercentChange: self.btc24hPercentChange)
                             }else{
-                                print(convertToJSONError)
+//                                print(convertToJSONError)
                                 requestResultModel.error = convertToJSONError
                             }
                             completion(requestResultModel)
@@ -112,11 +112,11 @@ class RequestManager: NSObject {
                         break
                     
                     default:
-                        print("Неизвестная монета")
+//                        print("Неизвестная монета")
                         break
                 }
             }else{
-                print(convertToJSONError)
+//                print(convertToJSONError)
                 requestResultModel.error = convertToJSONError
                 completion(requestResultModel)
             }
@@ -269,13 +269,13 @@ class RequestManager: NSObject {
     func updateCoinsRates(completion: @escaping (RequestResultModel) -> ()) {
         
         request(RequestToQuoineBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-            print("запрос Quoine")
+//            print("запрос Quoine")
             var arrayOfData = [Dictionary<String, AnyObject>]()
             if response.result.value != nil {
                 arrayOfData = response.result.value as! [Dictionary<String, AnyObject>]
                 self.globalRequestResultModel.error = ""
             }else{
-                print(convertToJSONError)
+//                print(convertToJSONError)
                 self.globalRequestResultModel.error = convertToJSONError
             }
             
@@ -318,7 +318,7 @@ class RequestManager: NSObject {
                     completion(newRequestResultModel)
                 })
             }else{
-                print(convertToJSONError)
+//                print(convertToJSONError)
                 completion(self.globalRequestResultModel)
             }
         })
@@ -330,7 +330,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToBittrexBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("запрос Bittrex")
+//                print("запрос Bittrex")
                 if exchangeCoinsDict.keys.count > 0 {
                     if response.result.value != nil {
                         self.globalRequestResultModel.error = ""
@@ -350,7 +350,7 @@ class RequestManager: NSObject {
                             }
                         }
                     }else{
-                        print(convertToJSONError)
+//                        print(convertToJSONError)
                         self.globalRequestResultModel.error = convertToJSONError
                     }
                 }
@@ -364,7 +364,7 @@ class RequestManager: NSObject {
                 }
             })
         }else{
-            print("монет не добавлено Bittrex")
+//            print("монет не добавлено Bittrex")
             exchangesCounter = exchangesCounter + 1
             updateHitBTCCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newArray) in
                 completion(newArray)
@@ -378,7 +378,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToHitBTCBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("запрос HitBTC")
+//                print("запрос HitBTC")
                 if response.result.value != nil {
                     self.globalRequestResultModel.error = ""
                     let arrayOfData = response.result.value as! [Dictionary<String, AnyObject>]
@@ -397,7 +397,7 @@ class RequestManager: NSObject {
                         }
                     }
                 }else{
-                    print(convertToJSONError)
+//                    print(convertToJSONError)
                     self.globalRequestResultModel.error = convertToJSONError
                 }
                 if self.globalRequestResultModel.error != convertToJSONError {
@@ -410,7 +410,7 @@ class RequestManager: NSObject {
                 }
             })
         }else{
-            print("монет не добавлено HitBTC")
+//            print("монет не добавлено HitBTC")
             exchangesCounter = exchangesCounter + 1
             updateBinanceCoinsRates(btcRate: btcRate, ethRate: ethRate, completion: { (newRequestResultModel) in
                 completion(newRequestResultModel)
@@ -423,7 +423,7 @@ class RequestManager: NSObject {
         let exchangeCoinsDict = coinsExchanges[exchangesCounter]
         if exchangeCoinsDict.keys.count > 0 {
             request(RequestToBinanceBuilder.buildAllCoinsRequest()).responseJSON(completionHandler: { (response) in
-                print("запрос Binance")
+//                print("запрос Binance")
                 if response.result.value != nil {
                     self.globalRequestResultModel.error = ""
                     let arrayOfData = response.result.value as! [Dictionary<String, AnyObject>]
@@ -448,13 +448,13 @@ class RequestManager: NSObject {
 //                    completion(newArray)
 //                })
                 }else{
-                    print(convertToJSONError)
+//                    print(convertToJSONError)
                     self.globalRequestResultModel.error = convertToJSONError
                     completion(self.globalRequestResultModel)
                 }
             })
         }else{
-            print("монет не добавлено Binance")
+//            print("монет не добавлено Binance")
             globalRequestResultModel.coinsSortedByExchanges = coinsExchanges
             completion(globalRequestResultModel)
 //            exchangesCounter = exchangesCounter + 1
@@ -879,7 +879,7 @@ class RequestManager: NSObject {
                 requestResultModel.value = CMCResponseParser.parseResponse(response: arrayOfData)
                 requestResultModel.error = ""
             }else{
-                print(convertToJSONError)
+//                print(convertToJSONError)
                 requestResultModel.error = convertToJSONError
             }
             completion(requestResultModel)

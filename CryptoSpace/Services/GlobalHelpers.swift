@@ -102,7 +102,6 @@ class CoinsArrayFormatter: NSObject {
         
         for coin in uniqueCoins.values {
             coinsExchanges[coin.exchange.rawValue].updateValue(coin, forKey: coin.shortName)
-//            insert(coin, at: coinsExchanges[coin.exchange.rawValue].count)
         }
         return coinsExchanges
     }
@@ -193,7 +192,6 @@ class PercentChangeCalculator: NSObject {
         return coinDetailsDict
     }
 
-    
     class func determine24hPriceChangeInPercents(coinPrice: Double, coinPrice24h: Double, btc24hPercentChange: Double) -> Dictionary<String, Double> {
         var priceDifference = 0.0
         if coinPrice >= coinPrice24h {
@@ -423,7 +421,6 @@ class PortfolioMapper: NSObject {
         
         //изменение в процентах с момента покупки
         let changeFromBeginningInPercentages = (profitOrLossInDollars / initialCoinsCostInDollars) * 100.0
-//        currentNumberFormatter = GlobalNumberFormatter.createNumberFormatter(number: changeFromBeginningInPercentages)
         currentNumberFormatter.maximumFractionDigits = 2
         let changeFromBeginningInPercentagesString = currentNumberFormatter.string(from: NSNumber.init(value: changeFromBeginningInPercentages))
         minusOrPlusSign = initialCoinsCostInDollars > userCoinsSumInDollars ? "-" : "+"
@@ -450,7 +447,6 @@ class PortfolioMapper: NSObject {
 class TextColorDeterminant: NSObject {
     
     class func colorForText(text: String) -> UIColor {
-        
         if text.contains("-") {
             return UIColor.redChangeColor()
         }else{
@@ -473,11 +469,6 @@ class CoinsOrderManager: NSObject {
     
     class func orderCoins(coinsType: CoinType, disorderedCoins: [Coin]) -> [Coin] {
         let dictKey = keyForDict(coinType: coinsType)
-//        if coinsType == CoinType.Tracked {
-//            dictKey = kTrackedCoinsQueueIndexesDict
-//        }else{
-//            dictKey = kObservedCoinsQueueIndexesDict
-//        }
         
         if UserDefaults.standard.object(forKey: dictKey) != nil {
             let coinsIndexes = UserDefaults.standard.object(forKey: dictKey) as! Dictionary<String, Int>
@@ -503,12 +494,6 @@ class CoinsOrderManager: NSObject {
     
     class func updateCoinsOrder(coinsType: CoinType, disorderedCoins: [Coin]) {
         let dictKey = keyForDict(coinType: coinsType)
-//        let dictKey: String!
-//        if coinsType == CoinType.Tracked {
-//            dictKey = kTrackedCoinsQueueIndexesDict
-//        }else{
-//            dictKey = kObservedCoinsQueueIndexesDict
-//        }
         
         if disorderedCoins.count > 0 {
             var newCoinsIndexes = Dictionary<String, Int>()
@@ -542,18 +527,6 @@ class CoinsOrderManager: NSObject {
             UserDefaults.standard.set(newCoinsQueue, forKey: dictKey)
         }
     }
-    
-//    class func removeCoinFromQueue(coinType: CoinType, coinToRemove: Coin) { //только для экрана покупок монеты
-//
-//        let dictKey = keyForDict(coinType: coinType)
-//
-//        let coinsIndexes = UserDefaults.standard.object(forKey: dictKey) as! Dictionary<String, Int>
-//        if coinsIndexes.keys.count == 1 {
-//            UserDefaults.standard.set(Dictionary<String, Int>(), forKey: dictKey)
-//        }else{
-//
-//        }
-//    }
 }
 
 class AlertsManager: NSObject {
@@ -574,4 +547,3 @@ class AlertsManager: NSObject {
         inViewController.present(alert, animated: true, completion: nil)
     }
 }
-

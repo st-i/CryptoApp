@@ -16,7 +16,6 @@ class NotesCellBuilder: NSObject {
         let cell = tableView.dequeueReusableCell(withIdentifier: kNotesCellIdentifier) as! NotesCell
         cell.selectionStyle = .none
         cell.notesTextView.autocorrectionType = .no
-//        cell.contentView.backgroundColor = UIColor.groupTableViewBackground
         
         return cell
     }

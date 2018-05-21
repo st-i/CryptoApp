@@ -15,7 +15,6 @@ class PortfolioGraphScreenDirector: NSObject {
         for displayModel in displayModels {
             arrayWithCells.append(PortfolioCurrencyGraphCellBuilder.buildCell(tableView, graphViewModel: displayModel) as! PortfolioCurrencyGraphCell)
         }
-    
         return arrayWithCells
     }
 }

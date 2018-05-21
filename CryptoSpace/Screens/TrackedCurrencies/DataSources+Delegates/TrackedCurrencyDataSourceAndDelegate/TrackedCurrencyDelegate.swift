@@ -8,7 +8,6 @@
 
 import UIKit
 
-//private let kTrackedCurrencyCellHeight = 700
 private let kCommonCoinInfoCellHeight = 224
 private let kCoinPurchaseWONoteCellIdentifier = 152
 private let kCoinPurchaseWithNoteCellIdentifier = 235

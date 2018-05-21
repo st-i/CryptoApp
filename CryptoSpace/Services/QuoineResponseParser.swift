@@ -81,7 +81,7 @@ class QuoineResponseParser: NSObject {
                 
                 let coinDetailsDict = PercentChangeCalculator.determine24hPriceChangeInPercentsForQuoine(coinPrice: coinPrice, coinPrice24h: coinPrice24h)
 
-                print("\(coinName): \(coinPrice)")
+//                print("\(coinName): \(coinPrice)")
                 actualCoinsRates.updateValue(coinDetailsDict, forKey: String(coinName))
             }
         }

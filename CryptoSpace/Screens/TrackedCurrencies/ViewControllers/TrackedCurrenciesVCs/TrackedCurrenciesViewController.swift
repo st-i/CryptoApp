@@ -53,7 +53,6 @@ class TrackedCurrenciesViewController: UIViewController {
         
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.navBarColor()
-        //init(red: 6.0 / 255.0, green: 61.0 / 255.0, blue: 129.0 / 255.0, alpha: 1.0)
         navigationController?.navigationBar.tintColor = UIColor.white
         
         refreshDataControl.addTarget(self, action: #selector(refreshCurrenciesRatesAfterDelay), for: .valueChanged)
@@ -72,10 +71,7 @@ class TrackedCurrenciesViewController: UIViewController {
         originalDoneButton = UIBarButtonItem.init(title: "Готово", style: .done, target: self, action: #selector(editPortfolioAction))
         leftBarButtonItem = originalEditButton
         
-//        let refreshButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(refreshCurrenciesRates))
         let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addTrackedCurrency))
-        
-//        navigationItem.rightBarButtonItems = [addButton, refreshButton]
         navigationItem.rightBarButtonItem = addButton
         navigationItem.rightBarButtonItem?.isEnabled = false
         
@@ -87,15 +83,8 @@ class TrackedCurrenciesViewController: UIViewController {
             CoreDataManager.shared.savePortfolio(portfolio: Portfolio())
         }
         
-//        let refm = TrackedCoinPurchaseInfoModel()
-//        refm.shortName = "BTC"
-//        refm.uniqueId = 0
-//        CoreDataManager.shared.deleteCertainTrackedUserCoinFromCoreData(coinModel: refm)
-        
-//        UserDefaults.standard.set(Dictionary<String, Int>(), forKey: kTrackedCoinsQueueIndexesDict)
-        
         showIndicatorViewScreen()
-        let allSavedCoins = CoreDataManager.shared.getUserCoinsArray() //allSavedTrackedCoins
+        let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
         allUnsortedCoins = allSavedCoins
         userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
         
@@ -182,8 +171,8 @@ class TrackedCurrenciesViewController: UIViewController {
                 let graphViewModel = GraphViewModel()
                 graphViewModel.coinFullName = trackedCoin.fullName
                 graphViewModel.coinId = trackedCoin.id
-                graphViewModel.currentCoinValue = trackedCoin.amount * trackedCoin.exchangeRate //trackedCoin.sum
-                graphViewModel.columnWidthPart = CGFloat(trackedCoin.amount * trackedCoin.exchangeRate /*trackedCoin.sum*/ / currentUserPortfolio.currentDollarValue)
+                graphViewModel.currentCoinValue = trackedCoin.amount * trackedCoin.exchangeRate
+                graphViewModel.columnWidthPart = CGFloat(trackedCoin.amount * trackedCoin.exchangeRate / currentUserPortfolio.currentDollarValue)
                 graphViewModels.append(graphViewModel)
             }
             
@@ -192,7 +181,6 @@ class TrackedCurrenciesViewController: UIViewController {
             let storyboard = UIStoryboard.init(name: "TrackedCurrenciesStoryboard", bundle: nil)
             let portfolioGraphVC = storyboard.instantiateViewController(withIdentifier: "PortfolioGraphViewController") as! PortfolioGraphViewController
             portfolioGraphVC.displayModelsArray = sortedGraphViewModels
-//            navigationController?.pushViewController(portfolioGraphVC, animated: true)
 
             let navContr = UINavigationController.init(rootViewController: portfolioGraphVC)
             navContr.modalTransitionStyle = .crossDissolve
@@ -233,11 +221,6 @@ class TrackedCurrenciesViewController: UIViewController {
     }
     
     //MARK: Requests
-    
-//    @objc func sendRequestForTest() {
-//        requestManager.sendSomeRequestForTest()
-//    }
-    
     @objc func refreshCurrenciesRatesAfterDelay() {
         if userCoins.count > 0 {
             refreshDataTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(refreshCurrenciesRates), userInfo: nil, repeats: false)
@@ -268,7 +251,7 @@ class TrackedCurrenciesViewController: UIViewController {
                         for coin in self.userCoins {
                             let updatedCoin = coinsRequestResultModel.coinsSortedByExchanges![coin.exchange.rawValue][coin.shortName]
                             
-                            initialPortfolioCost = initialPortfolioCost + ((updatedCoin?.amount)! * (updatedCoin?.purchaseExchangeRate)!) //(updatedCoin?.initialSum)!
+                            initialPortfolioCost = initialPortfolioCost + ((updatedCoin?.amount)! * (updatedCoin?.purchaseExchangeRate)!)
                             
                             let updatedCoinRate = (updatedCoin?.exchangeRate)!
                             coin.exchangeRate = updatedCoinRate
@@ -355,7 +338,7 @@ class TrackedCurrenciesViewController: UIViewController {
             var initialPortfolioCost = 0.0
             
             for coin in userCoins {
-                initialPortfolioCost = initialPortfolioCost + (coin.amount * coin.purchaseExchangeRate) //coin.initialSum
+                initialPortfolioCost = initialPortfolioCost + (coin.amount * coin.purchaseExchangeRate)
 
                 let coinSum = coin.amount * coin.exchangeRate
                 let coinRate24hPercentChange = coin.rate24hPercentChange

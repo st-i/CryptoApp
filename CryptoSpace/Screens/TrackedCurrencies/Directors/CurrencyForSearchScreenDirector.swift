@@ -30,5 +30,4 @@ class CurrencyForSearchScreenDirector: NSObject {
         
         return allSections
     }
-
 }
