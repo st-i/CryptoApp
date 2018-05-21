@@ -20,7 +20,7 @@ extension AddCurrencyViewController: UITextFieldDelegate {
         nextTextFieldButton.addTarget(self, action: #selector(nextTextFieldAction), for: .touchUpInside)
         //        nextTextFieldButton.setTitleColor(UIColor.init(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0), for: .normal)
         //        nextTextFieldButton.setTitleColor(UIColor.groupTableViewBackground, for: .highlighted)
-        nextTextFieldButton.setImage(UIImage.init(named: "next"), for: .normal)
+        nextTextFieldButton.setImage(UIImage.init(named: "NextArrow"), for: .normal)
         //        nextTextFieldButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         nextTextFieldButton.frame = CGRect.init(x: helperView.frame.midX - 15, y: helperView.bounds.midY - 15, width: 30, height: 30)
         nextTextFieldButton.backgroundColor = UIColor.clear
@@ -95,6 +95,18 @@ extension AddCurrencyViewController: UITextFieldDelegate {
             if firstTextFieldText?.first == "$" && firstTextFieldText?.count == 1 {
                 purchaseExchangeRateCell.purchaseExchangeRateTextField.text = ""
                 firstTextFieldText = purchaseExchangeRateCell.purchaseExchangeRateTextField.text
+            }
+            
+            //из-за ios 11
+            if (firstTextFieldText?.contains(","))! && (firstTextFieldText?.contains("."))! {
+                firstTextFieldText?.removeLast()
+                purchaseExchangeRateCell.purchaseExchangeRateTextField.text = firstTextFieldText
+            }
+            
+            //из-за ios 11
+            if (firstTextFieldText?.contains("."))! {
+                firstTextFieldText = replaceDotWithComma(firstTextFieldText!)
+                purchaseExchangeRateCell.purchaseExchangeRateTextField.text = firstTextFieldText
             }
             
             if firstTextFieldText?.first == "," && firstTextFieldText?.count == 1 {
@@ -243,6 +255,18 @@ extension AddCurrencyViewController: UITextFieldDelegate {
                 secondTextFieldText = purchaseSumCell.purchaseSumTextField.text
             }
             
+            //из-за ios 11
+            if (secondTextFieldText?.contains(","))! && (secondTextFieldText?.contains("."))! {
+                secondTextFieldText?.removeLast()
+                purchaseSumCell.purchaseSumTextField.text = secondTextFieldText
+            }
+            
+            //из-за ios 11
+            if (secondTextFieldText?.contains("."))! {
+                secondTextFieldText = replaceDotWithComma(secondTextFieldText!)
+                purchaseSumCell.purchaseSumTextField.text = secondTextFieldText
+            }
+            
             if secondTextFieldText?.first == "," && secondTextFieldText?.count == 1 {
                 purchaseSumCell.purchaseSumTextField.text = "$0,"
                 secondTextFieldText = purchaseSumCell.purchaseSumTextField.text
@@ -382,6 +406,18 @@ extension AddCurrencyViewController: UITextFieldDelegate {
         }else{
             var thirdTextFieldText = currencyAmountCell.currencyAmountTextField.text
             
+            //из-за ios 11
+            if (thirdTextFieldText?.contains(","))! && (thirdTextFieldText?.contains("."))! {
+                thirdTextFieldText?.removeLast()
+                currencyAmountCell.currencyAmountTextField.text = thirdTextFieldText
+            }
+            
+            //из-за ios 11
+            if (thirdTextFieldText?.contains("."))! {
+                thirdTextFieldText = replaceDotWithComma(thirdTextFieldText!)
+                currencyAmountCell.currencyAmountTextField.text = thirdTextFieldText
+            }
+            
             if thirdTextFieldText?.first == "," && thirdTextFieldText?.count == 1 {
                 currencyAmountCell.currencyAmountTextField.text = "0,"
                 thirdTextFieldText = currencyAmountCell.currencyAmountTextField.text
@@ -507,5 +543,12 @@ extension AddCurrencyViewController: UITextFieldDelegate {
         currencyAmountText = currencyAmountCell.currencyAmountTextField.text
         purchaseSumText = purchaseSumCell.purchaseSumTextField.text
         enableOrDisableAddButton()
+    }
+    
+    func replaceDotWithComma(_ textForReplacing: String) -> String {
+        let dotRange = textForReplacing.range(of: ".", options: .diacriticInsensitive)
+        let newString = textForReplacing.replacingCharacters(in: dotRange!, with: ",")
+
+        return newString
     }
 }

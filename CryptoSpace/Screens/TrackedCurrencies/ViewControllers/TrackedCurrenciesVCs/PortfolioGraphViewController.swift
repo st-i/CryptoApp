@@ -47,7 +47,7 @@ class PortfolioGraphViewController: UIViewController {
         titleView.addSubview(titleViewLabel)
         navigationItem.titleView = titleView
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "X", style: .plain, target: self, action: #selector(dismissViewController))
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "CloseCross"), style: .plain, target: self, action: #selector(dismissViewController))
 //        UIBarButtonItem.init(image: UIImage.init(named: "x2"), style: .plain, target: self, action: #selector(dismissViewController))
     
         fillTableViewWithData()

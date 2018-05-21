@@ -237,11 +237,11 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         purchase.backgroundColor = UIColor.white
         
         let purchaseImageView = UIImageView.init(frame: CGRect.init(x: 15, y: 12, width: 26, height: 26))
-        purchaseImageView.image = UIImage(named:"PurchaseIconColor")
+        purchaseImageView.image = UIImage(named:"Purchase")
         self.currencyPurchaseImageView = purchaseImageView
         
-        let checkmarkImageView = UIImageView.init(frame: CGRect.init(x: purchase.frame.width - 41, y: 10, width: 26, height: 26))
-        checkmarkImageView.image = UIImage(named:"CheckmarkIcon")
+        let checkmarkImageView = UIImageView.init(frame: CGRect.init(x: purchase.frame.width - 41, y: 17, width: 15, height: 15))
+        checkmarkImageView.image = UIImage(named:"Checkmark")
         self.actionCheckmarkImageView = checkmarkImageView
         
         self.purchaseButton = purchase
@@ -256,8 +256,8 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         exchangeRate.frame = CGRect.init(x: 0, y: 50, width: self.choiceBlurView.frame.width, height: 0)
         exchangeRate.backgroundColor = UIColor.white
         
-        let trackRateImageView = UIImageView.init(frame: CGRect.init(x: 15, y: 12, width: 26, height: 26))
-        trackRateImageView.image = UIImage(named:"BinocularIconColor")
+        let trackRateImageView = UIImageView.init(frame: CGRect.init(x: 15, y: 14, width: 26, height: 26))
+        trackRateImageView.image = UIImage(named:"Binoculars")
         self.trackExchangeRateImageView = trackRateImageView
         
         self.exchangeRateButton = exchangeRate

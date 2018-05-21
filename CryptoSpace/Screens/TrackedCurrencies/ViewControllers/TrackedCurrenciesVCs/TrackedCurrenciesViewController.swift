@@ -182,8 +182,8 @@ class TrackedCurrenciesViewController: UIViewController {
                 let graphViewModel = GraphViewModel()
                 graphViewModel.coinFullName = trackedCoin.fullName
                 graphViewModel.coinId = trackedCoin.id
-                graphViewModel.currentCoinValue = trackedCoin.sum
-                graphViewModel.columnWidthPart = CGFloat(trackedCoin.sum / currentUserPortfolio.currentDollarValue)
+                graphViewModel.currentCoinValue = trackedCoin.amount * trackedCoin.exchangeRate //trackedCoin.sum
+                graphViewModel.columnWidthPart = CGFloat(trackedCoin.amount * trackedCoin.exchangeRate /*trackedCoin.sum*/ / currentUserPortfolio.currentDollarValue)
                 graphViewModels.append(graphViewModel)
             }
             

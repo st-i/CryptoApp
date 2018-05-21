@@ -43,7 +43,7 @@ class TotalPortfolioCostCellBuilder: NSObject {
         cell.portfolioProfitOrLossLabel.textColor = TextColorDeterminant.colorForText(text: profitOrLoss)
         cell.portfolioProfitOrLoss24hLabel.textColor = TextColorDeterminant.colorForText(text: last24hValueChange)
         cell.changeFromPurchaseMoment.textColor = TextColorDeterminant.colorForText(text: portfolioModel.percentProfitOrLoss)
-        cell.portfolio24hChangeLabel.textColor = TextColorDeterminant.colorForText(text: portfolioModel.last24hValuePercentChange)
+        cell.portfolio24hChangeLabel.textColor = TextColorDeterminant.colorForText(text: portfolioModel.last24hValuePercentChange)        
         
         return cell
     }

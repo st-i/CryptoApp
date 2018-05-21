@@ -10,12 +10,9 @@ import UIKit
 
 class AboutAppViewController: UIViewController {
 
-    @IBOutlet weak var appIconView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        appIconView.layer.cornerRadius = 20
         
         let titleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 140, height: 30))
         let titleViewLabel = UILabel.init(frame: titleView.frame)

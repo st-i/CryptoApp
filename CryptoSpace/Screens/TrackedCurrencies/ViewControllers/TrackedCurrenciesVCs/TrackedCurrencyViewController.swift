@@ -50,7 +50,7 @@ class TrackedCurrencyViewController: UIViewController {
         titleView.addSubview(titleViewLabel)
         self.navigationItem.titleView = titleView
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .trash, target: self, action: #selector(deleteCoinGroupAction))
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "TrashBin"), style: .plain, target: self, action: #selector(deleteCoinGroupAction))
 //        UIBarButtonItem.init(image: UIImage.init(named: "trash"), style: .plain, target: self, action: #selector(deleteCoinGroupAction))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         

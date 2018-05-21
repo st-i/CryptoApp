@@ -84,8 +84,8 @@ class SettingsDataSourceAndDelegate: NSObject, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView.init(frame: CGRect.init(x: 0, y: 100.0, width: tableView.frame.width, height: tableView.frame.height - 100.0))
         
-        let appVersionLabel = UILabel.init(frame: CGRect(x: 0, y: footerView.frame.height - 40, width: footerView.frame.width, height: 30))
-        //            headerViewRateLabel.backgroundColor = UIColor.black
+        let appVersionLabel = UILabel.init(frame: CGRect(x: 0, y: 10, width: footerView.frame.width, height: 30))
+//            headerViewRateLabel.backgroundColor = UIColor.black
         appVersionLabel.textAlignment = .center
         appVersionLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.regular)
         appVersionLabel.textColor = UIColor.gray
