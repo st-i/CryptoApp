@@ -146,8 +146,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTm-9Q-n63">
-                                                    <rect key="frame" x="275" y="70" width="30" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTm-9Q-n63">
+                                                    <rect key="frame" x="275" y="68" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="CbE-cy-LMI"/>
                                                         <constraint firstAttribute="width" constant="30" id="grb-Cc-yhS"/>
@@ -1000,7 +1000,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAa-hs-t4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="776" y="-575"/>
+            <point key="canvasLocation" x="774.375" y="-575"/>
         </scene>
         <!--Portfolio Graph View Controller-->
         <scene sceneID="VNi-VW-gck">
@@ -1526,7 +1526,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заметка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkq-Hq-6qO">
-                                                    <rect key="frame" x="22" y="10" width="105" height="22"/>
+                                                    <rect key="frame" x="15" y="10" width="105" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="105" id="23p-jF-ONu"/>
                                                         <constraint firstAttribute="height" constant="22" id="HIr-UN-0gj"/>
@@ -1536,7 +1536,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Дoпoлнитeльнaя инфoрмaция" translatesAutoresizingMaskIntoConstraints="NO" id="69g-9d-Yih">
-                                                    <rect key="frame" x="19" y="31" width="286" height="73"/>
+                                                    <rect key="frame" x="12" y="31" width="293" height="73"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="73" id="raN-cE-qLY"/>
@@ -1906,7 +1906,7 @@
                                     <constraint firstAttribute="width" constant="60" id="tVP-0R-ByS"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CryptoSpace" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZP7-C5-hxi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CryptoScope" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZP7-C5-hxi">
                                 <rect key="frame" x="88" y="92" width="216" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bei-6l-pej"/>
@@ -1916,10 +1916,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="16" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KX6-gr-hnG">
-                                <rect key="frame" x="15" y="169" width="289" height="249"/>
-                                <string key="text">Приложение CryptoSpace позволяет создавать портфель криптоактивов, добавлять в него различные криптовалюты и получать актуальную информацию о его состоянии, а также отслеживать курс иных криптовалют. Если у вас есть какие-либо замечания или предложения по работе приложения, всегда будем рады вас услышать: cryptospace@inbox.ru
+                                <rect key="frame" x="15" y="169" width="289" height="248.5"/>
+                                <string key="text">Приложение CryptoScope позволяет создавать портфель криптоактивов, добавлять в него различные криптовалюты и получать актуальную информацию о его состоянии, а также отслеживать курс иных криптовалют. Если у вас есть какие-либо замечания или предложения по работе приложения, всегда будем рады вас услышать: cryptoscope@inbox.ru
 
-Команда CryptoSpace</string>
+Команда CryptoScope</string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1958,8 +1958,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQO-z8-jJu">
-                                <rect key="frame" x="16" y="169" width="288" height="211"/>
-                                <string key="text">Приложение CryptoSpace использует данные, предоставленные исключительно публичным API, и не несет ответственности за предоставление некорректной информации, связанной с курсом различных криптовалют. Любые данные, сохранённые пользователем в приложении, существуют только на его устройстве и не передаются сторонним серверам или сервисам.</string>
+                                <rect key="frame" x="16" y="169" width="288" height="210.5"/>
+                                <string key="text">Приложение CryptoScope использует данные, предоставленные исключительно публичным API, и не несет ответственности за предоставление некорректной информации, связанной с курсом различных криптовалют. Любые данные, сохранённые пользователем в приложении, существуют только на его устройстве и не передаются сторонним серверам или сервисам.</string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

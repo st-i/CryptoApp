@@ -11,7 +11,11 @@ import Foundation
 // Test AdMob app ID: ca-app-pub-3940256099942544/2934735716
 let testAdMobAppId = "ca-app-pub-3940256099942544/2934735716"
 // Prod AdMob app ID: ca-app-pub-5229719486999701/4762328246
-let prodAdMobAppId = "ca-app-pub-5229719486999701/4762328246"
+let portfolioAdMobBannerId      = "ca-app-pub-5229719486999701/4762328246"
+let coinDetailsAdMobBannerId    = "ca-app-pub-5229719486999701/7609126045"
+let statsAdMobBannerId          = "ca-app-pub-5229719486999701/6012548317"
+let ratesAdMobBannerId          = "ca-app-pub-5229719486999701/6296168087"
+let settingsAdMobBannerId       = "ca-app-pub-5229719486999701/7058585413"
 
 let convertToJSONError = "Не могу перевести в JSON"
 

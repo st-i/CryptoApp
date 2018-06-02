@@ -35,14 +35,14 @@ class ObservedCurrenciesViewController: UIViewController {
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
         
-        addBannerViewToView(bannerView)
-        
-        bannerView.adUnitID = testAdMobAppId
+        bannerView.adUnitID = ratesAdMobBannerId //testAdMobAppId
         bannerView.rootViewController = self
         let adRequest = GADRequest()
-        adRequest.testDevices = [kGADSimulatorID]
+//        adRequest.testDevices = [kGADSimulatorID]
         bannerView.load(adRequest)
         bannerView.delegate = self
+        
+        addBannerViewToView(bannerView)
         
         navigationController?.navigationBar.isTranslucent = false;
         navigationController?.navigationBar.barTintColor = UIColor.navBarColor()

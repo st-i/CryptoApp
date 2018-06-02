@@ -21,10 +21,10 @@ class SettingsViewController: UIViewController {
         
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeMediumRectangle)
-        bannerView.adUnitID = testAdMobAppId
+        bannerView.adUnitID = settingsAdMobBannerId //testAdMobAppId
         bannerView.rootViewController = self
         let adRequest = GADRequest()
-        adRequest.testDevices = [kGADSimulatorID]
+//        adRequest.testDevices = [kGADSimulatorID]
         bannerView.load(adRequest)
         bannerView.delegate = self
         

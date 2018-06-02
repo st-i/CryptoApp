@@ -32,10 +32,10 @@ class TrackedCurrencyViewController: UIViewController {
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
         
-        bannerView.adUnitID = testAdMobAppId
+        bannerView.adUnitID = coinDetailsAdMobBannerId //testAdMobAppId
         bannerView.rootViewController = self
         let adRequest = GADRequest()
-        adRequest.testDevices = [kGADSimulatorID]
+//        adRequest.testDevices = [kGADSimulatorID]
         bannerView.load(adRequest)
         bannerView.delegate = self
         
