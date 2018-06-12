@@ -9,14 +9,8 @@
 import UIKit
 
 class CryptoCurrenciesCapitalizationCell: UITableViewCell {
-
-    @IBOutlet weak var lastChangesLabel: UILabel!
-    @IBOutlet weak var capitalizationPercentagesChangesLabel: UILabel!
     
-    @IBOutlet weak var capitalizationImageView: UIImageView!
-    
-    @IBOutlet weak var capitalizationHintLabel: UILabel!
-    @IBOutlet weak var capitalizationValueLabel: UILabel!
+    @IBOutlet weak var cmcLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

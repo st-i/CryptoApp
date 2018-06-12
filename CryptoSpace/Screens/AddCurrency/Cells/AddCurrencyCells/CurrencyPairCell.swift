@@ -10,6 +10,8 @@ import UIKit
 
 class CurrencyPairCell: UITableViewCell {
 
+    @IBOutlet weak var coinShortNameLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

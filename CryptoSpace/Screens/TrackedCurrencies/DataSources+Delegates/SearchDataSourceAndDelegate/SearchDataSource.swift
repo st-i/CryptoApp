@@ -10,18 +10,23 @@ import UIKit
 
 class SearchDataSource: NSObject, UITableViewDataSource {
     
-    var arrayWithCells = [Any]()
-    
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return arrayWithCells.count
-    }
+    var allCoinsArray = [Coin]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (arrayWithCells[section] as! NSMutableArray).count
+        
+        if allCoinsArray.count > 0 {
+            return allCoinsArray.count
+        }else{
+            return 1
+        }
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return (arrayWithCells[indexPath.section] as! NSMutableArray)[indexPath.row] as! UITableViewCell
+        
+        if allCoinsArray.count > 0 {
+            return CurrencyForSearchCellBuilder.buildCurrencyForSearchCell(coin: allCoinsArray[indexPath.row], tableView: tableView)
+        }else{
+            return NoDataCellBuilder.buildCell(tableView, textType: .searchingResults)
+        }
     }
 }

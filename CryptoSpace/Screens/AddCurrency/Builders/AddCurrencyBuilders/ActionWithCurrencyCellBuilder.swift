@@ -16,7 +16,6 @@ class ActionWithCurrencyCellBuilder: NSObject {
         let cell = tableView.dequeueReusableCell(withIdentifier: kActionWithCurrencyCellIdentifier) as! ActionWithCurrencyCell
         cell.selectionStyle = .none
         cell.leftTextLabel.text = leftText
-//        cell.backgroundColor = UIColor.blue
         
         return cell
     }

@@ -12,11 +12,10 @@ private let kCapitalizationCellIdentifier = "CryptoCurrenciesCapitalizationCell"
 
 class CryptoCurrenciesCapitalizationCellBuilder: NSObject {
     
-    class func buildCryptoCurrenciesCapitalizationCell(for tableView: UITableView) -> UITableViewCell {
+    class func buildCryptoCurrenciesCapitalizationCell(_ tableView: UITableView, cmcInfoModel: CMCInfoModel) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kCapitalizationCellIdentifier) as! CryptoCurrenciesCapitalizationCell
         cell.selectionStyle = .none
-        cell.capitalizationPercentagesChangesLabel.textColor = UIColor.init(red: 0, green: 190.0 / 255.0, blue: 120.0 / 255.0, alpha: 1.0)
+        cell.cmcLabel.text = cmcInfoModel.marketCap
         return cell
     }
-
 }

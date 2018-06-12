@@ -15,17 +15,6 @@ class AddCurrencyScreenDirector: NSObject {
         let secondSection = NSMutableArray()
         let thirdSection = NSMutableArray()
         
-        //first section
-//        firstSection.add(ActionWithCurrencyCellBuilder.buildActionWithCurrencyCell(for: tableView))
-        
-        //second section
-//        secondSection.add(CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView))
-//        secondSection.add(ActionWithCurrencyDateCellBuilder.buildActionWithCurrencyDateCell(for: tableView))
-//        secondSection.add(CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView))
-//        secondSection.add(PurchaseExchangeRateCellBuilder.buildPurchaseExchangeRateCell(for: tableView))
-//        secondSection.add(CurrencyAmountCellBuilder.buildCurrencyAmountCell(for: tableView))
-//        secondSection.add(PurchaseSumCellBuilder.buildPurchaseSumCell(for: tableView))
-        
         //third section
         thirdSection.add(NotesCellBuilder.buildNotesCell(for: tableView))
         

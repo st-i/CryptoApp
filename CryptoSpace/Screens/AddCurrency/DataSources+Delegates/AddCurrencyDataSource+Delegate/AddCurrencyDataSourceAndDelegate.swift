@@ -14,10 +14,8 @@ private let kUserNumberCellHeight = 68
 private let kNotesCellHeight = 110
 
 class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
-
-    var viewController = AddCurrencyViewController()
     
-    var arrayWithCells = [Any]()
+    var viewController = AddCurrencyViewController()
     
     var currencyPurchase = Bool()
     var actionСhoice = Bool()
@@ -35,6 +33,12 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     var trackExchangeRateImageView = UIImageView()
     var actionCheckmarkImageView = UIImageView()
     
+    var indicatorWasShown = false
+    
+    var purchaseDate: Date?
+    
+    var addCoinModel = AddCoinModel()
+    
     override init() {
         super.init()
         self.createChoiceView()
@@ -43,20 +47,18 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     
     //MARK: dataSource
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return arrayWithCells.count
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
-        }else if section == 1 {
+        }else{
             if self.currencyPurchase {
-                return 6
+                return 7
             }else{
                 return 2
             }
-        }else{
-            return (arrayWithCells[section] as! NSMutableArray).count
         }
     }
     
@@ -67,32 +69,30 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
             }else{
                 return ActionWithCurrencyCellBuilder.buildActionWithCurrencyCell(for: tableView, leftText: "Отслеживание курса")
             }
-        }else if indexPath.section == 1 {
-            return self.cellWithOperationSetting(tableView: tableView, rowNumber: indexPath.row)
         }else{
-            return (arrayWithCells[indexPath.section] as! NSMutableArray)[indexPath.row] as! UITableViewCell
+            return self.cellWithOperationSetting(tableView: tableView, rowNumber: indexPath.row)
         }
     }
     
     //MARK: delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let currentCell = tableView.cellForRow(at: indexPath)
         if indexPath.section == 1 {
-//            if (currentCell?.isKind(of: PurchaseExchangeRateCell.self))! || (currentCell?.isKind(of: PurchaseSumCell.self))! || (currentCell?.isKind(of: CurrencyAmountCell.self))! {
             if indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 {
                 return CGFloat(kUserNumberCellHeight)
+            }else if indexPath.row == 0 {
+                return 60
+            }else if indexPath.row == 6 {
+                return CGFloat(kNotesCellHeight)
             }else{
                 return CGFloat(kDefaultNumberCellHeight)
             }
-        }else if indexPath.section == 2 {
-            return CGFloat(kNotesCellHeight)
         }else{
             return CGFloat(kStandardCellHeight)
         }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 || section == 2 {
+        if section == 1 {
             return 0.5
         }else{
             return CGFloat.leastNormalMagnitude
@@ -100,7 +100,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 2 {
+        if section == 1 {
             return 30.0
         }else{
             return CGFloat.leastNormalMagnitude
@@ -137,7 +137,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 1 || section == 2 {
+        if section == 1 {
             let headerView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 0.5))
             if section == 1 {
                 headerView.backgroundColor = UIColor.init(red: 154.0 / 255.0, green: 154.0 / 255.0, blue: 154.0 / 255.0, alpha: 0.4)
@@ -151,27 +151,28 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == 2 {
+        if section == 1 {
             return UIView.init()
         }else{
             return nil
         }
     }
     
+    //MARK: Methods
     func cellWithOperationSetting(tableView: UITableView, rowNumber: Int) -> UITableViewCell {
         if self.currencyPurchase {
             switch rowNumber {
             case 0:
-                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView)
+                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinId: addCoinModel.currentCoin.id, coinName: addCoinModel.currentCoin.fullName)
                 
             case 1:
-                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", rightText: "$14 000")
+                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", exchangeRateString: addCoinModel.coinExchangeRate)
                 
             case 2:
-                return ActionWithCurrencyDateCellBuilder.buildActionWithCurrencyDateCell(for: tableView)
+                return ActionWithCurrencyDateCellBuilder.buildActionWithCurrencyDateCell(for: tableView, date: addCoinModel.dateString)
                 
             case 3:
-                return PurchaseExchangeRateCellBuilder.buildPurchaseExchangeRateCell(for: tableView, delegate: self.viewController)
+                return PurchaseExchangeRateCellBuilder.buildPurchaseExchangeRateCell(for: tableView, delegate: self.viewController, exchangeRateString: addCoinModel.coinExchangeRate)
                 
             case 4:
                 return CurrencyAmountCellBuilder.buildCurrencyAmountCell(for: tableView, delegate: self.viewController)
@@ -179,19 +180,22 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
             case 5:
                 return PurchaseSumCellBuilder.buildPurchaseSumCell(for: tableView, delegate: self.viewController)
                 
+            case 6:
+                return NotesCellBuilder.buildNotesCell(for: tableView)
+                
             default:
                 return PurchaseSumCellBuilder.buildPurchaseSumCell(for: tableView, delegate: self.viewController)
             }
         }else{
             switch rowNumber {
             case 0:
-                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView)
+                return CurrencyPairCellBuilder.buildCurrencyPairCell(for: tableView, coinId: addCoinModel.currentCoin.id, coinName: addCoinModel.currentCoin.fullName)
                 
             case 1:
-                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", rightText: "$14 000")
+                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", exchangeRateString: addCoinModel.coinExchangeRate)
                 
             default:
-                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", rightText: "$14 000")
+                return CurrentExchangeRateCellBuilder.buildCurrentExchangeRateCell(for: tableView, leftText: "Текущий курс", exchangeRateString: addCoinModel.coinExchangeRate)
             }
         }
     }
@@ -211,11 +215,11 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         purchase.backgroundColor = UIColor.white
         
         let purchaseImageView = UIImageView.init(frame: CGRect.init(x: 15, y: 12, width: 26, height: 26))
-        purchaseImageView.image = UIImage(named:"PurchaseIconColor")
+        purchaseImageView.image = UIImage(named:"Purchase")
         self.currencyPurchaseImageView = purchaseImageView
         
-        let checkmarkImageView = UIImageView.init(frame: CGRect.init(x: purchase.frame.width - 41, y: 10, width: 26, height: 26))
-        checkmarkImageView.image = UIImage(named:"CheckmarkIcon")
+        let checkmarkImageView = UIImageView.init(frame: CGRect.init(x: purchase.frame.width - 41, y: 17, width: 15, height: 15))
+        checkmarkImageView.image = UIImage(named:"Checkmark")
         self.actionCheckmarkImageView = checkmarkImageView
         
         self.purchaseButton = purchase
@@ -230,8 +234,8 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         exchangeRate.frame = CGRect.init(x: 0, y: 50, width: self.choiceBlurView.frame.width, height: 0)
         exchangeRate.backgroundColor = UIColor.white
         
-        let trackRateImageView = UIImageView.init(frame: CGRect.init(x: 15, y: 12, width: 26, height: 26))
-        trackRateImageView.image = UIImage(named:"BinocularIconColor")
+        let trackRateImageView = UIImageView.init(frame: CGRect.init(x: 15, y: 14, width: 26, height: 26))
+        trackRateImageView.image = UIImage(named:"Binoculars")
         self.trackExchangeRateImageView = trackRateImageView
         
         self.exchangeRateButton = exchangeRate
@@ -294,7 +298,6 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
                 self.choiceBlurView.removeFromSuperview()
             })
         })
-//        viewController.doneAction()
     }
     
     @objc func purchaseAction() {
@@ -304,7 +307,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         if !self.currencyPurchase {
             self.currencyPurchase = true
             let indexPaths = NSMutableArray()
-            for i in 2..<6 {
+            for i in 2..<7 {
                 let currentIndexPath = IndexPath.init(row: i, section: 1)
                 indexPaths.add(currentIndexPath)
             }
@@ -313,6 +316,8 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
             self.viewController.tableView.beginUpdates()
             self.viewController.tableView.insertRows(at: indexPaths as! [IndexPath], with: .bottom)
             self.viewController.tableView.endUpdates()
+            
+            viewController.enableOrDisableAddButton()
         }
         
         self.hideChoiceView()
@@ -321,7 +326,6 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
             cell.arrowImageView.transform = cell.arrowImageView.transform.rotated(by: .pi)
         }, completion: nil)
-        print("purchaseAction")
     }
     
     @objc func trackExchangeRateAction() {
@@ -330,7 +334,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         if self.currencyPurchase {
             self.currencyPurchase = false
             let indexPaths = NSMutableArray()
-            for i in 2..<6 {
+            for i in 2..<7 {
                 let currentIndexPath = IndexPath.init(row: i, section: 1)
                 indexPaths.add(currentIndexPath)
             }
@@ -339,6 +343,8 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
             self.viewController.tableView.beginUpdates()
             self.viewController.tableView.deleteRows(at: indexPaths as! [IndexPath], with: .top)
             self.viewController.tableView.endUpdates()
+            
+            viewController.navigationItem.rightBarButtonItem?.isEnabled = true
         }
         
         self.hideChoiceView()
@@ -347,21 +353,19 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
             cell.arrowImageView.transform = cell.arrowImageView.transform.rotated(by: .pi)
         }, completion: nil)
-        print("trackExchangeRate")
     }
     
     //MARK: purchase date picker (date choice)
     func datePickerInputAccessoryView () -> UIView {
         let helperView = UIView.init(frame: CGRect.init(x: 0, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: 40))
         helperView.backgroundColor = UIColor.white
-//        init(red: 245.0 / 255.0, green: 245.0 / 255.0, blue: 245.0 / 255.0, alpha: 1.0)
         
         let cancelButton = UIButton.init(type: .custom)
         cancelButton.addTarget(self, action: #selector(hideDatePicker), for: .touchUpInside)
         cancelButton.setTitleColor(UIColor.init(red: 0.0, green: 122.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0), for: .normal)
         cancelButton.setTitleColor(UIColor.groupTableViewBackground, for: .highlighted)
         cancelButton.setTitle("Отмена", for: .normal)
-        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 16) //UIFont.systemFont(ofSize: 16, weight: .semibold)
+        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         cancelButton.contentHorizontalAlignment = .left
         cancelButton.frame = CGRect.init(x: 20, y: 0, width: 70, height: 40)
         cancelButton.backgroundColor = UIColor.clear
@@ -372,7 +376,7 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         chooseDateButton.setTitleColor(UIColor.init(red: 0.0, green: 122.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0), for: .normal)
         chooseDateButton.setTitleColor(UIColor.groupTableViewBackground, for: .highlighted)
         chooseDateButton.setTitle("Выбрать", for: .normal)
-        chooseDateButton.titleLabel?.font = UIFont.systemFont(ofSize: 16) //UIFont.systemFont(ofSize: 16, weight: .semibold)
+        chooseDateButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         chooseDateButton.contentHorizontalAlignment = .right
         chooseDateButton.frame = CGRect.init(x: helperView.frame.maxX - 90, y: 0, width: 70, height: 40)
         chooseDateButton.backgroundColor = UIColor.clear
@@ -407,11 +411,9 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         datePicker.maximumDate = Date()
         
         datePicker.backgroundColor = UIColor.white
-//        init(red: 250.0 / 255.0, green: 250.0 / 255.0, blue: 250.0 / 255.0, alpha: 1.0)
         datePicker.inputAccessoryView?.insertSubview(datePickerInputAccessoryView(), at: 0)
         
         purchaseDatePicker = datePicker
-        
         dateChoiceBlurView.addSubview(purchaseDatePicker)
     }
     
@@ -420,8 +422,8 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
         
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
             self.dateChoiceBlurView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.4)
-            self.viewAboveDatePicker.frame.origin.y = self.dateChoiceBlurView.frame.maxY - 200 - 110 - 40
-            self.purchaseDatePicker.frame.origin.y = self.dateChoiceBlurView.frame.maxY - 200 - 110
+            self.viewAboveDatePicker.frame.origin.y = self.dateChoiceBlurView.frame.maxY - 200 - 40 - 63
+            self.purchaseDatePicker.frame.origin.y = self.dateChoiceBlurView.frame.maxY - 200 - 63
         }, completion: nil)
     }
     
@@ -430,57 +432,20 @@ class AddCurrencyDataSourceAndDelegate: NSObject, UITableViewDataSource, UITable
             self.dateChoiceBlurView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.0)
             self.viewAboveDatePicker.frame.origin.y = self.dateChoiceBlurView.frame.maxY
             self.purchaseDatePicker.frame.origin.y = self.dateChoiceBlurView.frame.maxY + 40
-        }, completion:  { (true) in
+        }, completion: { (true) in
             self.dateChoiceBlurView.removeFromSuperview()
         })
     }
     
     @objc func datePickerChooseAction() {
         let purchaseDate = purchaseDatePicker.date
-        let purchaseDateString = purchaseDateStringFromDate(date: purchaseDate)
+        self.purchaseDate = purchaseDate
+        
+        let purchaseDateString = DetailedDateFormatter.stringFromDate(date: purchaseDate)
+        
         let dateCell = viewController.tableView.cellForRow(at: IndexPath.init(row: 2, section: 1)) as! ActionWithCurrencyDateCell
         dateCell.purchaseDateLabel.text = purchaseDateString
+        addCoinModel.dateString = purchaseDateString
         hideDatePicker()
-    }
-    
-    func purchaseDateStringFromDate(date: Date) -> String {
-        let calendar: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
-        
-        let day = calendar.component(.day, from: date)
-        let month = calendar.component(.month, from: date)
-        let year = calendar.component(.year, from: date)
-        
-        var monthString: String!
-        switch month {
-        case 1:
-            monthString = "Янв"
-        case 2:
-            monthString = "Фев"
-        case 3:
-            monthString = "Мар"
-        case 4:
-            monthString = "Апр"
-        case 5:
-            monthString = "Май"
-        case 6:
-            monthString = "Июн"
-        case 7:
-            monthString = "Июл"
-        case 8:
-            monthString = "Авг"
-        case 9:
-            monthString = "Сен"
-        case 10:
-            monthString = "Окт"
-        case 11:
-            monthString = "Ноя"
-        case 12:
-            monthString = "Дек"
-        default:
-            monthString = "Месяц"
-        }
-        let fullDateString = String(format:"%i %@ %i", day, monthString, year)
-        
-        return fullDateString
     }
 }

@@ -7,96 +7,88 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class TrackedCurrencyViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    var bannerView: GADBannerView!
+
     var trackedCurrencyDataSource:TrackedCurrencyDataSource!
     var trackedCurrencyDelegate:TrackedCurrencyDelegate!
     
-    var observedCurrencyDataSource:ObservedCurrencyDataSource!
-    var observedCurrencyDelegate:ObservedCurrencyDelegate!
-    
     var animationTimer = Timer()
+    
+    var currentCoin: Coin!
+    var trackedGroupedCoins = [Coin]()
+    
+    var firstCell: CommonCoinInfoCell!
+    
+    var viewDidLoaded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // In this case, we instantiate the banner with desired ad size.
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        
+        bannerView.adUnitID = coinDetailsAdMobBannerId //testAdMobAppId
+        bannerView.rootViewController = self
+        let adRequest = GADRequest()
+//        adRequest.testDevices = [kGADSimulatorID]
+        bannerView.load(adRequest)
+        bannerView.delegate = self
+        
+        addBannerViewToView(bannerView)
         
         let titleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
         let titleViewLabel = UILabel.init(frame: titleView.frame)
         titleViewLabel.textAlignment = .center
         titleViewLabel.font = UIFont.systemFont(ofSize: 19, weight: UIFont.Weight.medium)
         titleViewLabel.textColor = UIColor.white
-        titleViewLabel.text = "Bitcoin"
+        titleViewLabel.text = currentCoin.shortName //"Bitcoin"
         titleView.addSubview(titleViewLabel)
         self.navigationItem.titleView = titleView
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .compose, target: self, action: #selector(changeCoinDetailsAction))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "TrashBin"), style: .plain, target: self, action: #selector(deleteCoinGroupAction))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
-        self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
+        navigationItem.backBarButtonItem?.tintColor = UIColor.white
         
-        self.fillTableViewWithData()
-//
-//        let firstSection = self.trackedCurrencyDelegate.arrayWithCells[0] as! NSMutableArray
-//        let cell = firstSection[0] as! TrackedCurrencyCell
-//        
-//        UIView.animate(withDuration: 1.8, delay: 0.0,
-//                       options: [.curveEaseInOut, .autoreverse, .repeat],
-//                       animations: {
-//                        cell.currencyImageView.frame.origin.y = 39
-//        },
-//                       completion: nil)
-        
-//        self.animationTimer =
-//            Timer.scheduledTimer(timeInterval: 10.0, target: self,
-//                                 selector: #selector(startCurrencyImageAnimation),
-//                                 userInfo: nil, repeats: true)
+        fillTableViewWithData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.startCurrencyImageAnimation()
         
-        self.animationTimer =
-            Timer.scheduledTimer(timeInterval: 10.0, target: self,
-                                 selector: #selector(startCurrencyImageAnimation),
-                                 userInfo: nil, repeats: true)
+        if !viewDidLoaded {
+            startCurrencyImageAnimation()
+            
+            animationTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(startCurrencyImageAnimation), userInfo: nil, repeats: true)
+            
+            viewDidLoaded = true
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        self.animationTimer.invalidate()
+        animationTimer.invalidate()
     }
     
     func fillTableViewWithData() {
-        self.tableView.backgroundColor = UIColor.groupTableViewBackground
-        if (self.navigationController?.viewControllers[0].isKind(of: TrackedCurrenciesViewController.self))! {
-            self.trackedCurrencyDataSource = TrackedCurrencyDataSource()
-            self.trackedCurrencyDelegate = TrackedCurrencyDelegate()
         
-            self.tableView.dataSource = self.trackedCurrencyDataSource
-            self.tableView.delegate = self.trackedCurrencyDelegate
-        
-            let arrayWithCells = TrackedCurrencyScreenDirector.createTrackedCurrencyCells(for: self.tableView)
-        
-            self.trackedCurrencyDataSource.arrayWithCells = arrayWithCells
-            self.trackedCurrencyDelegate.arrayWithCells = arrayWithCells
-        }else{
-            self.observedCurrencyDataSource = ObservedCurrencyDataSource()
-            self.observedCurrencyDelegate = ObservedCurrencyDelegate()
-            
-            self.tableView.dataSource = self.observedCurrencyDataSource
-            self.tableView.delegate = self.observedCurrencyDelegate
-            
-            let arrayWithCells = ObservedCurrencyScreenDirector.createObservedCurrencyCells(for: self.tableView)
-            
-            self.observedCurrencyDataSource.arrayWithCells = arrayWithCells
-            self.observedCurrencyDelegate.arrayWithCells = arrayWithCells
-        }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//            self.startCurrencyImageAnimation()
-//        }
+        tableView.backgroundColor = UIColor.white
+        trackedCurrencyDataSource = TrackedCurrencyDataSource()
+        trackedCurrencyDelegate = TrackedCurrencyDelegate()
+    
+        tableView.dataSource = trackedCurrencyDataSource
+        tableView.delegate = trackedCurrencyDelegate
+    
+        let modelsArray = CertainCoinInfoMapper.mapTrackedCoinToInfoModelsArray(coin: currentCoin)
+    
+        trackedCurrencyDataSource.viewController = self
+        trackedCurrencyDataSource.modelsArray = modelsArray
+        trackedCurrencyDelegate.modelsArray = modelsArray
     }
     
     @objc func startCurrencyImageAnimation() {
@@ -105,73 +97,30 @@ class TrackedCurrencyViewController: UIViewController {
         animation.duration = 1.0
         animation.fromValue = NSNumber.init(floatLiteral: 0)
         animation.toValue = NSNumber.init(floatLiteral: 2 * .pi)
-        
-        if (self.navigationController?.viewControllers[0] .isKind(of: TrackedCurrenciesViewController.self))! {
-            let firstSection = self.trackedCurrencyDelegate.arrayWithCells[0] as! NSMutableArray
-            let cell = firstSection[0] as! TrackedCurrencyCell
-            cell.currencyImageView.layer.add(animation, forKey: animation.keyPath)
-            
-//            UIView.animate(withDuration: 1.5, delay: 0.0,
-//                           options: [.curveEaseInOut, .autoreverse, .repeat],
-//                           animations: {
-//                            cell.currencyImageView.frame.origin.y = 35
-//            },
-//                           completion: nil)
-        }else{
-            let firstSection = self.observedCurrencyDelegate.arrayWithCells[0] as! NSMutableArray
-            let cell = firstSection[0] as! ObservedCurrencyCell
-            cell.observedCurrencyImageView.layer.add(animation, forKey: animation.keyPath)
-        }
-//
-//            let theAnimation = CAKeyframeAnimation.init(keyPath: "transform.rotation.y")
-//            theAnimation.values =
-//                [NSValue(caTransform3D: CATransform3DMakeRotation(0, 0, 0, 1)),
-//                 NSValue(caTransform3D: CATransform3DMakeRotation(3.13, 0, 0, 1)),
-//                 NSValue(caTransform3D: CATransform3DMakeRotation(6.26, 0, 0, 1))]
-//            theAnimation.isCumulative = true
-//            theAnimation.duration = 3.0
-//            theAnimation.repeatCount = 5
-//            theAnimation.isRemovedOnCompletion = true
-//            theAnimation.timingFunctions =
-//                [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn),
-//                 CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)]
-//            cell.observedCurrencyImageView.layer.add(theAnimation, forKey: "rotation")
-            
-//
-////
-//            let animation = CABasicAnimation.init(keyPath: "transform.rotation.y")
-//            
-//            var transform = CATransform3DMakeRotation(1.0, 1.0, 1.0, 1.0)
-//            let fromValue = NSValue.init(caTransform3D: transform)
-//            
-//            transform = CATransform3DMakeRotation((.pi * 2) - 1, 0, 1.0, 0)
-//            let toValue = NSValue(caTransform3D: transform)
-//            animation.fromValue = fromValue
-//            animation.toValue = toValue
-//            animation.duration = 2.0
-//            animation.repeatCount = 5
-//            // HUGE_VALF is defined in math.h so import it
-//            cell.observedCurrencyImageView.layer.add(animation, forKey: "rotation")
-//
-       
-        
-//            UIView.animate(withDuration: 3.0, delay: 0.0,
-//                           options: [.curveEaseInOut, .repeat],
-//                           animations: {
-//                            cell.observedCurrencyImageView.layer.transform = CATransform3DMakeRotation((.pi * 2) - 1, 0, 1, 0)
-//                            
-//            },
-//                           completion: nil)
-    }
-
-//    func stopCurrencyImageAnimation() {
-//        let firstSection = self.trackedCurrencyDelegate.arrayWithCells[0] as! NSMutableArray
-//        let cell = firstSection[0] as! TrackedCurrencyCell
-//        
-//        cell.currencyImageView.frame.origin.y = 27
-//    }
     
-    @objc func changeCoinDetailsAction() {
+        if firstCell == nil {
+            firstCell = tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as! CommonCoinInfoCell
+        }
+        firstCell.currencyImageView.layer.add(animation, forKey: animation.keyPath)
+    }
+    
+    @objc func deleteCoinGroupAction() {
         
+        let alert = UIAlertController.init(title: "Удалить позицию?", message: "Все покупки данной криптовалюты также будут удалены", preferredStyle: .alert)
+        let cancelAction = UIAlertAction.init(title: "Отмена", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction.init(title: "Удалить", style: .default, handler: { (action) in
+            CoreDataManager.shared.deleteGroupOfTrackedUserCoinsFromCoreData(coinShortName: self.currentCoin.shortName)
+            for trackedCoin in self.trackedGroupedCoins {
+                if trackedCoin.shortName == self.currentCoin.shortName {
+                    self.trackedGroupedCoins.remove(at: self.trackedGroupedCoins.index(of: trackedCoin)!)
+                }
+            }
+            CoinsOrderManager.updateCoinsOrder(coinsType: .Tracked, disorderedCoins: self.trackedGroupedCoins)
+            self.navigationController?.popViewController(animated: true)
+        })
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        
+        present(alert, animated: true, completion: nil)
     }
 }

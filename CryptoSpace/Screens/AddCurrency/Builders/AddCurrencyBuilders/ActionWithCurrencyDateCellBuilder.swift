@@ -12,8 +12,9 @@ private let kActionWithCurrencyDateCellIdentifier = "ActionWithCurrencyDateCell"
 
 class ActionWithCurrencyDateCellBuilder: NSObject {
     
-    class func buildActionWithCurrencyDateCell(for tableView: UITableView) -> UITableViewCell {
+    class func buildActionWithCurrencyDateCell(for tableView: UITableView, date: String) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kActionWithCurrencyDateCellIdentifier) as! ActionWithCurrencyDateCell
+        cell.purchaseDateLabel.text = date
         
         return cell
     }

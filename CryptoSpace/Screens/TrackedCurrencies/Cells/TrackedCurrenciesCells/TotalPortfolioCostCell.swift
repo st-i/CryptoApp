@@ -10,23 +10,13 @@ import UIKit
 
 class TotalPortfolioCostCell: UITableViewCell {
     
-    @IBOutlet weak var lastChangesLabel: UILabel!
-    
-    @IBOutlet weak var portfolioPercentagesChangesLabel: UILabel!
     @IBOutlet weak var totalPortfolioValueLabel: UILabel!
-    
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//        
-//        backgroundView = UIView.init()
-//        backgroundView?.backgroundColor = UIColor.red
-//    }
-//    
-//    override var alpha: CGFloat {
-//        didSet {
-//            super.alpha = 1.0
-//        }
-//    }
+    @IBOutlet weak var portfolio24hChangeLabel: UILabel!
+    @IBOutlet weak var changeFromPurchaseMoment: UILabel!
+    @IBOutlet weak var initialPortfolioCostLabel: UILabel!
+    @IBOutlet weak var portfolioProfitOrLossLabel: UILabel!
+    @IBOutlet weak var portfolioProfitOrLoss24hLabel: UILabel!
+    @IBOutlet weak var portfolioGraphButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

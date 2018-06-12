@@ -12,10 +12,13 @@ private let kPurchaseExchangeRateCellIdentifier = "PurchaseExchangeRateCell"
 
 class PurchaseExchangeRateCellBuilder: NSObject {
     
-    class func buildPurchaseExchangeRateCell(for tableView: UITableView, delegate: UIViewController) -> UITableViewCell {
+    class func buildPurchaseExchangeRateCell(for tableView: UITableView, delegate: UIViewController, exchangeRateString: String) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kPurchaseExchangeRateCellIdentifier) as! PurchaseExchangeRateCell
         cell.selectionStyle = .none
         cell.purchaseExchangeRateTextField.delegate = delegate as? UITextFieldDelegate
+        if cell.purchaseExchangeRateTextField.text == "" {
+            cell.purchaseExchangeRateTextField.text = exchangeRateString
+        }
         
         return cell
     }

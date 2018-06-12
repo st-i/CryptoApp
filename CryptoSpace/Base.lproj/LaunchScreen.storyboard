@@ -21,22 +21,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CryptoSpace" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWM-rd-mJv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CryptoScope" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWM-rd-mJv">
                                 <rect key="frame" x="0.0" y="308" width="375" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="TYA-zY-cM9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
-                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mafaka" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1b-G5-eba">
-                                <rect key="frame" x="0.0" y="367" width="375" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="ExM-oC-gkg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.023529411764705882" green="0.23921568627450979" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -44,12 +35,8 @@
                         <constraints>
                             <constraint firstItem="UWM-rd-mJv" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="085-tF-1Bf"/>
                             <constraint firstAttribute="trailing" secondItem="UWM-rd-mJv" secondAttribute="trailing" id="Jem-HE-cQf"/>
-                            <constraint firstItem="P1b-G5-eba" firstAttribute="leading" secondItem="UWM-rd-mJv" secondAttribute="leading" id="NN8-UA-x3v"/>
-                            <constraint firstItem="P1b-G5-eba" firstAttribute="top" secondItem="UWM-rd-mJv" secondAttribute="bottom" constant="8" id="R1B-5b-eaW"/>
-                            <constraint firstItem="P1b-G5-eba" firstAttribute="leading" secondItem="UWM-rd-mJv" secondAttribute="trailing" constant="-375" id="dvO-sx-oYI"/>
                             <constraint firstItem="UWM-rd-mJv" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="hAt-v7-wtr"/>
                             <constraint firstItem="UWM-rd-mJv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="hI3-KS-fGa"/>
-                            <constraint firstItem="P1b-G5-eba" firstAttribute="trailing" secondItem="UWM-rd-mJv" secondAttribute="trailing" id="x8E-qt-OO0"/>
                         </constraints>
                     </view>
                 </viewController>

@@ -11,7 +11,7 @@ import UIKit
 class TrackedPositionCell: UITableViewCell {
 
     @IBOutlet weak var currencyImageView: UIImageView!
-    @IBOutlet weak var currencyPairLabel: UILabel!
+    @IBOutlet weak var currencyNameLabel: UILabel!
     @IBOutlet weak var purchasedCoinsCostLabel: UILabel!
     @IBOutlet weak var purchasedCoinsAmountLabel: UILabel!
     @IBOutlet weak var currencyExchangeRateCostLabel: UILabel!
