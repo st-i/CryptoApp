@@ -68,6 +68,10 @@
 		DD30884D201C7252006260C2 /* NoPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD30884C201C7252006260C2 /* NoPasteTextField.swift */; };
 		DD308853201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD308852201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift */; };
 		DD37B25920518A6500519443 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37B25820518A6500519443 /* Enums.swift */; };
+		DD3F07B521581566005DD27F /* TrackedCurrenciesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F07B421581566005DD27F /* TrackedCurrenciesPresenter.swift */; };
+		DD3F07B7215815A2005DD27F /* TrackedCurrenciesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F07B6215815A2005DD27F /* TrackedCurrenciesInteractor.swift */; };
+		DD3F07B9215815D1005DD27F /* TrackedCurrenciesContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F07B8215815D1005DD27F /* TrackedCurrenciesContract.swift */; };
+		DD3F07BB215815E2005DD27F /* TrackedCurrenciesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F07BA215815E2005DD27F /* TrackedCurrenciesAssembly.swift */; };
 		DD4F457A2062E3BE002D0A85 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4F45792062E3BE002D0A85 /* CoreDataManager.swift */; };
 		DD595A35205CF68D00ACB26B /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD595A34205CF68D00ACB26B /* GlobalHelpers.swift */; };
 		DD5A92C020548CA100AF268B /* Gate_ioResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A92BF20548CA100AF268B /* Gate_ioResponseParser.swift */; };
@@ -212,6 +216,10 @@
 		DD30884C201C7252006260C2 /* NoPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPasteTextField.swift; sourceTree = "<group>"; };
 		DD308852201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		DD37B25820518A6500519443 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		DD3F07B421581566005DD27F /* TrackedCurrenciesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedCurrenciesPresenter.swift; sourceTree = "<group>"; };
+		DD3F07B6215815A2005DD27F /* TrackedCurrenciesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedCurrenciesInteractor.swift; sourceTree = "<group>"; };
+		DD3F07B8215815D1005DD27F /* TrackedCurrenciesContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedCurrenciesContract.swift; sourceTree = "<group>"; };
+		DD3F07BA215815E2005DD27F /* TrackedCurrenciesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedCurrenciesAssembly.swift; sourceTree = "<group>"; };
 		DD4F45792062E3BE002D0A85 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		DD595A34205CF68D00ACB26B /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
 		DD5A92BF20548CA100AF268B /* Gate_ioResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gate_ioResponseParser.swift; sourceTree = "<group>"; };
@@ -311,28 +319,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		5406B9F81FF2DB890022D1C4 /* AddCurrency */ = {
-			isa = PBXGroup;
-			children = (
-				5406BA001FF2DB890022D1C4 /* ViewControllers */,
-				5406B9FD1FF2DB890022D1C4 /* DataSources+Delegates */,
-				5406B9FF1FF2DB890022D1C4 /* Directors */,
-				5406B9F91FF2DB890022D1C4 /* Builders */,
-				5406B9FB1FF2DB890022D1C4 /* Cells */,
-				5482F4021FFFCDEE00BDD14C /* Helpers */,
-			);
-			path = AddCurrency;
-			sourceTree = "<group>";
-		};
-		5406B9F91FF2DB890022D1C4 /* Builders */ = {
-			isa = PBXGroup;
-			children = (
-				5406B9FA1FF2DB890022D1C4 /* AddCurrencyBuilders */,
-			);
-			path = Builders;
-			sourceTree = "<group>";
-		};
-		5406B9FA1FF2DB890022D1C4 /* AddCurrencyBuilders */ = {
+		5406B9FA1FF2DB890022D1C4 /* Builders */ = {
 			isa = PBXGroup;
 			children = (
 				54BDCC621FF4155A000662C5 /* ActionWithCurrencyCellBuilder.swift */,
@@ -346,18 +333,10 @@
 				54BDCC6E1FF415F9000662C5 /* PurchasedAmountCostCellBuilder.swift */,
 				54BDCC701FF41616000662C5 /* NotesCellBuilder.swift */,
 			);
-			path = AddCurrencyBuilders;
+			path = Builders;
 			sourceTree = "<group>";
 		};
-		5406B9FB1FF2DB890022D1C4 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				5406B9FC1FF2DB890022D1C4 /* AddCurrencyCells */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		5406B9FC1FF2DB890022D1C4 /* AddCurrencyCells */ = {
+		5406B9FC1FF2DB890022D1C4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				5406BA011FF2DBE00022D1C4 /* ActionWithCurrencyCell.swift */,
@@ -371,219 +350,28 @@
 				5406BA0D1FF2DED00022D1C4 /* PurchasedAmountCostCell.swift */,
 				5406BA0F1FF2DEE80022D1C4 /* NotesCell.swift */,
 			);
-			path = AddCurrencyCells;
-			sourceTree = "<group>";
-		};
-		5406B9FD1FF2DB890022D1C4 /* DataSources+Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				5406B9FE1FF2DB890022D1C4 /* AddCurrencyDataSource+Delegate */,
-			);
-			path = "DataSources+Delegates";
-			sourceTree = "<group>";
-		};
-		5406B9FE1FF2DB890022D1C4 /* AddCurrencyDataSource+Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				54306C081FFA5DB50094A894 /* AddCurrencyDataSourceAndDelegate.swift */,
-			);
-			path = "AddCurrencyDataSource+Delegate";
-			sourceTree = "<group>";
-		};
-		5406B9FF1FF2DB890022D1C4 /* Directors */ = {
-			isa = PBXGroup;
-			children = (
-				54BDCC721FF41649000662C5 /* AddCurrencyScreenDirector.swift */,
-			);
-			path = Directors;
-			sourceTree = "<group>";
-		};
-		5406BA001FF2DB890022D1C4 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				DDAD79C5208C71AB0045BD44 /* Extensions */,
-				54BDCC781FF416C9000662C5 /* AddCurrencyViewController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		5407D3D51FE52BC40063C3A6 /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				5407D3D61FE52BC40063C3A6 /* TrackedCurrencies */,
-				5407D3F91FE52DDF0063C3A6 /* ObservedCurrencies */,
-				5406B9F81FF2DB890022D1C4 /* AddCurrency */,
-				DD30884E201CDD78006260C2 /* Settings */,
-				DDB2F1EE20972D2E00C568F1 /* CommonResources */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
-		5407D3D61FE52BC40063C3A6 /* TrackedCurrencies */ = {
-			isa = PBXGroup;
-			children = (
-				5407D3E71FE52BC40063C3A6 /* Storyboards */,
-				5407D3E91FE52BC40063C3A6 /* ViewControllers */,
-				5407D3E11FE52BC40063C3A6 /* DataSources+Delegates */,
-				5407D3E51FE52BC40063C3A6 /* Directors */,
-				5407D3D71FE52BC40063C3A6 /* Builders */,
-				5407D3DC1FE52BC40063C3A6 /* Cells */,
-			);
-			path = TrackedCurrencies;
-			sourceTree = "<group>";
-		};
-		5407D3D71FE52BC40063C3A6 /* Builders */ = {
-			isa = PBXGroup;
-			children = (
-				5407D3D91FE52BC40063C3A6 /* TrackedCurrenciesBuilders */,
-				DD04D124201E13F100D67AA5 /* PortfolioGraphBuilders */,
-				54081FB91FE667D90098195F /* TrackedCurrencyBuilders */,
-				54D3EAEC1FEAE21E002DDB7F /* CurrencyForSearchBuilders */,
-			);
-			path = Builders;
-			sourceTree = "<group>";
-		};
-		5407D3D91FE52BC40063C3A6 /* TrackedCurrenciesBuilders */ = {
-			isa = PBXGroup;
-			children = (
-				5407D3DA1FE52BC40063C3A6 /* TotalPortfolioCostCellBuilder.swift */,
-				5407D3DB1FE52BC40063C3A6 /* TrackedPositionCellBuilder.swift */,
-			);
-			path = TrackedCurrenciesBuilders;
-			sourceTree = "<group>";
-		};
-		5407D3DC1FE52BC40063C3A6 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				5407D3DE1FE52BC40063C3A6 /* TrackedCurrenciesCells */,
-				DD04D125201E141800D67AA5 /* PortfolioGraphCells */,
-				54081FB61FE6670E0098195F /* TrackedCurrencyCells */,
-				54D3EAE91FEAE189002DDB7F /* CurrencyForSearchCells */,
-			);
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		5407D3DE1FE52BC40063C3A6 /* TrackedCurrenciesCells */ = {
-			isa = PBXGroup;
-			children = (
-				5407D3DF1FE52BC40063C3A6 /* TotalPortfolioCostCell.swift */,
-				5407D3E01FE52BC40063C3A6 /* TrackedPositionCell.swift */,
-			);
-			path = TrackedCurrenciesCells;
-			sourceTree = "<group>";
-		};
-		5407D3E11FE52BC40063C3A6 /* DataSources+Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				5407D3E21FE52BC40063C3A6 /* TrackedCurrenciesDataSourceAndDelegate */,
-				DD04D123201E137900D67AA5 /* PortfolioGraphDataSourcesAndDelegates */,
-				54081FBE1FE668A70098195F /* TrackedCurrencyDataSourceAndDelegate */,
-				54D3EAF11FEAE2E6002DDB7F /* SearchDataSourceAndDelegate */,
-			);
-			path = "DataSources+Delegates";
-			sourceTree = "<group>";
-		};
-		5407D3E21FE52BC40063C3A6 /* TrackedCurrenciesDataSourceAndDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				DDB2B5772087D3C9007A496D /* TrackedCurrenciesDataSourceAndDelegate.swift */,
-			);
-			path = TrackedCurrenciesDataSourceAndDelegate;
-			sourceTree = "<group>";
-		};
-		5407D3E51FE52BC40063C3A6 /* Directors */ = {
-			isa = PBXGroup;
-			children = (
-				DD04D12A201E185500D67AA5 /* PortfolioGraphScreenDirector.swift */,
-				54D3EAEF1FEAE285002DDB7F /* CurrencyForSearchScreenDirector.swift */,
-			);
-			path = Directors;
-			sourceTree = "<group>";
-		};
-		5407D3E71FE52BC40063C3A6 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				5407D3E81FE52BC40063C3A6 /* TrackedCurrenciesStoryboard.storyboard */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		5407D3E91FE52BC40063C3A6 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				DD6A05E620A0CF9F00A04821 /* Extensions */,
-				5407D3EA1FE52BC40063C3A6 /* TrackedCurrenciesVCs */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		5407D3EA1FE52BC40063C3A6 /* TrackedCurrenciesVCs */ = {
-			isa = PBXGroup;
-			children = (
-				5407D3EB1FE52BC40063C3A6 /* TrackedCurrenciesViewController.swift */,
-				DD04D12E201E190000D67AA5 /* PortfolioGraphViewController.swift */,
-				54081FC31FE6694E0098195F /* TrackedCurrencyViewController.swift */,
-				54D3EAF61FEAE387002DDB7F /* CurrencySearchViewController.swift */,
-			);
-			path = TrackedCurrenciesVCs;
-			sourceTree = "<group>";
-		};
-		5407D3F91FE52DDF0063C3A6 /* ObservedCurrencies */ = {
-			isa = PBXGroup;
-			children = (
-				54CA4E231FE531EB00E6357E /* ObservedCurrenciesViewControllers */,
-				54CA4E241FE531EB00E6357E /* ObservedCurrenciesDataSources+Delegates */,
-				5407D3FA1FE52DDF0063C3A6 /* ObservedCurrenciesBuilders */,
-				5407D3FC1FE52DDF0063C3A6 /* ObservedCurrenciesCells */,
-			);
-			path = ObservedCurrencies;
-			sourceTree = "<group>";
-		};
-		5407D3FA1FE52DDF0063C3A6 /* ObservedCurrenciesBuilders */ = {
-			isa = PBXGroup;
-			children = (
-				54CA4E3D1FE53EF600E6357E /* ObservedCurrenciesBuilders */,
-			);
-			path = ObservedCurrenciesBuilders;
-			sourceTree = "<group>";
-		};
-		5407D3FC1FE52DDF0063C3A6 /* ObservedCurrenciesCells */ = {
-			isa = PBXGroup;
-			children = (
-				54CA4E341FE5380F00E6357E /* ObservedCurrenciesCells */,
-			);
-			path = ObservedCurrenciesCells;
-			sourceTree = "<group>";
-		};
-		54081FB61FE6670E0098195F /* TrackedCurrencyCells */ = {
+		54081FB61FE6670E0098195F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				DD91F32D205E40F800B5BCD6 /* CommonCoinInfoCell.swift */,
 				DD91F331205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift */,
 				DD91F333205E41A700B5BCD6 /* CoinPurchaseWithNoteCell.swift */,
 			);
-			path = TrackedCurrencyCells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
-		54081FB91FE667D90098195F /* TrackedCurrencyBuilders */ = {
+		54081FB91FE667D90098195F /* Builders */ = {
 			isa = PBXGroup;
 			children = (
 				DD91F335205E42F700B5BCD6 /* CommonCoinInfoCellBuilder.swift */,
 				DD91F337205E44D100B5BCD6 /* CoinPurchaseWONoteCellBuilder.swift */,
 				DD91F339205E453700B5BCD6 /* CoinPurchaseWithNoteCellBuilder.swift */,
 			);
-			path = TrackedCurrencyBuilders;
+			path = Builders;
 			sourceTree = "<group>";
-		};
-		54081FBE1FE668A70098195F /* TrackedCurrencyDataSourceAndDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				54081FBF1FE668E40098195F /* TrackedCurrencyDataSource.swift */,
-				54081FC11FE668FB0098195F /* TrackedCurrencyDelegate.swift */,
-			);
-			name = TrackedCurrencyDataSourceAndDelegate;
-			path = "CryptoSpace/Screens/TrackedCurrencies/DataSources+Delegates/TrackedCurrencyDataSourceAndDelegate";
-			sourceTree = SOURCE_ROOT;
 		};
 		542E45C61FDC14E3006D52C9 = {
 			isa = PBXGroup;
@@ -606,7 +394,8 @@
 		542E45D11FDC14E3006D52C9 /* CryptoSpace */ = {
 			isa = PBXGroup;
 			children = (
-				5407D3D51FE52BC40063C3A6 /* Screens */,
+				DD3F07B021580A44005DD27F /* PresentationLayer */,
+				DD3F07B121580A77005DD27F /* ServiceLayer */,
 				DDD9B198201F980500D7F437 /* Extensions */,
 				DDC281F72030553A002AAAF0 /* Services */,
 				542E45D21FDC14E3006D52C9 /* AppDelegate.swift */,
@@ -627,98 +416,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		54CA4E231FE531EB00E6357E /* ObservedCurrenciesViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				DD6A05E920A0DD5D00A04821 /* Extensions */,
-				54CA4E461FE5488400E6357E /* ObservedCurrenciesViewController.swift */,
-			);
-			path = ObservedCurrenciesViewControllers;
-			sourceTree = "<group>";
-		};
-		54CA4E241FE531EB00E6357E /* ObservedCurrenciesDataSources+Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				54CA4E2C1FE5377A00E6357E /* ObservedCurrenciesDataSourceAndDelegate */,
-			);
-			path = "ObservedCurrenciesDataSources+Delegates";
-			sourceTree = "<group>";
-		};
-		54CA4E2C1FE5377A00E6357E /* ObservedCurrenciesDataSourceAndDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				DDB2F1F620977EB700C568F1 /* ObservedCurrenciesDataSourceAndDelegate.swift */,
-			);
-			path = ObservedCurrenciesDataSourceAndDelegate;
-			sourceTree = "<group>";
-		};
-		54CA4E341FE5380F00E6357E /* ObservedCurrenciesCells */ = {
+		54CA4E341FE5380F00E6357E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				54CA4E3B1FE53D1500E6357E /* CryptoCurrenciesCapitalizationCell.swift */,
 				54CA4E361FE5380F00E6357E /* ObservedPositionCell.swift */,
 			);
-			path = ObservedCurrenciesCells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
-		54CA4E3D1FE53EF600E6357E /* ObservedCurrenciesBuilders */ = {
+		54CA4E3D1FE53EF600E6357E /* Builders */ = {
 			isa = PBXGroup;
 			children = (
 				54CA4E421FE53F5800E6357E /* CryptoCurrenciesCapitalizationCellBuilder.swift */,
 				54CA4E3E1FE53EF600E6357E /* ObservedPositionCellBuilder.swift */,
 			);
-			path = ObservedCurrenciesBuilders;
-			sourceTree = "<group>";
-		};
-		54D3EAE91FEAE189002DDB7F /* CurrencyForSearchCells */ = {
-			isa = PBXGroup;
-			children = (
-				54D3EAEA1FEAE1C3002DDB7F /* CurrencyForSearchCell.swift */,
-			);
-			path = CurrencyForSearchCells;
-			sourceTree = "<group>";
-		};
-		54D3EAEC1FEAE21E002DDB7F /* CurrencyForSearchBuilders */ = {
-			isa = PBXGroup;
-			children = (
-				54D3EAED1FEAE245002DDB7F /* CurrencyForSearchCellBuilder.swift */,
-			);
-			path = CurrencyForSearchBuilders;
-			sourceTree = "<group>";
-		};
-		54D3EAF11FEAE2E6002DDB7F /* SearchDataSourceAndDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				54D3EAF21FEAE30B002DDB7F /* SearchDataSource.swift */,
-				54D3EAF41FEAE33C002DDB7F /* SearchDelegate.swift */,
-				540C347D1FEECE1200D39C43 /* RecentCurrencySearchDataSource.swift */,
-				540C347F1FEECE2B00D39C43 /* RecentCurrencySearchDelegate.swift */,
-			);
-			path = SearchDataSourceAndDelegate;
-			sourceTree = "<group>";
-		};
-		DD04D123201E137900D67AA5 /* PortfolioGraphDataSourcesAndDelegates */ = {
-			isa = PBXGroup;
-			children = (
-				DD04D12C201E189D00D67AA5 /* PortfolioGraphDataSourceAndDelegate.swift */,
-			);
-			path = PortfolioGraphDataSourcesAndDelegates;
-			sourceTree = "<group>";
-		};
-		DD04D124201E13F100D67AA5 /* PortfolioGraphBuilders */ = {
-			isa = PBXGroup;
-			children = (
-				DD04D128201E17D900D67AA5 /* PortfolioCurrencyGraphCellBuilder.swift */,
-			);
-			path = PortfolioGraphBuilders;
-			sourceTree = "<group>";
-		};
-		DD04D125201E141800D67AA5 /* PortfolioGraphCells */ = {
-			isa = PBXGroup;
-			children = (
-				DD04D126201E149400D67AA5 /* PortfolioCurrencyGraphCell.swift */,
-			);
-			path = PortfolioGraphCells;
+			path = Builders;
 			sourceTree = "<group>";
 		};
 		DD30884B201C720F006260C2 /* TextFields */ = {
@@ -729,32 +442,232 @@
 			path = TextFields;
 			sourceTree = "<group>";
 		};
-		DD30884E201CDD78006260C2 /* Settings */ = {
+		DD3F07B021580A44005DD27F /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				DD30884F201CDDC6006260C2 /* ViewControllers */,
-				DD308850201CDDE2006260C2 /* DataSources+Delegates */,
+				DD3F07B22158150C005DD27F /* TrackedCurrenciesModule */,
+				DD3F07BE21581B31005DD27F /* PortfolioGraphModule */,
+				DD3F07C021582194005DD27F /* TrackedCurrencyModule */,
+				DD3F07C221582318005DD27F /* CurrencySearchModule */,
+				DD3F07C421582463005DD27F /* ObservedCurrenciesModule */,
+				DD3F07C621582592005DD27F /* AddCurrencyModule */,
+				DD3F07C8215826A0005DD27F /* SettingsModule */,
+				DD3F07CA21582756005DD27F /* ResponsibilityModule */,
+				DD3F07CC215827A9005DD27F /* AboutAppModule */,
 			);
-			path = Settings;
+			path = PresentationLayer;
 			sourceTree = "<group>";
 		};
-		DD30884F201CDDC6006260C2 /* ViewControllers */ = {
+		DD3F07B121580A77005DD27F /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
-				DDAA497B20A34F8800E0DA60 /* Extensions */,
-				DD04D11C201DB0B900D67AA5 /* SettingsViewController.swift */,
-				DD04D11E201DC80600D67AA5 /* ResponsibilityViewController.swift */,
-				DD04D120201DC82300D67AA5 /* AboutAppViewController.swift */,
 			);
-			path = ViewControllers;
+			path = ServiceLayer;
 			sourceTree = "<group>";
 		};
-		DD308850201CDDE2006260C2 /* DataSources+Delegates */ = {
+		DD3F07B22158150C005DD27F /* TrackedCurrenciesModule */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F07B32158153B005DD27F /* View */,
+				DD3F07B8215815D1005DD27F /* TrackedCurrenciesContract.swift */,
+				DD3F07BA215815E2005DD27F /* TrackedCurrenciesAssembly.swift */,
+				DD3F07B421581566005DD27F /* TrackedCurrenciesPresenter.swift */,
+				DD3F07B6215815A2005DD27F /* TrackedCurrenciesInteractor.swift */,
+			);
+			path = TrackedCurrenciesModule;
+			sourceTree = "<group>";
+		};
+		DD3F07B32158153B005DD27F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F07BD21581631005DD27F /* Cells */,
+				DD3F07BC21581627005DD27F /* Builders */,
+				5407D3E81FE52BC40063C3A6 /* TrackedCurrenciesStoryboard.storyboard */,
+				DDB2B5772087D3C9007A496D /* TrackedCurrenciesDataSourceAndDelegate.swift */,
+				DD914846208BE02400412040 /* IndicatorViewDataSourceAndDelegate.swift */,
+				5407D3EB1FE52BC40063C3A6 /* TrackedCurrenciesViewController.swift */,
+				DD6A05E720A0CFE100A04821 /* TrackedCurrenciesAdDelegate.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD3F07BC21581627005DD27F /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				5407D3DA1FE52BC40063C3A6 /* TotalPortfolioCostCellBuilder.swift */,
+				5407D3DB1FE52BC40063C3A6 /* TrackedPositionCellBuilder.swift */,
+				DD914842208BDE5700412040 /* IndicatorViewCellBuilder.swift */,
+				DDB2F1F420972FC700C568F1 /* NoDataCellBuilder.swift */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		DD3F07BD21581631005DD27F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5407D3DF1FE52BC40063C3A6 /* TotalPortfolioCostCell.swift */,
+				5407D3E01FE52BC40063C3A6 /* TrackedPositionCell.swift */,
+				DD91483E208BDE1800412040 /* IndicatorViewCell.swift */,
+				DDB2F1F220972FB000C568F1 /* NoDataCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		DD3F07BE21581B31005DD27F /* PortfolioGraphModule */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F07BF21581B4C005DD27F /* View */,
+			);
+			path = PortfolioGraphModule;
+			sourceTree = "<group>";
+		};
+		DD3F07BF21581B4C005DD27F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD04D126201E149400D67AA5 /* PortfolioCurrencyGraphCell.swift */,
+				DD04D128201E17D900D67AA5 /* PortfolioCurrencyGraphCellBuilder.swift */,
+				DD04D12A201E185500D67AA5 /* PortfolioGraphScreenDirector.swift */,
+				DD04D12C201E189D00D67AA5 /* PortfolioGraphDataSourceAndDelegate.swift */,
+				DD04D12E201E190000D67AA5 /* PortfolioGraphViewController.swift */,
+				DD6A05EC20A0DF8400A04821 /* PortfolioGraphAdDelegate.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD3F07C021582194005DD27F /* TrackedCurrencyModule */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F07C12158221F005DD27F /* View */,
+			);
+			path = TrackedCurrencyModule;
+			sourceTree = "<group>";
+		};
+		DD3F07C12158221F005DD27F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				54081FB61FE6670E0098195F /* Cells */,
+				54081FB91FE667D90098195F /* Builders */,
+				54081FBF1FE668E40098195F /* TrackedCurrencyDataSource.swift */,
+				54081FC11FE668FB0098195F /* TrackedCurrencyDelegate.swift */,
+				54081FC31FE6694E0098195F /* TrackedCurrencyViewController.swift */,
+				DD6A05EE20A0E01900A04821 /* TrackedCurrencyAdDelegate.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD3F07C221582318005DD27F /* CurrencySearchModule */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F07C32158233E005DD27F /* View */,
+			);
+			path = CurrencySearchModule;
+			sourceTree = "<group>";
+		};
+		DD3F07C32158233E005DD27F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				54D3EAEA1FEAE1C3002DDB7F /* CurrencyForSearchCell.swift */,
+				54D3EAED1FEAE245002DDB7F /* CurrencyForSearchCellBuilder.swift */,
+				54D3EAEF1FEAE285002DDB7F /* CurrencyForSearchScreenDirector.swift */,
+				54D3EAF21FEAE30B002DDB7F /* SearchDataSource.swift */,
+				54D3EAF41FEAE33C002DDB7F /* SearchDelegate.swift */,
+				540C347D1FEECE1200D39C43 /* RecentCurrencySearchDataSource.swift */,
+				540C347F1FEECE2B00D39C43 /* RecentCurrencySearchDelegate.swift */,
+				54D3EAF61FEAE387002DDB7F /* CurrencySearchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD3F07C421582463005DD27F /* ObservedCurrenciesModule */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F07C521582475005DD27F /* View */,
+			);
+			path = ObservedCurrenciesModule;
+			sourceTree = "<group>";
+		};
+		DD3F07C521582475005DD27F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				54CA4E341FE5380F00E6357E /* Cells */,
+				54CA4E3D1FE53EF600E6357E /* Builders */,
+				DDB2F1F620977EB700C568F1 /* ObservedCurrenciesDataSourceAndDelegate.swift */,
+				54CA4E461FE5488400E6357E /* ObservedCurrenciesViewController.swift */,
+				DD6A05EA20A0DD9600A04821 /* ObservedCurrenciesAdDelegate.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD3F07C621582592005DD27F /* AddCurrencyModule */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F07C7215825B5005DD27F /* View */,
+			);
+			path = AddCurrencyModule;
+			sourceTree = "<group>";
+		};
+		DD3F07C7215825B5005DD27F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5482F4021FFFCDEE00BDD14C /* Helpers */,
+				5406B9FC1FF2DB890022D1C4 /* Cells */,
+				5406B9FA1FF2DB890022D1C4 /* Builders */,
+				54BDCC721FF41649000662C5 /* AddCurrencyScreenDirector.swift */,
+				54306C081FFA5DB50094A894 /* AddCurrencyDataSourceAndDelegate.swift */,
+				54BDCC781FF416C9000662C5 /* AddCurrencyViewController.swift */,
+				DDAD79C6208C71DA0045BD44 /* AddCurrencyTextFieldDelegate.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD3F07C8215826A0005DD27F /* SettingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F07C9215826B3005DD27F /* View */,
+			);
+			path = SettingsModule;
+			sourceTree = "<group>";
+		};
+		DD3F07C9215826B3005DD27F /* View */ = {
 			isa = PBXGroup;
 			children = (
 				DD308852201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift */,
+				DD04D11C201DB0B900D67AA5 /* SettingsViewController.swift */,
+				DDAA497C20A350A000E0DA60 /* SettingsAdDelegate.swift */,
 			);
-			path = "DataSources+Delegates";
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD3F07CA21582756005DD27F /* ResponsibilityModule */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F07CB21582791005DD27F /* View */,
+			);
+			path = ResponsibilityModule;
+			sourceTree = "<group>";
+		};
+		DD3F07CB21582791005DD27F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD04D11E201DC80600D67AA5 /* ResponsibilityViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD3F07CC215827A9005DD27F /* AboutAppModule */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F07CD215827C9005DD27F /* View */,
+			);
+			path = AboutAppModule;
+			sourceTree = "<group>";
+		};
+		DD3F07CD215827C9005DD27F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD04D120201DC82300D67AA5 /* AboutAppViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		DD601C6A20833CF60027F411 /* CMCReq */ = {
@@ -771,24 +684,6 @@
 				DD601C6E20833E420027F411 /* CMCResponseParser.swift */,
 			);
 			name = CMCResp;
-			sourceTree = "<group>";
-		};
-		DD6A05E620A0CF9F00A04821 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				DD6A05E720A0CFE100A04821 /* TrackedCurrenciesAdDelegate.swift */,
-				DD6A05EC20A0DF8400A04821 /* PortfolioGraphAdDelegate.swift */,
-				DD6A05EE20A0E01900A04821 /* TrackedCurrencyAdDelegate.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		DD6A05E920A0DD5D00A04821 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				DD6A05EA20A0DD9600A04821 /* ObservedCurrenciesAdDelegate.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		DD7CB73720526A4C00E6E786 /* RequestBuilders */ = {
@@ -886,64 +781,12 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
-		DDAA497B20A34F8800E0DA60 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				DDAA497C20A350A000E0DA60 /* SettingsAdDelegate.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		DDAA6ADC200362D0007045F7 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
 				DDAA6ADD20036307007045F7 /* ActionChoiceButton.swift */,
 			);
 			path = Buttons;
-			sourceTree = "<group>";
-		};
-		DDAD79C5208C71AB0045BD44 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				DDAD79C6208C71DA0045BD44 /* AddCurrencyTextFieldDelegate.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		DDB2F1EE20972D2E00C568F1 /* CommonResources */ = {
-			isa = PBXGroup;
-			children = (
-				DDB2F1EF20972D5900C568F1 /* DataSourcesAndDelegates */,
-				DDB2F1F020972D6D00C568F1 /* Builders */,
-				DDB2F1F120972D7B00C568F1 /* Cells */,
-			);
-			path = CommonResources;
-			sourceTree = "<group>";
-		};
-		DDB2F1EF20972D5900C568F1 /* DataSourcesAndDelegates */ = {
-			isa = PBXGroup;
-			children = (
-				DD914846208BE02400412040 /* IndicatorViewDataSourceAndDelegate.swift */,
-			);
-			path = DataSourcesAndDelegates;
-			sourceTree = "<group>";
-		};
-		DDB2F1F020972D6D00C568F1 /* Builders */ = {
-			isa = PBXGroup;
-			children = (
-				DD914842208BDE5700412040 /* IndicatorViewCellBuilder.swift */,
-				DDB2F1F420972FC700C568F1 /* NoDataCellBuilder.swift */,
-			);
-			path = Builders;
-			sourceTree = "<group>";
-		};
-		DDB2F1F120972D7B00C568F1 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				DD91483E208BDE1800412040 /* IndicatorViewCell.swift */,
-				DDB2F1F220972FB000C568F1 /* NoDataCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		DDBA44D5207FDDC6001FDE14 /* Models */ = {
@@ -1156,6 +999,7 @@
 				DD7CB755205273C400E6E786 /* RequestToTidexBuilder.swift in Sources */,
 				DDBA44D7207FDE7C001FDE14 /* TrackedCoinCommonInfoModel.swift in Sources */,
 				DD91F332205E418800B5BCD6 /* CoinPurchaseWONoteCell.swift in Sources */,
+				DD3F07BB215815E2005DD27F /* TrackedCurrenciesAssembly.swift in Sources */,
 				DDAD79C7208C71DA0045BD44 /* AddCurrencyTextFieldDelegate.swift in Sources */,
 				DD7E16EC2069790600EC83CC /* RubleRateRequestBuilder.swift in Sources */,
 				DDA1607E203DED000020B602 /* AllCoinsManager.swift in Sources */,
@@ -1184,6 +1028,7 @@
 				542E45DB1FDC14E3006D52C9 /* CryptoSpace.xcdatamodeld in Sources */,
 				54CA4E3F1FE53EF600E6357E /* ObservedPositionCellBuilder.swift in Sources */,
 				DD93DF552055505C007EB222 /* RequestToC2CXBuilder.swift in Sources */,
+				DD3F07B7215815A2005DD27F /* TrackedCurrenciesInteractor.swift in Sources */,
 				DDA16080203DEE890020B602 /* Coin.swift in Sources */,
 				DDB2F1F520972FC700C568F1 /* NoDataCellBuilder.swift in Sources */,
 				54CA4E431FE53F5800E6357E /* CryptoCurrenciesCapitalizationCellBuilder.swift in Sources */,
@@ -1203,6 +1048,7 @@
 				DD04D127201E149400D67AA5 /* PortfolioCurrencyGraphCell.swift in Sources */,
 				54081FC21FE668FB0098195F /* TrackedCurrencyDelegate.swift in Sources */,
 				DD7E16EE2069796C00EC83CC /* RubleRateResponseParser.swift in Sources */,
+				DD3F07B521581566005DD27F /* TrackedCurrenciesPresenter.swift in Sources */,
 				DD6A05ED20A0DF8400A04821 /* PortfolioGraphAdDelegate.swift in Sources */,
 				DDC31FAD20712240005E9235 /* ExchangesDictsKeys.swift in Sources */,
 				5407D3F01FE52BC40063C3A6 /* TotalPortfolioCostCell.swift in Sources */,
@@ -1212,6 +1058,7 @@
 				DD308853201CDE91006260C2 /* SettingsDataSourceAndDelegate.swift in Sources */,
 				DDB2B5762087C4ED007A496D /* PortfolioModel.swift in Sources */,
 				DDD9B19A201F985900D7F437 /* UIColor+Extension.swift in Sources */,
+				DD3F07B9215815D1005DD27F /* TrackedCurrenciesContract.swift in Sources */,
 				54BDCC6F1FF415F9000662C5 /* PurchasedAmountCostCellBuilder.swift in Sources */,
 				54081FC01FE668E40098195F /* TrackedCurrencyDataSource.swift in Sources */,
 				DD91483F208BDE1800412040 /* IndicatorViewCell.swift in Sources */,
