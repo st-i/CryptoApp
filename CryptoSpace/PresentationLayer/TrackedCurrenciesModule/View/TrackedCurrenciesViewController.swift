@@ -79,16 +79,20 @@ class TrackedCurrenciesViewController: UIViewController {
         
         requestManager = RequestManager()
         
+        //        func handlePortfolioExistanceCheck()
         if CoreDataManager.shared.checkPortfolioExistance() == false {
             CoreDataManager.shared.savePortfolio(portfolio: Portfolio())
         }
         
         showIndicatorViewScreen()
+        //        func handleUserCoinsFetching()
         let allSavedCoins = CoreDataManager.shared.getUserCoinsArray()
         allUnsortedCoins = allSavedCoins
+        //        func handleCoinsGrouping()
         userCoins = CoinsArrayGroupingFormatter.groupCoins(coins: allSavedCoins)
         
         if userCoins.count > 0 {
+            //        func handleCoinsOrdering()
             userCoins = CoinsOrderManager.orderCoins(coinsType: .Tracked, disorderedCoins: userCoins)
         }
         
@@ -98,6 +102,7 @@ class TrackedCurrenciesViewController: UIViewController {
             fillTableViewWithData()
             tableView.reloadData()
         }else{
+            //        func handleUserPortfolioFetching()
             currentUserPortfolio = CoreDataManager.shared.getUserPortfolio()
             userPortfolioModel = PortfolioMapper.mapPortfolioModel(userPortfolio: currentUserPortfolio, userCoinsCount: userCoins.count)
             refreshCurrenciesRates()
